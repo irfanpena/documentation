@@ -1,56 +1,75 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Tavus",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#F230AA",
+    "light": "#FF6CC8",
+    "dark": "#F230AA"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.png",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Getting Started",
+            "pages": ["sections/introduction", "sections/quickstart", "sections/models"]
+          },
+          {
+            "group": "Conversational Video Interface",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "sections/conversational-video-interface/overview-cvi",
+              {
+                "group": "Conversation",
+                "pages": [
+                  "sections/conversational-video-interface/conversation/overview",
+                  "sections/conversational-video-interface/conversation/quickstart",
+                  {
+                    "group": "Customizations",
+                    "pages": [
+                      "sections/conversational-video-interface/conversation/customizations/recording"
+                    ]
+                  },
+                  {
+                    "group": "Conversational Use Cases",
+                    "pages": [
+                      "sections/conversational-video-interface/conversation/usecases/tavus-researcher",
+                      "sections/conversational-video-interface/conversation/usecases/ai-interviewer",
+                      "sections/conversational-video-interface/conversation/usecases/history-teacher",
+                      "sections/conversational-video-interface/conversation/usecases/sales-coach"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Persona",
+                "pages": [
+                  {
+                    "group": "Layer Configurations",
+                    "pages": [
+                      "sections/conversational-video-interface/persona/perception",
+                      "sections/conversational-video-interface/persona/tools-calling"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Interactions Protocol",
+                "pages": [
+                  "sections/conversational-video-interface/interactions-protocols/overview"
+                ]
+              }
             ]
           },
           {
-            "group": "Essentials",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "API Documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
+            "group": "Integrations",
+            "pages": ["sections/integrations/embedding-cvi"]
           },
           {
-            "group": "Endpoint Examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
+            "group": "Resources",
+            "pages": ["sections/changelog/changelog"]
           }
         ]
       }
@@ -58,45 +77,47 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
           "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
+          "href": "https://discord.gg/5Y9Er6WNN5",
+          "icon": "discord"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Status",
+          "href": "https://status.tavus.io",
+          "icon": "tower-broadcast"
         }
       ]
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/light.png",
+    "dark": "/logo/dark.png"
   },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Login",
+        "href": "https://platform.tavus.io"
+      },
+      {
+        "label": "Account Help",
+        "href": "https://help.tavus.io/"
+      },
+      {
+        "label": "Get Support",
+        "href": "mailto:developer-support@tavus.io"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Get Started",
+      "href": "https://platform.tavus.io"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "linkedin": "https://www.linkedin.com/company/tavus-io/",
+      "discord": "https://discord.gg/5Y9Er6WNN5"
     }
   }
 }
