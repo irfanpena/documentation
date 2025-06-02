@@ -1,0 +1,166 @@
+---
+title: Perception Tool
+sidebarTitle: Perception Tool Calling
+description: Learn how to configure the perception tool calling.
+---
+
+**Perception tool calling** works with OpenAI’s [Function Calling](https://platform.openai.com/docs/guides/function-calling) and can be set up in the `perception` layer. It allows AI agents to trigger functions based on visual cues during a conversation.
+
+<Note>
+The perception layer tool calling is only available for `raven-0`.
+</Note>
+## Defining Tool
+
+### Top-Level Fields
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `type` | string | ✅ | Must be `"function"` to enable tool calling. |
+| `function` | object | ✅ | Defines the function that can be called by the model. Contains metadata and a strict schema for arguments. |
+
+#### `function`
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `name` | string | ✅ | A unique identifier for the function. Must be in `snake_case`. The model uses this to refer to the function when calling it. |
+| `description` | string | ✅ | A natural language explanation of what the function does. Helps the perception model decide when to call it. |
+| `parameters` | object | ✅ | A JSON Schema object that describes the expected structure of the function’s input arguments. |
+
+#### `function.parameters`
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `type` | string | ✅ | Always `"object"`. Indicates the expected input is a structured object. |
+| `properties` | object | ✅ | Defines each expected parameter and its corresponding type, constraints, and description. |
+| `required` | array of strings | ✅ | Specifies which parameters are mandatory for the function to execute. |
+<Note>
+Each parameter should be included in the required list, even if they might seem optional in your code.
+</Note>
+##### `function.parameters.properties`
+
+Each key inside `properties` defines a single parameter the model must supply when calling the function.
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `<parameter_name>` | object | ✅ | Each key is a named parameter. The value is a schema for that parameter. |
+
+Optional subfields for each parameter:
+
+| Subfield | Type | Required | Description |
+|----------|------|----------|-------------|
+| `type` | string | ✅ | Data type (e.g., `string`, `number`, `boolean`). |
+| `description` | string | ❌ | Explains what the parameter represents and how it should be used. |
+| `enum` | array | ❌ | Defines a strict list of allowed values for this parameter. Useful for categorical choices. |
+
+## Example Configuration
+
+Here’s an example of tool calling in `perception` layers:
+<Tip>
+**Best Practices:**  
+- Use clear, specific function names to reduce ambiguity.  
+- Add detailed `description` fields to improve selection accuracy.
+</Tip>
+
+```json Perception Layer
+"perception": {
+  "perception_model": "raven-0",
+  "ambient_awareness_queries": [
+      "Is the user showing an ID card?",
+      "Is the user wearing a mask?"
+  ],
+  "perception_tool_prompt": "You have a tool to notify the system when an ID card is detected, named `notify_if_id_shown`.",
+  "perception_tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "notify_if_id_shown",
+        "description": "Use this function when a drivers license or passport is detected in the image with high confidence. After collecting the ID, internally use final_ask()",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "id_type": {
+              "type": "string",
+              "description": "best guess on what type of ID it is",
+            },
+          },
+          "required": ["id_type"],
+        },
+      },
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "notify_if_bright_outfit_shown",
+        "description": "Use this function when a bright outfit is detected in the image with high confidence",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "outfit_color": {
+              "type": "string",
+              "description": "Best guess on what color of outfit it is"
+            }
+          },
+          "required": ["outfit_color"]
+        }
+      }
+    }
+  ]
+}
+```
+## How Perception Tool Calling Works
+
+Perception Tool calling is triggered during an active conversation when the perception model detects a visual cue that matches a defined function. Here’s how the process works:  
+<Note>  
+This example explains the `notify_if_id_shown` function from the [example configuration](#example-configuration) above.  
+</Note>
+
+<Steps>
+<Step title="Visual Input Detected">
+   The AI processes real-time visual input through the `raven-0` perception model.  
+   <br/>**Example**: The user holds up a driver's license in front of the camera.
+</Step>
+<Step title="Tool Matching"> 
+   The perception model analyzes the image and matches the scene to the function `notify_if_id_shown`, which is designed to trigger when an ID (like a passport or driver’s license) is detected.
+</Step>
+<Step title="Event Broadcast"> 
+   Tavus broadcasts a [perception_tool_call](https://docs.tavus.io/sections/event-schemas/conversation-perception-tool-call) event over the active [Daily](https://docs.daily.co) room.  
+   <br/>Your app can listen for this event, process the function (e.g., by logging the ID type or taking further action), and return the result to the AI.
+</Step>
+</Steps>
+<Note>  
+The same process applies to other functions like `notify_if_bright_outfit_shown`, which is triggered if a bright-colored outfit is visually detected.  
+</Note>
+
+## Modify Existing Tools
+You can update the `perception_tools` definitions using the [Update Persona API](https://docs.tavus.io/api-reference/personas/patch-persona).
+```shell
+curl --request PATCH \
+  --url https://tavusapi.com/v2/personas/{persona_id} \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <api-key>' \
+  --data '[
+    {
+      "op": "replace",
+      "path": "/layers/perception/perception_tools",
+      "value": [
+        {
+          "type": "function",
+          "function": {
+            "name": "detect_glasses",
+            "description": "Trigger this function if the user is wearing glasses in the image",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "glasses_type": {
+                  "type": "string",
+                  "description": "Best guess on the type of glasses (e.g., reading, sunglasses)"
+                }
+              },
+              "required": ["glasses_type"]
+            }
+          }
+        }
+      ]
+    }
+  ]'
+
+```

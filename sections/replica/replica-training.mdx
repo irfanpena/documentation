@@ -1,0 +1,103 @@
+---
+title: Replica Training
+description: Learn how to create the most accurate personal replica by submitting a high-quality training video.
+---
+
+You can record the video directly in the [Developer Portal](https://platform.tavus.io/) or upload a pre-recorded one via the [API](https://docs.tavus.io/api-reference/phoenix-replica-model/create-replica).
+
+## Prerequisites
+
+### Environment
+- Record in a quiet, well-lit space with no background noise or movement.  
+- Use diffuse lighting to avoid shadows on your face.  
+- Choose a simple background and avoid any moving people or objects.
+
+### Camera
+- Place the camera slightly below eye level. You should fill at least 25% of the frame.  
+- Use a desktop recording app (e.g., **QuickTime** on Mac or **Camera** on Windows) — avoid browser-based tools.
+
+### Microphone
+- Use your device’s built-in microphone.  
+- **Avoid** high-end mics or wireless earbuds like AirPods.  
+- Turn off audio effects like noise suppression or EQ adjustments.
+
+### Yourself
+
+| ✅ Do | ❌ Don’t |
+|------|---------|
+| Keep your full head visible, with a clear view of your face | Wear clothes that blend into the background |
+| Ensure your face and upper body are in sharp focus | Wear accessories like hats, thick glasses, or earrings |
+| Record in landscape mode if using a phone | Turn your head away from the camera |
+| Tuck back any hair covering your face | Block your chin or mouth with your microphone |
+| Sit upright in a stable, seated position | Stand or shift positions during the video |
+
+### Consent Statement
+
+If you're creating a **personal replica**, you must include a verbal consent statement in the video. This ensures ethical use and compliance with data protection laws.
+
+**Steps**:
+- Begin with a big smile and look directly into the camera for one second.  
+- Clearly read the following script:
+
+> I, (your name), am currently speaking and give consent to Tavus to create an AI clone of me by using the audio and video samples I provide. I understand that this AI clone can be used to create videos that look and sound like me.
+
+<Note>
+This step is **only required for personal replicas**. If you’re creating an **AI replica** (not based on yourself), you can skip this video.
+</Note>
+
+## Recording Your Training Video
+Your video must be **one continuous shot**, containing:
+<Tip>
+**Pro tips**:
+- Keep body and head movements subtle  
+- Avoid heavy hand gestures  
+- Only one person should appear in the video  
+</Tip>
+<Steps>
+<Step title="1 Minute of Talking">
+- Start with a big smile.  
+- Look directly at the camera, positioned just below eye level.  
+- Speak casually, as if talking to a friend.  
+- Pause briefly (close lips) every 1–2 sentences.  
+- Keep gestures and body movements minimal.
+- Sample script:
+```txt [expandable]
+For the next 2 minutes, I’ll read you a story that will for sure make you smile and feel good. I will be relaxed and keep a happy face while reading. I will also read this story at a faster pace than I normally speak. I will close my lips fully after every sentence. I will read this script in a casual and conversational tone as if I am telling a story to my friend.
+
+The sun was shining brightly, casting a warm glow over the park as Emma, Jake, and Sophie spread out their picnic blanket. Now I will close my lips fully.
+
+Emma looked around, her face beaming with excitement. "Can you believe how perfect today is?" she exclaimed. "The sun is shining, and the weather is just right!" Her enthusiasm was contagious, and Jake couldn't help but smile as he laid back on the blanket, soaking in the sunlight. Now I will close my lips fully after this sentence.
+
+Jake nodded in agreement, a relaxed grin spreading across his face. "It really is," he said. "Days like this remind me why I love summer. I will close my lips fully after this sentence.
+
+Sophie, always the energetic one, jumped up from the blanket with a burst of excitement. "And we have the whole day to ourselves!" she declared. "So many possibilities. What should we do first? Fly a kite? Play frisbee? Go for a hike?" Her eyes sparkled. I will close my lips fully after this sentence. This is the last sentence I will read and then I will stand still to record my listening segment with minimal head and body movement as if I am listening to someone share a story.
+
+```
+<Frame>
+![](/images/replica-training/image1.png)
+</Frame>
+</Step>
+
+<Step title="1 Minute of Silence">
+- Sit still with a relaxed, attentive posture.  
+- Keep lips gently closed the entire time.  
+- Slight, natural head movements (like you’re listening on a Zoom call).  
+<Frame>
+![](/images/replica-training/image3.gif)
+</Frame>
+</Step>
+
+</Steps>
+
+<Note>
+Replica training typically takes **4–5 hours**. You can track the training progress by:
+- Providing a `callback_url` when creating the replica via API  
+- Using the [**Get Replica Status**](https://docs.tavus.io/api-reference/phoenix-replica-model/get-replica) API  
+- Checking the [Developer Portal](https://platform.tavus.io/)
+</Note>
+
+## High-Quality Training Example
+
+<Frame>
+<iframe src="https://drive.google.com/file/d/1n-rRuZop9F2sMRpOWWkE2lHcX-gHdHI7/preview" width="800" height="500" allow="autoplay"></iframe>
+</Frame>

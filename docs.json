@@ -50,17 +50,24 @@
                     "group": "Layer Configurations",
                     "pages": [
                       "sections/conversational-video-interface/persona/perception",
-                      "sections/conversational-video-interface/persona/tools-calling"
+                      {
+                        "group": "Using Tool Calling",
+                        "pages": [
+                          "sections/conversational-video-interface/persona/llm-tool",
+                          "sections/conversational-video-interface/persona/perception-tool"
+                        ]
+                      }
                     ]
                   }
                 ]
               },
-              {
-                "group": "Interactions Protocol",
-                "pages": [
-                  "sections/conversational-video-interface/interactions-protocols/overview"
-                ]
-              }
+              "sections/conversational-video-interface/interactions-protocols/overview"
+            ]
+          },
+          {
+            "group": "Replica",
+            "pages": [
+              "sections/replica/replica-training"
             ]
           },
           {
