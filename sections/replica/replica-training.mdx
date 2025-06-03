@@ -22,14 +22,26 @@ You can record the video directly in the [Developer Portal](https://platform.tav
 - Turn off audio effects like noise suppression or EQ adjustments.
 
 ### Yourself
-
+<Frame>
+![](/images/replica-training/charlie.png)
+</Frame>
 | ✅ Do | ❌ Don’t |
 |------|---------|
 | Keep your full head visible, with a clear view of your face | Wear clothes that blend into the background |
 | Ensure your face and upper body are in sharp focus | Wear accessories like hats, thick glasses, or earrings |
-| Record in landscape mode if using a phone | Turn your head away from the camera |
+| If using smartphone, make sure you follow the same framing/distance from the camera | Turn your head away from the camera |
 | Tuck back any hair covering your face | Block your chin or mouth with your microphone |
 | Sit upright in a stable, seated position | Stand or shift positions during the video |
+
+### Video Format
+
+If you're uploading a pre-recorded training video via our [API](https://docs.tavus.io/api-reference/phoenix-replica-model/create-replica), ensure it meets the following requirements:
+
+- **Accepted formats**:
+  - `webm`
+  - `mp4` with **H.264** video codec and **AAC** audio codec  
+- **Maximum file size**: 750MB  
+- **Minimum resolution**: 720p  
 
 ### Consent Statement
 
@@ -88,13 +100,13 @@ Sophie, always the energetic one, jumped up from the blanket with a burst of exc
 </Step>
 
 </Steps>
-
 <Note>
 Replica training typically takes **4–5 hours**. You can track the training progress by:
 - Providing a `callback_url` when creating the replica via API  
 - Using the [**Get Replica Status**](https://docs.tavus.io/api-reference/phoenix-replica-model/get-replica) API  
 - Checking the [Developer Portal](https://platform.tavus.io/)
 </Note>
+
 
 ## High-Quality Training Example
 
