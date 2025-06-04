@@ -1,0 +1,169 @@
+---
+title: Text-to-Speech (TTS) Layer
+sidebarTitle: TTS
+description: Learn how to configure the TTS layer when creating a persona in Tavus.
+---
+
+The **TTS Layer** in Tavus enables your persona to generate natural-sounding voice responses.
+You can configure the TTS layer using third-party tts engine provider. If `layers.tts` is not specified, Tavus defaults to `Tavus Default` engine.
+<Note>
+If you use the default engine, you do not need to specify any parameters within the `tts` layer.
+</Note>
+
+## Configuring the TTS Layer
+
+Define the TTS layer under the `layers.tts` object. Below are the parameters available:
+### 1. `api_key`
+
+The custodial API key to be used to make requests to the chosen third-party TTS provider.
+
+```json
+"tts": {
+  "api_key": "your-api-key"
+}
+```
+### 2. `tts_engine`
+
+Specifies the supported third-party TTS engine.
+* **Options**:  `cartesia`, `elevenlabs`, `playht`
+
+```json
+"tts": {
+  "tts_engine": "cartesia"
+}
+```
+
+### 3. `external_voice_id`
+
+The voice ID used for the selected TTS engine. Refer to:
+- [Cartesia](https://docs.cartesia.ai/api-reference/voices/list)
+- [ElevenLabs](https://elevenlabs.io/docs/api-reference/voices/search)
+- [PlayHT](https://docs.play.ai/api-reference/text-to-speech/endpoints/v1/list-voices).
+
+```json
+"tts": {
+  "external_voice_id": "external-voice-id"
+}
+```
+
+### 4. `voice_settings`
+
+Optional object containing additional settings specific to the selected TTS engine.
+<Note>
+These settings vary per engine.
+</Note>
+```json
+"tts": {
+  "voice_settings": {
+    "speed": "normal",
+    "emotion": ["positivity:high", "curiosity"]
+  }
+}
+```
+
+### 5. `playht_user_id`
+
+PlayHT-specific user ID, required if using PlayHT as the TTS engine.
+
+```json
+"tts": {
+  "playht_user_id": "your-playht-user-id"
+}
+```
+
+### 6. `tts_emotion_control`
+
+If set to true, enables emotion control in speech.
+<Note>
+Only available for the `cartesia` engine.
+</Note>
+```json
+"tts": {
+  "tts_emotion_control": true
+}
+```
+
+### 7. `tts_model_name`
+
+Model name used by the TTS engine. Refer to:
+- [Cartesia](https://docs.cartesia.ai/2025-04-16/build-with-cartesia/models)
+- [ElevenLabs](https://elevenlabs.io/docs/models)
+- [PlayHT](https://docs.play.ai/documentation/text-to-speech/tts-models)
+```json
+"tts": {
+  "tts_model_name": "sonic"
+}
+```
+
+## Example Use Case
+
+Below is an example persona with a fully configured TTS layer:
+<CodeGroup>
+```json Cartesia
+{
+  "persona_name": "AI Presenter",
+  "system_prompt": "You are a friendly and informative video host.",
+  "pipeline_mode": "full",
+  "context": "You're delivering updates in a conversational tone.",
+  "default_replica_id": "r665388ec672",
+  "layers": {
+    "tts": {
+      "tts_engine": "cartesia",
+      "api_key": "your-api-key",
+      "external_voice_id": "external-voice-id",
+      "voice_settings": {
+        "speed": "normal",
+        "emotion": ["positivity:high", "curiosity"]
+      },
+      "tts_emotion_control": true,
+      "tts_model_name": "sonic"
+    }
+  }
+}
+```
+```json ElevenLabs
+{
+  "persona_name": "Narrator",
+  "system_prompt": "You narrate long stories with clarity and consistency.",
+  "pipeline_mode": "full",
+  "context": "You're reading a fictional audiobook.",
+  "default_replica_id": "r665388ec672",
+  "layers": {
+    "tts": {
+      "tts_engine": "elevenlabs",
+      "api_key": "your-api-key",
+      "external_voice_id": "elevenlabs-voice-id",
+      "voice_settings": {
+        "speed": "normal"
+      },
+      "tts_model_name": "eleven_multilingual_v2"
+    }
+  }
+}
+```
+```json PlayHT
+{
+  "persona_name": "Brand Spokesperson",
+  "system_prompt": "You promote brand values in a confident and curious tone.",
+  "pipeline_mode": "full",
+  "context": "You're introducing a new product to a global audience.",
+  "default_replica_id": "r665388ec672",
+  "layers": {
+    "tts": {
+      "tts_engine": "playht",
+      "api_key": "your-api-key",
+      "playht_user_id": "your-playht-user-id",
+      "external_voice_id": "playht-voice-id",
+      "voice_settings": {
+        "speed": "normal",
+        "emotion": ["curiosity"]
+      },
+      "tts_model_name": "PlayDialog"
+    }
+  }
+}
+```
+</CodeGroup>
+<Note>
+Refer to the [Create Persona API](https://docs.tavus.io/api-reference/personas/create-persona) for a complete list of supported fields.
+</Note>
