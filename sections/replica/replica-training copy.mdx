@@ -1,0 +1,99 @@
+---
+title: Replica Training
+description: Learn how to create the best personal replica with a high-quality training video.
+---
+
+## Training Overview
+
+To train your personal replica, we first need you to submit a **training video**.
+A high-quality training video helps our AI model properly map your face and voice,
+resulting in a more realistic replica overall. Your training video will be **one continuous video**, containing the following, in-order:
+<ol>
+  <li>1 minute of talking</li>
+  <li>1 minute of silence (active listening)</li>
+</ol>
+
+You can record your training video in app on the [Developer Portal](https://platform.tavus.io/). Alternatively, you can upload a pre-recorded video on the Developer Portal or through our [API endpoint](https://docs.tavus.io/api-reference/phoenix-replica-model/create-replica). 
+
+Training typically takes around 4-5 hours to complete. You can check the status of your replica training by:
+- Specifying a `callback_url` when creating the replica via API
+- Using the [Get Replica Status API endpoint](https://docs.tavus.io/api-reference/phoenix-replica-model/get-replica)
+- Checking the [Developer Portal](https://platform.tavus.io)
+
+## How do I record 1 minute of talking?
+
+Start with a big smile. Speak about anything that showcases your natural speaking style and expertise. We do not require a predefined script.
+
+## How do I record 1 minute of silence?
+
+Your training footage should conclude with 1 minute of silence. Our model uses your silent footage to create a natural resting position for your replica's head and improve its listening behavior. During this period:
+- Pretend that you are "actively listening" to someone
+- Incorporate small (but non-repetitive) head movements throughout the minute
+- Ensure that your lips are closed the entire time
+
+## How do I create a high-quality training video?
+To ensure your replica is the best possible quality, 
+follow the guidelines below before recording your training footage.
+
+### Step 1: Set up environment 🌞 
+
+Ensure that you are in a quiet, well-lit area without background movement. 
+
+✔️ Check that your face is evenly lit without any shadows. A large diffuse light works best for neutral lighting.<br />
+✔️ Avoid environments with background noise or reverb (e.g. air conditioning, construction).<br />
+✔️ Keep your background clear by removing moving objects and people.<br />
+
+### Step 2: Set up camera 📷
+Check your camera's settings and position it in front of your setup.
+
+✔️ Use a camera with at least 2k pixels, e.g. DSLR, newer laptops, Google Pixel.<br />
+✔️ Make sure your camera is set to 30 frames per second (24-60 FPS is also fine). <br />
+✔️ Position your camera at eye-level from your setup. You should take up **at least** 25% of the frame.<br />
+✔️ Make sure your exposure, white balance, and color profile settings are properly adjusted to prevent your video from looking washed out.<br />
+✔️ Ensure your lens is clean.<br />
+
+### Step 3: Set up microphone 🎙️
+Configure your microphone. We recommend to start with your phone or computer's microphone.
+
+✔️ Do **not** use a high-quality microphone or wireless earbuds (e.g. Apple Airpods). We find that natural audio works best!<br />
+✔️ If you use an external USB/XLR mic, ensure that the mic is not blocking your chin or lips.<br />
+✔️ Disable software-based audio enhancements, such as compressors, equalizers, and noise suppression.<br />
+
+### Step 4: Set up yourself 🙎
+Ensure that your full head is clearly visible in the frame. 
+
+✔️  If possible, avoid beards, glasses, high-collar shirts (e.g. turtlenecks) and accessories (e.g. hats).<br />
+✔️   Tuck back hair blocking the face.<br />
+
+### Step 5: Record training video ⏺️
+Read the [consent script](/sections/troubleshooting/consent-statement), followed by 1 minute of talking and 1 minute of true silence.
+
+✔️ Start with a big smile.<br />
+✔️ Aim for an engaging tone and a relaxed pace, while maintaining continuous eye contact with the camera.<br />
+✔️  Minimize body movement, such as hand gestures, head movement, jolts, etc.<br />
+✔️ Close your lips during pauses and at the end of sentences.<br />
+✔️ If you stumble, continue speaking. Perfection is not necessary!<br />
+
+You can record your training video in any language you prefer. Read more about Tavus's [language flexibility](/sections/replicas/language-support) here.
+
+### Step 6: Check video file requirements ✅
+Before sending file to our API endpoint or uploading it on the developer portal, ensure that it meets technical requirements.
+<ol>
+  <li>Format is either:</li>
+    <ul>
+        <li>webm</li>
+        <li>mp4 with h264 video codec and aac audio codec</li>
+      </ul>
+  <li>File size is maximum 750MB. If your file is too large, check out our tips for [reducing file size](/sections/troubleshooting/training-video-size).</li>
+  <li>Resolution is minimum 720p.</li>
+  <li>Video length is at least 2 minutes, containing the consent script, 1 minute of talking and 1 minute of silence in order.</li>
+</ol>
+
+### Step 7: Submit your training video 🙌
+After ensuring that your training video fits our quality requirements, submit your video through the [Developer Portal](https://platform.tavus.io/replicas/create) or through our [API endpoint](/api-reference/phoenix-replica-model/create-replica). 
+If you are using our API, make sure that the URL is a download link (e.g. pre-signed Amazon S3 URL). 
+
+## Next Steps after Training
+Upon submission, your replica will immediately begin training in the background. After around 4-6 hours, you will be notified through email or API callback that your personal replica is ready for use. If you're not happy with the results, be sure to contact us.
+
+Congrats on finishing the training process — now explore [generating videos](/sections/video-generation/overview) or [starting conversations](/sections/conversational-video-interface/cvi-overview)!
