@@ -58,11 +58,11 @@
                         ]
                       }
                     ]
-                  }
+                  },
+                  "sections/conversational-video-interface/persona/stock-personas"
                 ]
               },
-              "sections/conversational-video-interface/interactions-protocols/overview",
-              "sections/conversational-video-interface/persona/stock-personas"
+              "sections/conversational-video-interface/interactions-protocols/overview"
             ]
           },
           {
