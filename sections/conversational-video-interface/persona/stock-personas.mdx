@@ -1,7 +1,7 @@
 ---
 title: Stock Personas
+description: Tavus offers pre-built personas to help you get started quickly.
 ---
-Tavus provides a curated set of pre-built personas to help you get started quickly.
 
 These personas are optimized for a variety of real-world scenarios:
 
@@ -10,7 +10,7 @@ To fetch all available stock personas, use the [List Personas endpoint](/referen
 </Note>
 
 
-### 🧑‍💼 Business & Sales
+### Education
 <CardGroup cols={2}>
 
 <Card title="Sales Coach" icon="user">
@@ -26,24 +26,6 @@ To fetch all available stock personas, use the [List Personas endpoint](/referen
     -d '{
         "replica_id": "rc2146c13e81",
         "persona_id": "pdced222244b"
-    }'
-  ```
-  </Accordion>
-</Card>
-
-<Card title="Sales Agent at Tavus" icon="briefcase">
-  ```text
-  pb8bb46b
-  ```
-  <Accordion title="Create Conversation">
-  ```shell
-    curl --request POST \
-    --url https://tavusapi.com/v2/conversations \
-    -H "Content-Type: application/json" \
-    -H "x-api-key: <api-key>" \
-    -d '{
-        "replica_id": "ref226fe7e",
-        "persona_id": "pb8bb46b"
     }'
   ```
   </Accordion>
@@ -67,9 +49,6 @@ To fetch all available stock personas, use the [List Personas endpoint](/referen
   </Accordion>
 </Card>
 
-</CardGroup>
-### Education
-<CardGroup cols={2}>
 <Card title="History Teacher" icon="book">
   ```text
   pc55154f229a
@@ -105,9 +84,44 @@ To fetch all available stock personas, use the [List Personas endpoint](/referen
   </Accordion>
 </Card>
 </CardGroup>
-
-### AI & Technical
+### Business
 <CardGroup cols={2}>
+<Card title="Sales Agent at Tavus" icon="briefcase">
+  ```text
+  pb8bb46b
+  ```
+  <Accordion title="Create Conversation">
+  ```shell
+    curl --request POST \
+    --url https://tavusapi.com/v2/conversations \
+    -H "Content-Type: application/json" \
+    -H "x-api-key: <api-key>" \
+    -d '{
+        "replica_id": "ref226fe7e",
+        "persona_id": "pb8bb46b"
+    }'
+  ```
+  </Accordion>
+</Card>
+
+<Card title="Healthcare Intake Assistant" icon="stethoscope">
+  ```text
+  p5d11710002a
+  ```
+  <Accordion title="Create Conversation">
+  ```shell
+    curl --request POST \
+    --url https://tavusapi.com/v2/conversations \
+    -H "Content-Type: application/json" \
+    -H "x-api-key: <api-key>" \
+    -d '{
+        "replica_id": "r4317e64d25a",
+        "persona_id": "p5d11710002a"
+    }'
+  ```
+  </Accordion>
+</Card>
+
 <Card title="AI Interviewer" icon="headset">
   ```text
   pe13ed370726
@@ -125,6 +139,10 @@ To fetch all available stock personas, use the [List Personas endpoint](/referen
   ```
   </Accordion>
 </Card>
+</CardGroup>
+
+### Assistants
+<CardGroup cols={2}>
 <Card title="Technical Co Pilot" icon="code">
   ```text
   pd43ffef
@@ -160,46 +178,6 @@ To fetch all available stock personas, use the [List Personas endpoint](/referen
   </Accordion>
 </Card>
 
-<Card title="Demo Persona" icon="users">
-  ```text
-  p9a95912
-  ```
-  <Accordion title="Create Conversation">
-  ```shell
-    curl --request POST \
-    --url https://tavusapi.com/v2/conversations \
-    -H "Content-Type: application/json" \
-    -H "x-api-key: <api-key>" \
-    -d '{
-        "replica_id": "r79e1c033f",
-        "persona_id": "p9a95912"
-    }'
-  ```
-  </Accordion>
-</Card>
-</CardGroup>
-
-
-### Healthcare
-<Card title="Healthcare Intake Assistant" icon="stethoscope">
-  ```text
-  p5d11710002a
-  ```
-  <Accordion title="Create Conversation">
-  ```shell
-    curl --request POST \
-    --url https://tavusapi.com/v2/conversations \
-    -H "Content-Type: application/json" \
-    -H "x-api-key: <api-key>" \
-    -d '{
-        "replica_id": "r4317e64d25a",
-        "persona_id": "p5d11710002a"
-    }'
-  ```
-  </Accordion>
-</Card>
-
-### Research
 <Card title="Tavus Researcher" icon="flask">
   ```text
   p48fdf065d6b
@@ -217,8 +195,29 @@ To fetch all available stock personas, use the [List Personas endpoint](/referen
   ```
   </Accordion>
 </Card>
+</CardGroup>
+
+
 
 ### Entertainment
+<CardGroup cols={2}>
+<Card title="Demo Persona" icon="users">
+  ```text
+  p9a95912
+  ```
+  <Accordion title="Create Conversation">
+  ```shell
+    curl --request POST \
+    --url https://tavusapi.com/v2/conversations \
+    -H "Content-Type: application/json" \
+    -H "x-api-key: <api-key>" \
+    -d '{
+        "replica_id": "r79e1c033f",
+        "persona_id": "p9a95912"
+    }'
+  ```
+  </Accordion>
+</Card>
 <Card title="Santa" icon="gift">
   ```text
   p3bb4745d4f9
@@ -236,7 +235,7 @@ To fetch all available stock personas, use the [List Personas endpoint](/referen
   ```
   </Accordion>
 </Card>
-
+</CardGroup>
 
 
 

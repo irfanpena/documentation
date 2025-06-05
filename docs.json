@@ -61,13 +61,15 @@
                   }
                 ]
               },
-              "sections/conversational-video-interface/interactions-protocols/overview"
+              "sections/conversational-video-interface/interactions-protocols/overview",
+              "sections/conversational-video-interface/persona/stock-personas"
             ]
           },
           {
             "group": "Replica",
             "pages": [
-              "sections/replica/replica-training"
+              "sections/replica/replica-training",
+              "sections/replica/quickstart"
             ]
           },
           {
