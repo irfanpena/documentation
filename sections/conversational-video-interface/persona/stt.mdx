@@ -1,0 +1,110 @@
+---
+title: Speech-to-Text (STT) Layer
+sidebarTitle: STT
+description: Learn how to configure the STT layer when creating a persona in Tavus.
+---
+
+The **STT Layer** in Tavus enables your persona to understand and transcribe spoken input from users in real time. This layer is essential for interactive, voice-based personas and can be finely tuned to balance responsiveness and accuracy.
+
+<Tip>
+All STT configurations use the **Sparrow-0** model under the hood to enable real-time semantic and lexical turn-taking with ultra-low latency.
+</Tip>
+
+## Configuring the STT Layer
+
+Define the STT layer under the `layers.stt` object. Below are the parameters available:
+
+### 1. `stt_engine`
+
+Specifies the speech-to-text engine used for transcription.
+
+- **Options**: `tavus-turbo`, `tavus-advanced`
+- **Default behavior**: Non-English languages automatically use `tavus-advanced`.
+
+```json
+"layers": {
+  "stt": {
+    "stt_engine": "tavus-advanced"
+  }
+}
+````
+
+<Note>
+- `tavus-turbo` offers faster response times, while `tavus-advanced` provides more accurate transcription quality.  
+- Behind the scenes, both are enhanced by **Sparrow-0** for intelligent turn detection.
+</Note>
+
+### 2. `participant_pause_sensitivity`
+
+Controls how long a pause is allowed before the digital replica responds.
+
+* **Options**: `high`, `medium` (default), `low`, `verylow`, `superlow`
+
+```json
+"participant_pause_sensitivity": "medium"
+```
+
+### 3. `participant_interrupt_sensitivity`
+
+Controls how easily the participant can interrupt the digital replica.
+
+* **Options**: `high`, `medium` (default), `low`, `verylow`, `superlow`
+
+```json
+"participant_interrupt_sensitivity": "medium"
+```
+
+### 4. `hotwords`
+
+Use this to prioritize certain names or terms that are difficult to transcribe.
+
+```json
+"hotwords": "Roey is the name of the person you're speaking with."
+```
+
+<Tip>
+Use hotwords for proper nouns, brand names, or domain-specific language that standard STT engines might struggle with.
+</Tip>
+
+### 5. `smart_turn_detection`
+
+Enable natural turn-taking in conversation using semantic and lexical speech cues.
+
+* **Type**: Boolean
+* **Default**: `true`
+
+```json
+"smart_turn_detection": true
+```
+
+<Note>
+Smart Turn Detection is powered by **Sparrow-0**, which evaluates pauses, interruptions, and speech content to create smooth, natural turn-taking dynamics.
+</Note>
+
+## Example Use Case
+
+Below is an example persona with a fully configured STT layer:
+
+```json
+{
+  "persona_name": "Customer Service Agent",
+  "system_prompt": "You assist users by listening carefully and providing helpful answers.",
+  "pipeline_mode": "full",
+  "context": "You're handling voice-based customer support inquiries.",
+  "default_replica_id": "r789supportagent",
+  "layers": {
+    "stt": {
+      "stt_engine": "tavus-advanced",
+      "participant_pause_sensitivity": "medium",
+      "participant_interrupt_sensitivity": "low",
+      "hotwords": "SKU, Roey, Tavus, API endpoint",
+      "smart_turn_detection": true
+    }
+  }
+}
+```
+
+<Note>
+Refer to the [Create Persona API](https://docs.tavus.io/api-reference/personas/create-persona) for a complete list of supported fields.
+</Note>
+

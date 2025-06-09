@@ -1,0 +1,155 @@
+---
+title: Language Model (LLM) Layer
+sidebarTitle: LLM
+description: Learn how to configure the LLM layer when creating a persona in Tavus.
+---
+
+The **LLM Layer** in Tavus enables your persona to generate intelligent, context-aware responses. You can use Tavus-hosted models or connect your own OpenAI-compatible LLM.
+
+## Tavus-Hosted Models
+
+### 1. `model`
+Select one of the available models:
+
+- `tavus-llama`
+- `tavus-gpt-4o`
+- `tavus-gpt-4o-mini`
+
+```json
+"model": "tavus-gpt-4o"
+````
+
+### 2. `tools`
+
+Optionally enable tool calling by defining functions the LLM can invoke. See [LLM Tool Calling](/sections/llm-tool-calling).
+
+### 3. `speculative_inference`
+
+When set to `true`, the LLM begins processing speech transcriptions before user input ends, improving responsiveness.
+
+```json
+"speculative_inference": true
+```
+
+<Note>
+This is field is optional, but recommended for better performance.
+</Note>
+### Example Use Case
+
+```json
+{
+  "persona_name": "Health Coach",
+  "system_prompt": "You provide wellness tips and encouragement for people pursuing a healthy lifestyle.",
+  "context": "You specialize in daily routines, diet advice, and motivational support.",
+  "pipeline_mode": "full",
+  "default_replica_id": "r665388ec672",
+  "layers": {
+    "llm": {
+      "model": "tavus-gpt-4o",
+      "speculative_inference": true
+    }
+  }
+}
+```
+## Custom LLMs
+
+To use your own OpenAI-compatible LLM, you'll need:
+
+* Model name
+* Base URL
+* API key
+
+Ensure your LLM supports:
+
+* Streamable (ie. via SSE)
+* A `/chat/completions` route but your `base_url` does not include any extension
+
+### 1. `model`
+
+Name of the custom model you want to use.
+
+```json
+"model": "gpt-3.5-turbo"
+```
+
+### 2. `base_url`
+
+Base URL of your LLM endpoint. Do not include route extensions.
+
+```json
+"base_url": "https://your-llm.com/api/v1/chat/completions"
+```
+
+### 3. `api_key`
+
+API key to authenticate with your LLM provider.
+
+```json
+"api_key": "your-api-key"
+```
+
+<Tip>
+`base_url` and `api_key` are required only when using a custom model.
+</Tip>
+
+### 4. `tools`
+
+Optionally enable tool calling by defining functions the LLM can invoke. See [LLM Tool Calling](/sections/llm-tool-calling).
+
+### 5. `speculative_inference`
+
+When set to `true`, the LLM begins processing speech transcriptions before user input ends, improving responsiveness.
+
+```json
+"speculative_inference": true
+```
+<Note>
+This is field is optional, but recommended for better performance.
+</Note>
+### 6. `headers`
+
+Optional headers for authenticating with your LLM.
+
+```json
+"headers": {
+  "Authorization": "Bearer your-api-key"
+}
+```
+<Note>
+This field is optional, depending on your LLM model. 
+</Note>
+### 7. `extra_body`
+
+Add parameters to customize the LLM request, such as temperature.
+
+```json
+"extra_body": {
+  "temperature": 0.5
+}
+```
+<Note>
+This is field is optional.
+</Note>
+### Example Use Case
+
+```json
+{
+  "persona_name": "Storyteller",
+  "system_prompt": "You are a storyteller who entertains people of all ages.",
+  "context": "Your favorite stories include Little Red Riding Hood and The Three Little Pigs.",
+  "pipeline_mode": "full",
+  "default_replica_id": "r665388ec672",
+  "layers": {
+    "llm": {
+      "model": "gpt-3.5-turbo",
+      "base_url": "https://api.openai.com/v1/chat/completions",
+      "api_key": "your-api-key",
+      "speculative_inference": true
+    }
+  }
+}
+```
+
+<Note>
+Refer to the [Create Persona API](https://docs.tavus.io/api-reference/personas/create-persona) for a full list of supported fields.
+</Note>
