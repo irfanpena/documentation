@@ -4,8 +4,7 @@ sidebarTitle: STT
 description: Learn how to configure the STT layer when creating a persona in Tavus.
 ---
 
-The STT Layer in Tavus allows your persona to transcribe and understand spoken input in real time. It supports dynamic and responsive conversation flow with intelligent turn-taking.
-
+The STT Layer in Tavus empowers your persona to transcribe and comprehend spoken input in real time. By default, the STT layer in Tavus leverages `smart_turn_detection`, powered by **Sparrow-0**, for dynamic and responsive conversation flow with intelligent turn-taking.
 
 ## Configuring the STT Layer
 
@@ -67,16 +66,12 @@ Use hotwords for proper nouns, brand names, or domain-specific language that sta
 </Tip>
 
 ### 5. `smart_turn_detection`
-<Note>
-By default the `smart_turn_detection` is set to `true`.
-</Note>
-This setting activates dynamic turn-taking based on real-time speech patterns. Powered by the Sparrow-0 model, it evaluates pauses, interruptions, and speech content to create smooth, natural conversation flow.
-
+Enables dynamic turn-taking using the Sparrow-0 model, which dynamically adjusts the timeout based on what the users say. It sets a longer timeout when the user is likely not done speaking, and a shorter timeout when the user is likely done speaking.
 ```json
 "smart_turn_detection": true
 ```
 <Warning>
-Setting `smart_turn_detection` to `false` disables the use of the **Sparrow-0** model in the STT layer. The system will fall back to a fixed timeout-based method for detecting turn transitions, which is less adaptive to user behavior.
+Disabling `smart_turn_detection` deactivates **Sparrow-0** and reverts to a fixed timeout method for turn transitions, which is less adaptive.
 </Warning>
 ## Example Use Case
 
