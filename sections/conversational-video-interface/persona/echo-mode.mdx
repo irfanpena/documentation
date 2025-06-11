@@ -1,0 +1,179 @@
+---
+title: Echo Mode
+description: Create your first echo persona and start a conversation in seconds.
+---
+
+Echo Mode lets you send text or audio input for the persona to speak out loud. This mode is best suited when your application doesn’t require speech recognition or perception capabilities or if you already use a custom ASR/Perception pipeline.
+<Note>
+**Note**: External ASR systems are typically slower and less optimized than Tavus’ built-in pipeline.
+</Note>
+## Prerequisites
+
+Before you begin, ensure the following dependencies are installed:
+
+* `flask`
+* `daily-python`
+
+## Create an Echo Persona
+
+<Steps>
+
+<Step title="Step 1: Get an API Key" titleSize="h3">
+Ensure you have created the Tavus API Key to access the Tavus API by following the steps [here](/sections/quickstart).
+</Step>
+
+<Step title="Step 2: Create an Echo Persona" titleSize="h3">
+Use the following request to create a persona:
+
+```shell cURL
+curl --request POST \
+  --url https://tavusapi.com/v2/personas \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <api-key>' \
+  --data '{
+    "persona_name": "Echo Assistant",
+    "system_prompt": "You are a helpful assistant that can answer questions and help with tasks.",
+    "pipeline_mode": "echo"
+  }'
+```
+</Step>
+
+<Step title="Step 3: Create a Conversation" titleSize="h3">
+
+Create a conversation with your newly created `persona_id`:
+
+```shell cURL
+curl --request POST \
+  --url https://tavusapi.com/v2/conversations \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your_api_key>' \
+  --data '{
+    "persona_id": "<your_persona_id>",
+    "conversation_name": "Echo Test"
+  }'
+```
+
+</Step>
+
+<Step title="Step 4: Create an App" titleSize="h3">
+ 
+1. Create a file named `script.py` and paste the following code:
+
+```py [expandable]
+import sys
+from flask import Flask, jsonify, request
+from daily import CallClient, Daily, EventHandler
+
+app = Flask(__name__)
+
+# Global client instance
+call_client = None
+
+class RoomHandler(EventHandler):
+    def __init__(self):
+        super().__init__()
+
+    def on_app_message(self, message, sender: str) -> None:
+        print(f"Incoming app message from {sender}: {message}")
+
+def join_room(url):
+    global call_client
+    try:
+        Daily.init()
+        handler = RoomHandler()
+        call_client = CallClient(event_handler=handler)
+        call_client.join(url)
+        print(f"Joined room: {url}")
+    except Exception as e:
+        print(f"Error joining room: {e}")
+        raise
+
+@app.route("/send_text_message", methods=["POST"])
+def send_text_message():
+    global call_client
+    if not call_client:
+        return jsonify({"error": "Not connected to a room"}), 400
+
+    try:
+        body = request.json
+        conversation_id = body.get("conversation_id")
+        properties = body.get("properties", {})
+        message = {
+            "message_type": "conversation",
+            "event_type": "conversation.echo",
+            "conversation_id": conversation_id,
+            "properties": {
+                "modality": properties.get("modality"),
+                "text": properties.get("text"),
+                "audio": properties.get("audio"),
+                "sample_rate": properties.get("sample_rate", 16000),
+                "inference_id": properties.get("inference_id"),
+                "done": properties.get("done")
+            }
+        }
+        call_client.send_app_message(message)
+        return jsonify({"status": "Message sent successfully"}), 200
+    except Exception as e:
+        return jsonify({"error": f"Failed to send message: {str(e)}"}), 500
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <conversation_url>")
+        sys.exit(1)
+
+    conversation_url = sys.argv[1]
+    try:
+        join_room(conversation_url)
+        app.run(port=8000, debug=True)
+    except Exception as e:
+        print(f"Failed to start the application: {e}")
+        sys.exit(1)
+```
+
+<Note>
+This script starts a Flask app that connects to a Daily room and sends echo interaction messages to your persona.
+</Note>
+
+</Step>
+
+<Step title="Step 5: Execute the Code" titleSize="h3">
+
+Run the script:
+
+```sh
+python script.py <conversation_url>
+```
+
+<Note>
+Replace `<conversation_url>` with the URL returned when creating your conversation.
+</Note>
+
+</Step>
+
+<Step title="Step 6: Send Echo Message" titleSize="h3">
+
+Send a POST request to your local server to trigger an echo message:
+
+```sh cURL
+curl -X POST http://localhost:8000/send_text_message \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message_type": "conversation",
+    "event_type": "conversation.echo",
+    "conversation_id": "<conversation-id>",
+    "properties": {
+      "modality": "text",
+      "text": "Hello there!",
+      "audio": "base64-encoded-audio",
+      "sample_rate": 24000,
+      "inference_id": "inference-id-123",
+      "done": "true"
+    }
+  }'
+```
+
+In this example, the persona will respond by saying: “Hello there!”
+
+</Step>
+
+</Steps>
