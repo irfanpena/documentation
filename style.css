@@ -1,0 +1,48 @@
+.tabs li.cursor-pointer button {
+  position: relative;
+  background: transparent;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 1;
+  margin-top: 2px;
+}
+
+.tabs li.cursor-pointer button::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+  border-top: 2px solid #F230AA;
+  background: transparent;
+  border-radius: 15px 15px 0 0;
+  pointer-events: none;
+}
+
+.tabs li.cursor-pointer button[data-active="false"]:hover {
+  position: relative;
+  border-bottom: none;
+}
+
+.tabs li.cursor-pointer button[data-active="false"]::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 40%; 
+  height: 1px;
+  background-color: #ff6cc8;
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+.tabs li.cursor-pointer button[data-active="false"]:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+button[data-active="true"] {
+  font-weight: 800;
+}
+
