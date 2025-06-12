@@ -60,12 +60,12 @@ You can also change a persona's default replica when creating a conversation.
 Each layer in the pipeline processes a different part of the conversation. Layers can be configured individually to tailor input/output behavior to your application needs.
 - **Transport Layer**: Manages audio and video input/output using end-to-end WebRTC, currently powered by [Daily](https://www.daily.co/). It handles microphone and camera input as well as the replica's audio and video output, and is essential for all conversations.
 
-- [**Perception Layer**](/sections/conversational-video-interface/persona/perception): Processes visual input from the user's camera or screenshare using **Raven**, Tavus’ advanced multimodal perception model. This enables the persona to interpret facial expressions, on-screen content, and the surrounding environment for context-aware interactions.
+- [**Perception Layer**](/sections/conversational-video-interface/persona/perception): Processes visual input from the user's camera or screenshare using **Raven**, Tavus's advanced multimodal perception model. This enables the persona to interpret facial expressions, on-screen content, and the surrounding environment for context-aware interactions.
 
-- [**STT Layer**](/sections/conversational-video-interface/persona/stt): Transcribes spoken input in real-time using **Sparrow**. It supports natural turn-taking with semantic and lexical analysis, allowing for dynamic interruptions and accurate transcription.
+- [**STT Layer**](/sections/conversational-video-interface/persona/stt): Transcribes spoken input in real-time using **Sparrow**, Tavus's smart turn taking model. It supports natural turn-taking with semantic and lexical analysis, allowing for dynamic interruptions and accurate transcription.
 
 - [**LLM Layer**](/sections/conversational-video-interface/persona/llm): Generates responses based on the user's input and the persona’s configured context. Tavus provides ultra-low-latency, optimized LLMs by default, but you can integrate a custom model if needed.
 
 - [**TTS Layer**](/sections/conversational-video-interface/persona/tts): Converts the generated text into audio. Tavus supports multiple voice providers including Cartesia, ElevenLabs, and PlayHT, giving you flexibility over voice style and latency.
 
-- **Realtime Replica Layer**: Streams visually expressive avatar responses using **Phoenix**. It provides high-quality, low-latency output with synchronized lip-sync, facial gestures, and emotional cues to deliver lifelike interactions.
+- **Realtime Replica Layer**: Streams visually expressive avatar responses using **Phoenix**, Tavus's replica rendering model. It provides high-quality, low-latency output with synchronized lip-sync, facial gestures, and emotional cues to deliver lifelike interactions.
