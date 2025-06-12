@@ -4,7 +4,7 @@ sidebarTitle: STT
 description: Learn how to configure the STT layer when creating a persona in Tavus.
 ---
 
-The STT Layer in Tavus empowers your persona to transcribe and comprehend spoken input in real time. By default, the STT layer in Tavus leverages `smart_turn_detection`, powered by **Sparrow-0**, for dynamic and responsive conversation flow with intelligent turn-taking.
+The STT Layer in Tavus empowers your persona to transcribe and comprehend spoken input in real time. By default, the STT layer in Tavus leverages `smart_turn_detection`, powered by **Sparrow**, for dynamic and responsive conversation flow with intelligent turn-taking.
 
 ## Configuring the STT Layer
 
@@ -16,7 +16,8 @@ Specifies the speech-to-text engine used for transcription.
 
 - **Options**: `tavus-turbo`, `tavus-advanced`
 <Note>
-Non-English languages automatically use `tavus-advanced`.
+- The **default engine** for the STT layer is `tavus-advanced`, which supports multilingual transcription with high accuracy.
+- For faster response times, you can switch to `tavus-turbo`, though it may offer slightly less precise results compared to `tavus-advanced`. 
 </Note>
 ```json
 "layers": {
@@ -25,10 +26,6 @@ Non-English languages automatically use `tavus-advanced`.
   }
 }
 ````
-
-<Note>
-`tavus-turbo` offers faster response times, while `tavus-advanced` provides more accurate transcription quality.  
-</Note>
 
 ### 2. `participant_pause_sensitivity`
 
@@ -66,12 +63,12 @@ Use hotwords for proper nouns, brand names, or domain-specific language that sta
 </Tip>
 
 ### 5. `smart_turn_detection`
-Enables dynamic turn-taking using the Sparrow-0 model, which dynamically adjusts the timeout based on what the users say. It sets a longer timeout when the user is likely not done speaking, and a shorter timeout when the user is likely done speaking.
+Enables dynamic turn-taking using the Sparrow model, which dynamically adjusts the timeout based on what the users say. It sets a longer timeout when the user is likely not done speaking, and a shorter timeout when the user is likely done speaking.
 ```json
 "smart_turn_detection": true
 ```
 <Warning>
-Disabling `smart_turn_detection` deactivates **Sparrow-0** and reverts to a fixed timeout method for turn transitions, which is less adaptive.
+Disabling `smart_turn_detection` deactivates **Sparrow** and reverts to a fixed timeout method for turn transitions, which is less adaptive.
 </Warning>
 ## Example Use Case
 

@@ -46,6 +46,7 @@
               {
                 "group": "Persona",
                 "pages": [
+                  "sections/conversational-video-interface/persona/overview",
                   {
                     "group": "Quickstart",
                     "pages": [

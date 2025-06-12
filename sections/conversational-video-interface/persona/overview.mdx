@@ -1,0 +1,102 @@
+---
+title: Overview
+description: Learn what a persona is in Tavus.
+---
+
+A **persona** defines how a Tavus replica behaves, speaks, and responds. It bundles identity, knowledge, and CVI pipeline settings to create a real-time conversational agent.
+
+
+## Persona Customization Options
+
+Each persona includes configurable fields. Here's what you can customize:
+
+### Persona Name
+
+Display name shown when the replica joins a call.
+
+<Tip>
+**Best Practices**
+
+Use a clear, human-readable name
+</Tip>
+
+### System Prompt
+Instructions sent to the language model to shape the replica’s tone, personality, and behavior.
+
+<Tip>
+**Best Practices**
+- Define a role (e.g., “You are a cheerful tour guide.”).
+- Set boundaries (e.g., “Be concise and supportive.”).
+- Avoid overloading with content or factual data.
+</Tip>
+### Context / Knowledge Base
+Background knowledge or reference information provided to the persona's language model .
+
+<Tip>
+**Best Practices**
+- Add product FAQs, background details, or structured information.
+- Avoid duplicating the system prompt.
+- Don’t include personal user data.
+</Tip>
+### Pipeline Mode
+Controls which CVI pipeline layers are active and how input/output flows through the system.
+
+Options:
+
+- `full` (default): All layers are enabled for end-to-end multimodal processing.
+
+- `echo`: Minimal processing — sends raw audio or text directly to the TTS layer.
+
+<Note> We recommend using the `full` pipeline unless you need to integrate with your own speech pipeline. </Note>
+### Default Replica
+Sets the visual avatar or character associated with the persona.
+
+<Note>
+You can also change a persona's default replica when creating a conversation.
+</Note>
+
+### Layers
+
+Each layer in the pipeline processes a different part of the conversation. Layers can be configured individually to tailor input/output behavior to your application needs.
+
+#### Transport Layer
+
+Handles end-to-end audio and video transport using WebRTC, currently powered by [Daily](https://www.daily.co/). It manages both the input (e.g., mic and camera) and output (e.g., replica video and audio stream) of a conversation.
+
+* Supports configuration of input/output sources (audio, video, mic, camera).
+
+#### Perception Layer
+
+Processes visual input (e.g., camera feed or screenshare) using **Raven**, Tavus’ advanced multimodal perception model.
+
+* Enables the replica to understand user expressions, on-screen content, and environmental cues.
+
+#### STT Layer (Speech-to-Text)
+
+Handles transcription of spoken input into text.
+
+* Powered by **Sparrow**, a turn taking model with real-time semantic analysis.
+* Enables natural, interruptible conversation with dynamic turn-taking and high-accuracy transcription.
+
+#### LLM Layer
+
+Generates text-based replies based on input and context.
+
+* Tavus provides ultra-low-latency, optimized models for conversation.
+* Optionally, integrate your own custom LLM.
+
+#### TTS Layer (Text-to-Speech)
+Converts the LLM's text response into audio output.
+
+* Supports custom voice providers for enterprise integration such as **Cartesia**, **ElevenLabs** and **PlayHT**.
+
+#### Realtime Replica Layer
+
+Streams realistic avatar responses using **Phoenix**.
+
+* Delivers low-latency, expressive visual responses.
+* Includes lip-sync, facial gestures, and emotional rendering.
+
+
+## Getting Started
+You can easily create a persona by using the [Tavus Platform](https://platform.tavus.io/) or following the steps in the [Persona API Quickstart guide](/sections/conversational-video-interface/persona/full-mode).
