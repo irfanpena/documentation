@@ -75,7 +75,6 @@ To use your own OpenAI-compatible LLM, you'll need:
 Ensure your LLM supports:
 
 * Streamable (ie. via SSE)
-* A `/chat/completions` route but your `base_url` does not include any extension
 
 ### 1. `model`
 
@@ -87,10 +86,15 @@ Name of the custom model you want to use.
 
 ### 2. `base_url`
 
-Base URL of your LLM endpoint. Do not include route extensions.
+Base URL of your LLM endpoint.
+
+<Note>
+Do not include route extensions in the `base_url`.
+</Note>
+
 
 ```json
-"base_url": "https://your-llm.com/api/v1/chat/completions"
+"base_url": "https://your-llm.com/api/v1"
 ```
 
 ### 3. `api_key`
