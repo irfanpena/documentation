@@ -13,16 +13,8 @@ If you use the default engine, you do not need to specify any parameters within 
 ## Configuring the TTS Layer
 
 Define the TTS layer under the `layers.tts` object. Below are the parameters available:
-### 1. `api_key`
 
-The custodial API key to be used to make requests to the chosen third-party TTS provider.
-
-```json
-"tts": {
-  "api_key": "your-api-key"
-}
-```
-### 2. `tts_engine`
+### 1. `tts_engine`
 
 Specifies the supported third-party TTS engine.
 * **Options**:  `cartesia`, `elevenlabs`, `playht`
@@ -33,12 +25,30 @@ Specifies the supported third-party TTS engine.
 }
 ```
 
-### 3. `external_voice_id`
+### 2. `api_key`
 
-The voice ID used for the selected TTS engine. Refer to:
-- [Cartesia](https://docs.cartesia.ai/api-reference/voices/list)
-- [ElevenLabs](https://elevenlabs.io/docs/api-reference/voices/search)
-- [PlayHT](https://docs.play.ai/api-reference/text-to-speech/endpoints/v1/list-voices).
+The **API key** is required to authenticate requests to your selected third-party TTS provider. You can obtain an API key from the following:
+* [Cartesia](https://play.cartesia.ai/keys)
+* [ElevenLabs](https://elevenlabs.io/app/settings/api-keys)
+* [PlayHT](https://play.ai/api/keys)
+
+
+```json
+"tts": {
+  "api_key": "your-api-key"
+}
+```
+
+### 3. `external_voice_id`
+The **voice ID** specifies which voice to use with the selected TTS engine. To find supported voice IDs, refer to the provider’s documentation:
+* [Cartesia](https://docs.cartesia.ai/api-reference/voices/list)
+* [ElevenLabs](https://elevenlabs.io/docs/api-reference/voices/search)
+* [PlayHT](https://docs.play.ai/api-reference/text-to-speech/endpoints/v1/list-voices)
+
+
+<Note>
+You can ask Tavus to add any public ElevenLabs voice to your account. Once added, you can use its `voice_id` without providing an API key. This is useful for dialect-specific voices like British English.
+</Note>
 
 ```json
 "tts": {

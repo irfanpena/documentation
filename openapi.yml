@@ -1598,7 +1598,19 @@ paths:
         - **tavus-gpt-4o-mini:** A hybrid model that balances performance and intelligence.
         - **tavus-llama:** The **default** choice if no LLM layer is provided. This is the fastest model, offering the best user-to-user (U2U) experience. It's on-premise, making it incredibly performant. 
 
-        [Get Started with Your Own LLM](/sections/conversational-video-interface/custom-llm-onboarding)
+        <Note>
+        ### Token Limit Warning
+
+        Tavus-hosted `tavus-llama` has a **hard limit of 16,000 tokens**. If this limit is exceeded, the conversation may crash.
+
+        To avoid this, we **recommend keeping input context within 10,000 tokens** as a safe threshold.
+
+        - 1 token = 4 characters on average  
+        - 10,000 tokens = 40,000 characters (including whitespace and punctuation)
+
+        </Note>
+
+        [Get Started with Your Own LLM](/sections/conversational-video-interface/persona/llm)
 
         #### TTS
         With Tavus' default TTS engine, you get the faster utterance-to-utterance speed, but you can always bring your own if you have voices already trained with:
@@ -1652,7 +1664,16 @@ paths:
                       properties:
                         model:
                           type: string
-                          description: "The model name that will be used by the llm. To use Tavus' llms, you may select from the following models: `tavus-llama`, `tavus-gpt-4o`, `tavus-gpt-4o-mini`. If you would like to use your own OpenAI compatible llm, you may provide a `model`, `base_url`, and `api_key`."
+                          description: |
+                            "The model name that will be used by the llm. To use Tavus' llms, you may select from the following models: `tavus-llama`, `tavus-gpt-4o`, `tavus-gpt-4o-mini`. If you would like to use your own OpenAI compatible llm, you may provide a `model`, `base_url`, and `api_key`."
+                            ### Token Limit Warning
+
+                            Tavus-hosted `tavus-llama` has a **hard limit of 16,000 tokens**. If this limit is exceeded, the conversation may crash.
+
+                            To avoid this, we **recommend keeping input context within 10,000 tokens** as a safe threshold.
+
+                            - 1 token = 4 characters on average.  
+                            - 10,000 tokens = 40,000 characters (including whitespace and punctuation).
                         base_url:
                           type: string
                           description: "The base url for your OpenAI compatible endpoint."
