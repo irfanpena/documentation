@@ -1668,7 +1668,7 @@ paths:
                             "The model name that will be used by the llm. To use Tavus' llms, you may select from the following models: `tavus-llama`, `tavus-gpt-4o`, `tavus-gpt-4o-mini`. If you would like to use your own OpenAI compatible llm, you may provide a `model`, `base_url`, and `api_key`."
                             ### Token Limit Warning
 
-                            Tavus-hosted `tavus-llama` has a **hard limit of 16,000 tokens**. If this limit is exceeded, the conversation may crash.
+                            `tavus-llama` has a **hard limit of 16,000 tokens**. If this limit is exceeded, the conversation may crash.
 
                             To avoid this, we **recommend keeping input context within 10,000 tokens** as a safe threshold.
 
