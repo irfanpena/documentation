@@ -23,7 +23,7 @@ Ensure both URLs remain valid for at least **24 hours**.
 
 Use the following request to create the replica:
 
-```shell
+```shell cURL
 curl --request POST \
   --url https://tavusapi.com/v2/replicas \
   --header 'Content-Type: application/json' \
@@ -44,7 +44,7 @@ This process typically takes 4–6 hours.
 </Step>
 <Step title="Step 2: Check Replica Status">
 You can monitor the training status using the [Get Replica](https://docs.tavus.io/api-reference/phoenix-replica-model/get-replica) endpoint:
-```shell
+```shell cURL
 curl --request GET \
   --url https://tavusapi.com/v2/replicas/{replica_id} \
   --header 'x-api-key: <api-key>'
@@ -64,7 +64,7 @@ To create a non-human replica, you do not need a consent video:
 
 <Note> If you're using the [Developer Portal](https://platform.tavus.io/), select the **Skip** tab in the consent video window. </Note>
 
-```shell
+```shell cURL
 curl --request POST \
   --url https://tavusapi.com/v2/replicas \
   --header 'Content-Type: application/json' \
