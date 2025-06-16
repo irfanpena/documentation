@@ -1,0 +1,91 @@
+---
+title: Roll a Dice
+description: Create an interactive dice game with a Tavus-powered AI game master using CVI and tool calls.
+---
+
+This example demonstrates how to build a simple dice game where a replica plays the role of a game master. The game master listens to user input, responds conversationally, and performs `roll-dice` tool through Tavus CVI (Conversational Video Interface).
+
+## Persona Configuration
+Use the following request body to create persona for roll a dice sample app:
+```bash cURL
+curl --request POST \
+  --url https://tavusapi.com/v2/personas \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <api-key>' \
+  --data '{
+    "persona_name": "DND Game Master",
+    "system_prompt": "You are a friendly Dungeon and Dragon Game Master who guides users through a game of Dungeon and Dragon. In this game, users want to roll a dice of any number of side.",
+    "context": "Dungeon and Dragon is a game where players want to roll a dice of their choice. When a user says 'Roll a X-sided dice', you should acknowledge their selection and use the roll_dice tool to roll the appropriate dice.",
+    "default_replica_id": "r6583a465c",
+    "layers": {
+      "llm": {
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "roll_dice",
+              "description": "Roll a dice based on the user's selection",
+              "parameters": {
+                "type": "object",
+                "required": ["side"],
+                "properties": {
+                  "side": {
+                    "type": "string",
+                    "enum": ["Four", "Six"],
+                    "description": "The number of sides on the dice the user wants to roll (four or six)"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "tts": {
+        "tts_engine": "cartesia",
+        "tts_emotion_control": true
+      },
+      "perception": {
+        "perception_model": "raven-0"
+      },
+      "stt": {
+        "stt_engine": "tavus-advanced",
+        "participant_pause_sensitivity": "high",
+        "participant_interrupt_sensitivity": "high",
+        "smart_turn_detection": true
+      }
+    }
+  }'
+```
+
+This persona simulates a friendly Game Master that guides players through gameplay and handles dice rolls using tool calls.
+
+* **Persona Identity**: Named **DND Game Master**, this persona simulates a helpful and engaging guide for users playing Dungeons and Dragons. It responds to player requests—such as rolling dice—and manages the experience through dynamic, spoken interactions.
+
+* ***system\_prompt***: Instructs the AI to adopt the role of a Dungeon Master, guiding users through DND scenarios. It emphasizes a friendly and responsive tone, enabling a seamless roleplay experience.
+
+* ***context***: Clarifies that the AI should listen for requests like “Roll a four-sided dice” and use the `roll_dice` tool accordingly. This ensures user intents are properly recognized and acted upon.
+
+* **Model Layers**:
+  * **LLM**: Defines a `roll_dice` tool with a single `side` parameter, limited to `"Four"` or `"Six"`. This ensures the AI only rolls valid dice and avoids unexpected behavior.
+  * **TTS**: Uses `cartesia` with emotion control for expressive speech.
+  * **STT**: Uses `tavus-advanced` with high pause/interrupt sensitivity and smart turn detection.
+
+
+## Getting Started
+1. Clone the Example Project:
+
+```bash
+git clone https://github.com/irfanpena/health-consultation-with-tavus.git
+````
+
+2. Open `index.html` in a browser to launch the interface.
+
+
+3. Enter your **Persona ID** and **Tavus API key** in the interface.
+
+4. Click **"Join the Game"** to begin an interactive conversation with your AI game master.
+
+
+
+
+
