@@ -31,15 +31,6 @@
                     "pages": [
                       "sections/conversational-video-interface/conversation/customizations/recording"
                     ]
-                  },
-                  {
-                    "group": "Conversational Use Cases",
-                    "pages": [
-                      "sections/conversational-video-interface/conversation/usecases/tavus-researcher",
-                      "sections/conversational-video-interface/conversation/usecases/ai-interviewer",
-                      "sections/conversational-video-interface/conversation/usecases/history-teacher",
-                      "sections/conversational-video-interface/conversation/usecases/sales-coach"
-                    ]
                   }
                 ]
               },
@@ -73,12 +64,22 @@
                   "sections/conversational-video-interface/persona/stock-personas"
                 ]
               },
+              {
+                "group": "Conversational Use Cases",
+                "pages": [
+                  "sections/conversational-video-interface/conversation/usecases/tavus-researcher",
+                  "sections/conversational-video-interface/conversation/usecases/ai-interviewer",
+                  "sections/conversational-video-interface/conversation/usecases/history-teacher",
+                  "sections/conversational-video-interface/conversation/usecases/sales-coach"
+                ]
+              },
               "sections/conversational-video-interface/interactions-protocols/overview"
             ]
           },
           {
             "group": "Replica",
             "pages": [
+              "sections/replica/overview",
               "sections/replica/replica-training",
               "sections/replica/quickstart"
             ]
@@ -86,6 +87,10 @@
           {
             "group": "Integrations",
             "pages": ["sections/integrations/embedding-cvi"]
+          },
+          {
+            "group": " ",
+            "pages": ["sections/example-projects"]
           },
           {
             "group": "Resources",
