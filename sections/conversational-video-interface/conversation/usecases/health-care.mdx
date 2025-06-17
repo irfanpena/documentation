@@ -66,13 +66,9 @@ This predefined persona is designed to act as a friendly virtual doctor, offerin
     * Uses the `tavus-llama` model with speculative inference enabled for faster and more fluid responses.
     * Includes the `get_cures` tool, which accepts a single string parameter (`disease`) and limits AI behavior to relevant function calls only when disease-related queries are detected.
 
-  * **TTS Configuration**:
+  * **TTS Configuration**: Employs the `cartesia` voice engine with emotion control enabled to provide expressive, empathetic speech suitable for a doctor-like tone.
 
-    * Employs the `cartesia` voice engine with emotion control enabled to provide expressive, empathetic speech suitable for a doctor-like tone.
-
-  * **STT Configuration**:
-
-    * Uses Tavus’ advanced speech recognition engine with high sensitivity to both pauses and interruptions, plus smart turn detection for seamless real-time conversations.
+  * **STT Configuration**: Uses Tavus’ advanced speech recognition engine with high sensitivity to both pauses and interruptions, plus smart turn detection for seamless real-time conversations.
 </Tab>
 <Tab title="Dermatologist">
 ```json [expandable]
@@ -164,21 +160,22 @@ This predefined persona acts as a virtual skin care specialist. It offers users 
 
 * **Model Layers**
 
-  * **LLM Configuration**
+  * **LLM Configuration**:
     Uses the `tavus-llama` model with speculative inference for faster tool usage. Includes the `get_skin_cures` function, which takes a `disease` input to provide specific treatment guidance.
 
-  * **TTS Configuration**
+  * **TTS Configuration**:
     Employs the `cartesia` engine with emotional control for natural, expressive speech delivery that feels reassuring and human.
 
-  * **Perception Configuration**
+  * **Perception Configuration**:
+    
     Integrates the `raven-0` model to visually assess the user’s face. It runs ambient queries like:
 
     * “Does the user have acne on their face?”
     * “Does the user appear distressed or uncomfortable?”
 
-    If acne is detected, the persona is instructed to use the `acne_detected` tool, which reports visual findings using a boolean `have_acne` parameter. This adds real-time visual awareness to the dialogue.
+    If acne is detected, the persona is instructed to use the `acne_detected` tool, which reports visual findings using a boolean `have_acne` parameter.
 
-  * **STT Configuration**
+  * **STT Configuration**:
     Leverages the `tavus-advanced` engine for speech recognition. With high pause and interrupt sensitivity and smart turn detection, it ensures smooth, responsive conversation flow.
 </Tab>
 </Tabs>
