@@ -1,0 +1,139 @@
+---
+title: Roll a Dice
+description: Build an interactive dice game using CVI and tool calls.
+---
+
+This guide walks you through creating a simple dice game where an AI-powered game master responds to user commands using Tavus CVI (Conversational Video Interface).
+## Getting Started
+<Steps>
+<Step title="Create a Persona">
+Use the following request to create your game master persona:
+```bash cURL [expandable]
+curl --request POST \
+  --url https://tavusapi.com/v2/personas \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <api-key>' \
+  --data '{
+    "persona_name": "DND Game Master",
+    "system_prompt": "You are a friendly Dungeon and Dragon Game Master who guides users through a game of Dungeon and Dragon. In this game, users want to roll a dice of any number of side.",
+    "context": "Dungeon and Dragon is a game where players want to roll a dice of their choice. When a user says 'Roll a X-sided dice', you should acknowledge their selection and use the roll_dice tool to roll the appropriate dice.",
+    "default_replica_id": "r6583a465c",
+    "layers": {
+      "llm": {
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "roll_dice",
+              "description": "Roll a dice based on the user's selection",
+              "parameters": {
+                "type": "object",
+                "required": ["side"],
+                "properties": {
+                  "side": {
+                    "type": "string",
+                    "enum": ["Four", "Six"],
+                    "description": "The number of sides on the dice the user wants to roll (four or six)"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "tts": {
+        "tts_engine": "cartesia",
+        "tts_emotion_control": true
+      },
+      "perception": {
+        "perception_model": "raven-0"
+      },
+      "stt": {
+        "stt_engine": "tavus-advanced",
+        "participant_pause_sensitivity": "high",
+        "participant_interrupt_sensitivity": "high",
+        "smart_turn_detection": true
+      }
+    }
+  }'
+```
+<Note>
+The persona is configured with the `roll_dice` tool, which accepts one parameter: `side`, with a value of either `"Four"` or `"Six"`.
+</Note>
+</Step>
+<Step title="Clone the Sample Project">
+```bash
+git clone https://github.com/Tavus-Engineering/tavus-examples.git
+````
+</Step>
+<Step title="Run the Sample Project">
+1. Navigate to **examples** > **roll-a-dice** folder.
+2. Open `index.html` in a browser to launch the interface.
+2. Enter your **Persona ID** that you have created before and **Tavus API key** in the interface.
+3. Click **"Join the Game"** to begin.
+
+<Frame>
+![](/images/dice-1.png)
+</Frame>
+</Step>
+</Steps>
+
+## Tool Call Flow
+<Steps>
+<Step title="User Command Detected">
+The user says to roll `four-sided` or `six-sided` dice. The application listens for messages using:
+```js
+call.on('app-message', handleAppMessage);
+```
+</Step>
+<Step title="Tool Call Detection">
+The replica triggers the `roll_dice` tool:
+```js
+if (message.message_type === 'conversation' && message.event_type === 'conversation.tool_call') {
+  // The tool call is directly in the properties object
+  const toolCall = message.properties;
+  console.log('Tool call:', toolCall);
+  
+  if (!toolCall) {
+      console.log('No tool call found in message properties');
+      return;
+  }
+  
+  if (toolCall.name === 'roll_dice') {
+      try {
+          // Parse the arguments string into an object
+          const args = JSON.parse(toolCall.arguments);
+          const side = args.side;
+          console.log('User wanted a', side, 'sided dice');
+          
+          var randomNumber;
+          
+          if (side == "Six") {
+              randomNumber = Math.floor(Math.random() * 6) + 1;
+          } else {
+              randomNumber = Math.floor(Math.random() * 4) + 1;
+          }
+      }
+  }
+}
+```
+</Step>
+<Step title="Application Responds">
+1. Once the result is generated, the app constructs and sends an echo message back to the replica:
+```js
+const responseMessage = {
+  message_type: "conversation",
+  event_type: "conversation.echo",
+  conversation_id: message.conversation_id,
+  properties: {
+      text: `You roll a ${side} sided dice, and you got ${randomNumber}.`
+  }
+};
+
+console.log('Sending echo message:', responseMessage);
+call.sendAppMessage(responseMessage, '*');
+
+```
+2. The replica receives the echo message and replies: `You roll a 4 sided dice, and you got 4.`
+</Step>
+</Steps>

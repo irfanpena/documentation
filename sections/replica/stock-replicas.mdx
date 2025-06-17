@@ -1,0 +1,51 @@
+---
+title: Stock Replicas
+description: Browse ready-to-use digital presenters from Tavus for fast, high quality video creation.
+---
+
+Tavus offers a library of prebuilt stock replicas. These are professional digital presenters available immediately, with no training required. Each replica is optimized for natural, conversational video output.
+
+## Replica Categories
+The following are some common categories of replicas to help you get started:
+## Studio
+Polished and professional. Great for webinars, explainers, and formal content.
+## Office
+Smart casual presenters for internal communication, training, or B2B use.
+
+<CardGroup cols={2}>
+<Card title="Sabrina" img="/images/stock-replica/sabrina.png">
+  ```text
+  r7bc3db0d581
+  ```
+</Card>
+
+<Card title="Helen" img="/images/stock-replica/helen.png">
+  ```text
+  r95fd27b5a37
+  ```
+</Card>
+
+<Card title="AI Interviewer" icon="headset">
+  Runs mock interviews.
+  ```text
+  pe13ed370726
+  ```
+  <Accordion title="Create Conversation">
+  ```shell
+    curl --request POST \
+    --url https://tavusapi.com/v2/conversations \
+    -H "Content-Type: application/json" \
+    -H "x-api-key: <api-key>" \
+    -d '{
+        "replica_id": "r9d30b0e55ac",
+        "persona_id": "pe13ed370726"
+    }'
+  ```
+  </Accordion>
+</Card>
+</CardGroup>
+## Casual
+Relaxed and friendly hosts for social content and informal conversations.
+
+<Card title="Launch Replica Browser" icon="rocket" img="https://cdn.zappy.app/64bc939e131abe98d44b48a3aa0b2124.png" href="https://tavus.retool.com/p/replica-browser-public" horizontal>
+</Card>

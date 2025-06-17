@@ -70,7 +70,15 @@
                   "sections/conversational-video-interface/conversation/usecases/tavus-researcher",
                   "sections/conversational-video-interface/conversation/usecases/ai-interviewer",
                   "sections/conversational-video-interface/conversation/usecases/history-teacher",
-                  "sections/conversational-video-interface/conversation/usecases/sales-coach"
+                  "sections/conversational-video-interface/conversation/usecases/sales-coach",
+                  "sections/conversational-video-interface/conversation/usecases/health-care"
+                ]
+              },
+              {
+                "group": "Sample Apps",
+                "pages": [
+                  "sections/conversational-video-interface/sample-apps/roll-a-dice",
+                  "sections/conversational-video-interface/sample-apps/health-consultation"
                 ]
               },
               "sections/conversational-video-interface/interactions-protocols/overview"
@@ -158,6 +166,23 @@
               "api-reference/speech/get-speech-list",
               "api-reference/speech/delete-speech",
               "api-reference/speech/patch-speech-name"
+            ]
+          },
+          {
+            "group": "Interactions Protocol",
+            "pages": [
+              "sections/event-schemas/conversation-echo",
+              "sections/event-schemas/conversation-respond",
+              "sections/event-schemas/conversation-sensitivity",
+              "sections/event-schemas/conversation-interrupt",
+              "sections/event-schemas/conversation-replica-interrupted",
+              "sections/event-schemas/conversation-overwrite-context",
+              "sections/event-schemas/conversation-utterance",
+              "sections/event-schemas/conversation-toolcall",
+              "sections/event-schemas/conversation-replica-started-stopped-speaking",
+              "sections/event-schemas/conversation-user-started-stopped-speaking",
+              "sections/event-schemas/conversation-perception-tool-call",
+              "sections/event-schemas/conversation-perception-analysis"
             ]
           }
         ]

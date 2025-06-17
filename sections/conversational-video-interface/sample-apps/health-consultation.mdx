@@ -1,0 +1,224 @@
+---
+title: Health Consultation
+description:  Build a health consultation app with using CVI and tool calls.
+---
+
+This application demonstrates a simple videocall with a [Health Care Consultant](/sections/conversational-video-interface/conversation/usecases/health-care) persona. The application uses Tavus CVI to create an interactive AI host that responds to user inputs and performs actions through tool calls.
+## Prerequisites
+Ensure that you have installed:
+- `Node.js`
+## Getting Started
+<Steps>
+<Step title="Clone the Sample Project">
+```bash
+git clone https://github.com/Tavus-Engineering/tavus-examples.git
+````
+</Step>
+<Step title="Run the Sample Project">
+1. Navigate to **examples** > **health-consultation-with-tavus** folder.
+2. Install modules:
+```bash
+npm i
+```
+3. Run the project:
+```bash
+npm run start
+```
+4. Navigate to the `localhost:3000/health-consultation-with-tavus/`.
+5. Enter your **name** and click **General Health** or **Skin & Dermatology**.
+
+<Frame>
+![](/images/health.png)
+</Frame>
+</Step>
+</Steps>
+
+## Tool Call Flow
+<Tabs>
+<Tab title="General Doctor">
+<Steps>
+<Step title="User Command Detected">
+The user says `What is the cure to X ?`to the replica. The application listens for messages using:
+```js
+call.on('app-message', handleAppMessage);
+```
+</Step>
+<Step title="Tool Call Detection">
+1. The replica triggers the `get_cures` tool:
+```js
+if (message.message_type === 'conversation' && message.event_type === 'conversation.tool_call') {
+  const toolCall = message.properties;
+  
+    if (toolCall.name === 'get_cures') {
+        try {
+          const args = JSON.parse(toolCall.arguments);
+          const disease = args.disease;
+          console.log('User wanted to know cures for', disease);
+          
+          const diseaseclear = disease.trim().toLowerCase();
+          const cure = cureFor[diseaseclear];
+          
+          const responseMessage = {
+            message_type: "conversation",
+            event_type: "conversation.echo",
+            conversation_id: message.conversation_id,
+            properties: {
+              text: `The cure for ${disease} is ${cure}.`
+            }
+          };
+
+          console.log('Sending echo message:', responseMessage);
+          
+          // Use the call object to send app message
+          const call = callRef.current;
+          if (call && typeof call.sendAppMessage === 'function') {
+            call.sendAppMessage(responseMessage, '*');
+            console.log('Message sent successfully');
+          } else {
+            console.error('Call object is not available or sendAppMessage method is missing');
+          }
+        } catch (error) {
+          console.error('Error in processing cure request:', error);
+        }
+      }
+}
+```
+2. The app then try to search the cure based on a defined dictionary:
+```js
+const cureFor = {
+  "cold": "Paracetamol",
+  "flu": "Oseltamivir",
+  "asthma": "Salbutamol",
+  "migraine": "Sumatriptan",
+  "depression": "Fluoxetine",
+  "epilepsy": "Sodium Valproate"
+};
+
+const diseaseclear = disease.trim().toLowerCase();
+const cure = cureFor[diseaseclear];
+```
+</Step>
+<Step title="Application Responds">
+1. Once the result is generated, the app constructs and sends an echo message back to the replica:
+```js
+const responseMessage = {
+  message_type: "conversation",
+  event_type: "conversation.echo",
+  conversation_id: message.conversation_id,
+  properties: {
+    text: `The cure for ${disease} is ${cure}.`
+  }
+};
+
+call.sendAppMessage(responseMessage, '*');
+
+```
+2. The replica receives the echo message and replies: `The cure for cold is Paracetamol.`
+</Step>
+</Steps>
+</Tab>
+<Tab title="Dermatologist">
+<Tabs>
+<Tab title="LLM Tool">
+<Steps>
+<Step title="User Command Detected">
+The user says `What is the cure to X ?` or `What is the solution to X ?` to the replica. The application listens for messages using:
+```js
+call.on('app-message', handleAppMessage);
+```
+</Step>
+<Step title="Tool Call Detection">
+The replica triggers the `get_skin_cures` tool:
+```js LLM Tool
+if (message.message_type === 'conversation' && message.event_type === 'conversation.tool_call') {
+  const toolCall = message.properties;
+  
+    if (toolCall.name === 'get_skin_cures') {
+        try {
+          const args = JSON.parse(toolCall.arguments);
+          const disease = args.disease;
+          console.log('User wanted to know cures for', disease);
+          
+          const diseaseclear = disease.trim().toLowerCase();
+          const cure = cureForSkin[diseaseclear];
+          
+          const responseMessage = {
+            message_type: "conversation",
+            event_type: "conversation.echo",
+            conversation_id: message.conversation_id,
+            properties: {
+              text: `If you're getting ${disease} i suggest to ${cure}.`
+            }
+          };
+        }
+}
+```
+
+2. Cures are retrieved from a predefined dictionary:
+```js
+const cureForSkin = {
+    "pimples": "Use a mild cleanser, avoid touching your face, and apply a benzoyl peroxide cream",
+    "sunburn": "Apply aloe vera or a cooling moisturizer, and stay out of the sun",
+    "wrinkles": "Use sunscreen daily, moisturize, and avoid smoking or tanning",
+    "oilyskin": "Use oil-free products, gentle cleansers, and don't overwash your face",
+    "darkspot": "Try topical treatments like vitamin C, retinoids, or consult for chemical peels",
+    "dryskin": "Moisturize regularly, use gentle cleansers, and avoid hot showers"
+};
+
+const diseaseclear = disease.trim().toLowerCase();
+const cure = cureForSkin[diseaseclear];
+```
+</Step>
+<Step title="Application Responds">
+1. Once the result is generated, the app constructs and sends an echo message back to the replica:
+```js
+const responseMessage = {
+  message_type: "conversation",
+  event_type: "conversation.echo",
+  conversation_id: message.conversation_id,
+  properties: {
+    text: `The cure for ${disease} is ${cure}.`
+  }
+};
+
+call.sendAppMessage(responseMessage, '*');
+
+```
+2. The replica receives the echo message and replies: `The cure for pimples is Use a mild cleanser, avoid touching your face, and apply a benzoyl peroxide cream.`
+</Step>
+</Steps>
+</Tab>
+<Tab title="Perception Tool">
+<Steps>
+<Step title="Replica Triggers Tool Call">
+If the replica visually detects acne on the participant’s face, it triggers the `acne_detected` perception tool:
+```js Perception Tool
+if (message.message_type === 'conversation' && message.event_type === 'conversation.perception_tool_call') {
+    const perceptionToolCall = message.properties;
+  
+    if (perceptionToolCall.name === 'acne_detected') {
+        const currentTime = Date.now();
+}
+```
+</Step>
+<Step title="Application Responds">
+1. The app constructs and sends an echo message back to the replica:
+```js
+const responseMessage = {
+    message_type: "conversation",
+    event_type: "conversation.echo",
+    conversation_id: message.conversation_id,
+    properties: {
+        text: `I notice that you have acne on your face. I suggest using topical antibiotics like clindamycin and erythromycin.`
+        }
+    };
+
+ console.log('Sending echo message:', responseMessage);
+```
+2. The replica sends a helpful suggestion: `I notice that you have acne on your face. I suggest using topical antibiotics like clindamycin and erythromycin.`
+</Step>
+</Steps>
+</Tab>
+</Tabs>
+</Tab>
+</Tabs>
