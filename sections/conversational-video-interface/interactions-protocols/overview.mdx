@@ -6,20 +6,20 @@ description: Interact with the replica during live conversations.
 The Interactions Protocol lets you control and customize live conversations with a Replica in real time. You can send interaction events to the Conversational Video Interface (CVI) and listen to events the Replica sends back during the call.
 
 ### Interaction Types
-- Echo interactions
-- Response interactions
-- Interrupt interactions
-- Override conversation context interactions
-- Sensitivity interactions
+- [Echo interactions](/sections/event-schemas/conversation-echo)
+- [Response interactions](/sections/event-schemas/conversation-respond)
+- [Interrupt interactions](/sections/event-schemas/conversation-interrupt)
+- [Override conversation context interactions](/sections/event-schemas/conversation-overwrite-context)
+- [Sensitivity interactions](/sections/event-schemas/conversation-sensitivity)
 
 ### Observable Events
-- Utterance Events
-- Tool Call Events
-- Perception Tool Call Events
-- Perception Analysis Events
-- Replica Started/Stopped Speaking
-- User Started/Stopped Speaking
-- Replica Interrupted
+- [Utterance Events](/sections/event-schemas/conversation-utterance)
+- [Tool Call Events](/sections/event-schemas/conversation-toolcall)
+- [Perception Tool Call Events](/sections/event-schemas/conversation-perception-tool-call)
+- [Perception Analysis Events](/sections/event-schemas/conversation-perception-analysis)
+- [Replica Started/Stopped Speaking](/sections/event-schemas/conversation-replica-started-stopped-speaking)
+- [User Started/Stopped Speaking](/sections/event-schemas/conversation-user-started-stopped-speaking)
+- [Replica Interrupted](/sections/event-schemas/conversation-replica-interrupted)
 
 ## Call Client Example
 The interactions protocol uses a WebRTC data channel for communication. In Tavus's case, this is powered by [Daily](https://www.daily.co/), which makes setting up the call client quick and simple.
