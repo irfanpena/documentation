@@ -74,13 +74,6 @@
                   "sections/conversational-video-interface/conversation/usecases/health-care"
                 ]
               },
-              {
-                "group": "Sample Apps",
-                "pages": [
-                  "sections/conversational-video-interface/sample-apps/roll-a-dice",
-                  "sections/conversational-video-interface/sample-apps/health-consultation"
-                ]
-              },
               "sections/conversational-video-interface/interactions-protocols/overview"
             ]
           },
@@ -89,7 +82,8 @@
             "pages": [
               "sections/replica/overview",
               "sections/replica/replica-training",
-              "sections/replica/quickstart"
+              "sections/replica/quickstart",
+              "sections/replica/stock-replicas"
             ]
           },
           {

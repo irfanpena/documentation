@@ -16,14 +16,12 @@ Select one of the available models:
 - `tavus-gpt-4o-mini`
 
 <Note>
-### Token Limit Warning
+#### Context Window Limit
 
-`tavus-llama` has a **hard limit of 128,000 tokens**. If this limit is exceeded, the conversation may crash.
+* All Tavus-hosted models have a **hard limit of 128,000 tokens**.
+* To avoid crashes, keep input under **120,000 tokens**.
 
-To avoid this, we **recommend keeping input context within 120,000 tokens** as a safe threshold.
-
-- 1 token = 4 characters on average.
-- 128,000 tokens = 480,000 characters (including whitespace and punctuation).
+**Tip: 1 token ≈ 4 characters, therefore 120,000 tokens ≈ 480,000 characters (including spaces and punctuation).**
 
 </Note>
 ```json
