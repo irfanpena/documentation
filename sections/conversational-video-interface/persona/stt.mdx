@@ -29,9 +29,15 @@ Specifies the speech-to-text engine used for transcription.
 
 ### 2. `participant_pause_sensitivity`
 
-Controls how long a pause is allowed before the digital replica responds.
+Controls how long the participant can pause before the replica responds. This setting helps you fine-tune the pacing of the conversation.
 
-* **Options**: `high`, `medium` (default), `low`, `verylow`, `superlow`
+* **Options**:
+
+  * `high`: The replica replies quickly after short pauses. Good for fast and casual conversations.
+  * `medium` **(default)**: Balanced timing. Allows natural pauses without feeling rushed or delayed.
+  * `low`: The replica waits a bit longer before replying. Useful for slower or more thoughtful discussions.
+  * `verylow`: The replica allows even longer pauses before responding.
+  * `superlow`: The replica has the longest response delay, making it suitable for conversations where participants often pause.
 
 ```json
 "participant_pause_sensitivity": "medium"
@@ -39,9 +45,15 @@ Controls how long a pause is allowed before the digital replica responds.
 
 ### 3. `participant_interrupt_sensitivity`
 
-Controls how easily the participant can interrupt the digital replica.
+Controls how easily the participant can interrupt the replica while it is talking. This setting helps adjust how the replica handles overlap in conversation.
 
-* **Options**: `high`, `medium` (default), `low`, `verylow`, `superlow`
+* **Options**:
+
+  * `high`: The replica stops speaking immediately when the participant starts talking. Ideal for quick and back-and-forth exchanges.
+  * `medium` **(default)**: Balanced behavior. Allows short interruptions without breaking the flow.
+  * `low`: The participant needs to speak more clearly or for a bit longer to interrupt.
+  * `verylow`: The replica usually keeps talking unless the interruption is strong.
+  * `superlow`: The replica rarely stops mid-sentence. It will usually finish speaking before responding.
 
 ```json
 "participant_interrupt_sensitivity": "medium"
