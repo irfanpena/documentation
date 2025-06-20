@@ -1075,7 +1075,7 @@ paths:
         - Replicas
       summary: Create Replica
       description: |
-        This endpoint creates a new Replica that can be used to generate personalized videos. 
+        This endpoint creates a new Replica that can be used in a conversation.
 
         By default, all new replicas will be trained using the `phoenix-3` model. You can optionally create phoenix-2 replicas by setting the `model_name` parameter to `phoenix-2`.
 
@@ -1225,7 +1225,7 @@ paths:
         - Replicas
       summary: Delete Replica
       description: |
-        This endpoint deletes a single Replica by its unique identifier. Once deleted, this Replica can not be used to generate videos.
+        This endpoint deletes a Replica by its unique ID. Deleted Replicas cannot be used in a conversation.
 
       operationId: deleteReplica
       parameters:
@@ -1238,7 +1238,7 @@ paths:
           in: query
           schema:
             type: boolean
-          description: "If set to true, the replica and associated assets (such as training footage) will be hard deleted. CAUTION: This action is irrevocable. Note that a hard delete of a replica does *not* delete the videos created using said replica. See [Delete Video](https://docs.tavus.io/api-reference/video-request/delete-video) for more info."
+          description: "If set to true, the replica and associated assets (such as training footage) will be hard deleted. CAUTION: This action is irrevocable. Note that a hard delete of a replica does *not* delete the conversation created using said replica. See [Delete Video](https://docs.tavus.io/api-reference/video-request/delete-video) for more info."
       responses:
         "200":
           description: ""
@@ -1598,19 +1598,7 @@ paths:
         - **tavus-gpt-4o-mini:** A hybrid model that balances performance and intelligence.
         - **tavus-llama:** The **default** choice if no LLM layer is provided. This is the fastest model, offering the best user-to-user (U2U) experience. It's on-premise, making it incredibly performant. 
 
-        <Note>
-        ### Token Limit Warning
-
-        Tavus-hosted `tavus-llama` has a **hard limit of 16,000 tokens**. If this limit is exceeded, the conversation may crash.
-
-        To avoid this, we **recommend keeping input context within 10,000 tokens** as a safe threshold.
-
-        - 1 token = 4 characters on average  
-        - 10,000 tokens = 40,000 characters (including whitespace and punctuation)
-
-        </Note>
-
-        [Get Started with Your Own LLM](/sections/conversational-video-interface/persona/llm)
+        [Get Started with Your Own LLM](/sections/conversational-video-interface/custom-llm-onboarding)
 
         #### TTS
         With Tavus' default TTS engine, you get the faster utterance-to-utterance speed, but you can always bring your own if you have voices already trained with:
@@ -1668,9 +1656,8 @@ paths:
                             "The model name that will be used by the llm. To use Tavus' llms, you may select from the following models: `tavus-llama`, `tavus-gpt-4o`, `tavus-gpt-4o-mini`. If you would like to use your own OpenAI compatible llm, you may provide a `model`, `base_url`, and `api_key`."
                               #### Context Window Limit
 
-                              * All Tavus-hosted models have a **limit of 128,000 tokens**.
-                              * To avoid crashes, keep input under the **recommended hard limit of 120,000 tokens**.
-                              * Contexts over **100,000 tokens** will experience noticeable performance degradation (slow response times).
+                              * All Tavus-hosted models have a **limit of 120,000 tokens**.
+                              * Contexts over **100,000 tokens** will experience noticeable performance degradation (slower response times).
 
                               > **Tip**: 1 token ≈ 4 characters, therefore 120,000 tokens ≈ 480,000 characters (including spaces and punctuation).
                         base_url:
@@ -2450,8 +2437,11 @@ paths:
           { "op": "replace", "path": "/persona_name", "value": "Wellness Advisor" },
           { "op": "replace", "path": "/default_replica_id", "value": "r79e1c033f" },
           { "op": "replace", "path": "/context", "value": "Here are a few times that you have helped an individual make a breakthrough in..." },
-          { "op": "add", "path": "/layers/stt/hotwords", "value": "support" },
-          { "op": "remove", "path": "/layers/stt/hotwords" }
+          { "op": "replace", "path": "/layers/llm/model", "value": "tavus-gpt-4o" },
+          { "op": "replace", "path": "/layers/tts/tts_engine", "value": "cartesia" },
+          { "op": "add", "path": "/layers/tts/tts_emotion_control", "value": "true" },
+          { "op": "remove", "path": "/layers/stt/hotwords" },
+          { "op": "replace", "path": "/layers/perception/perception_tool_prompt", "value": "Use tools when identity documents are clearly shown." }
         ]
         ```
       operationId: patchPersona

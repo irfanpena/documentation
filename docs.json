@@ -104,23 +104,13 @@
         "tab": "API Reference",
         "groups": [
           {
-            "group": "Phoenix Replicas",
+            "group": "Replicas",
             "pages": [
               "api-reference/phoenix-replica-model/create-replica",
               "api-reference/phoenix-replica-model/get-replica",
               "api-reference/phoenix-replica-model/get-replicas",
               "api-reference/phoenix-replica-model/delete-replica",
               "api-reference/phoenix-replica-model/patch-replica-name"
-            ]
-          },
-          {
-            "group": "Videos",
-            "pages": [
-              "api-reference/video-request/create-video",
-              "api-reference/video-request/get-video",
-              "api-reference/video-request/get-videos",
-              "api-reference/video-request/delete-video",
-              "api-reference/video-request/patch-video-name"
             ]
           },
           {
@@ -141,6 +131,16 @@
               "api-reference/personas/get-personas",
               "api-reference/personas/patch-persona",
               "api-reference/personas/delete-persona"
+            ]
+          },
+          {
+            "group": "Videos",
+            "pages": [
+              "api-reference/video-request/create-video",
+              "api-reference/video-request/get-video",
+              "api-reference/video-request/get-videos",
+              "api-reference/video-request/delete-video",
+              "api-reference/video-request/patch-video-name"
             ]
           },
           {
