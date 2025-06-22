@@ -14,11 +14,13 @@ Define the STT layer under the `layers.stt` object. Below are the parameters ava
 
 Specifies the speech-to-text engine used for transcription.
 
-- **Options**: `tavus-turbo`, `tavus-advanced`
-<Note>
-- The **default engine** for the STT layer is `tavus-advanced`, which supports multilingual transcription with high accuracy.
-- For faster response times, you can switch to `tavus-turbo`, though it may offer slightly less precise results compared to `tavus-advanced`. 
-</Note>
+Here’s a cleaner and more structured version where the note content is integrated into the bullet list itself:
+
+* **Options**:
+
+  * `tavus-advanced` (default) – Offers high-accuracy multilingual transcription.
+  * `tavus-turbo` – Provides faster response times with slightly reduced accuracy.
+
 ```json
 "layers": {
   "stt": {
