@@ -85,19 +85,9 @@ Defines callable functions that `raven-0` can trigger upon detecting specific vi
 ```
 
 <Note>
-Please see [Tool/Function Calling](#) for more details.
+Please see [Tool/Function Calling](/sections/conversational-video-interface/persona/perception-tool) for more details.
 </Note>
 
-### End-of-call Perception Analysis
-
-`raven-0` generates a visual summary at the end of a call. This summary includes all detected visual artifacts and can be sent as:
-
-- A [Perception Analysis](https://docs.tavus.io/sections/event-schemas/conversation-perception-analysis) event
-
-- A [conversation callback](https://docs.tavus.io/sections/conversational-video-interface/conversation-callbacks) (if specified)
-<Note>
-This feature is exclusive to personas with `raven-0` specified in the Perception Layer.
-</Note>
 ## Example Use Case
 This example demonstrates a persona designed to identify when a user wears a bright outfit and triggers an internal action accordingly.
 
@@ -146,4 +136,28 @@ This example demonstrates a persona designed to identify when a user wears a bri
 Please see the [Create a Persona](https://docs.tavus.io/api-reference/personas/create-persona) endpoint for more details.
 </Note>
 
+## End-of-call Perception Analysis
 
+`raven-0` generates a visual summary at the end of a call. This summary includes all detected visual artifacts and can be sent as:
+
+- A [Perception Analysis](https://docs.tavus.io/sections/event-schemas/conversation-perception-analysis) event
+
+- A [conversation callback](https://docs.tavus.io/sections/conversational-video-interface/conversation-callbacks) (if specified)
+<Note>
+This feature is exclusive to personas with `raven-0` specified in the Perception Layer.
+</Note>
+
+Below is an example of an end-of-call perception analysis payload for the [example persona](/sections/conversational-video-interface/persona/perception#example-use-case):
+```json
+{
+  "properties": {
+    "analysis": "analysis : Here's a summary of the visual observations:\n\n*   **Appearance:** The user is an Asian male, likely in his late teens or early twenties, with short dark hair. Throughout \nthe call, he is consistently wearing a bright yellow t-shirt.\n*   **Emotional State:** The user's emotional state is generally neutral to slightly subdued. He appears contemplative, thoughtful, and occasionally troubled, but also calm and collected at times. There were no indications of strong positive emotions.\n*   **Environment:** The user is indoors in a room with a green curtain and a door visible in the background.\n*   **Focus:** The user consistently looks directly at the camera.\n*   **Queries**: The user is wearing a bright yellow outfit, as the system was notified.\n\nBased on the provided information:\n\n*   There is no indication that the user is wearing more than one bright color.\n*   There is no indication that more than one person is present.\n"
+  },
+  "conversation_id": "c369a8e5c8224453",
+  "webhook_url": "<your_webhook_url>",
+  "message_type": "application",
+  "event_type": "application.perception_analysis",
+  "timestamp": "2025-06-20T01:43:33.571534Z"
+}
+
+```
