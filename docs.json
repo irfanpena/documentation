@@ -71,7 +71,8 @@
                   "sections/conversational-video-interface/conversation/usecases/ai-interviewer",
                   "sections/conversational-video-interface/conversation/usecases/history-teacher",
                   "sections/conversational-video-interface/conversation/usecases/sales-coach",
-                  "sections/conversational-video-interface/conversation/usecases/health-care"
+                  "sections/conversational-video-interface/conversation/usecases/health-care",
+                  "sections/conversational-video-interface/conversation/usecases/customer-service"
                 ]
               },
               "sections/conversational-video-interface/interactions-protocols/overview"
