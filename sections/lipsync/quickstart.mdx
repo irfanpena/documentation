@@ -1,23 +1,23 @@
 ---
 title: "Quickstart"
-description: Learn how to synchronize audio with existing videos using Tavus’s lipsync service.
+description: Learn how to synchronize audio with a video using Tavus’s lipsync service.
 ---
 
 ## Prerequisites
 
-Before starting, ensure you have:
+Before you begin, make sure you have publicly accessible **URLs** for:  
+- **Video**  
+- **Audio**
 
-- A **Tavus API key**.
-- Video and audio that meet the requirements outlined in [Replica Training](https://docs.tavus.io/sections/lipsync/overview#getting-started).
-- Publicly accessible **URLs** for:
-  - Your video
-  - Your audio
 
-## Create the Video
+## Create a Lip Sync Video
 
 <Steps>
-  <Step title="Make a Request">
-    use the following request to start processing the video
+  <Step title="Step 1: Get an API Key" titleSize="h3">
+  Ensure you have created the Tavus API Key to access the Tavus API by following the steps [here](/sections/quickstart).
+  </Step>
+  <Step title="Step 2: Make a Request">
+    Use the following request to start processing the video
 
     ```sh
     curl --request POST \
@@ -31,20 +31,11 @@ Before starting, ensure you have:
         "callback_url": "<your_callback_url>"
     }'
     ```
-
     <Note>
-      `lipsync_name` and `callback_url` is not required. If 'callback_url' was specified, it will get :
-
-      ```json
-      {
-        "request_id": "<your_request_id>",
-        "status": "started",
-        "lipsync_id": "<your_lipsync_id>"
-      }
-      ```
+      `original_video_url` and `source_audio_url` are required.
     </Note>
   </Step>
-  <Step title="Check Video Status">
+  <Step title="Step 3: Check Video Status">
     You can monitor the processing status using the [Get Lipsync](https://docs.tavus.io/api-reference/lipsync/get-lipsync) endpoint:
 
     ```sh
@@ -53,23 +44,8 @@ Before starting, ensure you have:
       --header 'x-api-key: <api-key>'
     ```
   </Step>
-  <Step title="Completion">
-    Upon completion you will receive a webhook notification when processing is complete (if callback_url was provided) and download the video using the provided `video_url` 
-
-    Callback example :
-
-    ```json
-    {
-      "request_id": "<your_request_id>",
-      "status": "completed",
-      "video_url": "<your_video_url>",
-      "lipsync_id": "<your_lipsync_id>",
-      "video_duration": "<your_video_duration>"
-    }
-    ```
-
-    [Get Lipsync](https://docs.tavus.io/api-reference/lipsync/get-lipsync) response :
-
+  <Step title="Step 4: Download the Video">
+    Once the video is generated, you'll receive a response containing the `video_url`. Use this URL to download your video.
     ```json 200
     {
       "request_id": "<your_request_id>",
@@ -81,9 +57,8 @@ Before starting, ensure you have:
       "video_url": "<your_video_url>"
     }
     ```
-
     <Warning>
-      The video will expire after 1 week.
+      The download video link will expire after 1 week.
     </Warning>
   </Step>
 </Steps>
