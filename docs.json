@@ -75,7 +75,8 @@
                   "sections/conversational-video-interface/conversation/usecases/customer-service"
                 ]
               },
-              "sections/conversational-video-interface/interactions-protocols/overview"
+              "sections/conversational-video-interface/interactions-protocols/overview",
+              "sections/integrations/embedding-cvi"
             ]
           },
           {
@@ -86,10 +87,6 @@
               "sections/replica/quickstart",
               "sections/replica/stock-replicas"
             ]
-          },
-          {
-            "group": "Integrations",
-            "pages": ["sections/integrations/embedding-cvi"]
           },
           {
             "group": " ",
