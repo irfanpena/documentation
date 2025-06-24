@@ -10,8 +10,8 @@ Before starting, ensure you have:
 - A **Tavus API key**.
 - Video and audio that meet the requirements outlined in [Replica Training](https://docs.tavus.io/sections/lipsync/overview#getting-started).
 - Publicly accessible **URLs** for:
-  - Your training video
-  - Your consent video
+  - Your video
+  - Your audio
 
 ## Create the Video
 
@@ -33,7 +33,15 @@ Before starting, ensure you have:
     ```
 
     <Note>
-      `lipsync_name` and `callback_url` is not required.
+      `lipsync_name` and `callback_url` is not required. If 'callback_url' was specified, it will get :
+
+      ```json
+      {
+        "request_id": "<your_request_id>",
+        "status": "started",
+        "lipsync_id": "<your_lipsync_id>"
+      }
+      ```
     </Note>
   </Step>
   <Step title="Check Video Status">
@@ -57,6 +65,20 @@ Before starting, ensure you have:
       "video_url": "<your_video_url>",
       "lipsync_id": "<your_lipsync_id>",
       "video_duration": "<your_video_duration>"
+    }
+    ```
+
+    [Get Lipsync](https://docs.tavus.io/api-reference/lipsync/get-lipsync) response :
+
+    ```json 200
+    {
+      "request_id": "<your_request_id>",
+      "name": "<your_lipsync_name>",
+      "status": "completed",
+      "created_at": "Tue, 24 Jun 2025 07:23:36 GMT",
+      "lipsync_id": "<your_lipsync_id>",
+      "lipsync_name": "<your_lipsync_name>",
+      "video_url": "<your_video_url>"
     }
     ```
 
