@@ -45,19 +45,10 @@ curl --request POST \
 ```
 </CodeGroup>
 
-Once submitted, the API call will return a JSON response, and the video generation process will commence.
+<Note>
+You can also customize the video background to suit your needs. See the [**Background Customizations**](/link-to-article) article for more details.
+</Note>
 
-<CodeGroup>
-```json Response
-{
-    "status":"queued",
-    "video_id":"<video_id>",
-    "hosted_url":"<hosted_url>",
-    "created_at":"Tue, 24 Jun 2025 07:01:57 GMT",
-    "video_name":"replica_id: <replica_id> - June 24, 2025 - video: <video_id>"
-}
-```
-</CodeGroup>
 </Step>
 <Step title="Step 3: Check Video Generation Status">
 You can monitor the training status using the [Get Video](/api-reference/video-request/get-video) endpoint:
