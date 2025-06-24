@@ -3,7 +3,7 @@ title: Background Customizations
 description: Learn how to customize a video background.
 ---
 
-### Transparent Background
+## Transparent Background
 
 You can enable a transparent background for the video by setting the `transparent_background` parameter to `true`.
 
@@ -24,7 +24,7 @@ curl --request POST \
 }'
 ```
 
-### Website Background
+## Website Background
 
 You can set a website as the background for your generated video by using the `background_url` field. Simply provide the URL of the website you'd like to use, making sure it is publicly accessible and correctly formatted.
 
@@ -42,7 +42,7 @@ curl --request POST \
 
 The resulting video will feature the website as a background, with the content scrolling vertically from top to bottom.
 
-#### Background Scroll
+### Background Scroll
 
 You can configure the background scroll by adjusting the scroll distance, pattern, and whether the scroll should loop back to the top by adjusting the following parameter:
 
@@ -69,7 +69,7 @@ curl --request POST \
 }'
 ```
 
-### Custom Video Background
+## Custom Video Background
 
 You can also set a custom video background by providing a direct, publicly accessible link (e.g., from an S3 bucket) to the `background_source_url` parameter.
 
