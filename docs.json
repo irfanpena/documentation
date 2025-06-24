@@ -92,7 +92,8 @@
             "group": "Video Generation",
             "pages": [
               "sections/video/overview",
-              "sections/video/quickstart"
+              "sections/video/quickstart",
+              "sections/video/background-customizations"
             ]
           },
           {
