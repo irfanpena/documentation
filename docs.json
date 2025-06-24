@@ -89,6 +89,13 @@
             ]
           },
           {
+            "group": "Video Generation",
+            "pages": [
+              "sections/video/overview",
+              "sections/video/quickstart"
+            ]
+          },
+          {
             "group": " ",
             "pages": ["sections/example-projects"]
           },
