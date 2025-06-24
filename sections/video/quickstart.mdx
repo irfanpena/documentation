@@ -1,0 +1,254 @@
+---
+title: Quickstart
+description: Learn how to quickly generate video using a replica.
+---
+
+## Prerequisites
+
+Before starting, ensure you have:
+* A **Tavus API Key**.
+* A [**replica**](/sections/replica/overview) to be used for the video. 
+* A **text script** for audio generation or a publicly accessible **audio file** (.wav/.mp3) hosted on a storage service like S3, to be used as the audio source for the video.
+
+## Generate a video
+
+<Steps>
+<Step title="Step 1: Make a Request">
+
+Use the following request to generate a video:
+
+<CodeGroup>
+```sh Generate from Text
+curl --request POST \
+  --url https://tavusapi.com/v2/videos \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <api-key>' \
+  --data '{
+  "replica_id": "<replica_id>",
+  "script": "<text_script>",
+  "callback_url": ""
+}'
+```
+
+```sh Generate from Audio File
+curl --request POST \
+  --url https://tavusapi.com/v2/videos \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <api-key>' \
+  --data '{
+  "replica_id": "<replica_id>",
+  "audio_url": "<audio_url>",
+  "callback_url": ""
+}'
+```
+</CodeGroup>
+
+Once submitted, the API call will return a JSON response, and the video generation process will commence.
+
+<CodeGroup>
+```json Response
+{
+    "status":"queued",
+    "video_id":"<video_id>",
+    "hosted_url":"<hosted_url>",
+    "created_at":"Tue, 24 Jun 2025 07:01:57 GMT",
+    "video_name":"replica_id: <replica_id> - June 24, 2025 - video: <video_id>"
+}
+```
+</CodeGroup>
+</Step>
+<Step title="Step 2: Check Video Generation Status">
+You can monitor the training status using the [Get Video](/api-reference/video-request/get-video) endpoint:
+
+```sh
+curl --request GET \
+  --url https://tavusapi.com/v2/videos/<video_id> \
+  --header 'x-api-key: <api-key>'
+```
+
+If the video is still being generated, the response will include a `status` field set to `generating`. 
+
+<CodeGroup>
+```json Generate from Text
+{
+  "video_id": "<video_id>",
+  "video_name": "replica_id: <replica_id> - June 24, 2025 - video: <video_id>",
+  "status": "generating",
+  "data": {
+    "script": "<text_script>",
+    "start_with_wave": true
+  },
+  "replica_id": "<replica_id>",
+  "download_url": null,
+  "hosted_url": "<hosted_url>",
+  "stream_url": null,
+  "status_details": "",
+  "created_at": "Tue, 24 Jun 2025 07:01:57 GMT",
+  "updated_at": "Tue, 24 Jun 2025 07:02:25 GMT",
+  "generation_progress": "37/100"
+}
+```
+
+```json Generate from Audio File
+{
+  "video_id": "<video_id>",
+  "video_name": "replica_id: <replica_id> - June 24, 2025 - video: <video_id>",
+  "status": "generating",
+  "data": {
+    "audio_url": "<audio_url>",
+    "start_with_wave": true
+  },
+  "replica_id": "<replica_id>",
+  "download_url": null,
+  "hosted_url": "<hosted_url>",
+  "stream_url": null,
+  "status_details": "",
+  "created_at": "Tue, 24 Jun 2025 07:01:57 GMT",
+  "updated_at": "Tue, 24 Jun 2025 07:02:25 GMT",
+  "generation_progress": "37/100"
+}
+```
+</CodeGroup>
+
+Once the video is fully generated, the response will return a `status` field set to `ready`.
+
+<CodeGroup>
+```json Generate from Text
+{
+  "video_id": "<video_id>",
+  "video_name": "replica_id: <replica_id> - June 24, 2025 - video: <video_id>",
+  "status": "ready",
+  "data": {
+    "script": "<text_script>",
+    "start_with_wave": true
+  },
+  "replica_id": "<replica_id>",
+  "download_url": "<download_url>",
+  "hosted_url": "<hosted_url>",
+  "stream_url": "<stream_url>",
+  "status_details": "Your request has processed successfully!",
+  "created_at": "Tue, 24 Jun 2025 07:01:57 GMT",
+  "updated_at": "Tue, 24 Jun 2025 07:04:56 GMT",
+  "generation_progress": "100/100"
+}
+```
+
+```json Generate from Audio File
+{
+  "video_id": "<video_id>",
+  "video_name": "replica_id: <replica_id> - June 24, 2025 - video: <video_id>",
+  "status": "ready",
+  "data": {
+    "audio_url": "<audio_url>",
+    "start_with_wave": true
+  },
+  "replica_id": "<replica_id>",
+  "download_url": "<download_url>",
+  "hosted_url": "<hosted_url>",
+  "stream_url": "<stream_url>",
+  "status_details": "Your request has processed successfully!",
+  "created_at": "Tue, 24 Jun 2025 07:01:57 GMT",
+  "updated_at": "Tue, 24 Jun 2025 07:04:56 GMT",
+  "generation_progress": "100/100"
+}
+```
+</CodeGroup>
+
+</Step>
+<Step title="Accessing your Video">
+You can access the generated video by opening the `hosted_url` in a browser, using the `download_url` to download the file, or utilizing the `stream_url` for streaming purposes.
+</Step>
+</Steps>
+
+## Video Background
+
+You can customize the video background by selecting from several available options.
+
+### Transparent Background
+
+You can enable a transparent background for the video by setting the `transparent_background` parameter to `true`.
+
+<Note>
+This feature is only available when the `fast` parameter is set to `true`, and the output will be generated exclusively in .webm format.
+</Note>
+
+```sh {6-7}
+curl --request POST \
+  --url https://tavusapi.com/v2/videos \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <api-key>' \
+  --data '{
+  "fast": true,
+  "transparent_background": true,
+  "replica_id": "<replica_id>",
+  "script": "<text_script>"
+}'
+```
+
+### Website Background
+
+You can set a website as the background for your generated video by using the `background_url` field. Simply provide the URL of the website you'd like to use, making sure it is publicly accessible and correctly formatted.
+
+```sh {6}
+curl --request POST \
+  --url https://tavusapi.com/v2/videos \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <api-key>' \
+  --data '{
+  "background_url": "<background_url>",
+  "replica_id": "<replica_id>",
+  "script": "<text_script>"
+}'
+```
+
+The resulting video will feature the website as a background, with the content scrolling vertically from top to bottom.
+
+#### Background Scroll
+
+You can configure the background scroll by adjusting the scroll distance, pattern, and whether the scroll should loop back to the top by adjusting the following parameter:
+
+* `properties.background_scroll`: Enable or disable background scrolling.
+* `properties.background_scroll_type`: Defines the scroll pattern when background scrolling is enabled, with two options: `human` (mimics natural scrolling with pauses) and `smooth` (continuous uniform scrolling).
+* `properties.background_scroll_depth`: Determines how far the background video will scroll down the webpage, with two options: `middle` (scrolls to the middle of the page) or `bottom` (scrolls all the way to the end).
+* `properties.background_scroll_return`:  Defines the behavior after reaching the scroll depth set by `background_scroll_depth`, with two options: `return` (scrolls back up) or `halt` (pauses at the specified depth).
+
+See the following usage example:
+
+```sh {10-13}
+curl --request POST \
+  --url https://tavusapi.com/v2/videos \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <api-key>' \
+  --data '{
+  "replica_id": "<replica_id>",
+  "script": "<text_script>",
+  "background_url": "<background_url>",
+  "properties": {
+    "background_scroll": true,
+    "background_scroll_type": "smooth",
+    "background_scroll_depth": "bottom",
+    "background_scroll_return": "true"
+  }
+}'
+```
+
+### Custom Video Background
+
+You can also set a custom video background by providing a direct, publicly accessible link (e.g., from an S3 bucket) to the `background_source_url` parameter.
+
+```sh {8}
+curl --request POST \
+  --url https://tavusapi.com/v2/videos \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <api-key>' \
+  --data '{
+  "replica_id": "<replica_id>",
+  "script": "<text_script>",
+  "background_source_url": "<background_source_url>"
+}'
+```
+
+
+
+
+
