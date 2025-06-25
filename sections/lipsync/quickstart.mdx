@@ -5,10 +5,22 @@ description: Learn how to synchronize audio with a video using Tavus’s lipsync
 
 ## Prerequisites
 
-Before you begin, make sure you have publicly accessible **URLs** for:  
-- **Video**  
-- **Audio**
+Before using the Lipsync service, make sure your input files meet the following requirements:
+- **File Requirements**:
 
+  * **Video**: `.mp4` format, max 5 minutes.
+  * **Audio**: `.mp3` or `.wav` format, max 5 minutes.
+- **Quality Recommendations**:
+
+  * The video should clearly show the speaker’s mouth, facing the camera ("talking head" style).
+  * Avoid cartoon or animated characters.
+  * Use good lighting and minimal background clutter.
+  * Audio should be clear, well-recorded, and free of background noise.
+  * Use single-speaker, natural speech (avoid singing, whispering, or overlapping voices).
+
+<Note>
+Ensure that the URLs you provide for the video and audio files are publicly accessible.
+</Note>
 
 ## Create a Lip Sync Video
 
@@ -17,7 +29,7 @@ Before you begin, make sure you have publicly accessible **URLs** for:
   Ensure you have created the Tavus API Key to access the Tavus API by following the steps [here](/sections/quickstart).
   </Step>
   <Step title="Step 2: Make a Request">
-    Use the following request to start processing the video
+    Use the following request to start processing the video:
 
     ```sh
     curl --request POST \
@@ -58,7 +70,7 @@ Before you begin, make sure you have publicly accessible **URLs** for:
     }
     ```
     <Warning>
-      The download video link will expire after 1 week.
+      The download link for your video expires after **1 week**. To get a new download link, use the [Get Lipsync](/api-reference/lipsync/get-lipsync) endpoint.
     </Warning>
   </Step>
 </Steps>

@@ -97,6 +97,13 @@
             ]
           },
           {
+            "group": "Lipsync",
+            "pages": [
+              "sections/lipsync/overview",
+              "sections/lipsync/quickstart"
+            ]
+          },
+          {
             "group": " ",
             "pages": ["sections/example-projects"]
           },
