@@ -19,7 +19,7 @@ By default, Tavus uses the **Cartesia** TTS engine.
 </Note>
 ## Setting the Conversation Language
 
-To specify a language, use the `language` parameter in the request body. **You must use the full language name**, not a language code.
+To specify a language, use the `language` parameter in the [Create Conversation](/api-reference/conversations/create-conversation). **You must use the full language name**, not a language code.
 
 ```shell cURL highlight={9}
 curl --request POST \
@@ -39,7 +39,7 @@ curl --request POST \
 Language names must match exactly with those supported by the selected TTS engine.
 </Note>
 
-## Multilingual Mode
+### Multilingual Mode
 
 To automatically detect the participant’s spoken language at the start of the conversation, set:
 
