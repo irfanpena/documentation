@@ -27,6 +27,10 @@ curl --request POST \
 }'
 
 ```
+<Warning>
+- Only `replica_id` is required
+- **If your persona has a default replica**, the `replica_id` is not required.
+</Warning>
 </Tab>
 <Tab title="Full Customizations">
 <Note>
@@ -70,11 +74,12 @@ The request example above includes the following customizations:
 | `language` | Defines the conversation language. Set to `multilingual` to enable automatic language detection via ASR, allowing the system to recognize and respond in the user's spoken language. See the [Language Support](/sections/conversational-video-interface/language-support) article for supported options. |
 | `enable_closed_captions` | Enables closed captions during the call. |
 | `apply_greenscreen` | Applies a green screen effect to the AI agent’s background. |
-</Tab>
-</Tabs>
+
 <Note>
 **Note**: Please see the [Recording](#) article to enable the Recording feature.
 </Note>
+</Tab>
+</Tabs>
 </Step>
 <Step title="Step 3: Join the Conversation" titleSize="h3">
 To join the conversation, click the link in the ***conversation_url*** field from the response:
@@ -91,6 +96,7 @@ To join the conversation, click the link in the ***conversation_url*** field fro
 ```
 </Step>
 </Steps>
+
 
 ## Create an Audio Only Conversation
 You can configure a conversation to run in audio-only mode, meaning no video will be streamed during the interaction. This mode is ideal for use cases like phone calls, smart speakers, or any environment where video is unnecessary or unsupported.
