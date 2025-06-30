@@ -9,9 +9,10 @@ description: Learn how to quickly make your first Conversation API Request using
 Ensure you have created the Tavus API Key to access the Tavus API by following the steps here.
 </Step>
 <Step title="Step 2: Make your First Conversation" titleSize="h3">
-
+<Tabs>
+<Tab title="Required Parameters Only">
 <Note>
-**Note**: In this example, we will use stock replica ID ***re8e740a42*** (Nathan) and stock persona ID ***pdced222244b*** (Sales Coach) with all conversation customizations except recording.
+**Note**: In this example, we will use stock replica ID ***rfe12d8b9597*** (Nathan) and stock persona ID ***pdced222244b*** (Sales Coach) with all conversation customizations except recording.
 </Note>
 
 Use the following request body example:
@@ -22,7 +23,25 @@ curl --request POST \
   --header 'x-api-key: <your_api_key>' \
   --data '{
   "persona_id": "pdced222244b",
-  "replica_id": "re8e740a42",
+  "replica_id": "rfe12d8b9597"
+}'
+
+```
+</Tab>
+<Tab title="Full Customizations">
+<Note>
+**Note**: In this example, we will use stock replica ID ***rfe12d8b9597*** (Nathan) and stock persona ID ***pdced222244b*** (Sales Coach) with all conversation customizations except recording.
+</Note>
+
+Use the following request body example:
+```shell cURL
+curl --request POST \
+  --url https://tavusapi.com/v2/conversations \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your_api_key>' \
+  --data '{
+  "persona_id": "pdced222244b",
+  "replica_id": "rfe12d8b9597",
   "callback_url": "https://yourwebsite.com/webhook",
   "conversation_name": "Improve Sales Technique",
   "conversational_context": "I want to improve my sales techniques. Help me practice handling common objections from clients and closing deals more effectively.",
@@ -30,7 +49,7 @@ curl --request POST \
     "max_call_duration": 1800,
     "participant_left_timeout": 60,
     "participant_absent_timeout": 120,
-    "language": "spanish",
+    "language": "multilingual",
     "enable_closed_captions": true,
     "apply_greenscreen": true
 
@@ -38,19 +57,21 @@ curl --request POST \
 }'
 
 ```
-<Note>
-Set the `callback_url` to receive updates about the conversation state.
-</Note>
+<Warning>
+- Only `replica_id` is required
+- **If your persona has a default replica**, the `replica_id` is not required.
+</Warning>
 The request example above includes the following customizations:
 | Parameter | Description |
 | :---- | :---- |
 | `max_call_durations` | Sets the maximum call length in seconds. Maximum: 3600 seconds. |
 | `participant_left_timeout` | Time (in seconds) to wait before ending the call after the last participant leaves. Default: 0\. |
 | `participant_absent_timeout` | Time (in seconds) to end the call if no one joins after it's created. Default: 300\. |
-| `language` | Sets the conversation language. See the [Language Support](#) article for supported options. |
+| `language` | Defines the conversation language. Set to `multilingual` to enable automatic language detection via ASR, allowing the system to recognize and respond in the user's spoken language. See the [Language Support](/sections/conversational-video-interface/language-support) article for supported options. |
 | `enable_closed_captions` | Enables closed captions during the call. |
 | `apply_greenscreen` | Applies a green screen effect to the AI agent’s background. |
-
+</Tab>
+</Tabs>
 <Note>
 **Note**: Please see the [Recording](#) article to enable the Recording feature.
 </Note>
@@ -70,3 +91,22 @@ To join the conversation, click the link in the ***conversation_url*** field fro
 ```
 </Step>
 </Steps>
+
+## Create an Audio Only Conversation
+You can configure a conversation to run in audio-only mode, meaning no video will be streamed during the interaction. This mode is ideal for use cases like phone calls, smart speakers, or any environment where video is unnecessary or unsupported.
+
+To enable audio-only mode, set the `audio_only` parameter to `true` when creating the conversation:
+```shell cURL
+curl --request POST \
+  --url https://tavusapi.com/v2/conversations \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your_api_key>' \
+  --data '{
+  "persona_id": "pdced222244b",
+  "audio_only" true
+}'
+
+```
+<Note>
+All features in the persona's pipeline, including advanced turn taking, perception, and language understanding, remain fully active in audio-only mode. The only change is that video rendering is not included.
+</Note>

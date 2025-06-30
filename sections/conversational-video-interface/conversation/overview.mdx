@@ -16,13 +16,16 @@ Tavus provides several customizations that you can set per conversation:
 - **Custom Greeting**: You can personalize the opening line that the AI should use when the conversation starts.
 ### Advanced Settings and Features
 - **Call Time Settings**: Set call durations and timeouts to control usage, avoid extra costs, and ensure users stay within their allotted time and concurrency limits.
-- **Language**: Set the supported language your conversation speaks in. If you're using a custom TTS voice, make sure it supports the selected language.
+- **Language**: Set the conversation language. Use `multilingual` to enable ASR language detection that automatically identifies and responds in the user's spoken language.
+   <Warning>
+   If you're using a custom TTS voice, make sure it supports the selected language.
+   </Warning>
 - **Background Customization**: Set the AI agent’s background to a green screen or use WebGL on the frontend to make it transparent or replace it with a custom background.
    - You can use WebGL on the frontend to make the green screen transparent or change its color. Try it out with our [CVI Green Screen Sample App](https://andy-tavus.github.io/CVI-greenscreen-webGL/).
 - **Subtitles**: Enable subtitles for your conversation.
 - **Call Recording**: Enable the recording feature and set up your own S3 bucket to store the conversation recording.
 
 ## Getting Started
-You can create a conversation by using the [Tavus Platform](https://platform.tavus.io/) or following the steps in the [Conversation API Quickstart](https://docs.google.com/document/d/1C4y9QTaM8SeWcgOV-xsUdRllQVqibsI8GERfO0UxD_o/edit?usp=sharing) guide.
+You can create a conversation or an audio-only conversation by using the [Tavus Platform](https://platform.tavus.io/) or following the steps in the [Conversation API Quickstart](https://docs.google.com/document/d/1C4y9QTaM8SeWcgOV-xsUdRllQVqibsI8GERfO0UxD_o/edit?usp=sharing) guide.
 
 

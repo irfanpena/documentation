@@ -75,6 +75,7 @@
                   "sections/conversational-video-interface/conversation/usecases/customer-service"
                 ]
               },
+              "sections/conversational-video-interface/language-support",
               "sections/conversational-video-interface/interactions-protocols/overview",
               "sections/integrations/embedding-cvi"
             ]
@@ -104,12 +105,8 @@
             ]
           },
           {
-            "group": " ",
-            "pages": ["sections/example-projects"]
-          },
-          {
             "group": "Resources",
-            "pages": ["sections/changelog/changelog"]
+            "pages": ["sections/example-projects","sections/changelog/changelog"]
           }
         ]
       },

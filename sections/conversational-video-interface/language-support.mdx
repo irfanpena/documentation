@@ -1,0 +1,66 @@
+---
+title: Language Support
+description:
+---
+
+Tavus supports a wide range of languages for spoken interaction, powered by third-party text-to-speech (TTS) engines. The available languages depend on the TTS engine selected for the conversation.
+
+## Default Behavior
+
+By default, Tavus uses the **Cartesia** TTS engine, which supports many global languages.
+
+## Setting the Conversation Language
+
+To specify a language, use the `language` parameter in the request body. **You must use the full language name**, not a language code.
+
+```shell cURL highlight={9}
+curl --request POST \
+  --url https://tavusapi.com/v2/conversations \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your_api_key>' \
+  --data '{
+  "persona_id": "pdced222244b",
+  "replica_id": "rfe12d8b9597",
+  "properties": {
+    "language": "spanish"
+   }
+}'
+```
+
+<Note>
+Language names must match exactly with those supported by the selected TTS engine.
+</Note>
+
+## Multilingual Mode
+
+To automatically detect the participant’s spoken language at the start of the conversation, set:
+
+```shell cURL highlight={9}
+curl --request POST \
+  --url https://tavusapi.com/v2/conversations \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your_api_key>' \
+  --data '{
+  "persona_id": "pdced222244b",
+  "replica_id": "rfe12d8b9597",
+  "properties": {
+    "language": "multilingual"
+   }
+}'
+```
+
+This enables ASR (Automatic Speech Recognition) to detect and lock in the spoken language for the duration of the conversation.
+
+
+## Supported TTS Engines and Language Lists
+
+Tavus supports the following TTS providers:
+<Note>
+Each has its own supported language list.
+</Note>
+
+| TTS Engine             | Language Reference                                                                                                       |
+| ---------------------- |  ------------------------------------------------------------------------------------------------------------------------ |
+| **Cartesia** (default) |  [View supported languages](https://docs.cartesia.ai/2024-11-13/build-with-cartesia/models/tts#language-support)          |
+| **ElevenLabs**         |  [View supported languages](https://elevenlabs.io/docs/capabilities/text-to-speech#supported-languages)                   |
+| **PlayHT**             |  [View supported languages](https://docs.play.ai/api-reference/text-to-speech/endpoints/v1/list-voices#response-language) |

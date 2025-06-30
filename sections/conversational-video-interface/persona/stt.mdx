@@ -87,7 +87,8 @@ When used with `participant_pause_sensitivity`, that setting defines the maximum
 
 - However, when `smart_turn_detection` enabled the system will respond early if it confidently detects that the user has finished speaking, regardless of the maximum pause setting.
 <Warning>
-Disabling `smart_turn_detection` turns off **Sparrow** and uses a fixed response delay based on `participant_pause_sensitivity`.
+- `smart_turn_detection` is only supported by the `tavus-advanced` engine.
+- Disabling `smart_turn_detection` turns off **Sparrow** and uses a fixed response delay based on `participant_pause_sensitivity`.
 </Warning>
 ## Example Use Case
 

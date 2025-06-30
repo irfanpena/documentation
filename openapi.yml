@@ -1298,6 +1298,11 @@ paths:
         By providing a `callback_url`, you can receive webhooks with updates regarding the conversation state.
 
         [Learn about recording conversations here](/sections/conversational-video-interface/recording-rooms).
+        <Warning>
+        - **If your persona does not have a default replica**, the `replica_id` is required.
+        - **If your persona has a default replica**, the `replica_id` is not required.
+        - **If your persona has a default replica and you define `replica_id`**, it will override the persona’s default replica.
+        </Warning>
       operationId: createConversation
       requestBody:
         content:
@@ -1308,11 +1313,15 @@ paths:
                 replica_id:
                   type: string
                   description: "The unique identifier for the replica that will join the conversation."
-                  example: "r79e1c033f"
+                  example: "rfe12d8b9597"
                 persona_id:
                   type: string
                   description: "The unique identifier for the persona that the replica will use in the conversation."
-                  example: "p5317866"
+                  example: "p9a95912"
+                audio_only:
+                  type: boolean
+                  description: "Specifies whether the interaction should be voice-only."
+                  example: "false"
                 callback_url:
                   type: string
                   description: "A url that will receive webhooks with updates regarding the conversation state."
@@ -1320,15 +1329,15 @@ paths:
                 conversation_name:
                   type: string
                   description: "A name for the conversation."
-                  example: "A Meeting with Hassaan"
+                  example: "Improve Sales Technique"
                 conversational_context:
                   type: string
                   description: "Optional context that will be appended to any context provided in the persona, if one is provided."
-                  example: "You are about to talk to Hassaan, one of the cofounders of Tavus. He loves to talk about AI, startups, and racing cars."
+                  example: "I want to improve my sales techniques. Help me practice handling common objections from clients and closing deals more effectively."
                 custom_greeting:
                   type: string
                   description: "An optional custom greeting that the replica will give once a participant joines the conversation."
-                  example: "Hey there Hassaan, long time no see!"
+                  example: "Hey there!"
                 properties:
                   type: object
                   description: "Optional properties that can be used to customize the conversation."
@@ -1359,8 +1368,8 @@ paths:
                       example: true
                     language:
                       type: string
-                      description: "The language of the conversation. Please provide the FULL language name, not the two letter code.  If you are using your own TTS voice, please ensure it supports the language you provide. If you are using a stock replica or default persona, please note that only Elevenlabs and Cartesia supported languages are available. You can find a full list of supported languages for Cartesia [here](https://docs.cartesia.ai/2024-11-13/build-with-cartesia/models#language-support), for ElevenLabs [here](https://elevenlabs.io/languages) and for PlayHT [here](https://play.ht/)"
-                      example: "english"
+                      description: "The language of the conversation. Please provide the FULL language name, not the two letter code, or specify `multilingual` for automatic language detection. When set to `multilingual`, CVI will use ASR language detection to identify the user's spoken language and respond accordingly. If you are using your own TTS voice, please ensure it supports the language you provide. If you are using a stock replica or default persona, please note that only Elevenlabs and Cartesia supported languages are available. You can find a full list of supported languages for Cartesia [here](https://docs.cartesia.ai/2024-11-13/build-with-cartesia/models#language-support), for ElevenLabs [here](https://elevenlabs.io/languages) and for PlayHT [here](https://play.ht/)."
+                      example: "multilingual"
                     recording_s3_bucket_name:
                       type: string
                       description: "The name of the S3 bucket where the recording will be stored."
@@ -1373,6 +1382,30 @@ paths:
                       type: string
                       description: "The ARN of the role that will be assumed to access the S3 bucket."
                       example: ""
+            examples:
+              Required Parameters Only:
+                value:
+                  replica_id: "rfe12d8b9597"
+                  persona_id: "pdced222244b"
+              Full Customizations:
+                value:
+                  replica_id: "rfe12d8b9597"
+                  persona_id: "pdced222244b"
+                  callback_url: "https://yourwebsite.com/webhook"
+                  conversation_name: "Improve Sales Technique"
+                  conversational_context: "I want to improve my sales techniques. Help me practice handling common objections from clients and closing deals more effectively."
+                  properties:
+                    max_call_duration: 1800
+                    participant_left_timeout: 60
+                    participant_absent_timeout: 120
+                    language: "multilingual"
+                    enable_closed_captions: true
+                    apply_greenscreen: true
+              Audio Only:
+                value:
+                  replica_id: "rfe12d8b9597"
+                  persona_id: "pdced222244b"
+                  audio_only: true
       responses:
         "200":
           description: ""
@@ -1591,6 +1624,9 @@ paths:
         This endpoint creates a new persona that can be used by replicas in conversations. 
 
         With a persona, you are able to craft the personalities of your replica across conversations.
+        <Warning>
+        When using full pipeline mode, the `system_prompt` field is required.
+        </Warning>
 
         #### LLM
         With the `llm` layer, you can leverage your own OpenAI compatible LLM or you can use one a Tavus provided model.
@@ -1643,7 +1679,7 @@ paths:
                 default_replica_id:
                   type: string
                   description: "The default replica_id associated with this persona if one exists. When creating a conversation, a persona_id with a default_replica_id associated can we used to create a conversation without specifying a replica_id."
-                  example: "r79e1c033f"
+                  example: "rfe12d8b9597"
                 layers:
                   type: object
                   properties:
@@ -1668,6 +1704,10 @@ paths:
                           type: string
                           description: "The API key for the OpenAI compatible endpoint."
                           example: "your-api-key"
+                        speculative_inference:
+                          type: boolean
+                          description: "When set to `true`, the LLM begins processing speech transcriptions before user input ends, improving responsiveness."
+                          example: true
                         tools:
                           type: array
                           description: "Optional tools to provide to your custom LLM"
@@ -1819,6 +1859,7 @@ paths:
                           enum:
                             - "tavus-turbo"
                             - "tavus-advanced"
+                          example: "tavus-advanced"
                         participant_pause_sensitivity:
                           type: string
                           description: "Use this parameter to control how long of a pause you can take before the replica will respond to you. See more details [here](/sections/conversational-video-interface/custom-stt-onboarding). The default is `medium`, but you can adjust this to `low` or `high` depending on your needs."
@@ -1828,6 +1869,7 @@ paths:
                             - "low"
                             - "verylow"
                             - "superlow"
+                          example: "high"
                         participant_interrupt_sensitivity:
                           type: string
                           description: "Use this parameter to control how long you can speak before the replica will be interrupted by you. See more details [here](/sections/conversational-video-interface/custom-stt-onboarding). The default is `medium`, but you can adjust this to `low` or `high` depending on your needs."
@@ -1837,12 +1879,14 @@ paths:
                             - "low"
                             - "verylow"
                             - "superlow"
+                          example: "high"
                         hotwords:
                           type: string
                           description: "The hotwords parameter lets you provide example phrases that guide the STT model to prioritize certain words or phrases—especially names, technical terms, or uncommon language. For instance, including “Roey is the name of the person you’re speaking with” helps the model transcribe “Roey” correctly instead of “Rowie.”"
                           example: "Roey is the name of the person you're speaking with."
                         smart_turn_detection:
                           type: boolean
+                          example: true
                           description: |
                             Smart Turn Detection enhances the natural flow of conversation between participants and digital replicas. This intelligent system uses lexical and semantic analysis to determine the optimal moment for the digital replica to respond. The default value is set to true.
 
@@ -1859,6 +1903,67 @@ paths:
                             - **Extended listening:** Allows more time when the participant is clearly in the middle of expressing a thought.
 
                             Enabling Smart Turn Detection creates a more natural and engaging conversational experience, allowing the digital replica to interact more seamlessly with human participants.
+            examples:
+               Required Parameters Only:
+                value:
+                  pipeline_mode: "full"
+                  system_prompt: "As a Life Coach, you are a dedicated professional who specializes in..."
+               Full Customizations:
+                value:
+                  persona_name: "Life Coach"
+                  system_prompt: "As a Life Coach, you are a dedicated professional who specializes in..."
+                  pipeline_mode: "full"
+                  context: "Here are a few times that you have helped an individual make a breakthrough in..."
+                  default_replica_id: "rfe12d8b9597"
+                  layers:
+                    llm:
+                      model: "tavus-gpt-4o"
+                      speculative_inference: true
+                      tools:
+                        - type: function
+                          function:
+                            name: "life_coach_insight"
+                            description: "Offer personalized life coaching advice or guidance based on a user's challenge or goal."
+                            parameters:
+                              type: object
+                              properties:
+                                topic:
+                                  type: string
+                                  description: "The area of life or goal the user wants to improve (e.g. career, relationships, confidence)"
+                                urgency_level:
+                                  type: string
+                                  enum: ["low", "medium", "high"]
+                              required: ["topic"]
+                    tts:
+                      tts_engine: "cartesia"
+                      voice_settings:
+                        speed: "normal"
+                        emotion: ["positivity:high", "curiosity"]
+                      tts_emotion_control: true
+                      tts_model_name: "sonic"
+                    perception:
+                      perception_model: "raven-0"
+                      ambient_awareness_queries:
+                        - "Is the user showing an ID card?"
+                        - "Does the user appear distressed or uncomfortable?"
+                      perception_tool_prompt: "You have a tool to notify the system when an ID card is detected, named `notify_if_id_shown`. You MUST use this tool when a form of ID is detected."
+                      perception_tools:
+                        - type: function
+                          function:
+                            name: "notify_if_id_shown"
+                            description: "Use this function when a drivers license or passport is detected in the image with high confidence. After collecting the ID, internally use final_ask()"
+                            parameters:
+                              type: object
+                              properties:
+                                id_type:
+                                  type: string
+                                  description: "best guess on what type of ID it is"
+                              required: ["id_type"]
+                    stt:
+                      stt_engine: "tavus-advanced"
+                      participant_pause_sensitivity: "high"
+                      participant_interrupt_sensitivity: "high"
+                      smart_turn_detection: true
       responses:
         "200":
           description: ""
