@@ -11,28 +11,25 @@ description: Learn how to integrate Tavus replica into your Livekit Agents Frame
 Make sure you have the following before starting:
 
 - **Tavus API Key**
-   <br/>You can generate this from your Tavus account.
+- **LiveKit Voice Assistant Python App**
 
-- **LiveKit Voice Assistant Project**
-   <br/>Set up the base project using the [LiveKit Quickstart Guide](https://docs.livekit.io/agents/start/voice-ai/).
-
-- **LiveKit Tavus Plugin**
-   <br/>Install the plugin using:
-
-   ```bash
-   pip install "livekit-agents[tavus]~=1.0"
-   ```
-
-- **Replica**
-   <br/>Defines the avatar’s voice and appearance.
-
-- **Persona**
-   <br/>Controls the conversation pipeline and transport configuration.
+<Warning>
+If you haven't set up the app yet, follow the [LiveKit Voice AI quickstart](https://docs.livekit.io/agents/start/voice-ai/) first.
+</Warning>
 
 ## Integration Guide
 
 <Steps>
-<Step title="Step 1: Configure Replica and Persona">
+<Step title="Step 1: Configuration and Setup">
+1. Install the plugin from PyPI:
+
+```bash
+pip install "livekit-agents[tavus]~=1.0"
+```
+2. Set `TAVUS_API_KEY` in your `.env` file.
+
+</Step>
+<Step title="Step 2: Configure Replica and Persona">
 
 1. Create a persona with LiveKit support using the Tavus API:
 
@@ -59,10 +56,13 @@ curl --request POST \
 2. Save your the `persona_id`.
 3. Choose a replica from the [Stock Library](/sections/replica/stock-replicas) or browse available options on the [Tavus Platform](https://platform.tavus.io/replicas).
 
+<Tip>
+We recommend using **Phoenix-3 PRO Replicas**, which are optimized for low-latency, real-time applications.
+</Tip>
 </Step>
-<Step title="Step 2: Add AvatarSession to AgentSession">
+<Step title="Step 3: Add AvatarSession to AgentSession">
 
-Integrate the Tavus avatar into your `AgentSession` workflow:
+In your LiveKit Python app, create a `tavus.AvatarSession` alongside your `AgentSession`:
 
 ```python
 from livekit import agents
@@ -101,13 +101,6 @@ async def entrypoint(ctx: agents.JobContext):
 </Step>
 </Steps>
 
-## Best Practices
-
-* **Prefer Phoenix-3 PRO Replicas**
-  <br/>These replicas are optimized for low-latency real-time applications.
-
-* **Explore the Sample App**
-  <br/>Try out the integration using this [sample app](https://github.com/livekit-examples/python-agents-examples/tree/main/avatars/tavus).
-
-* **Advanced Configuration**
-  <br/>For detailed setup instructions, customization options, and advanced usage, see the [LiveKit Docs](https://docs.livekit.io/agents/integrations/avatar/tavus/).
+<Note>
+Try out the integration using this [sample app](https://github.com/livekit-examples/python-agents-examples/tree/main/avatars/tavus).
+</Note>
