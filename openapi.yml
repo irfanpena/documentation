@@ -1301,7 +1301,7 @@ paths:
         <Warning>
         - **If your persona does not have a default replica**, the `replica_id` is required.
         - **If your persona has a default replica**, the `replica_id` is not required.
-        - **If your persona has a default replica and you define `replica_id`**, it will override the persona’s default replica.
+        - **If your persona has a default replica and you define `replica_id`**, it will override the persona's default replica.
         </Warning>
       operationId: createConversation
       requestBody:
@@ -2795,6 +2795,10 @@ components:
           type: string
           description: "This is a unique identifier for a given utterance. In this case, it will be the utterance the replica is speaking."
           example: "83294d9f-8306-491b-a284-791f56c8383f"
+        duration:
+          type: number
+          description: "The duration in seconds of the replica's speech. This is only present on the `conversation.replica.stopped_speaking` event."
+          example: 3.14
         properties:
           type: object
           description: "This object will contain the `speech` property which contains the contents of the utterance and will optionally contain the `visual_context` property."
@@ -2940,10 +2944,18 @@ components:
           enum:
             - "conversation.replica.started_speaking"
             - "conversation.replica.stopped_speaking"
-        inference_id:
-          type: string
-          description: "This is a unique identifier for a given utterance. In this case, it will be the utterance the replica is speaking."
-          example: "83294d9f-8306-491b-a284-791f56c8383f"
+        properties:
+          type: object
+          properties:
+            inference_id:
+              type: string
+              description: "This is a unique identifier for a given utterance. In this case, it will be the utterance the replica is speaking."
+              example: "83294d9f-8306-491b-a284-791f56c8383f"
+            duration:
+              type: number
+              nullable: true
+              description: "The duration in seconds of the replica's speech. This is present on the `conversation.replica.stopped_speaking` event and will be null otherwise."
+              example: 3.14
     sensitivity:
       type: object
       properties:
