@@ -1,7 +1,132 @@
 ---
 title: Changelog
 ---
+
+<Update label="June 27" tags={["2025"]}>
+<Tabs>
+<Tab title="CVI">
+
+## New Features
+- **Multilingual Conversation Support:** CVI now supports dynamic multilingual conversations through automatic language detection. Set the language parameter to "multilingual" and CVI will automatically detect the user's spoken language and respond in the same language using ASR technology.
+- **Audio-Only Mode:** CVI now supports audio-only conversations with advanced perception (powered by Raven) and intelligent turn-taking (powered by Sparrow). Set `audio_only=true` in your create conversation request to enable streamlined voice-first interactions.
+
+</Tab>
+<Tab title="Video Generation">
+
+## New Features
+No features were added in this release.
+
+## Enhancements
+No enhancements were made in this release.
+
+</Tab>
+<Tab title="Lipsync">
+
+## New Features
+No features were added in this release.
+
+## Enhancements
+No enhancements were made in this release.
+
+</Tab>
+</Tabs>
+</Update>
+
+<Update label="June 20" tags={["2025"]}>
+<Tabs>
+<Tab title="CVI">
+
+## New Features
+No features were added in this release.
+
+## Enhancements
+-  **Fixed CVI responsiveness issue:** Resolved an issue where CVI would occasionally ignore very brief user utterances. All user inputs, regardless of length, now receive consistent responses.
+-  **Expanded tavus-llama context window:** Increased maximum context window to 120,000 tokens. For optimal performance and response times, we recommend staying under 100,000 tokens.
+
+</Tab>
+<Tab title="Video Generation">
+
+## New Features
+No features were added in this release.
+
+## Enhancements
+No enhancements were made in this release.
+
+</Tab>
+<Tab title="Lipsync">
+
+## New Features
+No features were added in this release.
+
+## Enhancements
+No enhancements were made in this release.
+
+</Tab>
+</Tabs>
+</Update>
+
+<Update label="June 3" tags={["2025"]}>
+<Tabs>
+<Tab title="CVI">
+
+## New Features
+No features were added in this release.
+
+## Enhancements
+- Reduced conversation boot time by 58% (p50).
+
+</Tab>
+<Tab title="Video Generation">
+
+## New Features
+No features were added in this release.
+
+## Enhancements
+No enhancements were made in this release.
+
+</Tab>
+<Tab title="Lipsync">
+
+## New Features
+No features were added in this release.
+
+## Enhancements
+No enhancements were made in this release.
+
+</Tab>
+</Tabs>
+</Update>
+
+
+<Update label="May 28" tags={["2025"]}>
+<Tabs>
+<Tab title="CVI">
+## Changes
+- Added a new recording requirement to [Replica Training](https://docs.tavus.io/sections/replicas/replica-training): Start the talking segment with a big smile.
+
+## Enhancements
+- Added [echo](https://docs.tavus.io/sections/event-schemas/conversation-echo) and [respond](https://docs.tavus.io/sections/event-schemas/conversation-respond) events to conversational context. 
+
+</Tab>
+<Tab title="Video Generation">
+## Changes
+- Added a new recording requirement to [Replica Training](https://docs.tavus.io/sections/replicas/replica-training): Start the talking segment with a big smile.
+
+</Tab>
+<Tab title="Lipsync">
+
+## New Features
+No features were added in this release.
+
+## Enhancements
+No enhancements were made in this release.
+
+</Tab>
+</Tabs>
+</Update>
+
 <Update label="May 17" tags={["2025"]}>
+
 <Tabs>
 <Tab title="CVI">
 ## New Features
@@ -10,7 +135,7 @@ No features were added in this release.
 ## Enhancements
 - **Major Phoenix 3 Enhancements for CVI**:
   - Increased frame rate from 27fps to 32fps, significantly boosting smoothness.
-  - Reduced Phoenix step's cold boot time by 60% (from 5s to 2s). Warm boot is now consistently under 3 seconds.
+  - Reduced Phoenix step's warm boot time by 60% (from 5s to 2s).
   - Lipsync accuracy improved by ~22% based on AVSR metric.
   - Resolved blurriness and choppiness at conversation start.
   - Enhanced listening mode with more natural micro expressions (eyebrow movements, subtle gestures).
