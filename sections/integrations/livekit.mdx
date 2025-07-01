@@ -1,0 +1,108 @@
+---
+title: LiveKit Agent
+description: Learn how to integrate Tavus replica into your Livekit Agents Framework
+---
+
+[**Tavus**](https://tavus.io) enables AI developers to create realistic video avatars powered by state-of-the-art speech synthesis, perception, and rendering pipelines. Through its integration with the [**LiveKit Agents**](https://docs.livekit.io/agents/) framework, you can seamlessly add conversational avatars to real-time voice AI systems.
+
+
+## Prerequisites
+
+Make sure you have the following before starting:
+
+- **Tavus API Key**
+   <br/>You can generate this from your Tavus account.
+
+- **LiveKit Voice Assistant Project**
+   <br/>Set up the base project using the [LiveKit Quickstart Guide](https://docs.livekit.io/agents/start/voice-ai/).
+
+- **LiveKit Tavus Plugin**
+   <br/>Install the plugin using:
+
+   ```bash
+   pip install "livekit-agents[tavus]~=1.0"
+   ```
+
+- **Replica**
+   <br/>Defines the avatar’s voice and appearance.
+
+- **Persona**
+   <br/>Controls the conversation pipeline and transport configuration.
+
+## Integration Guide
+
+<Steps>
+<Step title="Step 1: Configure Replica and Persona">
+
+1. Create a persona with LiveKit support using the Tavus API:
+
+```bash
+curl --request POST \
+  --url https://tavusapi.com/v2/personas \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: <your-api-key>" \
+  -d '{
+  "persona_name": "Customer Service Agent",
+  "pipeline_mode": "echo",
+  "layers": {
+    "transport": {
+            "transport_type": "livekit"
+    }
+  }
+}'
+```
+2. Save your the `persona_id` for the next step.
+3. Choose a replica from the [Stock Library](/sections/replica/stock-replicas) or browse available options on the [Tavus Platform](https://platform.tavus.io/replicas).
+
+</Step>
+<Step title="Step 2: Add AvatarSession to AgentSession">
+
+Integrate the Tavus avatar into your `AgentSession` workflow:
+
+```python
+from livekit import agents
+from livekit.agents import AgentSession, RoomOutputOptions
+from livekit.plugins import tavus
+
+async def entrypoint(ctx: agents.JobContext):
+    await ctx.connect()
+
+    session = AgentSession(
+        # Add STT, LLM, TTS, and other components here
+    )
+
+    avatar = tavus.AvatarSession(
+        replica_id="your-replica-id",
+        persona_id="your-persona-id",
+        # Optional: avatar_participant_name="Tavus-avatar-agent"
+    )
+
+    await avatar.start(session, room=ctx.room)
+
+    await session.start(
+        room=ctx.room,
+        room_output_options=RoomOutputOptions(
+            audio_enabled=False  # Tavus handles audio separately
+        )
+    )
+```
+
+| Parameter                                    | Description                                                                           |
+| -------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `replica_id` (string)                        | ID of the Tavus replica to render and speak through                                   |
+| `persona_id` (string)                        | ID of the persona with the correct pipeline and transport configuration               |
+| `avatar_participant_name` (string, optional) | Display name for the avatar participant in the room. Defaults to `Tavus-avatar-agent` |
+
+</Step>
+</Steps>
+
+## Best Practices
+
+* **Prefer Phoenix-3 PRO Replicas**
+  <br/>These replicas are optimized for low-latency real-time applications.
+
+* **Explore the Sample App**
+  <br/>Try out the integration using this [sample app](https://github.com/livekit-examples/python-agents-examples/tree/main/avatars/tavus).
+
+* **Advanced Configuration**
+  <br/>For detailed setup instructions, customization options, and advanced usage, see the [LiveKit Docs](https://docs.livekit.io/agents/integrations/avatar/tavus/).

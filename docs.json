@@ -77,7 +77,14 @@
               },
               "sections/conversational-video-interface/language-support",
               "sections/conversational-video-interface/interactions-protocols/overview",
-              "sections/integrations/embedding-cvi"
+              {
+                "group": "Integrations",
+                "pages": [
+                  "sections/integrations/embedding-cvi",
+                  "sections/integrations/livekit"
+                  
+                ]
+              }
             ]
           },
           {
