@@ -7,7 +7,7 @@ description: Learn how to integrate Tavus replica into your Pipecat Framework
 
 ## `TavusTransport`
 
-`TavusTransport` works as a real-time communication layer that connects your Pipecat application to a Tavus video or audio conversation, enabling the bot to join the same virtual room as the Tavus avatar and other participants. To get started, you can follow the following steps or learn more from this [sample code](https://github.com/pipecat-ai/pipecat/blob/main/examples/foundational/21-tavus-transport.py).
+`TavusTransport` connects your Pipecat app to a Tavus conversation, allowing the bot to join the same virtual room as the Tavus avatar and participants. To get started, you can follow the following steps or learn more from this [sample code](https://github.com/pipecat-ai/pipecat/blob/main/examples/foundational/21-tavus-transport.py).
 
 ### Prerequisites
 
@@ -39,7 +39,7 @@ Replace `<your_api_key>` and `<your_replica_id>` with your actual Tavus API key 
 </Note>
 </Step>
 <Step title="Step 2: Create the Tavus transport layer">
-Set up the Tavus transport layer by initializing `TavusTransport` with your bot name, Tavus API key, Tavus Replica ID, and session, along with optional parameters such as audio/video settings and VAD analyzer.
+Initialize `TavusTransport` with your bot name, Tavus API key, Replica ID, session, and additional parameters to set up the transport layer.
 
 ```py {6, 16-27}
 import os
@@ -78,7 +78,8 @@ See [Pipecat API Reference](https://pipecat-docs.readthedocs.io/en/latest/api/pi
 </Note>
 </Step>
 <Step title="Step 3: Insert the Tavus transport layer into the pipeline">
-Add the Tavus transport layer to your processing pipeline by including `transport.input()` and `transport.output()` in the pipeline’s processor list.
+Add the Tavus transport layer to your processing pipeline.
+
 ```py {5, 10}
         # stt, tts, llm...
 
@@ -96,7 +97,7 @@ Add the Tavus transport layer to your processing pipeline by including `transpor
 ```
 </Step>
 <Step title="Step 4: Run the program">
-Execute the program by running the following command in your terminal:
+1. Run the following command to execute the program:
 
 ```sh
 python <file-name>.py
@@ -106,7 +107,7 @@ python <file-name>.py
 Replace `<file-name>` with your actual Python filename.
 </Note>
 
-Upon execution, the program will generate a **Tavus Daily URL**, which you can use to join the conversation and interact with the agent.
+2. Use the **Tavus Daily URL** provided in the console to interact with the agent.
 </Step>
 </Steps>
 
@@ -173,7 +174,7 @@ See [Pipecat Tavus Service](https://docs.pipecat.ai/server/services/video/tavus)
 </Note>
 </Step>
 <Step title="Insert the Tavus Video Service into the timeline">
-Insert the `TavusVideoService` into the pipeline by adding the `tavus` service after the text-to-speech (TTS) processor in the pipeline.
+Insert the `TavusVideoService` into the pipeline by adding the `tavus` service after the TTS processor in the pipeline.
 ```py {10}
         # stt, tts, llm...
 
@@ -192,7 +193,7 @@ Insert the `TavusVideoService` into the pipeline by adding the `tavus` service a
 ```
 </Step>
 <Step title="Step 4: Run the program">
-Execute the program by running the following command in your terminal:
+1. Run the following command to execute the program:
 
 ```sh
 python <file-name>.py
@@ -202,6 +203,6 @@ python <file-name>.py
 Replace `<file-name>` with your actual Python filename.
 </Note>
 
-Upon executing the program, a localhost URL (`http://localhost:7680` by default) will be logged to the console. Navigate to this URL in your browser to access and interact with the `TavusVideoService` integration.
+2. Use the **localhost URL** provided in the console to interact with the agent.
 </Step>
 </Steps>

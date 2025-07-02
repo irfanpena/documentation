@@ -33,7 +33,7 @@ pip install "livekit-agents[tavus]~=1.0"
 
 1. Create a persona with LiveKit support using the Tavus API:
 
-```bash
+```bash {7, 10}
 curl --request POST \
   --url https://tavusapi.com/v2/personas \
   -H "Content-Type: application/json" \
@@ -64,7 +64,7 @@ We recommend using **Phoenix-3 PRO Replicas**, which are optimized for low-laten
 
 In your LiveKit Python app, create a `tavus.AvatarSession` alongside your `AgentSession`:
 
-```python
+```python {12-16, 18}
 from livekit import agents
 from livekit.agents import AgentSession, RoomOutputOptions
 from livekit.plugins import tavus
