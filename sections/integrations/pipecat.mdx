@@ -1,0 +1,207 @@
+---
+title: Pipecat Integrations
+description: Learn how to integrate Tavus replica into your Pipecat Framework
+---
+
+[Tavus](https://tavus.io) offers integration with [Pipecat](https://www.pipecat.ai/), an open-source framework for building multimodal conversational agents by Daily. There are two primary methods to integrate Tavus with Pipecat, by utilizing Tavus as a [transport layer](#tavustransport) or leveraging [Tavus's video service](#tavusvideoservice).
+
+## `TavusTransport`
+
+`TavusTransport` works as a real-time communication layer that connects your Pipecat application to a Tavus video or audio conversation, enabling the bot to join the same virtual room as the Tavus avatar and other participants. To get started, you can follow the following steps or learn more from this [sample code](https://github.com/pipecat-ai/pipecat/blob/main/examples/foundational/21-tavus-transport.py).
+
+### Prerequisites
+
+* [**Tavus API Key**](https://platform.tavus.io/api-keys)
+
+* [**A Tavus replica**](https://platform.tavus.io/replicas) 
+
+* **Pipecat Python Application**
+
+<Warning>
+If you haven't set up the app yet, follow the [Pipecat application quickstart](https://docs.livekit.io/agents/start/voice-ai).
+</Warning>
+
+### Integration Guide
+
+<Steps>
+<Step title="Step 1: Setup and Authentication">
+1. Install the Tavus plugin for Pipecat.
+```sh
+pip install pipecat-ai[tavus]
+```
+2. Set the following environmental variables.
+```env
+TAVUS_API_KEY=<your_api_key>
+TAVUS_REPLICA_ID=<your_replica_id>
+```
+<Note>
+Replace `<your_api_key>` and `<your_replica_id>` with your actual Tavus API key and Replica ID you want to use.
+</Note>
+</Step>
+<Step title="Step 2: Create the Tavus transport layer">
+Set up the Tavus transport layer by initializing `TavusTransport` with your bot name, Tavus API key, Tavus Replica ID, and session, along with optional parameters such as audio/video settings and VAD analyzer.
+
+```py {6, 16-27}
+import os
+import aiohttp
+from dotenv import load_dotenv
+from loguru import logger
+from pipecat.audio.vad.silero import SileroVADAnalyzer
+from pipecat.transports.services.tavus import TavusParams, TavusTransport
+# Other imports...
+
+load_dotenv(override=True)
+
+logger.remove(0)
+logger.add(sys.stderr, level="DEBUG")
+
+async def main():
+    async with aiohttp.ClientSession() as session:
+        transport = TavusTransport(
+            bot_name="Pipecat bot",
+            api_key=os.getenv("TAVUS_API_KEY"),
+            replica_id=os.getenv("TAVUS_REPLICA_ID"),
+            session=session,
+            params=TavusParams(
+                audio_in_enabled=True,
+                audio_out_enabled=True,
+                microphone_out_enabled=False,
+                vad_analyzer=SileroVADAnalyzer(),
+            ),
+        )
+
+        # stt, tts, llm...
+```
+
+<Note>
+See [Pipecat API Reference](https://pipecat-docs.readthedocs.io/en/latest/api/pipecat.transports.services.tavus.html#tavus) for the configuration details.
+</Note>
+</Step>
+<Step title="Step 3: Insert the Tavus transport layer into the pipeline">
+Add the Tavus transport layer to your processing pipeline by including `transport.input()` and `transport.output()` in the pipeline’s processor list.
+```py {5, 10}
+        # stt, tts, llm...
+
+        pipeline = Pipeline(
+            [
+                transport.input(),  # Transport user input
+                stt,  # STT
+                context_aggregator.user(),  # User responses
+                llm,  # LLM
+                tts,  # TTS
+                transport.output(),  # Transport bot output
+                context_aggregator.assistant(),  # Assistant spoken responses
+            ]
+        )
+```
+</Step>
+<Step title="Step 4: Run the program">
+Execute the program by running the following command in your terminal:
+
+```sh
+python <file-name>.py
+```
+
+<Note>
+Replace `<file-name>` with your actual Python filename.
+</Note>
+
+Upon execution, the program will generate a **Tavus Daily URL**, which you can use to join the conversation and interact with the agent.
+</Step>
+</Steps>
+
+## `TavusVideoService`
+
+You can use `TavusVideoService` to enable real-time AI-driven video interactions in your Pipecat app. To get started, you can follow the following steps or refer from this [sample code](https://github.com/pipecat-ai/pipecat/blob/main/examples/foundational/21a-tavus-video-service.py).
+
+### Prerequisites
+
+* [**Tavus API Key**](https://platform.tavus.io/api-keys)
+
+* [**A Tavus replica**](https://platform.tavus.io/replicas) 
+
+* **Pipecat Python Application**
+
+<Warning>
+If you haven't set up the app yet, follow the [Pipecat application quickstart](https://docs.livekit.io/agents/start/voice-ai).
+</Warning>
+
+### Integration Guide
+
+<Steps>
+<Step title="Step 1: Setup and Authentication">
+1. Install the Tavus plugin for Pipecat.
+```sh
+pip install pipecat-ai[tavus]
+```
+2. Set the following environmental variables.
+```env
+TAVUS_API_KEY=<your_api_key>
+TAVUS_REPLICA_ID=<your_replica_id>
+```
+<Note>
+Replace `<your_api_key>` and `<your_replica_id>` with your actual Tavus API key and Replica ID you want to use.
+</Note>
+</Step>
+<Step title="Step 2: Instantiate the Tavus Video Service">
+Create an instance of `TavusVideoService` by providing your Tavus API key and Tavus Replica ID.
+```py {6, 15-19}
+import argparse
+import os
+import aiohttp
+from dotenv import load_dotenv
+from loguru import logger
+from pipecat.services.tavus.video import TavusVideoService
+from pipecat.transports.base_transport import BaseTransport
+# Other imports...
+
+load_dotenv(override=True)
+
+async def run_example(transport: BaseTransport, _: argparse.Namespace, handle_sigint: bool):
+    logger.info(f"Starting bot")
+    async with aiohttp.ClientSession() as session:
+        tavus = TavusVideoService(
+            api_key=os.getenv("TAVUS_API_KEY"),
+            replica_id=os.getenv("TAVUS_REPLICA_ID"),
+            session=session,
+        )
+
+        # stt, tts, llm...
+```
+<Note>
+See [Pipecat Tavus Service](https://docs.pipecat.ai/server/services/video/tavus) for the configuration details.
+</Note>
+</Step>
+<Step title="Insert the Tavus Video Service into the timeline">
+Insert the `TavusVideoService` into the pipeline by adding the `tavus` service after the text-to-speech (TTS) processor in the pipeline.
+```py {10}
+        # stt, tts, llm...
+
+        pipeline = Pipeline(
+            [
+                transport.input(),  # Transport user input
+                stt,  # STT
+                context_aggregator.user(),  # User responses
+                llm,  # LLM
+                tts,  # TTS
+                tavus,  # Tavus output layer
+                transport.output(),  # Transport bot output
+                context_aggregator.assistant(),  # Assistant spoken responses
+            ]
+        )
+```
+</Step>
+<Step title="Step 4: Run the program">
+Execute the program by running the following command in your terminal:
+
+```sh
+python <file-name>.py
+```
+
+<Note>
+Replace `<file-name>` with your actual Python filename.
+</Note>
+
+Upon executing the program, a localhost URL (`http://localhost:7680` by default) will be logged to the console. Navigate to this URL in your browser to access and interact with the `TavusVideoService` integration.
+</Step>
+</Steps>

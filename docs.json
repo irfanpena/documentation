@@ -81,7 +81,8 @@
                 "group": "Integrations",
                 "pages": [
                   "sections/integrations/embedding-cvi",
-                  "sections/integrations/livekit"
+                  "sections/integrations/livekit",
+                  "sections/integrations/pipecat"
                   
                 ]
               }
