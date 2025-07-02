@@ -9,9 +9,9 @@
   },
   "favicon": "/favicon.png",
   "navigation": {
-    "tabs": [
+    "anchors": [
       {
-        "tab": "Documentation",
+        "anchor": "Documentation",
         "groups": [
           {
             "group": "Getting Started",
@@ -22,10 +22,16 @@
             "pages": [
               "sections/conversational-video-interface/overview-cvi",
               {
+                "group": "Quickstart",
+                "pages": [
+                  "sections/conversational-video-interface/persona/full-mode",
+                  "sections/conversational-video-interface/persona/echo-mode"
+                ]
+              },
+              {
                 "group": "Conversation",
                 "pages": [
                   "sections/conversational-video-interface/conversation/overview",
-                  "sections/conversational-video-interface/conversation/quickstart",
                   {
                     "group": "Customizations",
                     "pages": [
@@ -38,13 +44,6 @@
                 "group": "Persona",
                 "pages": [
                   "sections/conversational-video-interface/persona/overview",
-                  {
-                    "group": "Quickstart",
-                    "pages": [
-                      "sections/conversational-video-interface/persona/full-mode",
-                      "sections/conversational-video-interface/persona/echo-mode"
-                    ]
-                  },
                   {
                     "group": "Layer Configurations",
                     "pages": [
@@ -124,7 +123,7 @@
         ]
       },
       {
-        "tab": "API Reference",
+        "anchor": "API Reference",
         "groups": [
           {
             "group": "Replicas",

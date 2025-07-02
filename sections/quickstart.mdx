@@ -1,39 +1,45 @@
 ---
 title: 'Quickstart'
-description: 'Create a Tavus API Key'
+description: 'Learn how to make your first Tavus API request.'
 ---
 
-## Prerequisites
-- Ensure that you have an active Tavus Platform account. If not, sign up [here](https://platform.tavus.io/auth/sign-up).
+The [Tavus API](/api-reference/phoenix-replica-model/create-replica) provides a simple interface to state-of-the-art human models and features, from perception, conversation intelligence, to rendering. Follow this guide to learn how to create the human layer for your AI agents with our APIs.
 
-## Steps
+## Guides
 
 <Steps>
 <Step title="Step 1: Create an API key">
-1. Go to the [Tavus platform](https://platform.tavus.io/) and click **API Key** in the sidebar.
-2. Click **Create New Key**, enter a name and (optionally) specify allowed IP addresses.
-3. Click **Create API Key**, then copy and securely save your key.
+1. Go to the [Tavus platform](https://platform.tavus.io/) and select **API Key** from the sidebar menu.
+<Frame>
+![](/images/tavus-quickstart-1.png)
+</Frame>
+2. Click **Create New Key** to begin generating your API key.
+<Frame>
+![](/images/tavus-quickstart-2.png)
+</Frame>
+3. Enter a name for the key and (optional) specify allowed IP addresses, then click **Create API Key**.
+<Frame>
+![](/images/tavus-quickstart-3.png)
+</Frame>
+4. Copy your newly created API key and store it securely.
+<Frame>
+![](/images/tavus-quickstart-4.png)
+</Frame>
 <Warning>
 We cannot recover your API Key if you lose it.
 </Warning>
 </Step>
 <Step title="Step 2: Make your first request">
 Once you have the API key, you can proceed to make your first request by following our quickstart guides.
-<CardGroup cols={2}>
-<Card title="Conversational Video Interface" icon="messages" href="/sections/conversational-video-interface/conversation/quickstart">
-Learn how to quickly make your first Conversation API Request using a stock persona and replica.
-</Card>
-<Card title="Persona" icon="person-simple" href="/sections/conversational-video-interface/persona/full-mode">
-Create your first persona and start a conversation in seconds.
+<CardGroup cols={3}>
+<Card title="Conversational Video Interface" icon="messages" href="/sections/conversational-video-interface/persona/full-mode">
+Learn how to quickly make your Conversation API Request using a persona and replica.
 </Card>
 <Card title="Replica" icon="user-group" href="/sections/replica/quickstart">
-Learn how to create a replica.
+Learn how to quickly create a replica.
 </Card>
 <Card title="Video Generation" icon="video" href="/sections/video/quickstart">
 Learn how to quickly generate video using a replica.
-</Card>
-<Card title="Lipsync" icon="lips" href="/sections/lipsync/quickstart">
-Learn how to synchronize audio with a video using Tavus’s lipsync service.
 </Card>
 </CardGroup>
 </Step>

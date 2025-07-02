@@ -25,6 +25,7 @@ CVI consists of three core components:
 - **Lifelike AI Replicas**: Choose from 100+ lifelike stock replicas or create custom digital twins that look and sound human.
 
 ## Layers
+
 CVI has a modular design made of different layers, which you can customize to fit your needs:
 - **Transport (WebRTC)**: Handles video conferencing with built-in UI (using Daily by default). Customizable.
 - **Perception**: Analyzes user’s facial and physical cues using the Raven model.
@@ -33,12 +34,20 @@ CVI has a modular design made of different layers, which you can customize to fi
 - **TTS**: Converts LLM response to speech.
 - **STS**: Directly converts input speech to output speech, bypassing LLM and TTS.
 
+<Warning>
+Layers customization is specifically tied to the Persona.
+</Warning>
+
 ## Customization Options
 CVI offers extensive customization to tailor the AI experience:
 - Bring your own LLM or enable function calling with Tavus-optimized models.
 - Custom text-to-speech and automatic speech recognition components.
 - Configure smart turn detection and adjust sensitivity for interruptions and pauses.
 - Access video streams directly and build your own custom UI.
+
+<Warning>
+ The customization options described are specifically tied to the Persona.
+</Warning>
 
 <Note>
 Note: For more details regarding the CVI Layers, see the Layer Configurations article.
