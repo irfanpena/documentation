@@ -81,9 +81,14 @@
                 "group": "Integrations",
                 "pages": [
                   "sections/integrations/embedding-cvi",
-                  "sections/integrations/livekit",
-                  "sections/integrations/pipecat"
-                  
+                  {
+                    "group": "Third-Party Integrations",
+                    "pages": [
+                      "sections/integrations/livekit",
+                      "sections/integrations/pipecat"
+                      
+                    ]
+                  }
                 ]
               }
             ]
