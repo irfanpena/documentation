@@ -24,27 +24,26 @@ CVI consists of three core components:
 - **Multilingual Support**: CVI supports over 30 languages.
 - **Lifelike AI Replicas**: Choose from 100+ lifelike stock replicas or create custom digital twins that look and sound human.
 
+
 ## Layers
 
-CVI has a modular design made of different layers, which you can customize to fit your needs:
-- **Transport (WebRTC)**: Handles video conferencing with built-in UI (using Daily by default). Customizable.
-- **Perception**: Analyzes user’s facial and physical cues using the Raven model.
-- **STT**: Manages conversation flow, interruptions, and pauses using the Hummingbird model.
-- **LLM**: Responds to user input using Tavus or custom third-party models.
-- **TTS**: Converts LLM response to speech.
-- **STS**: Directly converts input speech to output speech, bypassing LLM and TTS.
+The CVI is built on a modular layer system. Each layer can be customized through the [Persona configuration](/sections/conversational-video-interface/persona/overview) to match your specific requirements:
+
+* **Transport (WebRTC)**
+* **Perception**
+* **STT (Speech-to-Text)**
+* **LLM (Language Model)**
+* **TTS (Text-to-Speech)**
+* **STS (Speech-to-Speech)**
+
+With these configurable layers, you can:
+
+* Integrate your own LLM or use Tavus-optimized models with function calling.
+* Customize STT and TTS engines for full control over voice and transcription.
+* Fine-tune turn-taking behavior, including interruption sensitivity and pause detection.
+* Access video streams directly to build a fully custom user interface.
 
 
-## Customization Options
-CVI offers extensive customization to tailor the AI experience:
-- Bring your own LLM or enable function calling with Tavus-optimized models.
-- Custom text-to-speech and automatic speech recognition components.
-- Configure smart turn detection and adjust sensitivity for interruptions and pauses.
-- Access video streams directly and build your own custom UI.
-
-<Warning>
-Both the layer and its customizations are managed through the [Persona configuration](/sections/conversational-video-interface/persona/overview).
-</Warning>
 
 
 ## Getting Started
