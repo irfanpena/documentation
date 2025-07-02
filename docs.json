@@ -24,8 +24,8 @@
               {
                 "group": "Quickstart",
                 "pages": [
-                  "sections/conversational-video-interface/persona/full-mode",
-                  "sections/conversational-video-interface/persona/echo-mode"
+                  "sections/conversational-video-interface/full-mode",
+                  "sections/conversational-video-interface/echo-mode"
                 ]
               },
               {
