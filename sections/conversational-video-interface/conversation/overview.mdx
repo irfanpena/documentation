@@ -6,7 +6,10 @@ description: Learn how to customize identity and advanced settings for a convers
 A Conversation is a real-time video session between a user and a Tavus Replica. It enables two-way, face-to-face interaction using a fully managed WebRTC connection.
 
 Tavus relies on [Daily](https://www.daily.co/) to manage the WebRTC infrastructure. You do not need to set up or maintain any of these components manually.
-
+<Warning>
+### Credit Usage
+Credit usage begins when the conversation is created and the replica starts waiting in the room. Billing continues until the conversation ends or times out. This also uses up one of your concurrency spots.
+</Warning>
 ## Conversation Customizations
 Tavus provides several customizations that you can set per conversation:
 ### Identity and Context Setup
@@ -15,13 +18,30 @@ Tavus provides several customizations that you can set per conversation:
 - **Conversation Context**: Customize the conversation context to set the scene, explain the user’s role, say who joins the call, or point out key topics. It builds on the base persona and helps the AI give better, more focused answers.
 - **Custom Greeting**: You can personalize the opening line that the AI should use when the conversation starts.
 ### Advanced Customizations
-- **Audio-Only Conversation**: Disable the video stream to create audio-only sessions. This is useful for phone calls, smart speaker interactions, or any scenario where video is unnecessary or unavailable.
-- **Call Time Settings**: Define call duration and timeout limits to manage usage, control costs, and enforce concurrency limits.
-- **Language**: Set the language used during the conversation.. Please see [Language Support](/sections/conversational-video-interface/language-support#supported-language) for more details.
-- **Background Customization**: Use a green screen background or apply a custom one with WebGL for a more tailored visual experience.
-- **Closed Captions**: Enable subtitles for accessibility or live transcription.
-- **Call Recording**: Record conversations and store them in your own S3 bucket.
-<Note> See [Customizations](/sections/conversational-video-interface/conversation/customizations/call-settings) for a quickstart guide to each available customization. </Note>
+<CardGroup cols={3}>
 
-## Credit Usage
-Credit usage begins when the conversation is created and the replica starts waiting in the room. Billing continues until the conversation ends or times out. This also uses up one of your concurrency spots.
+  <Card title="Audio-Only Conversation" icon="headphones" href="/sections/conversational-video-interface/conversation/customizations/audio-only">
+    Disable the video stream for audio-only sessions. Ideal for phone calls or low-bandwidth environments.
+  </Card>
+
+  <Card title="Call Time" icon="timer" href="/sections/conversational-video-interface/conversation/customizations/call-settings">
+    Configure call duration and timeouts to manage usage, control costs, and limit concurrency.
+  </Card>
+
+  <Card title="Language" icon="globe" href="/sections/conversational-video-interface/language-support#supported-language">
+    Set the language used during the conversation. Supports multilingual interactions with real-time detection.
+  </Card>
+
+  <Card title="Background Customization" icon="image" href="/sections/conversational-video-interface/conversation/customizations/background-customizations">
+    Apply a green screen or custom background for a personalized visual experience.
+  </Card>
+
+  <Card title="Closed Captions" icon="closed-captioning" href="/sections/conversational-video-interface/conversation/customizations/closed-captions">
+    Enable subtitles for accessibility or live transcription during conversations.
+  </Card>
+
+  <Card title="Call Recording" icon="video" href="/sections/conversational-video-interface/conversation/customizations/recording">
+    Record conversations and store them securely in your own S3 bucket.
+  </Card>
+
+</CardGroup>
