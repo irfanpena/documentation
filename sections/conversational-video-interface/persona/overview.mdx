@@ -1,78 +1,107 @@
 ---
 title: Overview
-description: Learn what a persona is in Tavus.
+description: Define how your persona behaves, responds, and speaks by configuring layers and modes.
 ---
 
-A **persona** defines how a Tavus replica behaves, speaks, and responds. It bundles identity, knowledge, and CVI pipeline settings to create a real-time conversational agent.
-
+A **persona** defines how a replica behaves, speaks, and responds. It bundles identity, knowledge, and CVI pipeline settings to create a real-time conversational agent.
+The Conversational Video Interface (CVI) pipeline is modular and fully configurable through the Persona settings. You can enable, disable, or customize individual layers and choose a pipeline mode that best suits your use case.
 
 ## Persona Customization Options
-
 Each persona includes configurable fields. Here's what you can customize:
+- **Persona Name**: Display name shown when the replica joins a call.
+- **System Prompt**: Instructions sent to the language model to shape the replica’s tone, personality, and behavior.
+- **Context / Knowledge Base**: Background knowledge or reference information provided to the persona's language model.
+- **Pipeline Mode**: Controls which CVI pipeline layers are active and how input/output flows through the system.
+- **Default Replica**: Sets the visual avatar or character associated with the persona.
+- **Layers**: Each layer in the pipeline processes a different part of the conversation. Layers can be configured individually to tailor input/output behavior to your application needs.
 
-### Persona Name
+## CVI Layer
+Tavus provides the following customizable layers as part of the CVI pipeline:
+<CardGroup cols={2}>
 
-Display name shown when the replica joins a call.
+  <Card title="Transport Layer" icon="video">
+    Configures audio and video input/output, including microphone, camera, and replica streaming. Tavus uses <a href="https://www.daily.co/" target="_blank">Daily</a> as the default provider.
+  </Card>
 
-<Tip>
-**Best Practices**
+  <Card title="Perception Layer" icon="eye" href="/sections/conversational-video-interface/persona/perception">
+    Defines how the persona interprets visual input like facial expressions and gestures.
+  </Card>
 
-Use a clear, human-readable name
-</Tip>
+  <Card title="STT Layer" icon="waveform" href="/sections/conversational-video-interface/persona/stt">
+    Transcribes user speech into text using the configured speech-to-text engine.
+  </Card>
 
-### System Prompt
-Instructions sent to the language model to shape the replica’s tone, personality, and behavior.
+  <Card title="LLM Layer" icon="brain" href="/sections/conversational-video-interface/persona/llm">
+    Generates persona responses using a language model. Supports Tavus-hosted or custom LLMs.
+  </Card>
 
-<Tip>
-**Best Practices**
-- Define a role (e.g., “You are a cheerful tour guide.”).
-- Set boundaries (e.g., “Be concise and supportive.”).
-- Avoid overloading with content or factual data.
-</Tip>
-### Context / Knowledge Base
-Background knowledge or reference information provided to the persona's language model .
+  <Card title="TTS Layer" icon="microphone" href="/sections/conversational-video-interface/persona/tts">
+    Converts text responses into speech using Tavus or supported third-party TTS engines.
+  </Card>
 
-<Tip>
-**Best Practices**
-- Add product FAQs, background details, or structured information.
-- Avoid duplicating the system prompt.
-- Don’t include personal user data.
-</Tip>
-### Pipeline Mode
-Controls which CVI pipeline layers are active and how input/output flows through the system.
+  <Card title="Realtime Replica Layer" icon="robot" href="/sections/replica/overview">
+    Streams lifelike avatar responses powered by Phoenix, Tavus’s real-time rendering model.
+  </Card>
 
-Options:
+</CardGroup>
 
-- `full` (default): All layers are enabled for end-to-end multimodal processing.
 
-- `echo`: Sends raw audio or text directly to the TTS layer.
+## Pipeline Mode
+Tavus offers a number of modes that come with preconfigured layers as necessary for your use case:
+### Full Pipeline Mode (Default & Recommended)
+<Frame>
+![](/images/full.gif)
+</Frame>
+The default and recommended end-to-end configuration optimized for real-time conversation. All CVI layers are active and customizable.
 
-<Note> We offer a selection of optimized LLMs including **Llama 3.3 and OpenAI models** that are fully compatible with the `full` pipeline. This is our recommended mode for best results.</Note>
-### Default Replica
-Sets the visual avatar or character associated with the persona.
+* Lowest latency
+* Best for natural humanlike interactions
+
+<Note> We offer a selection of optimized LLMs including **Llama 3.3 and OpenAI models** that are fully optimized for the full pipeline mode.</Note>
+<Card title="CVI quickstart" icon="rocket" href="/sections/conversational-video-interface/quickstart" />
+
+
+### Custom LLM / Bring Your Own Logic
+<Frame>
+![](/images/custom-llm.gif)
+</Frame>
+Use this mode to integrate a custom LLM or a specialized backend for interpreting transcripts and generating responses.
+
+* Adds latency due to external processing
+* Does **not** require an actual LLM—any endpoint that returns a compatible chat completion format can be used
+
+<Card title="Integrate your own custom LLM or logic" icon="binary" href="/sections/conversational-video-interface/persona/llm#custom-llms" />
+
+### Echo Pipeline Mode
+**Echo Mode** gives you full control over the Replica’s speech by letting you bypass Tavus’s core layers and supply your own input directly. There are two echo modes:
+#### 1. **Text or Audio (Base64) Echo**
+<Frame>
+![](/images/echo-1.gif)
+</Frame>
+Microphone is disabled in the Transport layer.
+* **Text Echo**
+
+  * Bypasses **Perception**, **STT**, and **LLM**
+  * Sends raw text directly to the **TTS Layer**
+  * Useful for manually scripted speech and interrupt control
+
+* **Audio (Base64) Echo**
+
+  * Bypasses all layers except the **Realtime Replica Layer**
+  * Sends base64-encoded audio for direct playback by the Replica
 
 <Note>
-You can also change a persona's default replica when creating a conversation.
+Send text or base64 audio using the [**Interactions Protocol**](/sections/event-schemas/conversation-echo).
 </Note>
 
-### Layers
+#### 2. **Microphone Echo**
+<Frame>
+![](/images/echo-2.gif)
+</Frame>
+Microphone is enabled in the Transport layer.
 
-Each layer in the pipeline processes a different part of the conversation. Layers can be configured individually to tailor input/output behavior to your application needs.
+* Bypasses all CVI layers (Perception, STT, LLM, TTS)
+* Streams pre-generated audio directly into the Replica
+* All interrupt logic must be embedded in your audio stream
 
-* **Transport Layer**
-  <br/>Configures audio and video input/output settings, including microphone, camera, and replica streaming. Tavus uses [Daily](https://www.daily.co/) as the default provider for this layer.
-
-* [**Perception Layer**](/sections/conversational-video-interface/persona/perception)
-  <br/>Configures how the persona processes visual input using.
-
-* [**STT Layer**](/sections/conversational-video-interface/persona/stt)
-  <br/>Configures the speech-to-text engine used to transcribe user speech into text.
-
-* [**LLM Layer**](/sections/conversational-video-interface/persona/llm)
-  <br/>Configures the language model that generates the persona’s responses, including support for custom LLMs.
-
-* [**TTS Layer**](/sections/conversational-video-interface/persona/tts)
-  <br/>Configures how text responses are converted into speech using Tavus or supported third-party tts engines.
-
-* **Realtime Replica Layer**
-  <br/>Streams visually expressive avatar responses using **Phoenix**, Tavus's replica rendering model.
+<Card title="Echo mode quickstart" icon="keyboard" href="/sections/conversational-video-interface/persona/llm#custom-llms" />

@@ -10,10 +10,23 @@ description: Learn what CVI is and its features.
 
 Conversational Video Interface (CVI) is a framework for creating real-time video interactions with AI. It enables AI agents to see, hear, and respond naturally, mirroring human conversation.
 
-CVI consists of three core components:
-- [**Persona**](/sections/conversational-video-interface/persona/overview): Defines the AI agent’s behavior, tone, knowledge, and capabilities. Shaping how it responds during a conversation.
-- [**Replica**](/sections/replica/overview): Renders the AI agent’s visual appearance, with facial animations synced to speech for a lifelike presence using the Phoenix-3 model.
-- [**Conversation**](/sections/conversational-video-interface/conversation/overview): A real-time video call session where users interact with the AI agent powered by the configured persona and replica.
+## Key Concepts
+CVI is built around three core concepts that work together to create real-time, humanlike interactions with AI agents:
+<CardGroup cols={3}>
+
+  <Card title="Persona" icon="heart-pulse" href="/sections/conversational-video-interface/persona/overview">
+    The **Persona** defines the AI agent’s behavior, tone, and knowledge. It controls how the agent understands input, forms responses, and speaks. The persona also configures the underlying CVI pipeline.
+  </Card>
+
+  <Card title="Replica" icon="users" href="/sections/replica/overview">
+    The **Replica** brings the persona to life visually. It renders a photorealistic human-like avatar using the **Phoenix-3** model, complete with facial expressions and synchronized lip movements.
+  </Card>
+
+  <Card title="Conversation" icon="video" href="/sections/conversational-video-interface/conversation/overview">
+    A **Conversation** is a real-time video call session between the user and the AI agent. It connects the configured persona and replica through a managed WebRTC connection, enabling live, two-way interaction.
+  </Card>
+
+</CardGroup>
 
 
 ## Key Features

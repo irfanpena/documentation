@@ -21,13 +21,7 @@
             "group": "Conversational Video Interface",
             "pages": [
               "sections/conversational-video-interface/overview-cvi",
-              {
-                "group": "Quickstart",
-                "pages": [
-                  "sections/conversational-video-interface/full-mode",
-                  "sections/conversational-video-interface/echo-mode"
-                ]
-              },
+              "sections/conversational-video-interface/quickstart",
               {
                 "group": "Conversation",
                 "pages": [
