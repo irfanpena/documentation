@@ -1,6 +1,6 @@
 ---
 title: Overview
-description: Learn what a conversation is in Tavus
+description: Learn how to customize identity, context, and advanced settings for a Tavus conversation to suit your needs.
 ---
 
 A Conversation is a real-time video session between a user and a Tavus Replica. It enables two-way, face-to-face interaction using a fully managed WebRTC connection.
@@ -24,11 +24,11 @@ Tavus provides several customizations that you can set per conversation:
 - **Replica**: Use a stock replica provided by Tavus or create a custom one. If a replica is provided without a persona, the default Tavus persona will be used.
 - **Conversation Context**: Customize the conversation context to set the scene, explain the user’s role, say who joins the call, or point out key topics. It builds on the base persona and helps the AI give better, more focused answers.
 - **Custom Greeting**: You can personalize the opening line that the AI should use when the conversation starts.
-### Advanced Settings and Features
-- **Call Time Settings**: Set call durations and timeouts to control usage, avoid extra costs, and ensure users stay within their allotted time and concurrency limits.
-- **Language**: Set the conversation language. Please see [Language Support](/sections/conversational-video-interface/language-support#supported-language) for more details.
-- **Background Customization**: Set the AI agent’s background to a green screen or use WebGL on the frontend to make it transparent or replace it with a custom background.
-- **Closed Captions**: Enable subtitles for your conversation.
-- **Call Recording**: Enable the recording feature and set up your own S3 bucket to store the conversation recording.
+### Advanced Customizations
+- **Call Time Settings**: Define call duration and timeout limits to manage usage, control costs, and enforce concurrency limits.
+- **Language**: Set the language used during the conversation.. Please see [Language Support](/sections/conversational-video-interface/language-support#supported-language) for more details.
+- **Background Customization**: Use a green screen background or apply a custom one with WebGL for a more tailored visual experience.
+- **Closed Captions**: Enable subtitles for accessibility or live transcription.
+- **Call Recording**: Record conversations and store them in your own S3 bucket.
 
-
+<Note> See [Customizations](/sections/conversational-video-interface/conversation/customizations/call-settings) for a quickstart guide to each available customization. </Note>
