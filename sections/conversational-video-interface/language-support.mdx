@@ -1,6 +1,6 @@
 ---
 title: Language Support
-description:
+description: Customize the conversation language using full language names supported by Tavus TTS engines.
 ---
 
 Tavus supports a wide range of languages for spoken interaction, powered by third-party text-to-speech (TTS) engines. The available languages depend on the TTS engine selected for the conversation.
@@ -23,7 +23,7 @@ By default, Tavus uses the **Cartesia** TTS engine.
 
 To specify a language, use the `language` parameter in the [Create Conversation](/api-reference/conversations/create-conversation). **You must use the full language name**, not a language code.
 
-```shell cURL highlight={9}
+```shell cURL {9}
 curl --request POST \
   --url https://tavusapi.com/v2/conversations \
   --header 'Content-Type: application/json' \
@@ -45,7 +45,7 @@ Language names must match exactly with those supported by the selected TTS engin
 
 To automatically detect the participant’s spoken language at the start of the conversation, set:
 
-```shell cURL highlight={9}
+```shell cURL {9}
 curl --request POST \
   --url https://tavusapi.com/v2/conversations \
   --header 'Content-Type: application/json' \
