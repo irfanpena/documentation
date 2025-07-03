@@ -42,7 +42,6 @@
               },
               {
                 "group": "Persona",
-                "icon": "users",
                 "pages": [
                   "sections/conversational-video-interface/persona/overview",
                   {
@@ -95,7 +94,7 @@
           },
           {
             "group": "Replica",
-            "icon": "users",
+            "icon": "user-group",
             "pages": [
               "sections/replica/overview",
               "sections/replica/replica-training",

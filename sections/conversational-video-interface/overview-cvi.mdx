@@ -5,9 +5,15 @@ description: Explore how CVI enables real-time, humanlike video interactions thr
 ---
 
 <Frame>
-![](/images/devmode.png)
+<iframe 
+  src="https://irfanpena.github.io/tavus-conversation-example/" 
+  allow="microphone; camera"
+  allowfullscreen
+  width={700}
+  height={600}
+>
+</iframe>
 </Frame>
-
 Conversational Video Interface (CVI) is a framework for creating real-time multimodal video interactions with AI. It enables AI agents to see, hear, and respond naturally, mirroring human conversation.
 
 ## Key Concepts
@@ -15,15 +21,15 @@ CVI is built around three core concepts that work together to create real-time, 
 <CardGroup cols={3}>
 
   <Card title="Persona" icon="heart-pulse" href="/sections/conversational-video-interface/persona/overview">
-    The **Persona** defines the AI agent’s behavior, tone, and knowledge. It controls how the agent understands input, forms responses, and speaks. The persona also configures the underlying CVI pipeline.
+    The **Persona** defines the agent’s behavior, tone, and knowledge. It also configures the CVI layer and pipeline.
   </Card>
 
-  <Card title="Replica" icon="users" href="/sections/replica/overview">
-    The **Replica** brings the persona to life visually. It renders a photorealistic human-like avatar using the **Phoenix-3** model, complete with facial expressions and synchronized lip movements.
+  <Card title="Replica" icon="user-group" href="/sections/replica/overview">
+    The **Replica** brings the persona to life visually. It renders a photorealistic human-like avatar using the **Phoenix-3** model.
   </Card>
 
   <Card title="Conversation" icon="video" href="/sections/conversational-video-interface/conversation/overview">
-    A **Conversation** is a real-time video call session between the user and the AI agent. It connects the configured persona and replica through a managed WebRTC connection, enabling live, two-way interaction.
+    A **Conversation** is a real-time video session that connects the persona and replica through a WebRTC connection.
   </Card>
 
 </CardGroup>
@@ -65,8 +71,6 @@ These layers allow you to:
 * Customize  text-to-speech (TTS) engines for full control over voice output.
 * Customize speech-to-text (STT) to use smart turn-taking behavior, including interruption handling and pause sensitivity.
 * Access raw video and audio streams to build a fully custom frontend experience.
-
-
 
 
 
