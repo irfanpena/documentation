@@ -1,0 +1,42 @@
+---
+title: Production Integration Guide
+description: Follow these best practices to effectively integrate Tavus into your production environment.
+---
+
+<Frame>
+<iframe 
+  src="https://irfanpena.github.io/tavus-conversation-example/" 
+  allow="microphone; camera"
+  allowfullscreen
+  width={700}
+  height={600}
+>
+</iframe>
+</Frame>
+
+## Using Daily JS SDK
+
+The [Daily JS SDK](https://docs.daily.co/guides/products/prebuilt/customizing-daily-prebuilt) offers **full UI control and advanced features**, making it ideal for building a fully customized Tavus CVI experience. You can try implementing the Daily JS SDK by following the steps in our [Embed CVI Guide](/sections/integrations/embedding-cvi#daily-js-sdk).
+
+## Enabling Noise Cancellation
+
+Daily provides built-in noise cancellation, which can be easily enabled using the `updateInputSettings()` method to **enhance audio clarity** during calls, resulting in a more engaging interaction. 
+
+```js
+callFrame.updateInputSettings({
+  audio: {
+    processor: {
+      type: 'noise-cancellation',
+    },
+  },
+});
+```
+
+## Adding hair check screen
+
+<Tip>
+A **hair check screen** is a pre-conversation interface, often resembling a waiting room, that provides users with a transition between initiating a conversation and the actual beginning of the conversation.
+</Tip>
+
+The hair check screen allow users to **verify their audio and video settings** before joining a live session, ensuring everything is configured properly. It also helps **mask the brief latency period** before the conversation starts, creating a smoother transition into the interaction.
+
