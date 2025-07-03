@@ -54,9 +54,9 @@ This predefined persona is designed to act as a friendly virtual doctor, offerin
 
 * **Persona Identity**: A helpful and knowledgeable "Health Care" assistant who can provide medicines to cure various diseases. The persona maintains a professional yet warm tone, optimized for one-on-one conversations about health concerns.
 
-* **pipeline\_mode: "full"**: Enables the full Tavus conversational pipeline, including speech recognition, real-time rendering, emotional voice synthesis, and tool call capabilities.
+* **Full Pipeline Mode**: Enables the full Tavus conversational pipeline, including Perception, STT, LLM, and TTS.
 
-* **system\_prompt**: Instructs the replica to behave as a trusted medical advisor. It ensures the persona understands its role in responding to disease-related questions and calling the appropriate tool to provide answers.
+* **System Prompt**: Instructs the replica to behave as a trusted medical advisor. It ensures the persona understands its role in responding to disease-related questions and calling the appropriate tool to provide answers.
 
 * **context**: Clarifies expected user inputs (e.g., “What is the cure to X?”) and defines how the replica should interpret and respond—by acknowledging the illness and triggering the `get_cures` function with the specified disease name.
 
@@ -67,9 +67,9 @@ This predefined persona is designed to act as a friendly virtual doctor, offerin
     * Uses the `tavus-llama` model with speculative inference enabled for faster and more fluid responses.
     * Includes the `get_cures` tool, which accepts a single string parameter (`disease`) and limits AI behavior to relevant function calls only when disease-related queries are detected.
 
-  * **TTS Configuration**: Employs the `cartesia` voice engine with emotion control enabled to provide expressive, empathetic speech suitable for a doctor-like tone.
+  * **TTS Configuration**: Employs the `cartesia` voice engine with emotion control.
 
-  * **STT Configuration**: Uses Tavus’ advanced speech recognition engine with high sensitivity to both pauses and interruptions, plus smart turn detection for seamless real-time conversations.
+  * **STT Configuration**: Uses `tavus-advanced` engine with high sensitivity to both pauses and interruptions, plus smart turn detection for seamless real-time conversations.
 </Tab>
 <Tab title="Dermatologist">
 ```json [expandable]
@@ -148,25 +148,19 @@ This predefined persona is designed to act as a friendly virtual doctor, offerin
 
 This predefined persona acts as a virtual skin care specialist. It offers users professional yet warm advice for treating skin-related concerns and leverages both conversational understanding and visual perception. It includes:
 
-* **Persona Identity**
-  A friendly and knowledgeable "Personal Skin Doctor" who helps users find cures for skin conditions. Optimized for empathetic, one-on-one interactions focused on skin health and treatment options.
+* **Persona Identity**: A friendly and knowledgeable "Personal Skin Doctor" who helps users find cures for skin conditions. Optimized for empathetic, one-on-one interactions focused on skin health and treatment options.
 
-* **pipeline\_mode: "full"**
-  Enables Tavus’ complete conversational stack, including speech recognition, real-time perception, tool usage, and expressive video rendering.
+* **Full Pipeline Mode**: Enables the full Tavus conversational pipeline, including Perception, STT, LLM, and TTS.
 
-* **system\_prompt**
-  Directs the persona to behave like a helpful skin doctor, answering cure-related questions clearly and empathetically.
+* **System Prompt**: Directs the persona to behave like a helpful skin doctor, answering cure-related questions clearly and empathetically.
 
-* **context**
-  Guides the persona to respond when users ask questions like “What is the cure to X” or “What is the solution to X.” The AI is instructed to extract the disease name and call the `get_skin_cures` tool to fetch a relevant response.
+* **context**: Guides the persona to respond when users ask questions like “What is the cure to X” or “What is the solution to X.” The AI is instructed to extract the disease name and call the `get_skin_cures` tool to fetch a relevant response.
 
 * **Model Layers**
 
-  * **LLM Configuration**:
-    Uses the `tavus-llama` model with speculative inference for faster tool usage. Includes the `get_skin_cures` function, which takes a `disease` input to provide specific treatment guidance.
+  * **LLM Configuration**: Uses the `tavus-llama` model with speculative inference for faster tool usage. Includes the `get_skin_cures` function, which takes a `disease` input to provide specific treatment guidance.
 
-  * **TTS Configuration**:
-    Employs the `cartesia` engine with emotional control for natural, expressive speech delivery that feels reassuring and human.
+  * **TTS Configuration**: Employs the `cartesia` engine with emotional control.
 
   * **Perception Configuration**:
     

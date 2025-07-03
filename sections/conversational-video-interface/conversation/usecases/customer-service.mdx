@@ -95,9 +95,9 @@ description: Engage in real-time customer support conversations that adapt to us
 This predefined persona is configured to provide personalized history lessons. It includes:
 
 - **Persona Identity**: A professional customer service agent that helps users with real product or service issues. The agent speaks clearly and responds with empathy, adjusting based on how the user sounds or looks.
-- **pipeline\_mode: "full"**: Enables all system features, including speech recognition, visual analysis, natural-sounding speech, and real-time language understanding.
-- **system\_prompt**: Tells the agent to act professionally and respond helpfully, while being aware of the user’s emotional state.
--  **context**: Describes a real customer support situation. The agent listens to the user’s issue, helps resolve it, and changes its tone or pace if the user seems frustrated or confused.
+* **Full Pipeline Mode**: Enables the full Tavus conversational pipeline, including Perception, STT, LLM, and TTS.
+- **System Prompt**: Tells the agent to act professionally and respond helpfully, while being aware of the user’s emotional state.
+- **Context**: Describes a real customer support situation. The agent listens to the user’s issue, helps resolve it, and changes its tone or pace if the user seems frustrated or confused.
 - **Persona Layer**:
   - **LLM Layer**: Uses the `resolve_customer_issue` tool to gather:
     * `product`: what the issue is about
@@ -106,8 +106,8 @@ This predefined persona is configured to provide personalized history lessons. I
   - **Perception Layer**: Uses the `raven-0` model to watch for signs like fidgeting, slouching, or facial expressions. If the user appears upset, it calls the `user_emotional_state` tool with:
     * `emotional_state`: what the user seems to feel (e.g., frustrated, calm)
     * `indicator`: what was observed (e.g., sighing, avoiding eye contact)
-  - **TTS Layer**: Uses the `cartesia` engine to speak naturally and with emotion.
-  - **STT Layer**: Uses the `tavus-advanced` engine to accurately convert speech to text. It’s tuned to detect pauses and interruptions, allowing smooth and natural conversation.
+  - **TTS Layer**: Employs the `cartesia` voice engine with emotion control.
+  - **STT Layer**: Uses `tavus-advanced` engine with smart turn detection for seamless real-time conversations.
 
 ## Create a Conversation with the Customer Service Agent Persona
 

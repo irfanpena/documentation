@@ -41,11 +41,11 @@ description: Engage with the AI Interviewer persona to run structured, conversat
 This predefined persona is configured to conduct consistent and scalable candidate interviews. It includes:
 
 * **Persona Identity**: Named Jane Smith, a seasoned, professional AI interviewer designed to conduct first-round case interviews with a structured yet approachable style, focusing on assessing communication and problem-solving skills.  
-* ***pipeline_mode***: ***"full"***: Indicates the entire conversational pipeline is engaged, including vision perception, speech recognition, rendering, and interactive dialogue management.  
-* ***system_prompt***: Provides detailed behavioral guidance to maintain a natural, spoken-word tone that is professional and supportive, structuring the interview flow clearly.  
+* **Full Pipeline Mode**: Enables the full Tavus conversational pipeline, including Perception, STT, LLM, and TTS.
+* **System Prompt**: Provides detailed behavioral guidance to maintain a natural, spoken-word tone that is professional and supportive, structuring the interview flow clearly.  
 * **Model Layers**:  
   * **Perception Configuration**: Employs Raven-0 perception model to monitor candidate behavior and environment for visual cues like distraction or nervousness.  
-  * **STT Configuration**: Uses Tavus’ advanced speech-to-text engine with high sensitivity to pauses, medium sensitivity to interruptions, and smart turn detection to enable smooth, real-time conversational interaction.
+  - **STT Layer**: Uses `tavus-advanced` engine with smart turn detection for seamless real-time conversations.
 
 ## Create a Conversation with the AI Interviewer Persona
 

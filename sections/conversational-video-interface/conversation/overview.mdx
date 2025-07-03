@@ -1,21 +1,11 @@
 ---
 title: Overview
-description: Learn how to customize identity, context, and advanced settings for a Tavus conversation to suit your needs.
+description: Learn how to customize identity and advanced settings for a conversation to suit your needs.
 ---
 
 A Conversation is a real-time video session between a user and a Tavus Replica. It enables two-way, face-to-face interaction using a fully managed WebRTC connection.
 
-Tavus relies on Daily to manage the WebRTC infrastructure. This includes signaling, media transmission, and room creation. You do not need to set up or maintain any of these components manually.
-### How a Conversation Works
-
-1. A Daily WebRTC room is automatically created by Tavus.
-2. The Replica joins the room and waits for a participant.
-3. Timers for session duration and idle timeouts are started.
-4. A `conversation_url` is returned, which opens a full video conferencing interface in the browser.
-
-<Note>
-You can join the call using the provided URL or embed the video stream into a custom UI. Tavus also supports raw media access if you prefer to build your own frontend experience.
-</Note>
+Tavus relies on [Daily](https://www.daily.co/) to manage the WebRTC infrastructure. You do not need to set up or maintain any of these components manually.
 
 ## Conversation Customizations
 Tavus provides several customizations that you can set per conversation:
@@ -25,10 +15,13 @@ Tavus provides several customizations that you can set per conversation:
 - **Conversation Context**: Customize the conversation context to set the scene, explain the user’s role, say who joins the call, or point out key topics. It builds on the base persona and helps the AI give better, more focused answers.
 - **Custom Greeting**: You can personalize the opening line that the AI should use when the conversation starts.
 ### Advanced Customizations
+- **Audio-Only Conversation**: Disable the video stream to create audio-only sessions. This is useful for phone calls, smart speaker interactions, or any scenario where video is unnecessary or unavailable.
 - **Call Time Settings**: Define call duration and timeout limits to manage usage, control costs, and enforce concurrency limits.
 - **Language**: Set the language used during the conversation.. Please see [Language Support](/sections/conversational-video-interface/language-support#supported-language) for more details.
 - **Background Customization**: Use a green screen background or apply a custom one with WebGL for a more tailored visual experience.
 - **Closed Captions**: Enable subtitles for accessibility or live transcription.
 - **Call Recording**: Record conversations and store them in your own S3 bucket.
-
 <Note> See [Customizations](/sections/conversational-video-interface/conversation/customizations/call-settings) for a quickstart guide to each available customization. </Note>
+
+## Credit Usage
+Credit usage begins when the conversation is created and the replica starts waiting in the room. Billing continues until the conversation ends or times out. This also uses up one of your concurrency spots.
