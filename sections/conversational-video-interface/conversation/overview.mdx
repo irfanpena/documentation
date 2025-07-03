@@ -3,9 +3,20 @@ title: Overview
 description: Learn what a conversation is in Tavus
 ---
 
-A conversation is a video call session with a replica.
+A **Conversation** is a real-time video session between a user and a Tavus **Replica**. It enables two-way, face-to-face interaction through a fully managed WebRTC connection.
 
-When a conversation is created, Tavus provides a meeting URL with a Daily prebuilt video interface. The replica automatically joins the call and begins interacting.
+Tavus uses **Daily** to handle the underlying WebRTC infrastructure—including signaling, media transport, and room management—so you don’t need to manage any of it manually.
+
+### How a Conversation Works
+
+1. A Daily WebRTC room is automatically created by Tavus.
+2. The Replica joins the room and waits for a participant.
+3. Timers for session duration and idle timeouts are started.
+4. A `conversation_url` is returned, which opens a full video conferencing interface in the browser.
+
+<Note>
+You can join the call using the provided URL or embed the video stream into a custom UI. Tavus also supports raw media access if you prefer to build your own frontend experience.
+</Note>
 
 ## Conversation Customizations
 Tavus provides several customizations that you can set per conversation:
@@ -18,7 +29,7 @@ Tavus provides several customizations that you can set per conversation:
 - **Call Time Settings**: Set call durations and timeouts to control usage, avoid extra costs, and ensure users stay within their allotted time and concurrency limits.
 - **Language**: Set the conversation language. Please see [Language Support](/sections/conversational-video-interface/language-support#supported-language) for more details.
 - **Background Customization**: Set the AI agent’s background to a green screen or use WebGL on the frontend to make it transparent or replace it with a custom background.
-- **Subtitles**: Enable subtitles for your conversation.
+- **Closed Captions**: Enable subtitles for your conversation.
 - **Call Recording**: Enable the recording feature and set up your own S3 bucket to store the conversation recording.
 
 

@@ -35,7 +35,10 @@
                   {
                     "group": "Customizations",
                     "pages": [
-                      "sections/conversational-video-interface/conversation/customizations/recording"
+                      "sections/conversational-video-interface/conversation/customizations/recording",
+                      "sections/conversational-video-interface/conversation/customizations/call-settings",
+                      "sections/conversational-video-interface/conversation/customizations/closed-captions",
+                      "sections/conversational-video-interface/conversation/customizations/background-customizations"
                     ]
                   }
                 ]
