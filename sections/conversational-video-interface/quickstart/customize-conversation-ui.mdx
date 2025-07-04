@@ -1,4 +1,38 @@
 ---
 title: Customize Conversation UI
-description: 
+description: Experience a conversation in a custom-colored Daily UI — styled to match your preference.
 ---
+
+You can **fully customize the appearance of your conversation interface** to match your preference. This includes updating the color theme of Daily's Prebuilt UI, allowing you to define primary and background colors that align with your product’s aesthetic. 
+
+## Custom UI Example
+
+Here's a quick example to customize your conversation interface by passing a custom color into the `theme` when embedding the call.
+
+```js
+import DailyIframe from "@daily-co/daily-js";
+
+const callFrame = DailyIframe.createFrame({
+  iframeStyle: {
+    position: "fixed",
+    width: "100%",
+    height: "100%",
+    border: "0",
+  },
+  theme: {
+    colors: {
+      accent: "#2F80ED", // primary button and accent color
+      background: "#F8F9FA", // main background color
+      baseText: "#1A1A1A", // text color
+    },
+  },
+});
+
+callFrame.join({ url: "https://your-domain.daily.co/your-room-name" });
+```
+
+<Frame>
+  ![](/images/custom-ui-colors.png)
+</Frame>
+
+You can customize more than just color values — see the [Daily theme configuration reference](https://docs.daily.co/guides/products/prebuilt/customizing-daily-prebuilt-calls-with-color-themes) for all options.
