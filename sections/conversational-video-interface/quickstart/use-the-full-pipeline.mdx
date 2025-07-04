@@ -1,0 +1,95 @@
+---
+title: Use the Full Pipeline
+description: Create your first persona using the full pipeline and start a conversation in seconds.
+---
+
+Use the full pipeline to unlock the complete range of replica capabilities—including perception, speech recognition, and natural conversation flow.
+
+<Steps>
+<Step title="Step 1: Get an API Key" titleSize="h3">
+Ensure you have created the Tavus API Key to access the Tavus API by following the steps [here](/sections/quickstart).
+</Step>
+<Step title="Step 2: Create a Persona" titleSize="h3">
+
+<Note>
+In this example, we’ll create an interviewer persona with the following settings:
+- A Phoenix-3 stock replica.
+- `raven-0` as the perception model to enable screen sharing.
+- `smart turn detection` enabled using the Sparrow model.
+</Note>
+
+Use the following request body example:
+
+```shell cURL
+curl --request POST \
+  --url https://tavusapi.com/v2/personas \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your_api_key>' \
+  --data '{
+    "persona_name": "Interviewer",
+    "system_prompt": "As an Interviewer, you are a skilled professional who conducts thoughtful and structured interviews. Your aim is to ask insightful questions, listen carefully, and assess responses objectively to identify the best candidates.",
+    "pipeline_mode": "full",
+    "context": "You have a track record of conducting interviews that put candidates at ease, draw out their strengths, and help organizations make excellent hiring decisions.",
+    "default_replica_id": "rfe12d8b9597",
+    "layers": {
+      "perception": {
+        "perception_model": "raven-0",
+      },
+      "stt": {
+        "stt_engine": "tavus-advanced",
+        "smart_turn_detection": true
+      }
+    }
+  }'
+```
+
+<Note>
+Replace `<your_api_key>` with your actual API key.
+</Note>
+
+Tavus offers full layer customizations for your persona. Please see the following for each layer configurations:
+- [Large Language Model (LLM)](/sections/conversational-video-interface/persona/llm)
+- [Perception](/sections/conversational-video-interface/persona/perception)
+- [Text-to-Speech (TTS)](/sections/conversational-video-interface/persona/tts)
+- [Speech-to-Text (STT)](/sections/conversational-video-interface/persona/stt)
+</Step>
+<Step title="Step 3: Create a Conversation" titleSize="h3">
+
+Create a new conversation using your newly created `persona_id`:
+
+```shell cURL
+curl --request POST \
+  --url https://tavusapi.com/v2/conversations \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your_api_key>' \
+  --data '{
+  "persona_id": "<your_persona_id>",
+  "conversation_name": "Interview User"
+}'
+
+```
+
+<Note>
+Replace `<your_api_key>` and `<your_persona_id>` with your actual API key and `persona_id`.
+</Note>
+
+</Step>
+<Step title="Step 4: Join the Conversation" titleSize="h3">
+To join the conversation, click the link in the `conversation_url` field from the response:
+
+```json
+{
+  "conversation_id": "c477c9dd7aa6e4fe",
+  "conversation_name": "Interview User",
+  "conversation_url": "<conversation_link>",
+  "status": "active",
+  "callback_url": "",
+  "created_at": "2025-05-13T06:42:58.291561Z"
+}
+```
+</Step>
+</Steps>
+
+<Warning>
+It is not recommended to use [Echo Mode]() if you want the replica to have perception and speech recognition, as this mode skips those layers and limits natural interaction.
+</Warning>

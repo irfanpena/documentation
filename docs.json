@@ -23,7 +23,12 @@
             "icon": "messages",
             "pages": [
               "sections/conversational-video-interface/overview-cvi",
-              "sections/conversational-video-interface/quickstart",
+              {
+                "group": "Quickstart",
+                "pages": [
+                  "sections/conversational-video-interface/quickstart/use-the-full-pipeline"
+                ]
+              },
               {
                 "group": "Conversation",
                 "pages": [
