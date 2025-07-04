@@ -8,9 +8,9 @@ A Persona defines the behavior, voice, and response style of a Tavus Replica. It
 Each persona includes configurable fields. Here's what you can customize:
 - **Persona Name**: Display name shown when the replica joins a call.
 - **System Prompt**: Instructions sent to the language model to shape the replica’s tone, personality, and behavior.
-- **Context / Knowledge Base**: Background knowledge or reference information provided to the persona's language model.
+- **Conversational Context**: Background knowledge or reference information provided to the persona's language model.
 - **Pipeline Mode**: Controls which CVI pipeline layers are active and how input/output flows through the system.
-- **Default Replica**: Sets the visual avatar or character associated with the persona.
+- **Default Replica**: Sets the digital human associated with the persona.
 - **Layers**: Each layer in the pipeline processes a different part of the conversation. Layers can be configured individually to tailor input/output behavior to your application needs.
 
 ## CVI Layer
@@ -38,7 +38,7 @@ Tavus provides the following customizable layers as part of the CVI pipeline:
   </Card>
 
   <Card title="Realtime Replica Layer" icon="robot" href="/sections/replica/overview">
-    Streams lifelike avatar responses powered by Phoenix, Tavus’s real-time rendering model.
+    Streams digital human powered by Phoenix, Tavus’s real-time rendering model.
   </Card>
 
 </CardGroup>
@@ -69,37 +69,3 @@ Use this mode to integrate a custom LLM or a specialized backend for interpretin
 * Does **not** require an actual LLM—any endpoint that returns a compatible chat completion format can be used
 
 <Card title="Integrate your own custom LLM or logic" icon="binary" href="/sections/conversational-video-interface/persona/llm#custom-llms" />
-
-### Echo Pipeline Mode
-**Echo Mode** gives you full control over the Replica’s speech by letting you bypass Tavus’s core layers and supply your own input directly. There are two echo modes:
-#### 1. **Text or Audio (Base64) Echo**
-<Frame>
-![](/images/echo-1.png)
-</Frame>
-Microphone is disabled in the Transport layer.
-* **Text Echo**
-
-  * Bypasses **Perception**, **STT**, and **LLM**
-  * Sends raw text directly to the **TTS Layer**
-  * Useful for manually scripted speech and interrupt control
-
-* **Audio (Base64) Echo**
-
-  * Bypasses all layers except the **Realtime Replica Layer**
-  * Sends base64-encoded audio for direct playback by the Replica
-
-<Note>
-Send text or base64 audio using the [**Interactions Protocol**](/sections/event-schemas/conversation-echo).
-</Note>
-
-#### 2. **Microphone Echo**
-<Frame>
-![](/images/echo-2.png)
-</Frame>
-Microphone is enabled in the Transport layer.
-
-* Bypasses all CVI layers (Perception, STT, LLM, TTS)
-* Streams pre-generated audio directly into the Replica
-* All interrupt logic must be embedded in your audio stream
-
-<Card title="Echo mode quickstart" icon="keyboard" href="/sections/conversational-video-interface/echo-mode" />

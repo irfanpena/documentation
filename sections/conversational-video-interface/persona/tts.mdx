@@ -1,11 +1,11 @@
 ---
-title: Text-to-Speech (TTS) Layer
-sidebarTitle: TTS
-description: Learn how to use custom voices from supported third-party TTS engines.
+title: Text-to-Speech (TTS)
+sidebarTitle: Text-to-Speech (TTS)
+description: Discover how to integrate custom voices from third-party TTS engines for multilingual or localized speech output.
 ---
 
 The **TTS Layer** in Tavus enables your persona to generate natural-sounding voice responses.
-You can configure the TTS layer using third-party tts engine provider. If `layers.tts` is not specified, Tavus defaults to `cartesia` engine.
+You can configure the TTS layer using a third-party tts engine provider. If `layers.tts` is not specified, Tavus will default to `cartesia` engine.
 <Note>
 If you use the default engine, you do not need to specify any parameters within the `tts` layer.
 </Note>
@@ -27,7 +27,7 @@ Specifies the supported third-party TTS engine.
 
 ### 2. `api_key`
 
-The **API key** is required to authenticate requests to your selected third-party TTS provider. You can obtain an API key from the following:
+Authenticates requests to your selected third-party TTS provider. You can obtain an API key from one of the following:
 * [Cartesia](https://play.cartesia.ai/keys)
 * [ElevenLabs](https://elevenlabs.io/app/settings/api-keys)
 * [PlayHT](https://play.ai/api/keys)
@@ -40,7 +40,7 @@ The **API key** is required to authenticate requests to your selected third-part
 ```
 
 ### 3. `external_voice_id`
-The **voice ID** specifies which voice to use with the selected TTS engine. To find supported voice IDs, refer to the provider’s documentation:
+Specifies which voice to use with the selected TTS engine. To find supported voice IDs, refer to the provider’s documentation:
 * [Cartesia](https://docs.cartesia.ai/api-reference/voices/list)
 * [ElevenLabs](https://elevenlabs.io/docs/api-reference/voices/search)
 * [PlayHT](https://docs.play.ai/api-reference/text-to-speech/endpoints/v1/list-voices)
@@ -107,7 +107,7 @@ Model name used by the TTS engine. Refer to:
 }
 ```
 
-## Example Use Case
+## Example Configuration
 
 Below is an example persona with a fully configured TTS layer:
 <CodeGroup>

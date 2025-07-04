@@ -5,26 +5,27 @@ description: Integrate a Tavus Replica into Pipecat as a participant or a video 
 
 [Tavus](https://tavus.io) offers integration with [Pipecat](https://www.pipecat.ai/), an open-source framework for building multimodal conversational agents by Daily. You can integrate Tavus into your Pipecat application in two ways:
 
-- Additional Tavus Participant (TavusTransport)
+- Additional Tavus Participant (`TavusTransport`)
     - The Tavus agent joins as a third participant alongside the Pipecat bot and human user. It receives audio from the Pipecat pipeline’s TTS layer and renders synchronized video and audio.
-- Video Layer for Pipecat Bot (TavusVideoService)
+- Video Layer for Pipecat Bot (`TavusVideoService`)
     - Only the Pipecat bot is present in the room. `TavusVideoService` acts as a pipeline layer, sending TTS audio to Tavus in the background. Tavus returns video and audio streams for the bot to display. No additional participant is added.
+
+## Prerequisites
+Before integrating Tavus with Pipecat, ensure you have the following:
+* [**Tavus API Key**](https://platform.tavus.io/api-keys)
+
+* [**Tavus `replica_id`**](https://platform.tavus.io/replicas)
+    - You can use one of [Tavus's stock replicas](https://platform.tavus.io/replicas) or your own custom replica.
+
+* **Pipecat Python Application**
+    - Either your own existing application, or use Pipecat’s examples:
+        - [`TavusTransport`](https://github.com/pipecat-ai/pipecat/blob/main/examples/foundational/21-tavus-transport.py)
+        - [`TavusVideoService`](https://github.com/pipecat-ai/pipecat/blob/main/examples/foundational/21a-tavus-video-service.py)
+
 
 ## `TavusTransport`
 
 `TavusTransport` connects your Pipecat app to a Tavus conversation, allowing the bot to join the same virtual room as the Tavus avatar and participants. To get started, you can follow the following steps or learn more from this [sample code](https://github.com/pipecat-ai/pipecat/blob/main/examples/foundational/21-tavus-transport.py).
-
-### Prerequisites
-
-* [**Tavus API Key**](https://platform.tavus.io/api-keys)
-
-* [**Tavus `replica_id`**](https://platform.tavus.io/replicas)
-    - You can use [tavus's stock replicas](https://platform.tavus.io/replicas) or your own custom replica.
-
-* **Pipecat Python Application**
-    - Your own existing application
-    - Or use Pipecat's [`TavusTransport`](https://github.com/pipecat-ai/pipecat/blob/main/examples/foundational/21-tavus-transport.py) example.
-
 
 ### Integration Guide for `TavusTransport`
 
@@ -119,18 +120,6 @@ Replace `<file-name>` with your actual Python filename.
 ## `TavusVideoService`
 
 You can use `TavusVideoService` to enable real-time AI-driven video interactions in your Pipecat app. To get started, you can follow the following steps or refer from this [sample code](https://github.com/pipecat-ai/pipecat/blob/main/examples/foundational/21a-tavus-video-service.py).
-
-### Prerequisites
-
-* [**Tavus API Key**](https://platform.tavus.io/api-keys)
-
-* [**Tavus `replica_id`**](https://platform.tavus.io/replicas)
-    - You can use [tavus's stock replicas](https://platform.tavus.io/replicas) or your own custom replica.
-
-* **Pipecat Python Application**
-    - Your own existing application
-    - Or use Pipecat's [`TavusVideoService`](https://github.com/pipecat-ai/pipecat/blob/main/examples/foundational/21a-tavus-video-service.py) example.
-
 
 ### Integration Guide for `TavusVideoService`
 
