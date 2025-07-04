@@ -26,7 +26,8 @@
               {
                 "group": "Quickstart",
                 "pages": [
-                  "sections/conversational-video-interface/quickstart/use-the-full-pipeline"
+                  "sections/conversational-video-interface/quickstart/use-the-full-pipeline",
+                  "sections/conversational-video-interface/quickstart/conversation-recordings"
                 ]
               },
               {
@@ -38,7 +39,6 @@
                     "pages": [
                       "sections/conversational-video-interface/conversation/customizations/audio-only",
                       "sections/conversational-video-interface/conversation/customizations/call-settings",
-                      "sections/conversational-video-interface/conversation/customizations/recording",
                       "sections/conversational-video-interface/conversation/customizations/closed-captions",
                       "sections/conversational-video-interface/conversation/customizations/background-customizations"
                     ]
