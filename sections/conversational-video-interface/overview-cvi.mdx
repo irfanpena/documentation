@@ -56,14 +56,21 @@ Experience real-time interactions with ~600ms response time and smooth turn-taki
 
 ## Layers
 
-The **Conversational Video Interface (CVI)** is built on a modular layer system. Each layer can be configured through the [**Persona settings**](/sections/conversational-video-interface/persona/overview#cvi-layer) to match your specific use case.
+The Conversational Video Interface (CVI) uses a modular layer system to process input and generate real-time, human-like responses. Each layer is configured through the <a href="/sections/conversational-video-interface/persona/overview" target="_blank">Persona</a>.
 
-These layers allow you to:
+Here’s how the layers interact:
 
-* Use your own LLM or select Tavus-optimized models with built-in function calling.
-* Customize  text-to-speech (TTS) engines for full control over voice output.
-* Customize speech-to-text (STT) to use smart turn-taking behavior, including interruption handling and pause sensitivity.
-* Access raw video and audio streams to build a fully custom frontend experience.
+1. Perception captures visual input.
+
+2. STT transcribes user speech to text.
+
+3. LLM processes the text and generates a response.
+
+4. TTS converts the response to speech.
+
+5. Realtime Replica renders digital human with synchronized voice and expression.
+
+These layers work together in a live WebRTC conversation.
 
 
 

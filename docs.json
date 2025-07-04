@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "palm",
+  "theme": "mint",
   "name": "Tavus",
   "colors": {
     "primary": "#F230AA",
@@ -16,7 +16,7 @@
           {
             "group": "Getting Started",
             "icon": "rocket",
-            "pages": ["sections/introduction", "sections/quickstart", "sections/models"]
+            "pages": ["sections/introduction", "sections/models"]
           },
           {
             "group": "Conversational Video Interface",
