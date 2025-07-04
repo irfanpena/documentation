@@ -1,18 +1,24 @@
 ---
 title: Closed Captions
-description: Enable subtitles for accessibility or live transcription during conversations.
+description: Enable closed captions for accessibility or live transcription during conversations.
 ---
 
-## Create a Conversation
+## Enable Captions in Real Time During the Conversation
 <Steps>
 <Step title="Step 1: Get an API Key" titleSize="h3">
-Ensure you have created the Tavus API Key to access the Tavus API by following the steps [here](/sections/quickstart).
+1. Go to the [Tavus platform](https://platform.tavus.io/) and select **API Key** from the sidebar menu.
+2. Click **Create New Key** to begin generating your API key.
+3. Enter a name for the key and (optional) specify allowed IP addresses, then click **Create API Key**.
+4. Copy your newly created API key and store it securely.
+<Warning>
+We cannot recover your API Key if you lose it.
+</Warning>
 </Step>
 <Step title="Step 2: Make your First Conversation" titleSize="h3">
 <Note>
 In this example, we will use stock replica ID ***rfe12d8b9597*** (Nathan) and stock persona ID ***pdced222244b*** (Sales Coach).
 </Note>
-To enable subtitle, set the `enable_closed_captions` parameter to `true` when creating the conversation:
+To enable closed captions, set the `enable_closed_captions` parameter to `true` when creating the conversation:
 ```shell cURL
 curl --request POST \
   --url https://tavusapi.com/v2/conversations \
@@ -45,6 +51,6 @@ To join the conversation, click the link in the ***conversation_url*** field fro
   "created_at": "2025-05-13T06:42:58.291561Z"
 }
 ```
-Subtitles will appear during the conversation whenever you or the replica speaks.
+Closed captions will appear during the conversation whenever you or the replica speaks.
 </Step>
 </Steps>
