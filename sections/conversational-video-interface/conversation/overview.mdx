@@ -5,29 +5,6 @@ description: Learn how to customize identity and advanced settings for a convers
 
 A Conversation is a real-time video session between a user and a Tavus Replica. It enables two-way, face-to-face interaction using a fully managed WebRTC connection.
 
-## Conversation Creation Flow
-When you create a conversation using the <a href="/api-reference/conversations/create-conversation" target="_blank">endpoint</a> or <a href="https://platform.tavus.io/" target="_blank">platform</a>:
-
-1. A WebRTC room (powered by **Daily**) is automatically created.
-2. You receive a meeting URL (e.g., `https://tavus.daily.co/ca980e2e`).
-3. The **replica** joins and waits in the room, timers for duration and timeouts begin.
-<Warning>
-#### Billing Usage
-Tavus charges usage based on your account plan. Credits begin counting when a conversation is created and the replica starts waiting in the room. Usage ends when the conversation finishes or times out. Each active session also uses one concurrency slot.
-</Warning>
-
-You can use the provided URL to enter the video room immediately. Alternatively, you can build a custom UI or stream handler instead of using the default interface.
-
-### What is Daily?
-
-Tavus integrates **Daily** as its WebRTC provider. You don't need to sign up for or manage a separate Daily account—Tavus handles the setup and configuration for you.
-
-This lets you:
-
-* Use the default video interface or <a href="/sections/integrations/embedding-cvi" target="_blank">customize the Daily UI</a>
-* <a href="/sections/integrations/embedding-cvi" target="_blank">Embed the CVI in your app</a>
-
-
 ## Conversation Customizations
 Tavus provides several customizations that you can set per conversation:
 ### Identity and Context Setup
