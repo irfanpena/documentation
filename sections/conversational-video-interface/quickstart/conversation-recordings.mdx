@@ -1,5 +1,5 @@
 ---
-title: Call Recording
+title: Conversation Recordings
 description: Enable the recording feature to record the conversation.
 ---
 
@@ -75,7 +75,7 @@ Remember to change the following values:
 - `recording_s3_bucket_name`: Your S3 bucket name.
 </Info>
 
-```shell cURL
+```shell cURL {7-10}
 curl --request POST \
   --url https://tavusapi.com/v2/conversations \
   --header 'Content-Type: application/json' \
