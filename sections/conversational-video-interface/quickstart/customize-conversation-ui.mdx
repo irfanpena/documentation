@@ -1,4 +1,44 @@
 ---
 title: Customize Conversation UI
-description: 
+description: Experience a live call in a custom-colored Daily Prebuilt UI — styled to match your brand
 ---
+
+## Introduction
+
+When you use Tavus, you can fully customize the appearance of your conversation interface to match your brand. This includes updating the color theme of Daily's Prebuilt UI, allowing you to define primary and background colors that align with your product’s aesthetic. With just a few lines of code, you can deliver a cohesive, branded experience to your users.
+
+## Example
+
+To get started, you'll need to pass a custom color theme into the `dailyConfig` when embedding the call.
+
+Here’s a quick example of how to do that:
+
+```js
+import DailyIframe from "@daily-co/daily-js";
+
+const callFrame = DailyIframe.createFrame({
+  iframeStyle: {
+    position: "fixed",
+    width: "100%",
+    height: "100%",
+    border: "0",
+  },
+  dailyConfig: {
+    theme: {
+      colors: {
+        accent: "#2F80ED", // primary button and accent color
+        background: "#F8F9FA", // main background color
+        baseText: "#1A1A1A", // text color
+      },
+    },
+  },
+});
+
+callFrame.join({ url: "https://your-domain.daily.co/your-room-name" });
+```
+
+<Frame>
+  ![](/images/custom-ui-colors.png)
+</Frame>
+
+You can customize more than just these three color values — see the [Daily theme configuration reference](https://docs.daily.co/guides/products/prebuilt/customizing-daily-prebuilt-calls-with-color-themes) for all options.
