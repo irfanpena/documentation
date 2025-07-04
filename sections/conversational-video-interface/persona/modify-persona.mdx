@@ -1,0 +1,47 @@
+---
+title:
+description:
+---
+
+Modify Existing Persona
+Tavus lets you update any existing persona configuration using standard JSON Patch operations (add, replace, remove).
+
+Please see the Patch Persona endpoint for more details.
+```
+curl --request PATCH \
+  --url https://tavusapi.com/v2/personas/{persona_id} \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <api-key>' \
+  --data '[
+    {
+      "op": "add",
+      "path": "/layers/stt/hotwords",
+      "value": "leadership"
+    }
+  ]'
+
+
+curl --request PATCH \
+  --url https://tavusapi.com/v2/personas/{persona_id} \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <api-key>' \
+  --data '[
+    {
+      "op": "replace",
+      "path": "/layers/stt/stt_engine",
+      "value": "tavus-turbo"
+    }
+  ]'
+
+
+  curl --request PATCH \
+  --url https://tavusapi.com/v2/personas/{persona_id} \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <api-key>' \
+  --data '[
+    {
+      "op": "remove",
+      "path": "/layers/stt/participant_pause_sensitivity"
+    }
+  ]'
+```

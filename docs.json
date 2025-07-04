@@ -27,8 +27,7 @@
                 "group": "Quickstart",
                 "pages": [
                   "sections/conversational-video-interface/quickstart/use-the-full-pipeline",
-                  "sections/conversational-video-interface/quickstart/conversation-recordings",
-                  "sections/conversational-video-interface/quickstart/customize-conversation-ui"
+                  "sections/conversational-video-interface/quickstart/conversation-recordings"
                 ]
               },
               {

@@ -5,14 +5,11 @@ description: Learn how to customize identity and advanced settings for a convers
 
 A Conversation is a real-time video session between a user and a Tavus Replica. It enables two-way, face-to-face interaction using a fully managed WebRTC connection.
 
-Tavus relies on [Daily](https://www.daily.co/) to manage the WebRTC infrastructure. You do not need to set up or maintain any of these components manually.
-<Warning>
-### Credit Usage
-Credit usage begins when the conversation is created and the replica starts waiting in the room. Billing continues until the conversation ends or times out. This also uses up one of your concurrency spots.
-</Warning>
-
+Tavus relies on [Daily](https://www.daily.co/) to manage the WebRTC infrastructure.
+<Note>
 ### What is Daily?
-Tavus uses Daily as the integrated WebRTC provider. You do not need to create a Daily account, as the integration is handled for you. This allows you to build fully custom applications with CVI while accessing real-time audio and video streams as you would with WebRTC.
+Tavus uses Daily as the integrated WebRTC provider, so you don’t need to create a separate Daily account. The integration is handled for you, allowing you to build fully custom CVI applications without managing WebRTC yourself.
+</Note>
 
 ## Conversation Customizations
 Tavus provides several customizations that you can set per conversation:
@@ -45,3 +42,10 @@ Tavus provides several customizations that you can set per conversation:
   </Card>
 
 </CardGroup>
+
+## Billing Usage
+Tavus charges usage based on your account plan. Credits begin counting when a conversation is created and the replica starts waiting in the room. Usage ends when the conversation finishes or times out. Each active session also uses one concurrency slot.
+
+<Note>
+Refer to <a href="https://www.tavus.io/pricing" target="_blank">Tavus account plan</a> for billing rates, concurrency limits.
+</Note>
