@@ -60,17 +60,13 @@ The Conversational Video Interface (CVI) uses a modular layer system to process 
 
 Here’s how the layers interact:
 
-1. Perception captures visual input.
-
-2. STT transcribes user speech to text.
-
-3. LLM processes the text and generates a response.
-
-4. TTS converts the response to speech.
-
-5. Realtime Replica renders digital human with synchronized voice and expression.
-
-These layers work together in a live WebRTC conversation.
+1. User speaks via a WebRTC stream.
+2. Perception captures visual input (e.g., expressions, gaze) for added context to LLM.
+3. STT transcribes user speech to text.
+4. LLM processes the inputs and generates a text response.
+5. TTS converts the response to speech.
+6. Realtime Replica renders digital human with synchronized speech and expressions.
+7. User sees the digital human respond in real time.
 
 
 
