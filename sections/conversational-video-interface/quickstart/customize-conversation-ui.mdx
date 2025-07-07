@@ -1,7 +1,30 @@
 ---
 title: Customize Conversation UI
-description: Experience a conversation in a custom-colored Daily UI — styled to match your preference.
+description: Experience a conversation in a custom Daily UI — styled to match your preference.
 ---
+
+## Conversation Creation Flow
+When you create a conversation using the <a href="/api-reference/conversations/create-conversation" target="_blank">endpoint</a> or <a href="https://platform.tavus.io/" target="_blank">platform</a>:
+
+1. A WebRTC room (powered by **Daily**) is automatically created.
+2. You receive a meeting URL (e.g., `https://tavus.daily.co/ca980e2e`).
+3. The **replica** joins and waits in the room, timers for duration and timeouts begin.
+<Warning>
+**Billing Usage**
+
+Tavus charges usage based on your account plan. Credits begin counting when a conversation is created and the replica starts waiting in the room. Usage ends when the conversation finishes or times out. Each active session also uses one concurrency slot.
+</Warning>
+
+You can use the provided URL to enter the video room immediately. Alternatively, you can build a custom UI or stream handler instead of using the default interface.
+
+### What is Daily?
+
+Tavus integrates **Daily** as its WebRTC provider. You don't need to sign up for or manage a separate Daily account—Tavus handles the setup and configuration for you.
+
+This lets you:
+
+* Use the default video interface or <a href="/sections/conversational-video-interface/quickstart/customize-conversation-ui" target="_blank">customize the Daily UI</a>
+* <a href="/sections/integrations/embedding-cvi" target="_blank">Embed the CVI in your app</a>
 
 You can **customize your conversation interface** to match your style by updating Daily's Prebuilt UI theme — simply define your preferred colors for accents and backgrounds. For more options, check the <a href="https://docs.daily.co/guides/products/prebuilt/customizing-daily-prebuilt-calls-with-color-themes" target="_blank">Daily theme configuration reference</a>. Here's an example to customize your conversation by passing a custom color into the theme when embedding the call.
 
@@ -9,7 +32,7 @@ You can **customize your conversation interface** to match your style by updatin
 
 * <a href="https://nodejs.org/en/download" target='_blank'>Node.js and npm</a> installed.
 
-## Customization Steps
+## Color Customization Steps
 
 <Steps>
 <Step title="Step 1: Get an API Key">
@@ -54,7 +77,7 @@ npm install @daily-co/daily-js
 ```
 
 </Step>
-<Step title="Step 4: Customize the Conversation UI">
+<Step title="Step 4: Customize the Conversation UI Color">
 
 Replace the existing code in `App.js` with the following snippet, which includes customizations for the button, background, and text color.
 
@@ -114,3 +137,75 @@ Start the React application by using `npm run start`. You should see your custom
 </Step>
 </Steps>
 
+## Fully Custom UI
+
+For full control over the UI, you can use the [DailyCall's Properties](https://docs.daily.co/reference/daily-js/daily-call-client/properties) when creating DailyCall's frame.
+
+### UI Customization Steps
+
+<Steps>
+<Step title="Step 1: Get an API Key">
+1. Go to the <a href="https://platform.tavus.io/" target='_blank'>Tavus platform</a> and select **API Key** from the sidebar menu.
+2. Click **Create New Key** to begin generating your API key.
+3. Enter a name for the key and (optional) specify allowed IP addresses, then click **Create API Key**.
+4. Copy your newly created API key and store it securely.
+<Warning>
+We cannot recover your API Key if you lose it.
+</Warning>
+</Step>
+<Step title="Step 2: Create a Conversation">
+<Note>
+In this example, we will use stock replica ID **_rfe12d8b9597_** (Nathan) and stock persona ID **_pdced222244b_** (Sales Coach).
+</Note>
+Use the following request body example:
+```sh
+curl --request POST \
+  --url https://tavusapi.com/v2/conversations \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your_api_key>' \
+  --data '{
+  "replica_id": "rfe12d8b9597",
+  "persona_id": "pdced222244b"
+}'
+```
+<Note>
+Replace `<your_api_key>` with your actual API key.
+</Note>
+</Step>
+<Step title="Step 3: Customize the Conversation UI">
+1. Make a new `index.html` file
+
+2. Paste following code into the file, replace `DAILY_ROOM_URL` in the code with your own room URL from step above
+
+```html {6-8}
+<html>
+  <script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
+  <body>
+    <script>
+      call = window.Daily.createFrame({
+        showLeaveButton: true,
+        lang: "jp",
+        showFullscreenButton: true,
+        iframeStyle: {
+          position: 'fixed',
+          top: '0',
+          left: '0',
+          width: '100%',
+          height: '100%',
+        },
+      });
+      call.join({ url: 'https://tavus.daily.co/cd4c958171f504cb' });
+    </script>
+  </body>
+</html>
+```
+</Step>
+<Step title="Run the Application">
+Start the application by opening the file in the browser.
+
+<Frame>
+  ![](/images/customui.png)
+</Frame>
+
+</Step>
+</Steps>
