@@ -5,7 +5,7 @@ description: Frequently asked questions about Tavus’s Conversational Video Int
 
 <AccordionGroup>
 <Accordion title="What is Daily?">
-**Daily** is a platform that offers prebuilt video call apps and APIs, allowing you to easily integrate video chat into your web applications. You can embed a customizable video call widget into your site with just a few lines of code, and access features like screen sharing and recording. **Tavus partners with Daily to power video conversations with our replicas.**
+**Daily** is a platform that offers prebuilt video call apps and APIs, allowing you to easily integrate video chat into your web applications. You can embed a customizable video call widget into your site with just a few lines of code and access features like screen sharing and recording. **Tavus partners with Daily to power video conversations with our replicas.**
 </Accordion>
 <Accordion title="How can I tell what’s happening in the room as a developer?">
 * **Transcript:** Available for analysis at the end of a conversation.
@@ -53,7 +53,7 @@ Refer to our <a href="/sections/conversational-video-interface/persona/stt" targ
 * Naturalness tends to be higher when recording is done on a laptop camera, as if they were in a Zoom call.
 </Accordion>
 <Accordion title="How can I tell what’s happening in the stream/room as a developer?">
-Be sure to specify a `callback_url` when creating a conversation. Tavus will return conversation updates to this URL via webhook. Example updates include `replica_joined`, `shutdown`, and `transcript_ready`. For more details check out <a href="https://docs.tavus.io/sections/conversational-video-interface/conversation-callbacks" target='_blank'>conversation callbacks</a>. We also additionally broadcast a variety of realtime events through the App Message layer through our <a href="/api-reference/interactions-protocol" target='_blank'>Interactions Protocol</a> that can be listened to by a Daily call client.
+Be sure to specify a `callback_url` when creating a conversation. Tavus will return conversation updates to this URL via webhook. Example updates include `replica_joined`, `shutdown`, and `transcript_ready`. For more details, check out <a href="https://docs.tavus.io/sections/conversational-video-interface/conversation-callbacks" target='_blank'>conversation callbacks</a>. We also additionally broadcast a variety of real-time events through the App Message layer through our <a href="/api-reference/interactions-protocol" target='_blank'>Interactions Protocol</a> that can be listened to by a Daily call client.
 </Accordion>
 <Accordion title="Why did the conversation end so quickly and suddenly?">
 * The default `max_call_duration` is just 4 minutes (240 seconds). It is recommended to update this in the <a href="/api-reference/conversations/create-conversation" target='_blank'>create conversation</a> call.
@@ -83,7 +83,7 @@ This allows you to tailor the conversational experience to your specific needs, 
 * The default LLM, `tavus-llama`, has a **limit of 120,000 tokens**.
 * Contexts over **100,000 tokens** will experience noticeable performance degradation (slower response times).
 <Tip>
-1 token ≈ 4 characters, therefore 120,000 tokens ≈ 480,000 characters (including spaces and punctuation).
+1 token ≈ 4 characters; therefore 120,000 tokens ≈ 480,000 characters (including spaces and punctuation).
 </Tip>
 </Accordion>
 <Accordion title="What are some recording tips for producing high quality conversational replica training footage?">
