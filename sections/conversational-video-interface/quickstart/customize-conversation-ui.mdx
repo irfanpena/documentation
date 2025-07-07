@@ -26,120 +26,9 @@ This lets you:
 * Use the default video interface or <a href="/sections/conversational-video-interface/quickstart/customize-conversation-ui" target="_blank">customize the Daily UI</a>
 * <a href="/sections/integrations/embedding-cvi" target="_blank">Embed the CVI in your app</a>
 
-You can **customize your conversation interface** to match your style by updating Daily's Prebuilt UI theme — simply define your preferred colors for accents and backgrounds. For more options, check the <a href="https://docs.daily.co/guides/products/prebuilt/customizing-daily-prebuilt-calls-with-color-themes" target="_blank">Daily theme configuration reference</a>. Here's an example to customize your conversation by passing a custom color into the theme when embedding the call.
-
-## Prerequisites
-
-* <a href="https://nodejs.org/en/download" target='_blank'>Node.js and npm</a> installed.
-
-## Color Customization Steps
-
-<Steps>
-<Step title="Step 1: Get an API Key">
-1. Go to the <a href="https://platform.tavus.io/" target='_blank'>Tavus platform</a> and select **API Key** from the sidebar menu.
-2. Click **Create New Key** to begin generating your API key.
-3. Enter a name for the key and (optional) specify allowed IP addresses, then click **Create API Key**.
-4. Copy your newly created API key and store it securely.
-<Warning>
-We cannot recover your API Key if you lose it.
-</Warning>
-</Step>
-<Step title="Step 2: Create a Conversation">
-<Note>
-In this example, we will use stock replica ID **_rfe12d8b9597_** (Nathan) and stock persona ID **_pdced222244b_** (Sales Coach).
-</Note>
-Use the following request body example:
-```sh
-curl --request POST \
-  --url https://tavusapi.com/v2/conversations \
-  --header 'Content-Type: application/json' \
-  --header 'x-api-key: <your_api_key>' \
-  --data '{
-  "replica_id": "rfe12d8b9597",
-  "persona_id": "pdced222244b"
-}'
-```
-<Note>
-Replace `<your_api_key>` with your actual API key.
-</Note>
-</Step>
-<Step title="Step 3: Setup Development">
-1. Set up a new React application in your preferred project directory.
-
-```sh
-npx create-react-app .
-```
-
-2. Install the Daily JS SDK.
-
-```sh
-npm install @daily-co/daily-js
-```
-
-</Step>
-<Step title="Step 4: Customize the Conversation UI Color">
-
-Replace the existing code in `App.js` with the following snippet, which includes customizations for the button, background, and text color.
-
-```js
-import React, { useEffect, useRef } from 'react';
-import DailyIframe from '@daily-co/daily-js';
-
-const App = () => {
-  const callFrameRef = useRef(null);
-
-  useEffect(() => {
-    const callFrame = DailyIframe.createFrame({
-      iframeStyle: {
-        position: "fixed",
-        width: "100%",
-        height: "100%",
-        border: "0",
-      },
-      theme: {
-        colors: {
-          accent: "#2F80ED", // primary button and accent color
-          background: "#F8F9FA", // main background color
-          baseText: "#1A1A1A", // text color
-        },
-      },
-    });
-
-    callFrame.join({ url: "<your_conversation_url>" });
-    
-    callFrameRef.current = callFrame;
-
-    return () => {
-      if (callFrameRef.current) {
-        callFrameRef.current.destroy();
-      }
-    };
-  }, []);
-
-  return <div className="w-full h-screen" />;
-};
-
-export default App;
-```
-
-<Note>
-Replace `<your_conversation_url>` with your actual Conversation URL.
-</Note>
-
-</Step>
-<Step title="Run the Application">
-Start the React application by using `npm run start`. You should see your customized Daily video call in `localhost:3000`.
-
-<Frame>
-  ![](/images/customize-ui.png)
-</Frame>
-
-</Step>
-</Steps>
-
 ## Fully Custom UI
 
-For full control over the UI, you can use the [DailyCall's Properties](https://docs.daily.co/reference/daily-js/daily-call-client/properties) when creating DailyCall's frame.
+You can **customize your conversation interface** to match your style by updating Daily's Prebuilt UI. For more options, check the <a href="https://docs.daily.co/guides/products/prebuilt/customizing-daily-prebuilt-calls-with-color-themes" target="_blank">Daily theme configuration reference</a> and [Daily Call Properties](https://docs.daily.co/reference/daily-js/daily-call-client/properties). Here's an example to add some button, change languange, and customize your conversation by passing a custom color into the theme when embedding the call.
 
 ### UI Customization Steps
 
@@ -177,15 +66,15 @@ Replace `<your_api_key>` with your actual API key.
 
 2. Paste following code into the file, replace `DAILY_ROOM_URL` in the code with your own room URL from step above
 
-```html {6-8}
+```html {6-8,16-22}
 <html>
   <script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
   <body>
     <script>
       call = window.Daily.createFrame({
-        showLeaveButton: true,
-        lang: "jp",
-        showFullscreenButton: true,
+        showLeaveButton: true, // Leave button on bottom right
+        lang: "jp", // Language set to japan
+        showFullscreenButton: true, // Fullscreen button on top left
         iframeStyle: {
           position: 'fixed',
           top: '0',
@@ -193,8 +82,15 @@ Replace `<your_api_key>` with your actual API key.
           width: '100%',
           height: '100%',
         },
+        theme: {
+          colors: {
+            accent: "#2F80ED", // primary button and accent color
+            background: "#F8F9FA", // main background color
+            baseText: "#1A1A1A", // text color
+          },
+        },
       });
-      call.join({ url: 'https://tavus.daily.co/cd4c958171f504cb' });
+      call.join({ url: 'DAILY_ROOM_URL' });
     </script>
   </body>
 </html>
