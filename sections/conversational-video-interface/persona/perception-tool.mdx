@@ -112,19 +112,10 @@ Perception Tool calling is triggered during an active conversation when the perc
 This example explains the `notify_if_id_shown` function from the <a href="#example-configuration" target="_blank">example configuration</a> above.  
 </Note>
 
-<Steps>
-<Step title="Visual Input Detected">
-   The AI processes real-time visual input through the `raven-0` perception model.  
-   <br/>**Example**: The user holds up a driver's license in front of the camera.
-</Step>
-<Step title="Tool Matching"> 
-   The perception model analyzes the image and matches the scene to the function `notify_if_id_shown`, which is designed to trigger when an ID (like a passport or driver’s license) is detected.
-</Step>
-<Step title="Event Broadcast"> 
-   Tavus broadcasts a <a href="https://docs.tavus.io/sections/event-schemas/conversation-perception-tool-call" target="_blank">perception_tool_call</a> event over the active <a href="https://docs.daily.co" target="_blank">Daily</a> room.  
-   <br/>Your app can listen for this event, process the function (e.g., by logging the ID type or taking further action), and return the result to the AI.
-</Step>
-</Steps>
+<Frame>
+![](/images/tool-call-for-perception.png)
+</Frame>
+
 <Note>  
 The same process applies to other functions like `notify_if_bright_outfit_shown`, which is triggered if a bright-colored outfit is visually detected.  
 </Note>

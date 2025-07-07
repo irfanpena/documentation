@@ -114,20 +114,11 @@ Tool calling is triggered during an active conversation when the LLM model needs
 <Note>
 This example explains the `get_current_time` function from the <a href="#example-configuration" target="_blank" rel="noopener noreferrer">example configuration</a> above.
 </Note>
-<Steps>
-<Step title="Input Detected">
-   The AI processes real-time speech input.
-   <br/><br/>**Example**: The user says, `“What time is it now in New York?”`
-</Step>
-<Step title="Tool Matching">  
-   The LLM analyzes the input and identifies that the user's question matches the purpose of the `get_current_time` function, which expects a `location` argument.
-</Step>
-<Step title="Event Broadcast">  
-   Tavus broadcasts a <a href="https://docs.tavus.io/sections/event-schemas/conversation-toolcall" target="_blank">tool call</a> event over the active <a href="https://docs.daily.co" target="_blank">Daily</a> room.
-   <br/><br/>Your app can listen for this event, handle the tool call (e.g. by calling an API), and return the result to the AI for use in its response:
-   <br/>`“It’s currently 2:43 PM in New York”`
-</Step>
-</Steps>
+
+<Frame>
+![](/images/tool-call-for-llm.png)
+</Frame>
+
 ## Modify Existing Tools
 You can update `tools` definitions using the <a href="https://docs.tavus.io/api-reference/personas/patch-persona" target="_blank">Update Persona API</a>.
 ```shell
