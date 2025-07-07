@@ -3,31 +3,6 @@ title: Customize Conversation UI
 description: Experience a conversation in a custom Daily UI — styled to match your preference.
 ---
 
-## Conversation Creation Flow
-When you create a conversation using the <a href="/api-reference/conversations/create-conversation" target="_blank">endpoint</a> or <a href="https://platform.tavus.io/" target="_blank">platform</a>:
-
-1. A WebRTC room (powered by **Daily**) is automatically created.
-2. You receive a meeting URL (e.g., `https://tavus.daily.co/ca980e2e`).
-3. The **replica** joins and waits in the room, timers for duration and timeouts begin.
-<Warning>
-**Billing Usage**
-
-Tavus charges usage based on your account plan. Credits begin counting when a conversation is created and the replica starts waiting in the room. Usage ends when the conversation finishes or times out. Each active session also uses one concurrency slot.
-</Warning>
-
-You can use the provided URL to enter the video room immediately. Alternatively, you can build a custom UI or stream handler instead of using the default interface.
-
-### What is Daily?
-
-Tavus integrates **Daily** as its WebRTC provider. You don't need to sign up for or manage a separate Daily account—Tavus handles the setup and configuration for you.
-
-This lets you:
-
-* Use the default video interface or <a href="/sections/conversational-video-interface/quickstart/customize-conversation-ui" target="_blank">customize the Daily UI</a>
-* <a href="/sections/integrations/embedding-cvi" target="_blank">Embed the CVI in your app</a>
-
-## UI Customization
-
 You can **customize your conversation interface** to match your style by updating Daily's Prebuilt UI. For more options, check the <a href="https://docs.daily.co/guides/products/prebuilt/customizing-daily-prebuilt-calls-with-color-themes" target="_blank">Daily theme configuration reference</a> and <a href="https://docs.daily.co/reference/daily-js/daily-call-client/properties" target='_blank'>Daily Call Properties</a>. 
 
 Here’s an example showing how to customize the conversation UI by adding leave and fullscreen buttons, changing the language, and adjusting the UI color.
