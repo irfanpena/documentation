@@ -18,7 +18,7 @@ Ensure both URLs remain valid for at least **24 hours**.
 ## Create a Replica
 <Steps>
 <Step title="Step 1: Get an API Key" titleSize="h3">
-1. Go to the [Tavus platform](https://platform.tavus.io/) and select **API Key** from the sidebar menu.
+1. Go to the <a href="https://platform.tavus.io/" target="_blank">Tavus platform</a> and select **API Key** from the sidebar menu.
 2. Click **Create New Key** to begin generating your API key.
 3. Enter a name for the key and (optional) specify allowed IP addresses, then click **Create API Key**.
 4. Copy your newly created API key and store it securely.
@@ -50,7 +50,7 @@ This process typically takes 4–6 hours.
 
 </Step>
 <Step title="Step 3: Check Replica Status">
-You can monitor the training status using the [Get Replica](https://docs.tavus.io/api-reference/phoenix-replica-model/get-replica) endpoint:
+You can monitor the training status using the <a href="https://docs.tavus.io/api-reference/phoenix-replica-model/get-replica" target='_blank'>Get Replica</a> endpoint:
 ```shell cURL
 curl --request GET \
   --url https://tavusapi.com/v2/replicas/{replica_id} \
@@ -69,7 +69,7 @@ Once training is complete, you can use your non-human replica for:
 ## Non-human Replica
 To create a non-human replica, you do not need a consent video:
 
-<Note> If you're using the [Developer Portal](https://platform.tavus.io/), select the **Skip** tab in the consent video window. </Note>
+<Note> If you're using the <a href="https://platform.tavus.io/" target='_blank'>Developer Portal</a>, select the **Skip** tab in the consent video window. </Note>
 
 ```shell cURL
 curl --request POST \

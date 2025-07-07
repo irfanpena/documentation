@@ -15,9 +15,9 @@ Using the Interactions Protocol, you can:
 ### Setup
 The Interactions Protocol uses the Daily data channel to broadcast and receive events between the user and the replica.
 
-To broadcast and listen for events, a [Daily Call Client](https://docs.daily.co/reference/daily-js/daily-call-client) will need to be instantiated on the client side using a `conversation_url`.
+To broadcast and listen for events, a <a href="https://docs.daily.co/reference/daily-js/daily-call-client" target="_blank">Daily Call Client</a> will need to be instantiated on the client side using a `conversation_url`.
 
-Once a call client is created, an [event listener](https://docs.daily.co/reference/daily-js/events) can be created that takes action on receiving an [app-message](https://docs.daily.co/reference/daily-js/events/participant-events#app-message) event.
+Once a call client is created, an <a href="https://docs.daily.co/reference/daily-js/events" target="_blank">event listener</a> can be created that takes action on receiving an <a href="https://docs.daily.co/reference/daily-js/events/participant-events#app-message" target="_blank">app-message</a> event.
 
 By default, Tavus will broadcast <a href="/api-reference/event-schemas/conversation-utterance" target="_blank" rel="noopener noreferrer">utterance events</a> when a replica begins speaking. At that time, both the user's utterance and the replica's utterance will be sent together. This allows the client to receive accurate transcription of what is occurring in the call.
 
@@ -26,7 +26,7 @@ Tavus will also broadcast <a href="/api-reference/event-schemas/conversation-too
 Tavus will broadcast
 <a href="/api-reference/event-schemas/conversation-replica-start-stop-speaking-event" target="_blank" rel="noopener noreferrer">replica-started/stopped-speaking-event</a> when the replica actually starts or stops speaking. 
 
-The client is able to interact with the replica in real time by broadcasting an <a href="https://docs.daily.co/reference/daily-js/events/participant-events#app-message" target="_blank">app-message</a> to the Daily Room. Broadcasting a message can be accomplished by using [sendAppMessage()](https://docs.daily.co/reference/daily-js/instance-methods/send-app-message). 
+The client is able to interact with the replica in real time by broadcasting an <a href="https://docs.daily.co/reference/daily-js/events/participant-events#app-message" target="_blank">app-message</a> to the Daily Room. Broadcasting a message can be accomplished by using <a href="https://docs.daily.co/reference/daily-js/instance-methods/send-app-message" target="_blank">sendAppMessage()</a>. 
 
 Upon receiving the message, the replica will act on the broadcasted message.
 
