@@ -212,21 +212,7 @@
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Community",
-          "href": "https://discord.gg/5Y9Er6WNN5",
-          "icon": "discord"
-        },
-        {
-          "anchor": "Status",
-          "href": "https://status.tavus.io",
-          "icon": "tower-broadcast"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.png",
