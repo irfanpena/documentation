@@ -1,0 +1,99 @@
+---
+title: FAQ
+description: Frequently asked questions about Tavus’s Conversational Video Interface
+---
+
+<AccordionGroup>
+<Accordion title="What is Daily?">
+**Daily** is a platform that offers prebuilt video call apps and APIs, allowing you to easily integrate video chat into your web applications. You can embed a customizable video call widget into your site with just a few lines of code, and access features like screen sharing and recording. **Tavus partners with Daily to power video conversations with our replicas.**
+</Accordion>
+<Accordion title="How can I tell what’s happening in the room as a developer?">
+* **Transcript:** Available for analysis at the end of a conversation.
+* **Shutdowns:**
+    * **Max call duration:**
+        * This is a clock that starts on conversation creation, not when a replica or participant joins.
+        * The default duration is 4 minutes. It is recommended to update this.
+    * **Idle timeout:** Referred to as `participant_left_timeout`.
+* **Errors:** Monitor for any system errors.
+* **Participant join:** Keep track of when participants join.
+</Accordion>
+<Accordion title="Do I need a Daily account?">
+* You **do not** need to sign up for a Daily account to use Tavus’s Conversational Video Interface.
+* All you need is the Daily room URL (called `conversation_url` in our system) that is returned by the Tavus API. You can serve this link directly to your end users or embed it.
+</Accordion>
+<Accordion title="How do I embed the video stream/room?">
+Once you have the Daily room URL (called `conversation_url` when returned by Tavus) ready, replace `DAILY_ROOM_URL` in the code snippet below with your own room URL (e.g. `https://tavus.daily.co/c1234abcd`).
+```html
+<html>
+  <script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
+  <body>
+    <script>
+      call = window.Daily.createFrame();
+      call.join({ url: 'DAILY_ROOM_URL' });
+    </script>
+  </body>
+</html>
+```
+That’s it! For more details and options for embedding, check out <a href="https://docs.daily.co/guides/products/prebuilt#step-by-step-guide-embed-daily-prebuilt" target="_blank">Daily’s documentation here.</a>
+</Accordion>
+<Accordion title="How can I use my own TTS engine to power conversations?">
+Refer to our <a href="/sections/conversational-video-interface/persona/tts" target='_blank'>Text-to-Speech (TTS) documentation</a> for more details.
+</Accordion>
+<Accordion title="How can I use my own LLM to power conversations?">
+Refer to our <a href="/sections/conversational-video-interface/persona/llm" target='_blank'>Large Language Model (LLM) documentation</a> for more details.
+</Accordion>
+<Accordion title="How can I adjust the STT / VAD behavior?">
+Refer to our <a href="/sections/conversational-video-interface/persona/stt" target='_blank'>Speech-to-Text (STT) documentation</a> for more details.
+</Accordion>
+<Accordion title="What are the recording instructions for a conversational replica?">
+**What makes a good convo replica:**
+* Most of our tips apply from best practices for regular <a href="/sections/replica/overview" target="_blank">replicas.</a>
+* Predominantly still, with minimal head movement.
+* Ideally, the user should stop and be still and silent for 5 seconds throughout the script reading.
+* Naturalness tends to be higher when recording is done on a laptop camera, as if they were in a Zoom call.
+</Accordion>
+<Accordion title="How can I tell what’s happening in the stream/room as a developer?">
+Be sure to specify a `callback_url` when creating a conversation. Tavus will return conversation updates to this URL via webhook. Example updates include `replica_joined`, `shutdown`, and `transcript_ready`. For more details check out <a href="https://docs.tavus.io/sections/conversational-video-interface/conversation-callbacks" target='_blank'>conversation callbacks</a>. We also additionally broadcast a variety of realtime events through the App Message layer through our <a href="/api-reference/interactions-protocol" target='_blank'>Interactions Protocol</a> that can be listened to by a Daily call client.
+</Accordion>
+<Accordion title="Why did the conversation end so quickly and suddenly?">
+* The default `max_call_duration` is just 4 minutes (240 seconds). It is recommended to update this in the <a href="/api-reference/conversations/create-conversation" target='_blank'>create conversation</a> call.
+* The `max_call_duration` is a clock that starts on conversation creation, not when a replica or participant joins.
+</Accordion>
+<Accordion title="How can I record a conversation?">
+To record a conversation, you need to…
+
+1. Enable the recording feature by setting the `enable_recording` property to `true`. This will allow the conversation to be recorded.
+2. Specify the S3 bucket where the recording will be stored by setting the `recording_s3_bucket_name` and `recording_s3_bucket_region` properties.
+3. If your setup requires assuming a specific AWS role to access the S3 bucket, make sure to provide the ARN of the role in the `aws_assume_role_arn` property.
+
+These configurations will ensure that your conversation is recorded and securely stored in the designated S3 bucket. For detailed instructions, please refer to the guide provided <a href='/sections/conversational-video-interface/quickstart/conversation-recordings' target='_blank'>here</a>.
+</Accordion>
+<Accordion title="What LLM (Large Language Model) does Tavus use to power the conversational replicas?">
+Tavus offers flexibility in choosing the LLM (Large Language Model) to power your conversational replicas. You can either use one of Tavus’s own models or bring your own!
+
+* **No LLM Layer:** If you don’t include an LLM layer, Tavus will automatically default to a Tavus-provided model.
+* **Tavus-Provided LLMs:** You can choose between three different models:
+    * **tavus-gpt-4o:** The smartest option for complex interactions.
+    * **tavus-gpt-4o-mini:** A hybrid model that balances performance and intelligence.
+    * **tavus-llama:** The **default** choice if no LLM layer is provided. This is the fastest model, offering the best user-to-user (U2U) experience. It’s on-premise, making it incredibly performant.
+
+This allows you to tailor the conversational experience to your specific needs, whether you prioritize speed, intelligence, or a balance of both.
+</Accordion>
+<Accordion title="What is the maximum context window supported by the default LLM?">
+* The default LLM, `tavus-llama`, has a **limit of 120,000 tokens**.
+* Contexts over **100,000 tokens** will experience noticeable performance degradation (slower response times).
+<Tip>
+1 token ≈ 4 characters, therefore 120,000 tokens ≈ 480,000 characters (including spaces and punctuation).
+</Tip>
+</Accordion>
+<Accordion title="What are some recording tips for producing high quality conversational replica training footage?">
+When recording footage for training conversational replicas, here are some key tips to ensure high quality:
+
+1. **Minimal Head Movement:** Aim to keep your head and body as still as possible during the recording. This helps in maintaining consistency and improves the overall quality of the training data.
+2. **Pause and Be Still:** It’s recommended to stop, stay still, and remain silent for at least 5 seconds at regular intervals throughout the script. These pauses are crucial for helping the replica appear natural during moments of silence in a conversation.
+3. **Use a Laptop Camera:** Recording on a laptop camera, as if you were on a Zoom call, often yields the most natural results. This setup mimics a familiar conversational setting, enhancing the naturalness of the footage.
+</Accordion>
+<Accordion title="Do I need to invite the replica to the meeting room?">
+No, it will automatically join as soon as it’s ready!
+</Accordion>
+</AccordionGroup>

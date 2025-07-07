@@ -26,11 +26,13 @@ This lets you:
 * Use the default video interface or <a href="/sections/conversational-video-interface/quickstart/customize-conversation-ui" target="_blank">customize the Daily UI</a>
 * <a href="/sections/integrations/embedding-cvi" target="_blank">Embed the CVI in your app</a>
 
-## Fully Custom UI
+## UI Customization
 
-You can **customize your conversation interface** to match your style by updating Daily's Prebuilt UI. For more options, check the <a href="https://docs.daily.co/guides/products/prebuilt/customizing-daily-prebuilt-calls-with-color-themes" target="_blank">Daily theme configuration reference</a> and [Daily Call Properties](https://docs.daily.co/reference/daily-js/daily-call-client/properties). Here's an example to add some button, change languange, and customize your conversation by passing a custom color into the theme when embedding the call.
+You can **customize your conversation interface** to match your style by updating Daily's Prebuilt UI. For more options, check the <a href="https://docs.daily.co/guides/products/prebuilt/customizing-daily-prebuilt-calls-with-color-themes" target="_blank">Daily theme configuration reference</a> and <a href="https://docs.daily.co/reference/daily-js/daily-call-client/properties" target='_blank'>Daily Call Properties</a>. 
 
-### UI Customization Steps
+Here’s an example showing how to customize the conversation UI by adding leave and fullscreen buttons, changing the language, and adjusting the UI color.
+
+### Customization Example Guide
 
 <Steps>
 <Step title="Step 1: Get an API Key">
@@ -72,9 +74,9 @@ Replace `<your_api_key>` with your actual API key.
   <body>
     <script>
       call = window.Daily.createFrame({
-        showLeaveButton: true, // Leave button on bottom right
-        lang: "jp", // Language set to japan
-        showFullscreenButton: true, // Fullscreen button on top left
+        showLeaveButton: true,       // Leave button on bottom right
+        lang: "jp",                  // Language set to Japanese
+        showFullscreenButton: true,  // Fullscreen button on top left
         iframeStyle: {
           position: 'fixed',
           top: '0',
@@ -84,9 +86,9 @@ Replace `<your_api_key>` with your actual API key.
         },
         theme: {
           colors: {
-            accent: "#2F80ED", // primary button and accent color
-            background: "#F8F9FA", // main background color
-            baseText: "#1A1A1A", // text color
+            accent: "#2F80ED",      // primary button and accent color
+            background: "#F8F9FA",  // main background color
+            baseText: "#1A1A1A",    // text color
           },
         },
       });

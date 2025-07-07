@@ -9,9 +9,9 @@
   },
   "favicon": "/favicon.png",
   "navigation": {
-    "tabs": [
+    "anchors": [
       {
-        "tab": "Documentation",
+        "anchor": "Documentation",
         "groups": [
           {
             "group": "Getting Started",
@@ -94,7 +94,8 @@
                   "sections/integrations/pipecat"
                   
                 ]
-              }
+              },
+              "sections/conversational-video-interface/faq"
             ]
           },
           {
@@ -132,7 +133,7 @@
         ]
       },
       {
-        "tab": "API Reference",
+        "anchor": "API Reference",
         "groups": [
           {
             "group": "Replicas",
@@ -212,7 +213,21 @@
           }
         ]
       }
-    ]
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Community",
+          "href": "https://discord.gg/5Y9Er6WNN5",
+          "icon": "discord"
+        },
+        {
+          "anchor": "Status",
+          "href": "https://status.tavus.io",
+          "icon": "tower-broadcast"
+        }
+      ]
+    }
   },
   "logo": {
     "light": "/logo/light.png",
