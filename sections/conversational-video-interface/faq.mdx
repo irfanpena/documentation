@@ -165,6 +165,79 @@ When recording footage for training conversational replicas, here are some key t
 2. **Pause and Be Still:** It’s recommended to stop, stay still, and remain silent for at least 5 seconds at regular intervals throughout the script. These pauses are crucial for helping the replica appear natural during moments of silence in a conversation.
 3. **Use a Laptop Camera:** Recording on a laptop camera, as if you were on a Zoom call, often yields the most natural results. This setup mimics a familiar conversational setting, enhancing the naturalness of the footage.
 </Accordion>
+<Accordion title="How do I add perception tool calls?">
+  You can configure perception tools in the `layers.perception` object when creating a persona:
+
+  ```json [expandable]
+  {
+    "layers": {
+      "perception": {
+        "perception_model": "raven-0",
+        "ambient_awareness_queries": [
+          "Is the user showing an ID card?",
+          "Is the user wearing a mask?"
+        ],
+        "perception_tool_prompt": "You have a tool to notify the system when an ID card is detected, named `notify_if_id_shown`. You MUST use this tool when a bright outfit is detected.",
+        "perception_tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "notify_if_id_shown",
+              "description": "Use this function when a drivers license or passport is detected in the image with high confidence",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "id_type": {
+                    "type": "string",
+                    "description": "best guess on what type of ID it is"
+                  }
+                },
+                "required": ["id_type"]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+  ```
+
+  Or modify perception tools using the [Update Persona API](/api-reference/personas/patch-persona):
+
+  ```sh [expandable]
+  curl --request PATCH \
+    --url https://tavusapi.com/v2/personas/{persona_id} \
+    --header 'Content-Type: application/json' \
+    --header 'x-api-key: <api-key>' \
+    --data '[
+      {
+        "op": "replace",
+        "path": "/layers/perception/perception_tools",
+        "value": [
+          {
+            "type": "function",
+            "function": {
+              "name": "detect_glasses",
+              "description": "Trigger this function if the user is wearing glasses",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "glasses_type": {
+                    "type": "string",
+                    "description": "Type of glasses (e.g., reading, sunglasses)"
+                  }
+                },
+                "required": ["glasses_type"]
+              }
+            }
+          }
+        ]
+      }
+    ]'
+  ```
+
+  Read more on this [page](/sections/conversational-video-interface/persona/perception)
+</Accordion>
 <Accordion title="Do I need to invite the replica to the meeting room?">
 No, it will automatically join as soon as it’s ready!
 </Accordion>
