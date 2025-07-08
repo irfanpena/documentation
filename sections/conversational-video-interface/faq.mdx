@@ -63,6 +63,83 @@ To add a custom LLM layer, you’ll need the model name, base URL, and API key f
 ```
 For more details, refer to our <a href="/sections/conversational-video-interface/persona/llm#custom-llms" target='_blank'>Large Language Model (LLM) documentation</a>.
 </Accordion>
+<Accordion title="How do I modify TTS voices?">
+You can integrate with third-party TTS providers by configuring the tts object in your persona. Supported engines include:
+* Cartesia
+* ElevenLabs
+* PlayHT
+
+Example configuration:
+```json
+{
+  "layers": {
+    "tts": {
+      "api_key": "your-tts-provider-api-key",
+      "tts_engine": "cartesia",
+      "external_voice_id": "your-voice-id",
+      "voice_settings": {
+        "speed": "normal",
+        "emotion": ["positivity:high", "curiosity"]
+      },
+      "tts_emotion_control": true,
+      "tts_model_name": "sonic",
+      "playht_user_id": "your-playht-user-id"
+    }
+  }
+}
+```
+
+For more details, read more on [our TTS documentation](/sections/conversational-video-interface/persona/tts).
+</Accordion> 
+<Accordion title="How do I add call-back URLs?">
+You need to create a webhook endpoint that can receive POST requests from Tavus. This endpoint will receive the callback events for the visual summary after the conversation ended. Then, add `callback_url` property when creating the conversation
+  
+```sh {8}
+curl --request POST \
+  --url https://tavusapi.com/v2/conversations \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your_api_key>' \
+  --data '{
+  "persona_id": "p596401c2cf9",
+  "replica_id": "rf4703150052",
+  "callback_url": "your_webhook_url"
+}'
+``` 
+</Accordion>
+<Accordion title="How do I get transcripts for my conversation?">
+You need to create a webhook endpoint that can receive `POST` requests from Tavus. This endpoint will receive the callback events for the transcripts after the conversation ended. Then, add `callback_url` property when creating the conversation.
+
+```sh {8}
+curl --request POST \
+  --url https://tavusapi.com/v2/conversations \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your_api_key>' \
+  --data '{
+  "persona_id": "p596401c2cf9",
+  "replica_id": "rf4703150052",
+  "callback_url": "your_webhook_url"
+}'
+```
+
+Your backend then will receive an event with properties `event_type = application.transcription_ready`.
+</Accordion>
+<Accordion title="How do I get visual summary for my conversation?">
+You need to create a webhook endpoint that can receive `POST` requests from Tavus. This endpoint will receive the callback events for the visual summary after the conversation ended. Then, add `callback_url` property when creating the conversation.
+
+```sh {8}
+curl --request POST \
+  --url https://tavusapi.com/v2/conversations \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your_api_key>' \
+  --data '{
+  "persona_id": "p596401c2cf9",
+  "replica_id": "rf4703150052",
+  "callback_url": "your_webhook_url"
+}'
+```
+
+Your backend then will receive an event with properties `event_type = application.perception_analysis`.
+</Accordion>
 <Accordion title="What LLM (Large Language Model) does Tavus use to power the conversational replicas?">
 Tavus offers flexibility in choosing the LLM (Large Language Model) to power your conversational replicas. You can either use one of Tavus’s own models or bring your own!
 
