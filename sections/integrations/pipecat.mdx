@@ -35,7 +35,7 @@ Before integrating Tavus with Pipecat, ensure you have the following:
 ```sh
 pip install pipecat-ai[tavus]
 ```
-2. In the `.env` file of your pipecat application (at /path/to/pipecat/.env) add
+2. In the `.env` file of your pipecat application (at `/path/to/pipecat/.env`) add:
 ```env
 TAVUS_API_KEY=<your_api_key>
 TAVUS_REPLICA_ID=<your_replica_id>
@@ -45,7 +45,7 @@ Replace `<your_api_key>` and `<your_replica_id>` with your actual Tavus API key 
 </Note>
 </Step>
 <Step title="Step 2: Create the Tavus transport layer">
-Initialize `TavusTransport` with your bot name, Tavus API key, Replica ID, session, and additional parameters to set up the transport layer.
+Create an instance of `TavusTransport` by providing your bot name, Tavus API key, Replica ID, session, and additional parameters.
 
 ```py {6, 16-27}
 import os
@@ -129,7 +129,7 @@ You can use `TavusVideoService` to enable real-time AI-driven video interactions
 ```sh
 pip install pipecat-ai[tavus]
 ```
-2. Set the following environmental variables.
+2. In the `.env` file of your pipecat application (at `/path/to/pipecat/.env`) add:
 ```env
 TAVUS_API_KEY=<your_api_key>
 TAVUS_REPLICA_ID=<your_replica_id>
@@ -138,8 +138,9 @@ TAVUS_REPLICA_ID=<your_replica_id>
 Replace `<your_api_key>` and `<your_replica_id>` with your actual Tavus API key and Replica ID you want to use.
 </Note>
 </Step>
-<Step title="Step 2: Instantiate the Tavus Video Service">
+<Step title="Step 2: Create the Tavus Video Service">
 Create an instance of `TavusVideoService` by providing your Tavus API key and Tavus Replica ID.
+
 ```py {6, 15-19}
 import argparse
 import os
