@@ -1,11 +1,16 @@
 ---
-title: Overview
-description: Define how your persona behaves, responds, and speaks by configuring layers and modes.
+title: "Overview"
+description: "Define how your persona behaves, responds, and speaks by configuring layers and modes."
 ---
 
-A Persona defines the behavior, voice, and response style of a Tavus Replica. It combines identity, contextual knowledge, and CVI pipeline configuration to create a real-time conversational agent.
+Personas are the ‘character’ or ‘AI agent personality’ and contain all of the settings and configuration for that character or agent. For example, you can create a persona for ‘Tim the sales agent’ or ‘Rob the interviewer’.
+
+Personas combine identity, contextual knowledge, and CVI pipeline configuration to create a real-time conversational agent with a distinct behavior, voice, and response style..
+
 ## Persona Customization Options
+
 Each persona includes configurable fields. Here's what you can customize:
+
 - **Persona Name**: Display name shown when the replica joins a call.
 - **System Prompt**: Instructions sent to the language model to shape the replica’s tone, personality, and behavior.
 - **Conversational Context**: Background knowledge or reference information provided to the persona's language model.
@@ -14,54 +19,64 @@ Each persona includes configurable fields. Here's what you can customize:
 - **Layers**: Each layer in the pipeline processes a different part of the conversation. Layers can be configured individually to tailor input/output behavior to your application needs.
 
 ## CVI Layer
+
 Tavus provides the following customizable layers within the Persona as part of the CVI pipeline:
+
 <CardGroup cols={2}>
-
   <Card title="Transport Layer" icon="video">
-    Configures audio and video input/output, including microphone, camera, and replica streaming. Tavus uses <a href="https://www.daily.co/" target="_blank">Daily</a> as the default provider.
-  </Card>
+    Configures audio and video input/output, including microphone, camera, and replica streaming. Tavus uses <a href="https://www.daily.co/" target="_blank">
+    Daily</a>
 
+     as the default provider.
+  </Card>
   <Card title="Perception Layer" icon="eye" href="/sections/conversational-video-interface/persona/perception">
     Defines how the persona interprets visual input like facial expressions and gestures.
   </Card>
-
   <Card title="STT Layer" icon="waveform" href="/sections/conversational-video-interface/persona/stt">
     Transcribes user speech into text using the configured speech-to-text engine.
   </Card>
-
   <Card title="LLM Layer" icon="brain" href="/sections/conversational-video-interface/persona/llm">
     Generates persona responses using a language model. Supports Tavus-hosted or custom LLMs.
   </Card>
-
   <Card title="TTS Layer" icon="microphone" href="/sections/conversational-video-interface/persona/tts">
     Converts text responses into speech using Tavus or supported third-party TTS engines.
   </Card>
-
 </CardGroup>
 
-
 ## Pipeline Mode
+
 Tavus offers a number of modes that come with preconfigured layers as necessary for your use case:
+
 ### Full Pipeline Mode (Default & Recommended)
+
 <Frame>
-![](/images/full.png)
+  ![](/images/full.png)
 </Frame>
+
 The default and recommended end-to-end configuration optimized for real-time conversation. All CVI layers are active and customizable.
 
-* Lowest latency
-* Best for natural humanlike interactions
+- Lowest latency
+- Best for natural humanlike interactions
 
-<Note> We offer a selection of optimized LLMs including **Llama 3.3 and OpenAI models** that are fully optimized for the full pipeline mode.</Note>
-<Card title="CVI quickstart" icon="rocket" href="/sections/conversational-video-interface/quickstart/use-the-full-pipeline" />
+<Note>
+   We offer a selection of optimized LLMs including **Llama 3.3 and OpenAI models** that are fully optimized for the full pipeline mode.
+</Note>
 
+<Card title="CVI quickstart" icon="rocket" href="/sections/conversational-video-interface/quickstart/use-the-full-pipeline">
+  
+</Card>
 
 ### Custom LLM / Bring Your Own Logic
+
 <Frame>
-![](/images/custom-llm.png)
+  ![](/images/custom-llm.png)
 </Frame>
+
 Use this mode to integrate a custom LLM or a specialized backend for interpreting transcripts and generating responses.
 
-* Adds latency due to external processing
-* Does **not** require an actual LLM—any endpoint that returns a compatible chat completion format can be used
+- Adds latency due to external processing
+- Does **not** require an actual LLM—any endpoint that returns a compatible chat completion format can be used
 
-<Card title="Integrate your own custom LLM or logic" icon="binary" href="/sections/conversational-video-interface/persona/llm#custom-llms" />
+<Card title="Integrate your own custom LLM or logic" icon="binary" href="/sections/conversational-video-interface/persona/llm#custom-llms">
+  
+</Card>
