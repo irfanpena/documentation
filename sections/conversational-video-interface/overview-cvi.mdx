@@ -1,73 +1,89 @@
 ---
-title: Overview
-sidebarTitle: Overview
-description: Explore how CVI enables real-time, humanlike video interactions through configurable personas, lifelike replicas.
+title: "Overview"
+sidebarTitle: "Overview"
+description: "CVI enables real-time, human-like video interactions through configurable lifelike replicas."
 ---
 
 <Frame>
-![](/images/devmode.png)
+  ![](/images/devmode.png)
 </Frame>
+
 Conversational Video Interface (CVI) is a framework for creating real-time multimodal video interactions with AI. It enables an AI agent to see, hear, and respond naturally, mirroring human conversation.
 
-## Key Concepts
-CVI is built around three core concepts that work together to create real-time, humanlike interactions with an AI agent:
-<CardGroup cols={3}>
+CVI is the world’s fastest interface of its kind. It allows you to map a human face and conversational ability onto your AI agent. With CVI, you can achieve utterance-to-utterance latency with SLAs under 1 second. This is the full round-trip time for a participant to say something and the replica to reply.
 
+CVI provides a comprehensive solution, with the option to plug in your existing components as required.
+
+## Key Concepts
+
+CVI is built around three core concepts that work together to create real-time, humanlike interactions with an AI agent:
+
+<CardGroup cols={3}>
   <Card title="Persona" icon="heart-pulse" href="/sections/conversational-video-interface/persona/overview">
     The **Persona** defines the agent’s behavior, tone, and knowledge. It also configures the CVI layer and pipeline.
   </Card>
-
   <Card title="Replica" icon="user-group" href="/sections/replica/overview">
     The **Replica** brings the persona to life visually. It renders a photorealistic human-like avatar using the **Phoenix-3** model.
   </Card>
-
   <Card title="Conversation" icon="video" href="/sections/conversational-video-interface/conversation/overview">
     A **Conversation** is a real-time video session that connects the persona and replica through a WebRTC connection.
   </Card>
-
 </CardGroup>
-
 
 ## Key Features
 
 <CardGroup cols={2}>
-  
-<Card title="Natural Interaction" icon="face-smile-beam">
-CVI uses facial cues, body language, and real-time turn-taking to enable natural, human-like conversations.
-</Card>
-
-<Card title="Modular pipeline" icon="layer-group">
-Customize the Perception, STT, LLM and TTS layers to control identity, behavior, and responses.
-</Card>
-
-<Card title="Lifelike AI replicas" icon="user-robot">
-Choose from 100+ realistic avatars or create custom digital twins with human-like voice and expression.
-</Card>
-
-<Card title="Multilingual support" icon="globe">
-Hold natural conversations in 30+ languages using the supported TTS engines.
-</Card>
-
-<Card title="World's lowest latency" icon="bolt">
-Experience real-time interactions with ~600ms response time and smooth turn-taking.
-</Card>
+  <Card title="Natural Interaction" icon="face-smile-beam">
+    CVI uses facial cues, body language, and real-time turn-taking to enable natural, human-like conversations.
+  </Card>
+  <Card title="Modular pipeline" icon="layer-group">
+    Customize the Perception, STT, LLM and TTS layers to control identity, behavior, and responses.
+  </Card>
+  <Card title="Lifelike AI replicas" icon="user-robot">
+    Choose from 100\+ realistic avatars or create custom digital twins with human-like voice and expression.
+  </Card>
+  <Card title="Multilingual support" icon="globe">
+    Hold natural conversations in 30\+ languages using the supported TTS engines.
+  </Card>
+  <Card title="World's lowest latency" icon="bolt">
+    Experience real-time interactions with ~600ms response time and smooth turn-taking.
+  </Card>
 </CardGroup>
-
 
 ## Layers
 
-The Conversational Video Interface (CVI) uses a modular layer system to process input and generate real-time, human-like responses. Each layer is configured through the <a href="/sections/conversational-video-interface/persona/overview" target="_blank">Persona</a>.
+The Conversational Video Interface (CVI) uses a modular layer system to process input and generate real-time, human-like responses. Each layer is configured through the <a href="/sections/conversational-video-interface/persona/overview" target="_blank">
+Persona</a>
+
+.
 
 Here’s how the layers interact:
 
 1. **Transport**: User speaks via a WebRTC stream.
-2. <a href="/sections/conversational-video-interface/persona/perception" target='_blank'>**Perception**</a>: Captures visual input (e.g., expressions, gaze) for added context to LLM.
-3. <a href="/sections/conversational-video-interface/persona/stt" target="_blank">**Speech-to-Text (STT)**</a>: Transcribes user speech to text.
-4. <a href="/sections/conversational-video-interface/persona/llm" target="_blank">**Large Language Model (LLM)**</a>: Processes the inputs and generates a text response.
-5. <a href="/sections/conversational-video-interface/persona/tts" target='_blank'>**Text-to-Speech (TTS)**</a>: Converts the response to speech.
+2. <a href="/sections/conversational-video-interface/persona/perception" target="_blank">
+   Perception</a>
+
+   : Captures visual input (e.g., expressions, gaze) for added context to LLM.
+3. <a href="/sections/conversational-video-interface/persona/stt" target="_blank">
+   Speech-to-Text (STT)</a>
+
+   : Transcribes user speech to text.
+4. <a href="/sections/conversational-video-interface/persona/llm" target="_blank">
+   Large Language Model (LLM)</a>
+
+   : Processes the inputs and generates a text response.
+5. <a href="/sections/conversational-video-interface/persona/tts" target="_blank">
+   Text-to-Speech (TTS)</a>
+
+   : Converts the response to speech.
 6. **Realtime Replica**: Renders digital human responds in real time.
 
-
-
 ## Getting Started
-You can quickly create a conversation by using the <a href="https://platform.tavus.io/" target="_blank">Tavus Platform</a> or following the steps in the <a href="/sections/conversational-video-interface/quickstart/use-the-full-pipeline" target="_blank">Quickstart</a> guide.
+
+You can quickly create a conversation by using the <a href="https://platform.tavus.io/" target="_blank">
+Tavus Platform</a>
+
+ or following the steps in the <a href="/sections/conversational-video-interface/quickstart/use-the-full-pipeline" target="_blank">
+Quickstart</a>
+
+ guide.
