@@ -1,6 +1,6 @@
 ---
 title: Pipecat
-description: Integrate a Tavus Replica into Pipecat as a participant or a video feed for the bot.
+description: Integrate a Tavus Replica into your Pipecat application as a participant or a video feed for the bot.
 ---
 
 <a href="https://tavus.io" target='_blank'>Tavus</a> offers integration with <a href="https://www.pipecat.ai/" target='_blank'>Pipecat</a>, an open-source framework for building multimodal conversational agents by Daily. You can integrate Tavus into your Pipecat application in two ways:
@@ -15,7 +15,7 @@ Before integrating Tavus with Pipecat, ensure you have the following:
 * <a href="https://platform.tavus.io/api-keys" target='_blank'>**Tavus API Key**</a>
 
 * <a href="https://platform.tavus.io/replicas" target='_blank'>**Tavus `replica_id`**</a>
-    - You can use one of <a href="https://platform.tavus.io/replicas" target='_blank'>Tavus's stock replicas</a>) or your own custom replica.
+    - You can use one of <a href="https://platform.tavus.io/replicas" target='_blank'>Tavus's stock replicas</a> or your own custom replica.
 
 * **Pipecat Python Application**
     - Either your own existing application, or use Pipecat’s examples:
@@ -109,10 +109,6 @@ Add the Tavus transport layer to your processing pipeline.
 python <file-name>.py
 ```
 
-<Note>
-Replace `<file-name>` with your actual Python filename.
-</Note>
-
 2. Use the **Tavus Daily URL** provided in the console to interact with the agent.
 </Step>
 </Steps>
@@ -193,10 +189,6 @@ Insert the `TavusVideoService` into the pipeline by adding the `tavus` service a
 ```sh
 python <file-name>.py
 ```
-
-<Note>
-Replace `<file-name>` with your actual Python filename.
-</Note>
 
 2. Use the **localhost URL** provided in the console to interact with the agent.
 </Step>
