@@ -129,7 +129,7 @@
           {
             "group": "Resources",
             "icon": "bookmark",
-            "pages": ["sections/example-projects","sections/changelog/changelog"]
+            "pages": ["sections/example-projects","sections/troubleshooting/troubleshooting","sections/changelog/changelog"]
           }
         ]
       },

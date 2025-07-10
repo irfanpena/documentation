@@ -1,0 +1,368 @@
+---
+title: "Troubleshooting"
+description: "This guide includes an overview of errors."
+---
+
+<AccordionGroup>
+  <Accordion title="Training Video Size">
+    ## Overview
+
+    When training the Phoenix model with Tavus, the size of your training video plays a crucial role in the processing time and success rate of your model training. To facilitate a smooth and efficient training process, adhering to the recommended video size guidelines is essential.
+
+    ## Recommended Video Size
+
+    The Tavus platform accepts training videos up to 750 MB in size. This limitation is based on our observations of optimal balance between video quality and processing efficiency.
+
+    ## File Size Considerations
+
+    - **Processing Efficiency**: Smaller file sizes typically result in faster upload times and more efficient processing, reducing the overall time required for model training.
+    - **Success Rate**: Although Tavus will attempt to process larger files up to the 750 MB limit, we cannot guarantee successful processing for all large files. Staying within the recommended size increases the likelihood of a smooth training experience.
+    - **Quality Preservation**: It's important to balance file size with video quality. Compressing your video to reduce its size should not significantly compromise its resolution, frame rate, or audio quality, as these factors are critical for training a high-quality Phoenix model.
+
+    ## Tips for Reducing Video File Size
+
+    1. **Compression**: Use video compression tools to reduce file size without substantially affecting quality.
+    <Note>Currently, the **H.264 codec is required** by Tavus to ensure efficient compression.</Note>
+
+    2. **Resolution Adjustment**: Consider reducing the video resolution if it's higher than necessary. For most training purposes, a resolution of 1080p (1920x1080) is sufficient.
+    3. **Trimming**: Remove any unnecessary footage from the beginning and end of your training video to reduce its duration and size.
+    4. **Frame Rate**: Lower the frame rate slightly if it's higher than 30 frames per second. Reducing the frame rate can decrease the file size without significantly impacting the video's appearance.
+
+    ## Conclusion
+
+    Adhering to the recommended training video size not only ensures efficient processing and higher success rates but also contributes to a smoother model training experience. By optimizing your video file size while maintaining quality, you can achieve the best outcomes from your Phoenix model training with Tavus.
+  </Accordion>
+  <Accordion title="Consent Statement">
+    ## Introduction
+
+    For the creation of any digital replicas using the Phoenix model, Tavus requires a clear, verbal consent statement to be included within the training video. This measure is crucial for ethical considerations and compliance with data protection regulations. Instances where this consent statement is missing can lead to processing delays or the inability to create your AI clone.
+
+    ## Mandatory Consent Statement
+
+    Every training video submitted for Phoenix model training must include the following consent statement, spoken by the individual being replicated:
+
+    > "I, [FULL NAME], am currently speaking and give consent to Tavus to create an AI clone of me by using the audio and video samples I provide. I understand that this AI clone can be used to create videos that look and sound like me."
+
+    ### Key Points:
+
+    - **Personalization**: Replace "[FULL NAME]" with your actual full name.
+    - **Clarity**: The statement must be clearly audible and understandable.
+    - **Placement**: This consent should be at the beginning of your training video to ensure correct processing.
+    - **Language**: We currently accept consent statements in **any** of our supported languages. You can see the [supported languages here](/sections/replicas/language-support#languages-we-support).
+
+    ## Troubleshooting Missing Consent
+
+    If you have submitted a training video without the requisite consent statement, it will not be processed, and your request to create a digital replica will be delayed. To resolve this issue:
+
+    1. **Re-Record Your Video**: Include the consent statement at the beginning of your new training video.
+    2. **Submit a New Request**: Upload the revised video and submit a new model training request through the Tavus Developer Portal or via API, as applicable.
+
+    ## Tips for Successful Consent Recording
+
+    - **Environment**: Record in a quiet setting to ensure the consent statement is clearly heard.
+    - **Articulation**: Speak slowly and clearly, articulating each word to prevent any misunderstandings.
+    - **Verification**: Review your video before submission to verify that the consent statement is correctly included and easily audible.
+
+    ## Conclusion
+
+    Including a consent statement in your training video is a critical step in the Phoenix model training process with Tavus. It not only ensures compliance with ethical standards and legal requirements but also facilitates a smoother and faster processing of your digital replica creation request. Ensure you follow the guidelines provided to avoid any unnecessary delays in your project.
+  </Accordion>
+  <Accordion title="Script Length">
+    ## Overview
+
+    While Tavus provides the flexibility to generate videos of various lengths, it's important to understand how the duration of a video can impact its overall quality and viewer perception. Videos exceeding approximately 5 minutes may encounter challenges related to gesture repetition and diminished naturalness in the replica's presentation.
+
+    ## Understanding Video Length Considerations
+
+    ### Quality Variation Beyond 5 Minutes
+
+    Videos longer than 5 minutes are more likely to exhibit:
+
+    - **Repeated Gestures**: Increased instances where the replica might repeat motions, making the video feel less dynamic.
+    - **Decreased Naturalness**: A tendency for the replica's movements to appear less natural or fluid over time due to the limitations in variability of generated gestures.
+
+    ## Troubleshooting and Optimization Strategies
+
+    ### Splitting Longer Content
+
+    For content that naturally extends beyond the 5-minute mark, consider dividing it into shorter segments. This approach can:
+
+    - **Enhance Engagement**: Shorter videos are often more engaging, keeping viewers' attention focused.
+    - **Maintain Quality**: Reduces the likelihood of encountering issues with repeated gestures or unnatural movements.
+
+    ### Script Refinement
+
+    Refining your script can significantly impact the video's effectiveness and length:
+
+    - **Conciseness**: Ensure your script is concise, delivering your message without unnecessary filler.
+    - **Pacing**: Adjust the pacing of your script to fit within the optimal video length, focusing on key points.
+
+    ### Using Multiple Replicas
+
+    Incorporating different replicas into longer content pieces can introduce variety and maintain viewer interest:
+
+    - **Variety**: Switch between replicas to present different sections of your content.
+    - **Personalization**: Use specific replicas for targeted segments, enhancing relevance and engagement.
+
+    ### Review and Iteration
+
+    After generating your video, review it thoroughly:
+
+    - **Identify Repetitions**: Look for and note any instances of repeated gestures or unnatural movements.
+    - **Iteration**: Use insights from your review to refine the script or consider breaking the content into smaller pieces if necessary.
+
+    ## Conclusion
+
+    While Tavus empowers users to generate videos of any length, being mindful of the potential quality variations in longer videos is crucial. By employing strategies like content splitting, script refinement, and using multiple replicas, you can create high-quality, engaging videos that effectively convey your message. Always review your generated content and be prepared to iterate for the best results.
+  </Accordion>
+  <Accordion title="API Errors and Status Details">
+    # Replica Training Errors
+    | Error Type                     | Error Message                                                                                                                                                                                                                                                                   | Description                                                                                                                                                                                                                                                                                                                               |
+    |--------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | download_link                  | There was an issue downloading your video file. Please ensure that the link you provided is correct and try again                                                                                                                                                               | Tavus was not able to download the video from the provided link. Please ensure the link you provide is a hosted url download link                                                                                                                                                                                                         |
+    | file_size                      | The video file you provided exceeds the maximum file size allowed. Please ensure that the video is less than 750MB and try again.                                                                                                                                               | All video files must be smaller than 750mb                                                                                                                                                                                                                                                                                                |
+    | video_format                   | There was an issue processing your training video. The video provided is not a .mp4 file. Please ensure that the training video is a .mp4 file encoded using h.264                                                                                                              | All Replica training and consent video files must be .mp4                                                                                                                                                                                                                                                                                 |
+    | video_codec                    | There was an issue processing your training video. The video provided is not encoded using h.264. Please ensure that the training video is a .mp4 file encoded using h.264                                                                                                      | All Replica training and consent video files must be encoded using h.264                                                                                                                                                                                                                                                                  |
+    | video_codec_and_format         | There was an issue processing your training video. Please ensure that the training video is a .mp4 file encoded using h.264                                                                                                                                                     | All Replica training and consent video files must be .mp4 and encoded using h.264                                                                                                                                                                                                                                                         |
+    | video_duration                 | There was an issue processing your training video. The video provided does not meet the minimum duration requirement for training                                                                                                                                               | All Replica training files must be at least 1 minute long. (Between 1.5 to 2 minutes is optimal.)                                                                                                                                                                                                                                         |
+    | video_fps                      | There was an issue processing your training video. The video provided does not meet the minimum frame rate requirement for a training video. Please ensure your training video has a frame rate of at least 25fps                                                               | All Replica training and consent video files must have a frame rate of at least 25fps                                                                                                                                                                                                                                                     |
+    | consent_phrase_mismatch        | There was an issue processing your training file: Your consent phrase does not match our requirements. Please follow our specified format closely                                                                                                                               | There was an issue with the consent phrase provided. Please review our consent guidelines and resubmit a new training with the correct consent statement                                                                                                                                                                                  |
+    | face_or_obstruction_detected   | There was an issue processing your training file: More than one face detected or obstructions present. Please ensure only your face is visible and clear                                                                                                                        | Your face must be present in all frames of the video and may not be obstructed at anytime                                                                                                                                                                                                                                                 |
+    | lighting_change_detected       | There was an issue processing your training file: Lighting changes detected. Ensure your face is evenly lit throughout the video                                                                                                                                                | Please ensure that the lighting of your face is consistent throughout the entire video                                                                                                                                                                                                                                                    |
+    | background_noise_detected      | There was an issue processing your training file: Background noise or other voices detected. Please record in a quiet environment with only your voice                                                                                                                          | The video must be recorded in a quiet environment with only your voice present                                                                                                                                                                                                                                                            |
+    | video_editing_detected         | There was an issue processing your training file: Video appears edited or contains cuts. Please submit an unedited, continuous video                                                                                                                                            | The video must be unedited and recorded in one take                                                                                                                                                                                                                                                                                       |
+    | community_guidelines_violation | There was an issue processing your training file: Video violates Community Guidelines. Please review our guidelines and resubmit your video                                                                                                                                     | Please ensure that your training video does not violate our community guidelines                                                                                                                                                                                                                                                          |
+    | video_processing               | There was an error processing your training video file                                                                                                                                                                                                                          | This error indicates that there was an internal issue training your Replica. Please reach out to support for assitance                                                                                                                                                                                                                    |
+    | excessive_movement_detected    | There was an issue processing your training file: Excessive movement detected. Please ensure you are sitting still and centered in the frame                                                                                                                                    | This error indicates that the model is having difficulty tracking the face from frame to frame. Could be related to movement of the subject or the camera. In some cases, it may also be related to obstructions such as superimposed graphics.                                                                                           |
+    | audio_processing               | There was an error processing the audio in the provided training video file.                                                                                                                                                                                                    | This error indicates that the audio processing step was interrupted. In edge cases, may be related to the replica name's length or characters.                                                                                                                                                                                            |
+    | quality_issue_detected         | Quality issue detected. For details and assistance, please reach out to Tavus support via developer-support@tavus.io                                                                                                                                                            | This error indicates a quality problem with the input video that has resulted in poor test output. One example cause could be input video quality under 720p. Please review the [Quality Checklist](/sections/replicas/quality-checklist) to make sure you have met all requirements and/or reach out to support@tavus.io for assistance. |
+    | hands_obstructing_face         | There was a quality issue with your replica. The user's hand obstructed the face during recording. Please edit your video or record a new training video and keep hands away from the face.                                                                                     | Please ensure that the user's face is visible throughout the entire video.                                                                                                                                                                                                                                                                |
+    | second_person_detected         | There was a quality issue with your replica. A second person or face was detected in the frame. Please edit your video or record a new video with no one else in the background.                                                                                                | Please ensure that there is only a single user in the training video.                                                                                                                                                                                                                                                                     |
+    | improper_distance              | There was a quality issue with your replica. The user was either too close to or too far from the camera. Please review our documentation on proper framing and distance before editing your video or recording a new video.                                                    | Please ensure the user is centered in the training video.                                                                                                                                                                                                                                                                                 |
+    | inconsistent_distance          | There was a quality issue with your replica. The user's distance from the camera changed during the recording. Please edit or record a new training video and remain at a consistent distance from the camera for the entire video.                                             | Please ensure the user stays in the same spot throughout the training video.                                                                                                                                                                                                                                                              |
+    | face_turned_away               | There was a quality issue with your replica.  User's face turned away from the camera. Please edit or record a new video and ensure you are facing directly toward the camera for the entire duration.                                                                          | The face should be centered on the camera the entire duration of the training video.                                                                                                                                                                                                                                                      |
+    | improper_camera_angle          | There was a quality issue with your replica. The camera angle was either too low or too high. Please record a new video with the camera angle at eye level.                                                                                                                     | Please ensure the camera is at eye level.                                                                                                                                                                                                                                                                                                 |
+    | poor_lighting                  | There was a quality issue with your replica. The user's face was not clearly visible due to poor lighting or heavy shadows. Please edit or record a new video with even lighting on your face, avoiding shadows or dim environments.                                            | Shadows and uneven lighting cause distortions during replica training. Please ensure the lighting is as even as possible.                                                                                                                                                                                                                 |
+    | teeth_not_visible              | here was a quality issue with your replica. The top and bottom teeth were not clearly visible during recording, either due to poor lighting or obstruction. Please edit your video or record a new training video with better lighting and ensure your teeth are fully visible. | A large smile at the beginning helps the training process capture your natural teeth.                                                                                                                                                                                                                                                     |
+    | other_quality_issue            | Quality issue was detected. For details and assistance, please reach out to Tavus support via support@tavus.io                                                                                                                                                                  | Please reach out to support to better understand issues that occur during the training process.                                                                                                                                                                                                                                           |
+
+    # Video Errors
+    | Error Type                  | Error Message                                                                                                                                                                                                               | Description                                                                                                                                                                          |
+    |-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | video_error                 | An error occurred while generating this request. Please check your inputs or try your request again                                                                                                                         | Tavus ran into an issue generating the video. Please ensure that the your inputs are valid and try again. If this issue PermissionStatus, please reach out to support for assistance |
+    | replica_in_error_state      | Request Failed: The replica {} is currently in an 'error' state and cannot process requests. For details on the cause of the error and how to resolve it, please review the specific information provided for this replica. | Please ensure that the Replica being used to generate videos is in a 'ready' state                                                                                                   |
+    | audio_file_max_size         | There was an issue generating your video. The audio file exceeds the maximum file size of 750MB.                                                                                                                            | The audio file provided is too large. Please ensure that the audio file is less than 750MB and try again.                                                                            |
+    | audio_file_type             | There was an issue generating your video. The audio file provided is not a .wav                                                                                                                                             | Currently, we only support .wav audio files for generating videos. Please ensure that the audio file is a .wav file and try again.                                                   |
+    | audio_file_min_duration     | There was an issue generating your video. The duration of the audio file does not reach the minimum duration requirement of 3 seconds.                                                                                      | The audio file provided is too short.                                                                                                                                                |
+    | audio_file_max_duration     | There was an issue generating your video. The duration of the audio file exceeds the maximum duration of 10 minutes.                                                                                                        | The audio file is too long.                                                                                                                                                          |
+    | audio_file_ download_link   | There was an issue generating your video. We were unable to download your audio file. Please ensure that the link you provided is correct and try again.                                                                    | Please ensure that the link you provide is a hosted url download link that is publicly accessible.                                                                                   |
+    | script_community_guidelines | Request has failed as the script violates community guidelines.                                                                                                                                                             | Please ensure that the script's contents do not violate our community guidelines.                                                                                                    |                                                                                  |
+
+    # Lipsync Errors
+    | Error Type                  | Error Message                                                                                                                                                                                                               | Description                                                                                                                                                                          |
+    |-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | download_link               | There was an issue downloading your file. Please ensure that the link you provided is correct and try again                                                                                                                 | Tavus was not able to download the file from the provided link. Please ensure the link you provide is a hosted url download link that is publicly accessible.                        |
+    | media_duration_too_short    | There was an issue generating your video. The duration of the media file does not reach the minimum duration requirement of 3 seconds.                                                                                      | The media file provided is too short. Please ensure that the file meets the minimum duration requirement.                                                                            |
+    | media_duration_too_long     | There was an issue generating your video. The duration of the media file exceeds the maximum duration of 5 minutes.                                                                                                        | The media file provided is too long. Please ensure that the file does not exceed the maximum duration.                                                                               |
+    | video_format                | There was an issue processing your video. Please ensure that the video format is supported and is listed in our documentation                                                                                               | The video format is not supported. Please refer to our documentation for a list of supported video formats.                                                                          |
+    | audio_format                | There was an issue processing your audio. Please ensure that the audio format is supported and is listed in our documentation                                                                                               | The audio format is not supported. Please refer to our documentation for a list of supported audio formats.                                                                          |
+    | video_error                 | An error occurred while generating this request. Please check your inputs or try your request again                                                                                                                         | Tavus ran into an issue generating the lipsync video. Please ensure that your inputs are valid and try again. If this issue persists, please reach out to support for assistance.    |
+
+
+    # Video Status Details
+    | Status Type         | Status Details                                                                                                                                                                                                                                                                                  | Description                                                                                                    |
+    |---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+    | video_success       | Your request has processed successfully!                                                                                                                                                                                                                                                        | The video has been generated successfully and is ready for use                                                 |
+    | video_queued        | This request is currently queued. It should begin processing in a few minutes.                                                                                                                                                                                                                  | Immediately upon submitting a request for video generation, the video will be added to a queue to be processed |
+    | replica_in_training | The training process for replica {} is still ongoing. Your request has been placed in the 'queued' status and will automatically proceed to the generation phase once training is complete. To monitor the current progress of the training, please review the detailed status of this replica. | Videos will not start generating until the Replica being used has finished training                            |
+  </Accordion>
+  <Accordion title="API Callbacks">
+    # Video Callbacks
+    If a `callback_url` is providing in the `POST /videos` call, you will receive callbacks on video generation completed and on video error.
+
+    ### Video Generation Completed
+    ```
+    {
+      "created_at": "2024-08-28 15:27:40.824457",
+      "data": {
+        "script": "Hello this is a test to give examples of callbacks"
+      },
+      "download_url": "https://stream.mux.com/H5H029h02tY7XDpNj9JFDbLleTyUpsJr5npddO8gRsKqY/high.mp4?download=1e30440cf9",
+      "generation_progress": "100/100",
+      "hosted_url": "https://videos.tavus.io/video/1e30440cf9",
+      "replica_id": "r79e1c033f",
+      "status": "ready",
+      "status_details": "Your request has processed successfully!",
+      "stream_url": "https://stream.mux.com/H5H029h02tY7XDpNj9JFDbLleTyUpsJr5npddO8gRsKqY.m3u8",
+      "updated_at": "2024-08-28 15:29:19.802670",
+      "video_id": "1e30440cf9",
+      "video_name": "replica_id: r79e1c033f - August 28, 2024 - video: 1e30440cf9"
+    }
+    ```
+
+    ### Video Generation Error
+    On error, the `status_details` parameter will contain the error message. You can learn more about [API Errors and Status Details here](/sections/troubleshooting/api-errors)
+    ```
+    {
+      "created_at": "2024-08-28 15:32:53.058894",
+      "data": {
+        "script": "This is a test script to show how videos error"
+      },
+      "download_url": null,
+      "error_details": null,
+      "generation_progress": "0/100",
+      "hosted_url": "https://videos.tavus.io/video/c9b85a6d36",
+      "replica_id": "ra5ed77426",
+      "status": "error",
+      "status_details": "An error occurred while generating this request. Please check your inputs or try your request again.",
+      "stream_url": null,
+      "updated_at": "2024-08-28 15:35:03.762392",
+      "video_id": "c9b85a6d36",
+      "video_name": "replica_id: ra5ed77426 - August 28, 2024 - video: c9b85a6d36"
+    }
+    ```
+    -----------
+    # Replica Training
+    If a `callback_url` is provided in the `POST /replicas` call, you will receive a callback on replica training completion or on replica training error.
+
+    ### Replica Training Completed
+    ```
+    {
+      "replica_id": "rxxxxxxxxx",
+      "status": "ready",
+    }
+    ```
+
+
+    ### Replica Training Error
+    On error, the `error_message` parameter will contain the error message. You can learn more about [API Errors and Status Details here](/sections/troubleshooting/api-errors)
+    ```
+    {
+      "replica_id": "rxxxxxxxxx",
+      "status": "error",
+      "error_message": "There was an issue processing your training video. The video provided does not meet the minimum duration requirement for training"
+    }
+    ```
+    -----------
+
+
+    # Conversations
+
+    ### Overview
+    If `callback_url` is provided in the [Create Conversation API Request](/api-reference/conversations/create-conversation), callbacks will be sent to provide inside into the state of the conversation. Our callbacks range from system-related callbacks like replica joins and room shutdowns, to application-related callbacks like final transcription parsing and recording ready webhooks, with many more webhooks coming soon!
+
+
+    ## Conversation Callback Types
+
+    Our callbacks are split into two main categories:
+    - System Callbacks
+    > These callbacks are to provide insight into system-related events in a conversation. They are:
+      - **system.replica_joined**: This is fired when the replica becomes ready for a conversation.
+      - **system.shutdown**: This is fired when the room shuts down, for any of the following reasons:
+          - `max_call_duration reached`
+          - `participant_left_timeout reached`
+          - `participant_absent_timeout reached`
+          - `bot_could_not_join_meeting_it_was_probably_ended`
+          - `daily_room_has_been_deleted`
+          - `exception_encountered_during_conversation_startup`
+          - `end_conversation_endpoint_hit`
+          - `internal error occurred at step x`
+
+    - Application Callbacks
+    > These callbacks are to inform developers about logical events that take place. They are:
+      - **application.transcription_ready**: This is fired after ending a conversation, where the chat history is saved and returned.
+      - **application.recording_ready**: This is fired if you had enabled recording on, set up a [custom S3 bucket](/sections/conversational-video-interface/recording-rooms) for recording and started a recording inside the room at any point. This will point to the key at which your new recording lies, useful for serving recordings through a CDN.
+      - **application.perception_analysis**: This is fired after ending a conversation, when the replica has finished summarizing the visual artifacts that were detected throughout the call. This is a feature that is only available when the persona has `raven-0` specified in the [Perception Layer](/sections/conversational-video-interface/raven).
+
+
+    ## Conversation Callback Structure
+    All Conversation callbacks will share a similar structure with differences occuring in the `properties` object.
+
+    Here is the basic structure for all callbacks:
+
+    ```
+    {
+      "properties": {
+        "replica_id": "<replica_id>"
+      },
+      "conversation_id": "<conversation_id>",
+      "webhook_url": "<webhook_url>",
+      "event_type": "<event_type>",
+      "message_type": "<system/application>",
+      "timestamp": "<timestamp>"
+    }
+    ```
+
+
+    ## Conversation Callback Examples
+
+
+    `system.replica_joined`
+
+    ```
+    {
+      "properties": {
+        "replica_id": "<replica_id>"
+      },
+      "conversation_id": "<conversation_id>>",
+      "webhook_url": "<webhook_url>",
+      "event_type": "system.replica_joined",
+      "message_type": "system",
+      "timestamp": "2025-02-10T21:15:09.860974Z"
+    }
+    ```
+
+    `system.shutdown`
+
+    ```
+    {
+      "properties": {
+        "replica_id": "<replica_id>",
+        "shutdown_reason": "participant_left_timeout"
+      },
+      "conversation_id": "<conversation_id>",
+      "webhook_url": "<webhook_url>",
+      "event_type": "system.shutdown",
+      "message_type": "system",
+      "timestamp": "2025-02-10T21:15:29.565571Z"
+    }
+    ```
+
+
+    `application.transcription_ready`
+    ```
+    {
+      "properties": {
+        "replica_id": "<replica_id>",
+        "transcript": [
+          {
+            "role": "system",
+            "content": "You are in a live video conference call with a user. You will get user message with two identifiers, 'USER SPEECH:' and 'VISUAL SCENE:', where 'USER SPEECH:' is what the person actually tells you, and 'VISUAL SCENE:' is what you are seeing when you look at them. Only use the information provided in 'VISUAL SCENE:' if the user asks what you see. Don't output identifiers such as 'USER SPEECH:' or 'VISUAL SCENE:' in your response. Reply in short sentences, talk to the user in a casual way.Respond only in english.   "
+          },
+          {
+            "role": "user",
+            "content": " Hello, tell me a story. "
+          },
+          {
+            "role": "assistant",
+            "content": "I've got a great one about a guy who traveled back in time.  Want to hear it? "
+          },
+          {
+            "role": "user",
+            "content": "USER_SPEECH:  Yeah I'd love to hear it.  VISUAL_SCENE: The image shows a close-up of a person's face, focusing on their forehead, eyes, and nose. In the background, there is a television screen mounted on a wall. The setting appears to be indoors, possibly in a public or commercial space."
+          },
+          {
+            "role": "assistant",
+            "content": "Let me think for a sec.  Alright, so there was this mysterious island that appeared out of nowhere,  and people started disappearing when they went to explore it.  "
+          },
+        ]
+      },
+      "conversation_id": "<conversation_id>",
+      "webhook_url": "<webhook_url>",
+      "message_type": "application",
+      "event_type": "application.transcription_ready",
+      "timestamp": "2025-02-10T21:30:06.141454Z"
+    }
+    ```
+  </Accordion>
+</AccordionGroup>
