@@ -121,7 +121,42 @@ curl --request POST \
 }'
 ```
 
-Your backend then will receive an event with properties `event_type = application.transcription_ready`.
+Your backend then will receive an event with properties `event_type = application.transcription_ready` when the transcript is ready.
+
+```json application.transcription_ready [expandable]
+{
+  "properties": {
+    "replica_id": "<replica_id>",
+    "transcript": [
+      {
+        "role": "system",
+        "content": "You are in a live video conference call with a user. You will get user message with two identifiers, 'USER SPEECH:' and 'VISUAL SCENE:', where 'USER SPEECH:' is what the person actually tells you, and 'VISUAL SCENE:' is what you are seeing when you look at them. Only use the information provided in 'VISUAL SCENE:' if the user asks what you see. Don't output identifiers such as 'USER SPEECH:' or 'VISUAL SCENE:' in your response. Reply in short sentences, talk to the user in a casual way.Respond only in english.   "
+      },
+      {
+        "role": "user",
+        "content": " Hello, tell me a story. "
+      },
+      {
+        "role": "assistant",
+        "content": "I've got a great one about a guy who traveled back in time.  Want to hear it? "
+      },
+      {
+        "role": "user",
+        "content": "USER_SPEECH:  Yeah I'd love to hear it.  VISUAL_SCENE: The image shows a close-up of a person's face, focusing on their forehead, eyes, and nose. In the background, there is a television screen mounted on a wall. The setting appears to be indoors, possibly in a public or commercial space."
+      },
+      {
+        "role": "assistant",
+        "content": "Let me think for a sec.  Alright, so there was this mysterious island that appeared out of nowhere,  and people started disappearing when they went to explore it.  "
+      },
+    ]
+  },
+  "conversation_id": "<your_conversation_id>",
+  "webhook_url": "<your_webhook_url>",
+  "message_type": "application",
+  "event_type": "application.transcription_ready",
+  "timestamp": "2025-02-10T21:30:06.141454Z"
+}
+```
 </Accordion>
 <Accordion title="How do I get visual summary for my conversation?">
 You need to create a webhook endpoint that can receive `POST` requests from Tavus. This endpoint will receive the callback events for the visual summary after the conversation ended. Then, add `callback_url` property when creating the conversation.
@@ -138,7 +173,20 @@ curl --request POST \
 }'
 ```
 
-Your backend then will receive an event with properties `event_type = application.perception_analysis`.
+Your backend then will receive an event with properties `event_type = application.perception_analysis` when the summary is ready.
+
+```json application.perception_analysis
+{
+  "properties": {
+    "analysis": "Here's a summary of the visual observations from the video call:\n\n*   **Overall Demeanor & Emotional State:** The user consistently appeared calm, collected, and neutral. They were frequently described as pensive, contemplative, or focused, suggesting they were often engaged in thought or listening attentively. No strong positive or negative emotions were consistently detected.\n\n*   **Appearance:**\n    *   The user is a young Asian male, likely in his early 20s, with dark hair.\n    *   He consistently wore a black shirt, sometimes specifically identified as a black t-shirt. One observation mentioned a \"1989\" print on the shirt.\n    *   He was consistently looking directly at the camera.\n\n*   **Environment:** The user was consistently in an indoor setting, most likely an office or home. Common background elements included:\n    *   White walls.\n    *   Windows or glass panels/partitions, often with black frames.\n    *   Another person was partially visible in the background for several observations.\n\n*   **Actions:**\n    *   The user was seen talking and gesturing with his hand in one observation, indicating he was actively participating in a conversation.\n\n*   **Ambient Awareness Queries:**\n    *   **Acne:** Acne was initially detected on the user's face in one observation, but later observations did not detect it. This suggests that acne may have been visible at one point but not throughout the entire call.\n    *   **Distress/Discomfort:** No signs of distress or discomfort were observed at any point during the call."
+  },
+  "conversation_id": "<your_conversation_id>",
+  "webhook_url": "<your_webhook_url>",
+  "message_type": "application",
+  "event_type": "application.perception_analysis",
+  "timestamp": "2025-06-19T06:57:32.480826Z"
+}
+```
 </Accordion>
 <Accordion title="What LLM (Large Language Model) does Tavus use to power the conversational replicas?">
 Tavus offers flexibility in choosing the LLM (Large Language Model) to power your conversational replicas. You can either use one of Tavus’s own models or bring your own!
