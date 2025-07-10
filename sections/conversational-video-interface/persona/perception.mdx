@@ -105,8 +105,8 @@ This example demonstrates a persona designed to identify when a user wears a bri
         "Is the user wearing a bright outfit?"
       ],
       "perception_analysis_queries": [
-        "Is the user wearing multiple bright colors?",
-        "Is there any indication that more than one person is present?"
+        "Is there any indication that more than one person is present?",
+        "On a scale of 1-100, how often was the user looking at the screen?"
       ],
       "perception_tool_prompt": "You have a tool to notify the system when a bright outfit is detected, named `notify_if_bright_outfit_shown`. You MUST use this tool when a bright outfit is detected.",
       "perception_tools": [
@@ -138,26 +138,48 @@ Please see the <a href="/api-reference/personas/create-persona" target='_blank'>
 
 ## End-of-call Perception Analysis
 
-`raven-0` generates a visual summary at the end of a call. This summary includes all detected visual artifacts and can be sent as:
+`raven-0` generates a visual summary at the end of a call. This summary includes all detected visual artifacts and will be sent as <a href="https://docs.tavus.io/sections/event-schemas/conversation-perception-analysis" target="_blank">Perception Analysis</a> event to the <a href="https://docs.tavus.io/sections/conversational-video-interface/conversation-callbacks" target="_blank">conversation callback</a> (if specified)
 
-- A <a href="https://docs.tavus.io/sections/event-schemas/conversation-perception-analysis" target="_blank">Perception Analysis</a> event
-
-- A <a href="https://docs.tavus.io/sections/conversational-video-interface/conversation-callbacks" target="_blank">conversation callback</a> (if specified)
 <Note>
 This feature is exclusive to personas with `raven-0` specified in the Perception Layer.
 </Note>
 
-Below is an example of an end-of-call perception analysis payload for the <a href="/sections/conversational-video-interface/persona/perception#example-use-case" target="_blank" rel="noopener noreferrer">example persona</a>:
+For `perception_analysis_queries` like this
+
 ```json
 {
-  "properties": {
-    "analysis": "analysis : Here's a summary of the visual observations:\n\n*   **Appearance:** The user is an Asian male, likely in his late teens or early twenties, with short dark hair. Throughout \nthe call, he is consistently wearing a bright yellow t-shirt.\n*   **Emotional State:** The user's emotional state is generally neutral to slightly subdued. He appears contemplative, thoughtful, and occasionally troubled, but also calm and collected at times. There were no indications of strong positive emotions.\n*   **Environment:** The user is indoors in a room with a green curtain and a door visible in the background.\n*   **Focus:** The user consistently looks directly at the camera.\n*   **Queries**: The user is wearing a bright yellow outfit, as the system was notified.\n\nBased on the provided information:\n\n*   There is no indication that the user is wearing more than one bright color.\n*   There is no indication that more than one person is present.\n"
-  },
-  "conversation_id": "c369a8e5c8224453",
-  "webhook_url": "<your_webhook_url>",
-  "message_type": "application",
-  "event_type": "application.perception_analysis",
-  "timestamp": "2025-06-20T01:43:33.571534Z"
+  "perception_analysis_queries": [
+    "Is there any indication that more than one person is present?",
+    "On a scale of 1-100, how often was the user looking at the screen?"
+  ]
 }
+```
 
+will give these result on the end-of-call perception analysis
+
+```txt
+Here's a summary of the visual observations:
+
+- Presence of multiple people: There is no indication that more than one person was present in the video call. The observations exclusively describe "the person" and their individual behaviors and emotions.
+
+- User looking at the screen: Based on the observation that "Their gaze seems distant, indicating
+a state of being lost in thought rather than actively engaged," the user was likely looking at the screea state of being lost in thought rather than actively engaged," the user was likely looking at the screen very infrequently. On a scale of 1-100, this would suggest a very low percentage, possibly 0-10, as their attention was directed elsewhere.
+```
+
+setting `ambient_awareness_queries` to these will make the persona check if the user wearing a bright outfit.
+
+```json
+{
+  "ambient_awareness_queries": [
+    "Is the user wearing a bright outfit?"
+  ]
+}
+```
+
+setting `perception_tool_prompt` to these will make the persona broadcast `notify_if_bright_outfit_shown` if the user wearing a bright outfit
+
+```json
+{
+  "perception_tool_prompt": "You have a tool to notify the system when a bright outfit is detected, named `notify_if_bright_outfit_shown`. You MUST use this tool when a bright outfit is detected."
+}
 ```
