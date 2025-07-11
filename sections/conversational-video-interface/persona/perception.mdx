@@ -102,7 +102,8 @@ This example demonstrates a persona designed to identify when a user wears a bri
     "perception": {
       "perception_model": "raven-0",
       "ambient_awareness_queries": [
-        "Is the user wearing a bright outfit?"
+        "How many person is present?",
+        "Is the user looking at the screen?"
       ],
       "perception_analysis_queries": [
         "Is there any indication that more than one person is present?",
@@ -146,17 +147,34 @@ This feature is exclusive to personas with `raven-0` specified in the Perception
 
 Your backend will receive the visual summary once it's processed. For [Example Persona](#example-configuration) will produce this visual summary
 
-```json application.perception_analysis
+<CodeGroup>
+
+```json with ambient_awareness_queries
 {
   "properties": {
-    "analysis": "Here's a summary of the visual observations:\n\n*   **Presence of Others:** There is no indication that more than one person is present in the video call. All observations consistently describe a single male subject, and one explicitly states, \"There are no other people or pets visible.\"\n*   **User Gaze at Screen:** The user was predominantly not looking at the screen. Their eyes were frequently described as closed, half-closed, or looking downwards, indicating a state of introspection, contemplation, or rest. While there were brief moments where their eyes were noted to be open or looking directly at the camera (particularly towards the end of the observed period), these appear to be exceptions to a sustained period of inward focus. On a scale of 1-100, the user was looking at the screen approximately **20%** of the time."
+    "analysis": "Here's a summary of the visual observations:\n\n*   **Presence of multiple people:** There is no indication that more than one person was present during the video call. All observations consistently state that only one person was visible in the frame.\n*   **User's gaze towards the screen:** On a scale of 1-100, the user was looking at the screen approximately 75% of the time. While there was one instance where their gaze was averted, for the majority of the observations, the user was either looking directly at the screen or in its general direction."
   },
   "conversation_id": "<your_conversation_id>",
   "webhook_url": "<your_webhook_url>",
-  "event_type": "application.perception_analysis",
   "message_type": "application",
-  "timestamp": "2025-07-11T02:54:13.717509Z"
+  "event_type": "application.perception_analysis",
+  "timestamp": "2025-07-11T06:57:35.036251Z"
 }
 ```
 
-It can analyze the user camera, like detecting the presence of others. It can also score a parameter like "how often the user look at the screen" in a scale of 1-100.
+```json without ambient_awareness_queries
+{
+  "properties": {
+    "analysis": "Here's a summary of the visual observations:\n\n*   **Presence of Others:** \nThere is no indication that more than one person is present in the video call. Several observations explicitly state that no other people or pets were visible in the background.\n*   **User Gaze Towards Screen:** The user was looking at the screen approximately **75%** of the time. While they consistently looked directly at the camera for the majority of the observed period, there were instances where their gaze shifted upwards, to the side, or was not fixed on the camera."
+  },
+  "conversation_id": "<your_conversation_id>",
+  "webhook_url": "<your_webhook_url>",
+  "message_type": "application",
+  "event_type": "application.perception_analysis",
+  "timestamp": "2025-07-11T07:06:24.209090Z"
+}
+```
+  
+</CodeGroup>
+
+`ambient_awareness_queries` is not making noticeable difference in analysis
