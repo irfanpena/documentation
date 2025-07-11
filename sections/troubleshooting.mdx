@@ -1,122 +1,79 @@
 ---
 title: "Troubleshooting"
-description: "This guide includes an overview of errors."
+description: "Resolve common issues with the assistance of our troubleshooting documentation."
 ---
 
 <AccordionGroup>
   <Accordion title="Training Video Size">
-    ## Overview
+    The Tavus platform accepts training videos **up to 750 MB in size**. This limitation is based on our observations of optimal balance between video quality and processing efficiency.
 
-    When training the Phoenix model with Tavus, the size of your training video plays a crucial role in the processing time and success rate of your model training. To facilitate a smooth and efficient training process, adhering to the recommended video size guidelines is essential.
+    ### File Size Considerations
 
-    ## Recommended Video Size
+    - **Efficiency**: Smaller files upload and process faster, speeding up model training.
+    - **Success Rate**: Files under the recommended size are more likely to process smoothly, while larger files (up to 750 MB) may fail.
+    - **Quality Preservation**: Reduce file size without compromising resolution, frame rate, or audio, as these are vital for high-quality Phoenix model training.
 
-    The Tavus platform accepts training videos up to 750 MB in size. This limitation is based on our observations of optimal balance between video quality and processing efficiency.
+    ### Tips for Reducing Video File Size
 
-    ## File Size Considerations
-
-    - **Processing Efficiency**: Smaller file sizes typically result in faster upload times and more efficient processing, reducing the overall time required for model training.
-    - **Success Rate**: Although Tavus will attempt to process larger files up to the 750 MB limit, we cannot guarantee successful processing for all large files. Staying within the recommended size increases the likelihood of a smooth training experience.
-    - **Quality Preservation**: It's important to balance file size with video quality. Compressing your video to reduce its size should not significantly compromise its resolution, frame rate, or audio quality, as these factors are critical for training a high-quality Phoenix model.
-
-    ## Tips for Reducing Video File Size
-
-    1. **Compression**: Use video compression tools to reduce file size without substantially affecting quality.
+    1. **Compression**: Use video compression tools to reduce file size while maintaining quality.
     <Note>Currently, the **H.264 codec is required** by Tavus to ensure efficient compression.</Note>
-
-    2. **Resolution Adjustment**: Consider reducing the video resolution if it's higher than necessary. For most training purposes, a resolution of 1080p (1920x1080) is sufficient.
-    3. **Trimming**: Remove any unnecessary footage from the beginning and end of your training video to reduce its duration and size.
-    4. **Frame Rate**: Lower the frame rate slightly if it's higher than 30 frames per second. Reducing the frame rate can decrease the file size without significantly impacting the video's appearance.
-
-    ## Conclusion
-
-    Adhering to the recommended training video size not only ensures efficient processing and higher success rates but also contributes to a smoother model training experience. By optimizing your video file size while maintaining quality, you can achieve the best outcomes from your Phoenix model training with Tavus.
+    2. **Resolution Adjustment**: Lower the resolution if needed—1080p is typically sufficient for training.
+    3. **Trimming**: Cut unnecessary footage to reduce video length and file size.
+    4. **Frame Rate**: Reduce frame rate to around 30 fps to cut file size with minimal quality loss.
   </Accordion>
   <Accordion title="Consent Statement">
-    ## Introduction
 
-    For the creation of any digital replicas using the Phoenix model, Tavus requires a clear, verbal consent statement to be included within the training video. This measure is crucial for ethical considerations and compliance with data protection regulations. Instances where this consent statement is missing can lead to processing delays or the inability to create your AI clone.
-
-    ## Mandatory Consent Statement
-
-    Every training video submitted for Phoenix model training must include the following consent statement, spoken by the individual being replicated:
+    To generate a digital replica using the Phoenix model, the training video must include a **clearly spoken consent statement**. This is required to uphold ethical standards and comply with data protection regulations. Submissions without this statement cannot be processed.
 
     > "I, [FULL NAME], am currently speaking and give consent to Tavus to create an AI clone of me by using the audio and video samples I provide. I understand that this AI clone can be used to create videos that look and sound like me."
 
-    ### Key Points:
+    ### Key Points
 
     - **Personalization**: Replace "[FULL NAME]" with your actual full name.
     - **Clarity**: The statement must be clearly audible and understandable.
     - **Placement**: This consent should be at the beginning of your training video to ensure correct processing.
     - **Language**: We currently accept consent statements in **any** of our supported languages. You can see the [supported languages here](/sections/replicas/language-support#languages-we-support).
 
-    ## Troubleshooting Missing Consent
+    ### Tips for Successful Consent Recording
+
+    - **Environment**: Record in a quiet setting to ensure the consent statement is clearly heard.
+    - **Articulation**: Speak slowly and clearly, articulating each word to prevent any misunderstandings.
+    - **Verification**: Review your video before submission to verify that the consent statement is correctly included and easily audible.
+
+    ### Troubleshooting Missing Consent
 
     If you have submitted a training video without the requisite consent statement, it will not be processed, and your request to create a digital replica will be delayed. To resolve this issue:
 
     1. **Re-Record Your Video**: Include the consent statement at the beginning of your new training video.
     2. **Submit a New Request**: Upload the revised video and submit a new model training request through the Tavus Developer Portal or via API, as applicable.
 
-    ## Tips for Successful Consent Recording
-
-    - **Environment**: Record in a quiet setting to ensure the consent statement is clearly heard.
-    - **Articulation**: Speak slowly and clearly, articulating each word to prevent any misunderstandings.
-    - **Verification**: Review your video before submission to verify that the consent statement is correctly included and easily audible.
-
-    ## Conclusion
-
-    Including a consent statement in your training video is a critical step in the Phoenix model training process with Tavus. It not only ensures compliance with ethical standards and legal requirements but also facilitates a smoother and faster processing of your digital replica creation request. Ensure you follow the guidelines provided to avoid any unnecessary delays in your project.
   </Accordion>
   <Accordion title="Script Length">
-    ## Overview
 
-    While Tavus provides the flexibility to generate videos of various lengths, it's important to understand how the duration of a video can impact its overall quality and viewer perception. Videos exceeding approximately 5 minutes may encounter challenges related to gesture repetition and diminished naturalness in the replica's presentation.
+    While Tavus allows flexibility in video length, it's important to note that videos longer than approximately 5 minutes **may affect quality and viewer perception**. Extended durations can lead to more **frequent gesture repetition** and **reduced naturalness** in the replica’s movements, making the presentation feel less dynamic and fluid.
 
-    ## Understanding Video Length Considerations
+    ### Troubleshooting and Optimization Strategies
 
-    ### Quality Variation Beyond 5 Minutes
+    1. **Splitting Longer Content**: For content that naturally extends beyond the 5-minute mark, consider dividing it into shorter segments.
+        - **Enhance Engagement**: Shorter videos are often more engaging, keeping viewers' attention focused.
+        - **Maintain Quality**: Reduces the likelihood of encountering issues with repeated gestures or unnatural movements.
+    2. **Script Refinement**: Refining your script can significantly impact the video's effectiveness and length.
+        - **Conciseness**: Ensure your script is concise, delivering your message without unnecessary filler.
+        - **Pacing**: Adjust the pacing of your script to fit within the optimal video length, focusing on key points.
+    3. **Using Multiple Replicas**: Incorporating different replicas into longer content pieces can introduce variety and maintain viewer interest.
+        - **Variety**: Switch between replicas to present different sections of your content.
+        - **Personalization**: Use specific replicas for targeted segments, enhancing relevance and engagement.
+    4. **Review and Iteration**: After generating your video, review it thoroughly.
+        - **Identify Repetitions**: Look for and note any instances of repeated gestures or unnatural movements.
+        - **Iteration**: Use insights from your review to refine the script or consider breaking the content into smaller pieces if necessary.
 
-    Videos longer than 5 minutes are more likely to exhibit:
-
-    - **Repeated Gestures**: Increased instances where the replica might repeat motions, making the video feel less dynamic.
-    - **Decreased Naturalness**: A tendency for the replica's movements to appear less natural or fluid over time due to the limitations in variability of generated gestures.
-
-    ## Troubleshooting and Optimization Strategies
-
-    ### Splitting Longer Content
-
-    For content that naturally extends beyond the 5-minute mark, consider dividing it into shorter segments. This approach can:
-
-    - **Enhance Engagement**: Shorter videos are often more engaging, keeping viewers' attention focused.
-    - **Maintain Quality**: Reduces the likelihood of encountering issues with repeated gestures or unnatural movements.
-
-    ### Script Refinement
-
-    Refining your script can significantly impact the video's effectiveness and length:
-
-    - **Conciseness**: Ensure your script is concise, delivering your message without unnecessary filler.
-    - **Pacing**: Adjust the pacing of your script to fit within the optimal video length, focusing on key points.
-
-    ### Using Multiple Replicas
-
-    Incorporating different replicas into longer content pieces can introduce variety and maintain viewer interest:
-
-    - **Variety**: Switch between replicas to present different sections of your content.
-    - **Personalization**: Use specific replicas for targeted segments, enhancing relevance and engagement.
-
-    ### Review and Iteration
-
-    After generating your video, review it thoroughly:
-
-    - **Identify Repetitions**: Look for and note any instances of repeated gestures or unnatural movements.
-    - **Iteration**: Use insights from your review to refine the script or consider breaking the content into smaller pieces if necessary.
-
-    ## Conclusion
-
-    While Tavus empowers users to generate videos of any length, being mindful of the potential quality variations in longer videos is crucial. By employing strategies like content splitting, script refinement, and using multiple replicas, you can create high-quality, engaging videos that effectively convey your message. Always review your generated content and be prepared to iterate for the best results.
   </Accordion>
   <Accordion title="API Errors and Status Details">
-    # Replica Training Errors
+
+    This section provides an overview of common **API errors and status details** you may encounter.
+
+    ### Replica Training Errors
+
     | Error Type                     | Error Message                                                                                                                                                                                                                                                                   | Description                                                                                                                                                                                                                                                                                                                               |
     |--------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     | download_link                  | There was an issue downloading your video file. Please ensure that the link you provided is correct and try again                                                                                                                                                               | Tavus was not able to download the video from the provided link. Please ensure the link you provide is a hosted url download link                                                                                                                                                                                                         |
@@ -146,7 +103,7 @@ description: "This guide includes an overview of errors."
     | teeth_not_visible              | here was a quality issue with your replica. The top and bottom teeth were not clearly visible during recording, either due to poor lighting or obstruction. Please edit your video or record a new training video with better lighting and ensure your teeth are fully visible. | A large smile at the beginning helps the training process capture your natural teeth.                                                                                                                                                                                                                                                     |
     | other_quality_issue            | Quality issue was detected. For details and assistance, please reach out to Tavus support via support@tavus.io                                                                                                                                                                  | Please reach out to support to better understand issues that occur during the training process.                                                                                                                                                                                                                                           |
 
-    # Video Errors
+    ### Video Errors
     | Error Type                  | Error Message                                                                                                                                                                                                               | Description                                                                                                                                                                          |
     |-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     | video_error                 | An error occurred while generating this request. Please check your inputs or try your request again                                                                                                                         | Tavus ran into an issue generating the video. Please ensure that the your inputs are valid and try again. If this issue PermissionStatus, please reach out to support for assistance |
@@ -158,7 +115,7 @@ description: "This guide includes an overview of errors."
     | audio_file_ download_link   | There was an issue generating your video. We were unable to download your audio file. Please ensure that the link you provided is correct and try again.                                                                    | Please ensure that the link you provide is a hosted url download link that is publicly accessible.                                                                                   |
     | script_community_guidelines | Request has failed as the script violates community guidelines.                                                                                                                                                             | Please ensure that the script's contents do not violate our community guidelines.                                                                                                    |                                                                                  |
 
-    # Lipsync Errors
+    ### Lipsync Errors
     | Error Type                  | Error Message                                                                                                                                                                                                               | Description                                                                                                                                                                          |
     |-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     | download_link               | There was an issue downloading your file. Please ensure that the link you provided is correct and try again                                                                                                                 | Tavus was not able to download the file from the provided link. Please ensure the link you provide is a hosted url download link that is publicly accessible.                        |
@@ -169,7 +126,7 @@ description: "This guide includes an overview of errors."
     | video_error                 | An error occurred while generating this request. Please check your inputs or try your request again                                                                                                                         | Tavus ran into an issue generating the lipsync video. Please ensure that your inputs are valid and try again. If this issue persists, please reach out to support for assistance.    |
 
 
-    # Video Status Details
+    ### Video Status Details
     | Status Type         | Status Details                                                                                                                                                                                                                                                                                  | Description                                                                                                    |
     |---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
     | video_success       | Your request has processed successfully!                                                                                                                                                                                                                                                        | The video has been generated successfully and is ready for use                                                 |
@@ -177,11 +134,16 @@ description: "This guide includes an overview of errors."
     | replica_in_training | The training process for replica {} is still ongoing. Your request has been placed in the 'queued' status and will automatically proceed to the generation phase once training is complete. To monitor the current progress of the training, please review the detailed status of this replica. | Videos will not start generating until the Replica being used has finished training                            |
   </Accordion>
   <Accordion title="API Callbacks">
-    # Video Callbacks
+
+    This section includes an overview of **different callback formats** you might see from the API.
+
+    ### Video Callbacks
+
     If a `callback_url` is providing in the `POST /videos` call, you will receive callbacks on video generation completed and on video error.
 
-    ### Video Generation Completed
-    ```
+    <Tabs>
+    <Tab title="Video Generation Completed">
+    ```json
     {
       "created_at": "2024-08-28 15:27:40.824457",
       "data": {
@@ -199,10 +161,10 @@ description: "This guide includes an overview of errors."
       "video_name": "replica_id: r79e1c033f - August 28, 2024 - video: 1e30440cf9"
     }
     ```
-
-    ### Video Generation Error
-    On error, the `status_details` parameter will contain the error message. You can learn more about [API Errors and Status Details here](/sections/troubleshooting/api-errors)
-    ```
+    </Tab>
+    <Tab title="Video Generation Error">
+    On error, the `status_details` parameter will contain the error message. You can learn more about [API Errors and Status Details here](/sections/troubleshooting#api-errors-and-status-details)
+    ```json
     {
       "created_at": "2024-08-28 15:32:53.058894",
       "data": {
@@ -221,66 +183,66 @@ description: "This guide includes an overview of errors."
       "video_name": "replica_id: ra5ed77426 - August 28, 2024 - video: c9b85a6d36"
     }
     ```
-    -----------
-    # Replica Training
+    </Tab>
+    </Tabs>
+
+    ### Replica Training
+    
     If a `callback_url` is provided in the `POST /replicas` call, you will receive a callback on replica training completion or on replica training error.
 
-    ### Replica Training Completed
-    ```
+    <Tabs>
+    <Tab title="Replica Training Completed">
+    ```json
     {
       "replica_id": "rxxxxxxxxx",
       "status": "ready",
     }
     ```
-
-
-    ### Replica Training Error
-    On error, the `error_message` parameter will contain the error message. You can learn more about [API Errors and Status Details here](/sections/troubleshooting/api-errors)
-    ```
+    </Tab>
+    <Tab title="Replica Training Error">
+    On error, the `error_message` parameter will contain the error message. You can learn more about [API Errors and Status Details here](/sections/troubleshooting#api-errors-and-status-details)
+    
+    ```json
     {
       "replica_id": "rxxxxxxxxx",
       "status": "error",
       "error_message": "There was an issue processing your training video. The video provided does not meet the minimum duration requirement for training"
     }
     ```
-    -----------
+    </Tab>
+    </Tabs>
 
+    ### Conversations
 
-    # Conversations
-
-    ### Overview
     If `callback_url` is provided in the [Create Conversation API Request](/api-reference/conversations/create-conversation), callbacks will be sent to provide inside into the state of the conversation. Our callbacks range from system-related callbacks like replica joins and room shutdowns, to application-related callbacks like final transcription parsing and recording ready webhooks, with many more webhooks coming soon!
 
-
-    ## Conversation Callback Types
+    #### Conversation Callback Types
 
     Our callbacks are split into two main categories:
-    - System Callbacks
-    > These callbacks are to provide insight into system-related events in a conversation. They are:
-      - **system.replica_joined**: This is fired when the replica becomes ready for a conversation.
-      - **system.shutdown**: This is fired when the room shuts down, for any of the following reasons:
-          - `max_call_duration reached`
-          - `participant_left_timeout reached`
-          - `participant_absent_timeout reached`
-          - `bot_could_not_join_meeting_it_was_probably_ended`
-          - `daily_room_has_been_deleted`
-          - `exception_encountered_during_conversation_startup`
-          - `end_conversation_endpoint_hit`
-          - `internal error occurred at step x`
 
-    - Application Callbacks
-    > These callbacks are to inform developers about logical events that take place. They are:
-      - **application.transcription_ready**: This is fired after ending a conversation, where the chat history is saved and returned.
-      - **application.recording_ready**: This is fired if you had enabled recording on, set up a [custom S3 bucket](/sections/conversational-video-interface/recording-rooms) for recording and started a recording inside the room at any point. This will point to the key at which your new recording lies, useful for serving recordings through a CDN.
-      - **application.perception_analysis**: This is fired after ending a conversation, when the replica has finished summarizing the visual artifacts that were detected throughout the call. This is a feature that is only available when the persona has `raven-0` specified in the [Perception Layer](/sections/conversational-video-interface/raven).
+    1. **System Callbacks**: These callbacks are to provide insight into system-related events in a conversation. They are:
+        - **system.replica_joined**: This is fired when the replica becomes ready for a conversation.
+        - **system.shutdown**: This is fired when the room shuts down, for any of the following reasons:
+            - `max_call_duration reached`
+            - `participant_left_timeout reached`
+            - `participant_absent_timeout reached`
+            - `bot_could_not_join_meeting_it_was_probably_ended`
+            - `daily_room_has_been_deleted`
+            - `exception_encountered_during_conversation_startup`
+            - `end_conversation_endpoint_hit`
+            - `internal error occurred at step x`
+
+    2. **Application Callbacks**: These callbacks are to inform developers about logical events that take place. They are:
+        - **application.transcription_ready**: This is fired after ending a conversation, where the chat history is saved and returned.
+        - **application.recording_ready**: This is fired if you had enabled recording on, set up a [custom S3 bucket](/sections/conversational-video-interface/recording-rooms) for recording and started a recording inside the room at any point. This will point to the key at which your new recording lies, useful for serving recordings through a CDN.
+        - **application.perception_analysis**: This is fired after ending a conversation, when the replica has finished summarizing the visual artifacts that were detected throughout the call. This is a feature that is only available when the persona has `raven-0` specified in the [Perception Layer](/sections/conversational-video-interface/raven).
 
 
-    ## Conversation Callback Structure
-    All Conversation callbacks will share a similar structure with differences occuring in the `properties` object.
+    #### Conversation Callback Structure
 
-    Here is the basic structure for all callbacks:
+    All Conversation callbacks will share a similar structure with differences occuring in the `properties` object. Here is the basic structure for all callbacks:
 
-    ```
+    ```json
     {
       "properties": {
         "replica_id": "<replica_id>"
@@ -294,12 +256,11 @@ description: "This guide includes an overview of errors."
     ```
 
 
-    ## Conversation Callback Examples
+    #### Conversation Callback Examples
 
+    <CodeGroup>
 
-    `system.replica_joined`
-
-    ```
+    ```json system.replica_joined
     {
       "properties": {
         "replica_id": "<replica_id>"
@@ -312,9 +273,7 @@ description: "This guide includes an overview of errors."
     }
     ```
 
-    `system.shutdown`
-
-    ```
+    ```json system.shutdown
     {
       "properties": {
         "replica_id": "<replica_id>",
@@ -328,9 +287,7 @@ description: "This guide includes an overview of errors."
     }
     ```
 
-
-    `application.transcription_ready`
-    ```
+    ```json application.transcription_ready
     {
       "properties": {
         "replica_id": "<replica_id>",
@@ -364,5 +321,8 @@ description: "This guide includes an overview of errors."
       "timestamp": "2025-02-10T21:30:06.141454Z"
     }
     ```
+
+    </CodeGroup>
+
   </Accordion>
 </AccordionGroup>
