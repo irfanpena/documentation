@@ -16,7 +16,7 @@ Specifies the perception model to use.
   - `basic`: Legacy model with limited features.
   - `off`: Disables the perception layer.
 <Note>
-**Screen Share Feature**:When using `raven-0`, screen share feature is enabled by default without additional configuration.
+**Screen Share Feature**: When using `raven-0`, screen share feature is enabled by default without additional configuration.
 </Note>
 
 ```json
@@ -140,7 +140,7 @@ Please see the <a href="/api-reference/personas/create-persona" target='_blank'>
 
 ## End-of-call Perception Analysis
 
-`raven-0` generates a visual summary at the end of a call. This summary includes all detected visual artifacts and will be sent as <a href="/sections/event-schemas/conversation-perception-analysis" target="_blank">Perception Analysis</a> event to the <a href="/sections/webhooks-and-callbacks#conversation-callbacks" target="_blank">conversation callback</a> (if specified)
+At the end of the call, `raven-0` will generate a visual summary including all detected visual artifacts. This will be sent as a <a href="/sections/event-schemas/conversation-perception-analysis" target="_blank">Perception Analysis</a> event to the <a href="/sections/webhooks-and-callbacks#conversation-callbacks" target="_blank">conversation callback</a> (if specified).
 
 <Note>
 This feature is exclusive to personas with `raven-0` specified in the Perception Layer.

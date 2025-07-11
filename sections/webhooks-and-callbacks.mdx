@@ -132,33 +132,39 @@ curl --request POST \
 
 ## Conversation Callbacks
 
-If `callback_url` is provided in the [Create Conversation API Request](/api-reference/conversations/create-conversation), callbacks will be sent to provide inside into the state of the conversation. Our callbacks range from system-related callbacks like replica joins and room shutdowns, to application-related callbacks like final transcription parsing and recording ready webhooks, with many more webhooks coming soon!
+If a `callback_url` is provided in the <a href="/api-reference/conversations/create-conversation" target='_blank'>Create Conversation API Request</a>, callbacks will provide insight into the conversation's state. These can be system-related (e.g. replica joins and room shutdowns) or application-related (e.g. final transcription parsing and recording-ready webhooks). Additional webhooks coming soon.
 
 ### Types
 
 Our callbacks are split into two main categories:
 
-1. **System Callbacks**: These callbacks are to provide insight into system-related events in a conversation. They are:
-    - **system.replica_joined**: This is fired when the replica becomes ready for a conversation.
-    - **system.shutdown**: This is fired when the room shuts down, for any of the following reasons:
-        - `max_call_duration reached`
-        - `participant_left_timeout reached`
-        - `participant_absent_timeout reached`
-        - `bot_could_not_join_meeting_it_was_probably_ended`
-        - `daily_room_has_been_deleted`
-        - `exception_encountered_during_conversation_startup`
-        - `end_conversation_endpoint_hit`
-        - `internal error occurred at step x`
+#### System Callbacks
 
-2. **Application Callbacks**: These callbacks are to inform developers about logical events that take place. They are:
-    - **application.transcription_ready**: This is fired after ending a conversation, where the chat history is saved and returned.
-    - **application.recording_ready**: This is fired if you had enabled recording on, set up a [custom S3 bucket](/sections/conversational-video-interface/quickstart/conversation-recordings) for recording and started a recording inside the room at any point. This will point to the key at which your new recording lies, useful for serving recordings through a CDN.
-    - **application.perception_analysis**: This is fired after ending a conversation, when the replica has finished summarizing the visual artifacts that were detected throughout the call. This is a feature that is only available when the persona has `raven-0` specified in the [Perception Layer](/sections/conversational-video-interface/persona/perception).
+These callbacks are to provide insight into system-related events in a conversation. They are:
+
+  - **system.replica_joined**: This is fired when the replica becomes ready for a conversation.
+  - **system.shutdown**: This is fired when the room shuts down, for any of the following reasons:
+      - `max_call_duration reached`
+      - `participant_left_timeout reached`
+      - `participant_absent_timeout reached`
+      - `bot_could_not_join_meeting_it_was_probably_ended`
+      - `daily_room_has_been_deleted`
+      - `exception_encountered_during_conversation_startup`
+      - `end_conversation_endpoint_hit`
+      - `internal error occurred at step x`
+
+#### Application Callbacks
+
+These callbacks are to inform developers about logical events that take place. They are:
+
+  - **application.transcription_ready**: This is fired after ending a conversation, where the chat history is saved and returned.
+  - **application.recording_ready**: This is fired if you had enabled recording on, set up a <a href="/sections/conversational-video-interface/quickstart/conversation-recordings" target='_blank'>custom S3 bucket</a> for recording and started a recording inside the room at any point. This will point to the key at which your new recording lies, useful for serving recordings through a CDN.
+  - **application.perception_analysis**: This is fired after ending a conversation, when the replica has finished summarizing the visual artifacts that were detected throughout the call. This is a feature that is only available when the persona has `raven-0` specified in the <a href="/sections/conversational-video-interface/persona/perception" target='_blank'>Perception Layer</a>.
 
 
 ### Structure
 
-All Conversation callbacks will share a similar structure with differences occuring in the `properties` object. Here is the basic structure for all callbacks:
+All Conversation callbacks share the following basic structure. Differences will occur in the `properties` object.
 
 ```json
 {
