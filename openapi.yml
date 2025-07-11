@@ -1383,10 +1383,10 @@ paths:
                       description: "The ARN of the role that will be assumed to access the S3 bucket."
                       example: ""
             examples:
-              Required Parameters Only:
-                value:
-                  replica_id: "rfe12d8b9597"
-                  persona_id: "pdced222244b"
+              # Required Parameters Only:
+              #   value:
+              #     replica_id: "rfe12d8b9597"
+              #     persona_id: "pdced222244b"
               Full Customizations:
                 value:
                   replica_id: "rfe12d8b9597"
@@ -1401,11 +1401,11 @@ paths:
                     language: "multilingual"
                     enable_closed_captions: true
                     apply_greenscreen: true
-              Audio Only:
-                value:
-                  replica_id: "rfe12d8b9597"
-                  persona_id: "pdced222244b"
-                  audio_only: true
+              # Audio Only:
+              #   value:
+              #     replica_id: "rfe12d8b9597"
+              #     persona_id: "pdced222244b"
+              #     audio_only: true
       responses:
         "200":
           description: ""
@@ -1904,10 +1904,10 @@ paths:
 
                             Enabling Smart Turn Detection creates a more natural and engaging conversational experience, allowing the digital replica to interact more seamlessly with human participants.
             examples:
-               Required Parameters Only:
-                value:
-                  pipeline_mode: "full"
-                  system_prompt: "As a Life Coach, you are a dedicated professional who specializes in..."
+              #  Required Parameters Only:
+              #   value:
+              #     pipeline_mode: "full"
+              #     system_prompt: "As a Life Coach, you are a dedicated professional who specializes in..."
                Full Customizations:
                 value:
                   persona_name: "Life Coach"
