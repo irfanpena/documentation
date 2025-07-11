@@ -41,7 +41,8 @@ An array of custom queries that `raven-0` processes at the end of the call to ge
 ```json
 "perception_analysis_queries": [
   "Is the user wearing multiple bright colors?",
-  "Is there any indication that more than one person is present?"
+  "Is there any indication that more than one person is present?",
+  "On a scale of 1-100, how often was the user looking at the screen?"
 ]
 ```
 
@@ -105,6 +106,7 @@ This example demonstrates a persona designed to identify when a user wears a bri
         "Is the user wearing a bright outfit?"
       ],
       "perception_analysis_queries": [
+        "Is the user wearing multiple bright colors?",
         "Is there any indication that more than one person is present?",
         "On a scale of 1-100, how often was the user looking at the screen?"
       ],
@@ -138,25 +140,26 @@ Please see the <a href="/api-reference/personas/create-persona" target='_blank'>
 
 ## End-of-call Perception Analysis
 
-`raven-0` generates a visual summary at the end of a call. This summary includes all detected visual artifacts and will be sent as <a href="https://docs.tavus.io/sections/event-schemas/conversation-perception-analysis" target="_blank">Perception Analysis</a> event to the <a href="https://docs.tavus.io/sections/conversational-video-interface/conversation-callbacks" target="_blank">conversation callback</a> (if specified)
+`raven-0` generates a visual summary at the end of a call. This summary includes all detected visual artifacts and will be sent as <a href="/sections/event-schemas/conversation-perception-analysis" target="_blank">Perception Analysis</a> event to the <a href="/sections/webhooks-and-callbacks#conversation-callbacks" target="_blank">conversation callback</a> (if specified)
 
 <Note>
 This feature is exclusive to personas with `raven-0` specified in the Perception Layer.
 </Note>
 
-Your backend will receive the visual summary once it's processed. For [Example Persona](#example-configuration) will produce this visual summary
+Your backend will receive the visual summary once it's processed. For example, using the [Example Persona](#example-configuration) will produce this visual summary.
 
-```json application.perception_analysis
+```json
 {
   "properties": {
-    "analysis": "Here's a summary of the visual observations:\n\n*   **Presence of Others:** There is no indication that more than one person is present in the video call. All observations consistently describe a single male subject, and one explicitly states, \"There are no other people or pets visible.\"\n*   **User Gaze at Screen:** The user was predominantly not looking at the screen. Their eyes were frequently described as closed, half-closed, or looking downwards, indicating a state of introspection, contemplation, or rest. While there were brief moments where their eyes were noted to be open or looking directly at the camera (particularly towards the end of the observed period), these appear to be exceptions to a sustained period of inward focus. On a scale of 1-100, the user was looking at the screen approximately **20%** of the time."
+    "analysis": "Here's a summary of the visual observations:\n\n*   **User Appearance:** The subject is a young person, likely in their teens or early twenties, with dark hair and an East Asian appearance. They consistently wear a dark blue or black hooded jacket/hoodie with pink and white accents, patterns, or text on the sleeves, and possibly a white undershirt. A pendant or charm was observed on their chest. The setting is consistently an indoor environment with a plain white or light-colored wall background.\n*   **User Behavior and Demeanor:** The user frequently holds a wired earpiece, microphone, or earbuds near their mouth or chin, appearing to be speaking, listening intently, or in deep thought. Their gaze is predominantly cast downwards, occasionally looking slightly off to the side, with only rare, brief glances forward. They generally maintain a still posture.\n*   **User Emotions:** The user's expression is consistently neutral, conveying a sense of quiet concentration, engagement, contemplation, or thoughtful introspection. There are no overt signs of strong emotion; their demeanor is described as calm, focused, sometimes pensive, or slightly subdued. They appear to be actively listening or processing information.\n*   **Screen Gaze:** Based on the observations that the user's eyes were generally cast downwards, looking off to the side, or only occasionally glancing forward, the user was looking at the screen approximately **5-10%** of the time."
   },
-  "conversation_id": "<your_conversation_id>",
-  "webhook_url": "<your_webhook_url>",
-  "event_type": "application.perception_analysis",
+  "conversation_id": "<conversation_id>",
+  "webhook_url": "<webhook_url>",
   "message_type": "application",
-  "timestamp": "2025-07-11T02:54:13.717509Z"
+  "event_type": "application.perception_analysis",
+  "timestamp": "2025-07-11T09:13:35.361736Z"
 }
+
 ```
 
-It can analyze the user camera, like detecting the presence of others. It can also score a parameter like "how often the user look at the screen" in a scale of 1-100.
+Based on the visual summary, the model utilizes the `ambient_awareness_queries` property to continuously analyze the user's outfit, identifying details such as the type of clothing, color, and accessories. Additionally, through the `perception_analysis_queries` property, the model can estimate how long the user is looking at the screen.
