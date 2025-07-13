@@ -207,18 +207,28 @@
           {
             "group": "Interactions Protocol",
             "pages": [
-              "sections/event-schemas/conversation-echo",
-              "sections/event-schemas/conversation-respond",
-              "sections/event-schemas/conversation-sensitivity",
-              "sections/event-schemas/conversation-interrupt",
-              "sections/event-schemas/conversation-replica-interrupted",
-              "sections/event-schemas/conversation-overwrite-context",
-              "sections/event-schemas/conversation-utterance",
-              "sections/event-schemas/conversation-toolcall",
-              "sections/event-schemas/conversation-replica-started-stopped-speaking",
-              "sections/event-schemas/conversation-user-started-stopped-speaking",
-              "sections/event-schemas/conversation-perception-tool-call",
-              "sections/event-schemas/conversation-perception-analysis"
+              {
+                "group": "Interactions",
+                "pages": [
+                  "sections/event-schemas/conversation-echo",
+                  "sections/event-schemas/conversation-respond",
+                  "sections/event-schemas/conversation-sensitivity",
+                  "sections/event-schemas/conversation-interrupt",
+                  "sections/event-schemas/conversation-replica-interrupted",
+                  "sections/event-schemas/conversation-overwrite-context"
+                ]
+              },
+              {
+                "group": "Events",
+                "pages": [
+                   "sections/event-schemas/conversation-utterance",
+                  "sections/event-schemas/conversation-toolcall",
+                  "sections/event-schemas/conversation-replica-started-stopped-speaking",
+                  "sections/event-schemas/conversation-user-started-stopped-speaking",
+                  "sections/event-schemas/conversation-perception-tool-call",
+                  "sections/event-schemas/conversation-perception-analysis"
+                ]
+              }
             ]
           }
         ]
