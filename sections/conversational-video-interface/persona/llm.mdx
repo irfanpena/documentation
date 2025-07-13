@@ -176,3 +176,25 @@ This is field is optional.
 <Note>
 Refer to the <a href="https://docs.tavus.io/api-reference/personas/create-persona" target="_blank">Create Persona API</a> for a full list of supported fields.
 </Note>
+
+### Perception
+If you enable the  `raven-0` perception model, your LLM will receive the following system messages:
+
+```json
+{
+    "role": "system",
+    "content": "<user_appearance>...</user_appearance> <user_emotions>...</user_emotions> <user_screenshare>...</user_screenshare>"
+}
+```
+
+#### Basic Perception model
+If you enable the Basic perception model, your LLM will receive the following user messages (instead of a system message):
+
+```json
+{
+    "role": "user",
+    "content": "USER_SPEECH: ... VISUAL_SCENE: ..."
+}
+```
+#### Disabled Perception model
+If you disable the perception model, your LLM will not receive any special system messages.

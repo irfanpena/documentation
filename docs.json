@@ -9,9 +9,9 @@
   },
   "favicon": "/favicon.png",
   "navigation": {
-    "anchors": [
+    "tabs": [
       {
-        "anchor": "Documentation",
+        "tab": "Documentation",
         "groups": [
           {
             "group": "Getting Started",
@@ -85,7 +85,16 @@
               {
                 "group": "Integrations",
                 "pages": [
-                  "sections/integrations/embedding-cvi"
+                  "sections/integrations/embedding-cvi",
+                  {
+                  "group": "React Component Library",
+                  "pages": [
+                    "sections/conversational-video-interface/component-library/overview",
+                    "sections/conversational-video-interface/component-library/blocks",
+                    "sections/conversational-video-interface/component-library/components",
+                    "sections/conversational-video-interface/component-library/hooks"
+                  ]
+                }
                 ]
               },
               {
@@ -134,18 +143,8 @@
         ]
       },
       {
-        "anchor": "API Reference",
+        "tab": "API Reference",
         "groups": [
-          {
-            "group": "Replicas",
-            "pages": [
-              "api-reference/phoenix-replica-model/create-replica",
-              "api-reference/phoenix-replica-model/get-replica",
-              "api-reference/phoenix-replica-model/get-replicas",
-              "api-reference/phoenix-replica-model/delete-replica",
-              "api-reference/phoenix-replica-model/patch-replica-name"
-            ]
-          },
           {
             "group": "Conversational Video Interface",
             "pages": [
@@ -157,13 +156,23 @@
             ]
           },
           {
-            "group": "Replica Personas",
+            "group": "Personas",
             "pages": [
               "api-reference/personas/create-persona",
               "api-reference/personas/get-persona",
               "api-reference/personas/get-personas",
               "api-reference/personas/patch-persona",
               "api-reference/personas/delete-persona"
+            ]
+          },
+          {
+            "group": "Replicas",
+            "pages": [
+              "api-reference/phoenix-replica-model/create-replica",
+              "api-reference/phoenix-replica-model/get-replica",
+              "api-reference/phoenix-replica-model/get-replicas",
+              "api-reference/phoenix-replica-model/delete-replica",
+              "api-reference/phoenix-replica-model/patch-replica-name"
             ]
           },
           {
@@ -214,21 +223,7 @@
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Community",
-          "href": "https://discord.gg/5Y9Er6WNN5",
-          "icon": "discord"
-        },
-        {
-          "anchor": "Status",
-          "href": "https://status.tavus.io",
-          "icon": "tower-broadcast"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.png",
@@ -243,6 +238,14 @@
       {
         "label": "Account Help",
         "href": "https://help.tavus.io/"
+      },
+      {
+        "label": "Community",
+        "href": "https://discord.gg/5Y9Er6WNN5"
+      },
+      {
+        "label": "Status",
+        "href": "https://status.tavus.io"
       },
       {
         "label": "Get Support",

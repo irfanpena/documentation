@@ -6,6 +6,7 @@ description: Learn how to configure the STT layer to enable smart turn detection
 
 The STT Layer in Tavus empowers your persona to transcribe and comprehend spoken input in real time. By default, the STT layer in Tavus leverages `smart_turn_detection`, powered by **Sparrow**, for dynamic and responsive conversation flow with intelligent turn-taking.
 
+
 ## Configuring the STT Layer
 
 Define the STT layer under the `layers.stt` object. Below are the parameters available:
@@ -79,11 +80,17 @@ Enables dynamic turn-taking using the Sparrow model, which dynamically adjusts t
 ```json
 "smart_turn_detection": true
 ```
-When used with `participant_pause_sensitivity`, that setting defines the maximum pause allowed before responding. For example:
+#### How `smart_turn_detection` Works
 
-- With `verylow`, the system allows longer pauses.
+When enabled, `smart_turn_detection`:
 
-- However, when `smart_turn_detection` enabled the system will respond early if it confidently detects that the user has finished speaking, regardless of the maximum pause setting.
+* Monitors participant speech in real time
+* Detects when the participant has likely finished speaking
+* Works with both speculative and non-speculative inference
+* Adjusts response timing based on speech rhythm and pauses
+* Integrates with `participant_pause_sensitivity` to avoid interrupting mid-thought
+
+
 <Warning>
 - `smart_turn_detection` is only supported by the `tavus-advanced` engine.
 - Disabling `smart_turn_detection` turns off **Sparrow** and uses a fixed response delay based on `participant_pause_sensitivity`.

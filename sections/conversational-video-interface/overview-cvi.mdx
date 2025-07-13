@@ -55,13 +55,36 @@ CVI is built around three core concepts that work together to create real-time, 
 The Conversational Video Interface (CVI) uses a modular layer system to process input and generate real-time, human-like responses. Each layer is configured through the <a href="/sections/conversational-video-interface/persona/overview" target="_blank">Persona</a>.
 
 Here’s how the layers interact:
+<AccordionGroup>
 
-1. **Transport**: User speaks via a WebRTC stream.
-2. <a href="/sections/conversational-video-interface/persona/perception" target='_blank'>**Perception**</a>: Captures visual input (e.g., expressions, gaze) for added context to LLM.
-3. <a href="/sections/conversational-video-interface/persona/stt" target="_blank">**Speech-to-Text (STT)**</a>: Transcribes user speech to text.
-4. <a href="/sections/conversational-video-interface/persona/llm" target="_blank">**Large Language Model (LLM)**</a>: Processes the inputs and generates a text response.
-5. <a href="/sections/conversational-video-interface/persona/tts" target='_blank'>**Text-to-Speech (TTS)**</a>: Converts the response to speech.
-6. **Realtime Replica**: Renders digital human responds in real time.
+  <Accordion title="1. Transport" icon="right-left">
+    Handles real-time audio and video streaming using WebRTC (powered by Daily). This layer captures the user's microphone and camera input and delivers output back to the user.  
+
+    This layer is always enabled. You can configure input/output for audio (mic) and video (camera).
+  </Accordion>
+
+  <Accordion title="2. Perception" icon="eye">
+    Uses <a href="/sections/conversational-video-interface/raven" target="_blank">Raven</a> to analyze user expressions, gaze, background, and screen content. This visual context helps the replica understand and respond more naturally.
+  </Accordion>
+
+  <Accordion title="3. Speech Recognition (STT)" icon="ear-listen">
+    Powered by <a href="/sections/conversational-video-interface/persona/stt" target="_blank">Sparrow</a>, this layer transcribes user speech in real time with lexical and semantic awareness. It enables smart, natural turn-taking through fast, intelligent interruptions.
+  </Accordion>
+
+  <Accordion title="4. LLM" icon="brain">
+    Processes the user's transcribed speech and visual input using a low-latency LLM. Tavus provides ultra-low latency optimized LLMs or lets you integrate your own.
+  </Accordion>
+
+  <Accordion title="5. Text-to-Speech (TTS)" icon="volume-high">
+    Converts the LLM response into speech using the supported TTS Engines (Cartesia **(Default)**, ElevenLabs, PlayHT).
+  </Accordion>
+
+  <Accordion title="6. Realtime Replica" icon="face-smile">
+    Delivers a high-quality, synchronized digital human response using Tavus's real-time avatar engine powered by **Phoenix**.
+  </Accordion>
+
+</AccordionGroup>
+
 
 ## Getting Started
 

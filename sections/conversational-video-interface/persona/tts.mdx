@@ -28,6 +28,9 @@ Specifies the supported third-party TTS engine.
 ### 2. `api_key`
 
 Authenticates requests to your selected third-party TTS provider. You can obtain an API key from one of the following:
+<Warning>
+Only required when using private voices.
+</Warning>
 * <a href="https://play.cartesia.ai/keys" target="_blank">Cartesia</a>
 * <a href="https://elevenlabs.io/app/settings/api-keys" target="_blank">ElevenLabs</a>
 * <a href="https://play.ai/api/keys" target="_blank">PlayHT</a>
@@ -59,13 +62,26 @@ You can use any publicly accessible custom voice from ElevenLabs, Cartesia, or P
 ### 4. `voice_settings`
 
 Optional object containing additional settings specific to the selected TTS engine.
+
+These settings vary per engine:
+
+| Parameter           | Cartesia (**Sonic-1 only**)                                                                 | ElevenLabs                                                             |
+|---------------------|--------------------------------------------------------------------------|------------------------------------------------------------------------|
+| `speed`             | Range `-1.0` to `1.0` (negative = slower, positive = faster)             | Range `0.0` to `1.0` (`0.0` = slowest, `1.0` = fastest)                |
+| `emotion`           | Array of `"emotion:level"` tags (e.g., `"positivity:high"`)             | –                                                                      |
+| `stability`         | –                                                                        | Range `0.0` to `1.0` (`0.0` = variable, `1.0` = stable)                |
+| `similarity_boost`  | –                                                                        | Range `0.0` to `1.0` (`0.0` = creative, `1.0` = original)              |
+| `style`             | –                                                                        | Range `0.0` to `1.0` (`0.0` = neutral, `1.0` = exaggerated)            |
+| `use_speaker_boost` | –                                                                        | Boolean (enhances speaker similarity)                                  |
+
 <Note>
-These settings vary per engine.
+- [Cartesia Speed and Emotion Controls](https://docs.cartesia.ai/2024-11-13/build-with-cartesia/capability-guides/control-speed-and-emotion)  
+- [ElevenLabs Voice Settings](https://elevenlabs.io/docs/api-reference/voices/settings/get)
 </Note>
 ```json
 "tts": {
   "voice_settings": {
-    "speed": "normal",
+    "speed": 0.5,
     "emotion": ["positivity:high", "curiosity"]
   }
 }

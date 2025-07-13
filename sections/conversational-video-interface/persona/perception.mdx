@@ -38,6 +38,10 @@ An array of custom queries that `raven-0` continuously monitors in the visual st
 
 ### 3. `perception_analysis_queries`
 An array of custom queries that `raven-0` processes at the end of the call to generate a visual analysis summary for the user.
+<Note>
+You do not need to set `ambient_awareness_queries` in order to use `perception_analysis_queries`.
+
+</Note>
 ```json
 "perception_analysis_queries": [
   "Is the user wearing multiple bright colors?",
@@ -146,12 +150,11 @@ At the end of the call, `raven-0` will generate a visual summary including all d
 This feature is exclusive to personas with `raven-0` specified in the Perception Layer.
 </Note>
 
-Your backend will receive the visual summary once it's processed. For example, using the [Example Persona](#example-configuration) will produce this visual summary.
-
+Once processed, your backend will receive a payload like the following:
 ```json
 {
   "properties": {
-    "analysis": "Here's a summary of the visual observations:\n\n*   **User Appearance:** The subject is a young person, likely in their teens or early twenties, with dark hair and an East Asian appearance. They consistently wear a dark blue or black hooded jacket/hoodie with pink and white accents, patterns, or text on the sleeves, and possibly a white undershirt. A pendant or charm was observed on their chest. The setting is consistently an indoor environment with a plain white or light-colored wall background.\n*   **User Behavior and Demeanor:** The user frequently holds a wired earpiece, microphone, or earbuds near their mouth or chin, appearing to be speaking, listening intently, or in deep thought. Their gaze is predominantly cast downwards, occasionally looking slightly off to the side, with only rare, brief glances forward. They generally maintain a still posture.\n*   **User Emotions:** The user's expression is consistently neutral, conveying a sense of quiet concentration, engagement, contemplation, or thoughtful introspection. There are no overt signs of strong emotion; their demeanor is described as calm, focused, sometimes pensive, or slightly subdued. They appear to be actively listening or processing information.\n*   **Screen Gaze:** Based on the observations that the user's eyes were generally cast downwards, looking off to the side, or only occasionally glancing forward, the user was looking at the screen approximately **5-10%** of the time."
+    "analysis": "Here's a summary of the visual observations:\n\n*   **User Appearance:** The subject is a young person, likely in their teens or early twenties, with dark hair and an East Asian appearance. They consistently wear a dark blue or black hooded jacket/hoodie with pink and white accents, patterns, or text on the sleeves, and possibly a white undershirt. A pendant or charm was observed on their chest. The setting is consistently an indoor environment with a plain white or light-colored wall background.\n*   **User Behavior and Demeanor:** The user frequently holds a wired earpiece, microphone, or earbuds near their mouth or chin, appearing to be speaking, listening intently, or in deep thought. Their gaze is predominantly cast downwards, occasionally looking slightly off to the side, with only rare, brief glances forward. They generally maintain a still posture.\n*   **User Emotions:** The user's expression is consistently neutral, conveying a sense of quiet concentration, engagement, contemplation, or thoughtful introspection. There are no overt signs of strong emotion; their demeanor is described as calm, focused, sometimes pensive, or slightly subdued. They appear to be actively listening or processing information.\n*    **User's gaze towards the screen:** On a scale of 1-100, the user was looking at the screen approximately 75% of the time. While there was one instance where their gaze was averted, for the majority of the observations, the user was either looking directly at the screen or in its general direction."
   },
   "conversation_id": "<conversation_id>",
   "webhook_url": "<webhook_url>",
@@ -161,5 +164,24 @@ Your backend will receive the visual summary once it's processed. For example, u
 }
 
 ```
+### `perception_analysis_queries`
+```json
+"perception_analysis_queries": [
+  "On a scale of 1-100, how often was the user looking at the screen?"
+]
+```
+Once processed, your backend will receive a payload containing the following sentence:
+```json
+**User's Gaze Toward Screen:** "The participant looked at the screen approximately 75% of the time. Their gaze was occasionally diverted, but mostly remained focused in the direction of the camera."
 
-Based on the visual summary, the model utilizes the `ambient_awareness_queries` property to continuously analyze the user's outfit, identifying details such as the type of clothing, color, and accessories. Additionally, through the `perception_analysis_queries` property, the model can estimate how long the user is looking at the screen.
+```
+### `ambient_awareness_queries`
+```json
+"ambient_awareness_queries": [
+  "Is the user wearing a jacket?"
+]
+```
+Once processed, your backend will receive a payload containing the following sentence:
+```json
+**Ambient Awareness Queries:** The user was consistently wearing a jacket throughout the observed period.\n*
+```

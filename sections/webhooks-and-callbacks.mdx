@@ -1,138 +1,29 @@
 ---
 title: Webhooks and Callbacks
-description: Set up a webhook server to generate a callback URL that receives event notifications from Tavus.
+description: Set up a webhook server to generate a callback URL that receives event notifications from Tavus API.
 ---
 
-## Webhook Setup
 
-In this tutorial, you'll create a webhook endpoint server using Python Flask and expose it with ngrok.
-
-### Prerequisites
-
-* <a href='https://www.python.org/downloads/' target='_blank'>Python</a>
-
-* <a href="https://ngrok.com/downloads/" target='_blank'>Ngrok</a>
-
-<Steps>
-<Step title="Install Python Dependencies">
-Install the Python dependencies needed to create the server.
-
-```sh
-pip install flask request
-```
-</Step>
-<Step title="Make a Webhook Server">
-Set up a webhook server and save it as `server.py`.
-
-```py [expandable]
-import requests
-from flask import Flask, request, jsonify
-
-app = Flask(__name__)
-
-# Store transcripts (in production, use a proper database)
-transcripts = {}
-
-@app.route('/webhook', methods=['POST'])
-def handle_tavus_callback():
-    data = request.json
-    event_type = data.get('event_type')
-    conversation_id = data.get('conversation_id')
-    
-    print(f"Received callback: {event_type} for conversation {conversation_id}")
-    
-    if event_type == 'system.replica_joined':
-        print("✅ Replica has joined the conversation")
-        
-    elif event_type == 'system.shutdown':
-        shutdown_reason = data['properties'].get('shutdown_reason')
-        print(f"🔚 Conversation ended: {shutdown_reason}")
-    
-    elif event_type == 'application.recording_ready':
-        s3_key = data['properties'].get('s3_key')
-        print(f"s3_key : {s3_key}")
-
-    elif event_type == 'application.perception_analysis':
-        analysis = data['properties'].get('analysis')
-        print(f"analysis : {analysis}")
-        
-    elif event_type == 'application.transcription_ready':
-        print("📝 Transcript is ready!")
-        transcript = data['properties']['transcript']
-        transcripts[conversation_id] = transcript
-        
-        # Process the transcript
-        analyze_conversation(conversation_id, transcript)
-        
-    return jsonify({"status": "success"}), 200
-
-def analyze_conversation(conversation_id, transcript):
-    """Analyze the conversation transcript"""
-    user_turns = len([msg for msg in transcript if msg['role'] == 'user'])
-    assistant_turns = len([msg for msg in transcript if msg['role'] == 'assistant'])
-    
-    print(f"Conversation {conversation_id} analysis:")
-    print(f"- User turns: {user_turns}")
-    print(f"- Assistant turns: {assistant_turns}")
-    print(f"- Total messages: {len(transcript)}")
-
-    print("Conversation : ")
-
-    for msg in transcript:
-        print(f"{msg['role']} : {msg['content']}")
-
-if __name__ == '__main__':
-    app.run(port=5000, debug=True)
-```
-
-The server will receive and process webhook callbacks from Tavus, handle different event types, store transcripts in memory, and analyze conversation data for each session.
-</Step>
-<Step title="Run the Server">
-Run the server using the terminal.
-
-```sh
-python server.py
-```
-
-The server should run on port `5000`.
-</Step>
-<Step title="Forward the Port Using Ngrok">
-Open a terminal in the folder containing `ngrok.exe`, then use Ngrok to forward the port.
-
-```sh
-ngrok http 5000
-```
-
-The command will generate a forwarding link (e.g., https://1234567890.ngrok-free.app), which can be used as the callback URL.
-</Step>
-<Step title="Use the callback URL">
-Include the callback URL in your request to Tavus by appending `/webhook` to the forwarding link and setting it in the `callback_url` field.
-
-```sh Create conversation with callback_url {6}
-curl --request POST \
-  --url https://tavusapi.com/v2/conversations \
-  --header 'Content-Type: application/json' \
-  --header 'x-api-key: <api-key>' \
-  --data '{
-  "callback_url": "https://1234567890.ngrok-free.app/webhook",
-  "replica_id": "<replica_id>",
-  "persona_id": "<persona_id>",
-  "properties": {
-    "max_call_duration": 3600,
-    "participant_left_timeout": 58,
-    "enable_recording": true,
-    "recording_s3_bucket_name": "<recording_s3_bucket_name>",
-    "aws_assume_role_arn": "<aws_assume_role_arn>",
-    "recording_s3_bucket_region": "<recording_s3_bucket_region>"
-  }
-}'
-```
-</Step>
-</Steps>
 
 ## Conversation Callbacks
 
 If a `callback_url` is provided in the <a href="/api-reference/conversations/create-conversation" target='_blank'>Create Conversation API Request</a>, callbacks will provide insight into the conversation's state. These can be system-related (e.g. replica joins and room shutdowns) or application-related (e.g. final transcription parsing and recording-ready webhooks). Additional webhooks coming soon.
+### Structure
+
+All Conversation callbacks share the following basic structure. Differences will occur in the `properties` object.
+
+```json
+{
+    "properties": {
+    "replica_id": "<replica_id>"
+    },
+    "conversation_id": "<conversation_id>",
+    "webhook_url": "<webhook_url>",
+    "event_type": "<event_type>",
+    "message_type": "<system/application>",
+    "timestamp": "<timestamp>"
+}
+```
 
 ### Types
 
@@ -153,35 +44,7 @@ These callbacks are to provide insight into system-related events in a conversat
       - `end_conversation_endpoint_hit`
       - `internal error occurred at step x`
 
-#### Application Callbacks
-
-These callbacks are to inform developers about logical events that take place. They are:
-
-  - **application.transcription_ready**: This is fired after ending a conversation, where the chat history is saved and returned.
-  - **application.recording_ready**: This is fired if you had enabled recording on, set up a <a href="/sections/conversational-video-interface/quickstart/conversation-recordings" target='_blank'>custom S3 bucket</a> for recording and started a recording inside the room at any point. This will point to the key at which your new recording lies, useful for serving recordings through a CDN.
-  - **application.perception_analysis**: This is fired after ending a conversation, when the replica has finished summarizing the visual artifacts that were detected throughout the call. This is a feature that is only available when the persona has `raven-0` specified in the <a href="/sections/conversational-video-interface/persona/perception" target='_blank'>Perception Layer</a>.
-
-
-### Structure
-
-All Conversation callbacks share the following basic structure. Differences will occur in the `properties` object.
-
-```json
-{
-    "properties": {
-    "replica_id": "<replica_id>"
-    },
-    "conversation_id": "<conversation_id>",
-    "webhook_url": "<webhook_url>",
-    "event_type": "<event_type>",
-    "message_type": "<system/application>",
-    "timestamp": "<timestamp>"
-}
-```
-
-
-### Examples
-
+**Examples:**
 <CodeGroup>
 
 ```json system.replica_joined
@@ -210,6 +73,19 @@ All Conversation callbacks share the following basic structure. Differences will
   "timestamp": "2025-07-11T06:48:37.564961Z"
 }
 ```
+
+</CodeGroup>
+
+#### Application Callbacks
+
+These callbacks are to inform developers about logical events that take place. They are:
+
+  - **application.transcription_ready**: This is fired after ending a conversation, where the chat history is saved and returned.
+  - **application.recording_ready**: This is fired if you had enabled recording on, set up a <a href="/sections/conversational-video-interface/quickstart/conversation-recordings" target='_blank'>custom S3 bucket</a> for recording and started a recording inside the room at any point. This will point to the key at which your new recording lies, useful for serving recordings through a CDN.
+  - **application.perception_analysis**: This is fired after ending a conversation, when the replica has finished summarizing the visual artifacts that were detected throughout the call. This is a feature that is only available when the persona has `raven-0` specified in the <a href="/sections/conversational-video-interface/persona/perception" target='_blank'>Perception Layer</a>.
+
+**Examples:**
+<CodeGroup>
 
 ```json application.transcription_ready
 {
@@ -300,6 +176,32 @@ All Conversation callbacks share the following basic structure. Differences will
 
 </CodeGroup>
 
+
+## Replica Training Callbacks
+
+If a `callback_url` is provided in the `POST /replicas` call, you will receive a callback on replica training completion or on replica training error.
+
+<Tabs>
+<Tab title="Replica Training Completed">
+```json
+{
+    "replica_id": "rxxxxxxxxx",
+    "status": "ready",
+}
+```
+</Tab>
+<Tab title="Replica Training Error">
+On error, the `error_message` parameter will contain the error message. You can learn more about [API Errors and Status Details here](/sections/errors-and-status-details)
+
+```json
+{
+    "replica_id": "rxxxxxxxxx",
+    "status": "error",
+    "error_message": "There was an issue processing your training video. The video provided does not meet the minimum duration requirement for training"
+}
+```
+</Tab>
+</Tabs>
 ## Video Generation Callbacks
 
 If a `callback_url` is providing in the `POST /videos` call, you will receive callbacks on video generation completed and on video error.
@@ -349,28 +251,129 @@ On error, the `status_details` parameter will contain the error message. You can
 </Tab>
 </Tabs>
 
-## Replica Training Callbacks
+## Sample Webhook Setup
 
-If a `callback_url` is provided in the `POST /replicas` call, you will receive a callback on replica training completion or on replica training error.
+Create a sample webhook endpoint using Python Flask, and expose it publicly with ngrok.
 
-<Tabs>
-<Tab title="Replica Training Completed">
-```json
-{
-    "replica_id": "rxxxxxxxxx",
-    "status": "ready",
-}
+### Prerequisites
+
+* <a href='https://www.python.org/downloads/' target='_blank'>Python</a>
+
+* <a href="https://ngrok.com/downloads/" target='_blank'>Ngrok</a>
+
+<Steps>
+<Step title="Install Python Dependencies">
+Install the Python dependencies needed to create the server.
+
+```sh
+pip install flask request
 ```
-</Tab>
-<Tab title="Replica Training Error">
-On error, the `error_message` parameter will contain the error message. You can learn more about [API Errors and Status Details here](/sections/errors-and-status-details)
+</Step>
+<Step title="Make a Webhook Server">
+Set up a webhook server and save it as `server.py`.
 
-```json
-{
-    "replica_id": "rxxxxxxxxx",
-    "status": "error",
-    "error_message": "There was an issue processing your training video. The video provided does not meet the minimum duration requirement for training"
-}
+```py [expandable]
+import requests
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+# Store transcripts (in production, use a proper database)
+transcripts = {}
+
+@app.route('/webhook', methods=['POST'])
+def handle_tavus_callback():
+    data = request.json
+    event_type = data.get('event_type')
+    conversation_id = data.get('conversation_id')
+    
+    print(f"Received callback: {event_type} for conversation {conversation_id}")
+    
+    if event_type == 'system.replica_joined':
+        print("✅ Replica has joined the conversation")
+        
+    elif event_type == 'system.shutdown':
+        shutdown_reason = data['properties'].get('shutdown_reason')
+        print(f"🔚 Conversation ended: {shutdown_reason}")
+    
+    elif event_type == 'application.recording_ready':
+        s3_key = data['properties'].get('s3_key')
+        print(f"s3_key : {s3_key}")
+
+    elif event_type == 'application.perception_analysis':
+        analysis = data['properties'].get('analysis')
+        print(f"analysis : {analysis}")
+        
+    elif event_type == 'application.transcription_ready':
+        print("📝 Transcript is ready!")
+        transcript = data['properties']['transcript']
+        transcripts[conversation_id] = transcript
+        
+        # Process the transcript
+        analyze_conversation(conversation_id, transcript)
+        
+    return jsonify({"status": "success"}), 200
+
+def analyze_conversation(conversation_id, transcript):
+    """Analyze the conversation transcript"""
+    user_turns = len([msg for msg in transcript if msg['role'] == 'user'])
+    assistant_turns = len([msg for msg in transcript if msg['role'] == 'assistant'])
+    
+    print(f"Conversation {conversation_id} analysis:")
+    print(f"- User turns: {user_turns}")
+    print(f"- Assistant turns: {assistant_turns}")
+    print(f"- Total messages: {len(transcript)}")
+
+    print("Conversation : ")
+
+    for msg in transcript:
+        print(f"{msg['role']} : {msg['content']}")
+
+if __name__ == '__main__':
+    app.run(port=5000, debug=True)
 ```
-</Tab>
-</Tabs>
+
+The server will receive and process webhook callbacks from Tavus, handle different event types, store transcripts in memory, and analyze conversation data for each session.
+</Step>
+<Step title="Run the Server">
+Run the app using the following command in the terminal:
+
+```sh
+python server.py
+```
+
+The server should run on port `5000`.
+</Step>
+<Step title="Forward the Port Using Ngrok">
+Open a terminal in the folder containing `ngrok.exe`, then use Ngrok to forward the port.
+
+```sh
+ngrok http 5000
+```
+
+The command will generate a forwarding link (e.g., https://1234567890.ngrok-free.app), which can be used as the callback URL.
+</Step>
+<Step title="Use the callback URL">
+Include the callback URL in your request to Tavus by appending `/webhook` to the forwarding link and setting it in the `callback_url` field.
+
+```sh Create conversation with callback_url {6}
+curl --request POST \
+  --url https://tavusapi.com/v2/conversations \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <api-key>' \
+  --data '{
+  "callback_url": "https://1234567890.ngrok-free.app/webhook",
+  "replica_id": "<replica_id>",
+  "persona_id": "<persona_id>",
+  "properties": {
+    "max_call_duration": 3600,
+    "participant_left_timeout": 58,
+    "enable_recording": true,
+    "recording_s3_bucket_name": "<recording_s3_bucket_name>",
+    "aws_assume_role_arn": "<aws_assume_role_arn>",
+    "recording_s3_bucket_region": "<recording_s3_bucket_region>"
+  }
+}'
+```
+</Step>
+</Steps>

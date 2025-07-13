@@ -1760,7 +1760,7 @@ paths:
                       properties:
                         api_key:
                           type: string
-                          description: "The custodial API key to be used to make requests to the chosen TTS provider."
+                          description: "The API key for the chosen TTS provider. Only required when using private voices."
                           example: "your-api-key"
                         tts_engine:
                           type: string
@@ -1775,11 +1775,27 @@ paths:
                           example: "external-voice-id"
                         voice_settings:
                           type: object
-                          description: "Optional voice settings to be used for the TTS engine. These vary depending on the TTS engine you are using."
+                          description: |
+                            Optional voice settings to customize TTS behavior. Settings vary by provider.
+
+                            **Cartesia (Sonic-1 only):**
+                            - `speed`: Range -1.0 to 1.0 (negative = slower, positive = faster)
+                            - `emotion`: Array of emotion tags in format "emotion:level" (e.g., "positivity:high")
+                              - Emotions: anger, positivity, surprise, sadness, curiosity
+                              - Levels: low, medium, high
+                            - [Cartesia Documentation](https://docs.cartesia.ai/2024-11-13/build-with-cartesia/capability-guides/control-speed-and-emotion)
+
+                            **ElevenLabs:**
+                            - `speed`: Range 0.0 to 1.0 (0.0 = slowest, 1.0 = fastest)
+                            - `stability`: Range 0.0 to 1.0 (0.0 = variable, 1.0 = stable)
+                            - `similarity_boost`: Range 0.0 to 1.0 (0.0 = creative, 1.0 = original)
+                            - `style`: Range 0.0 to 1.0 (0.0 = neutral, 1.0 = exaggerated)
+                            - `use_speaker_boost`: Boolean (enhances speaker similarity)
+                            - [ElevenLabs Documentation](https://elevenlabs.io/docs/api-reference/voices/settings/get)
                           example:
                             {
-                              "speed": "normal",
-                              "emotion": ["positivity:high", "curiosity"],
+                              "speed": 0.5,
+                              "emotion": ["positivity:high", "curiosity"]
                             }
                         playht_user_id:
                           type: string
@@ -1882,13 +1898,14 @@ paths:
                           example: "high"
                         hotwords:
                           type: string
-                          description: "The hotwords parameter lets you provide example phrases that guide the STT model to prioritize certain words or phrases—especially names, technical terms, or uncommon language. For instance, including “Roey is the name of the person you’re speaking with” helps the model transcribe “Roey” correctly instead of “Rowie.”"
+                          description: |
+                            The hotwords parameter lets you provide example phrases that guide the STT model to prioritize certain words or phrases—especially names, technical terms, or uncommon language. For instance, including "Roey is the name of the person you're speaking with" helps the model transcribe "Roey" correctly instead of "Rowie."
                           example: "Roey is the name of the person you're speaking with."
                         smart_turn_detection:
                           type: boolean
                           example: true
                           description: |
-                            Smart Turn Detection enhances the natural flow of conversation between participants and digital replicas. This intelligent system uses lexical and semantic analysis to determine the optimal moment for the digital replica to respond. The default value is set to true.
+                            Smart Turn Detection enhances the natural flow of conversation between participants and digital replicas. This intelligent system is powered by the Sparrow model, which uses lexical and semantic analysis to determine the optimal moment for the digital replica to respond. The default value is set to true.
 
                             **How it works:**
                             - Continuously evaluates the participant's speech patterns and content
@@ -2103,7 +2120,7 @@ paths:
                               properties:
                                 api_key:
                                   type: string
-                                  description: "The custodial API key to be used to make requests to the chosen TTS provider."
+                                  description: "The API key for the chosen TTS provider. Only required when using private voices."
                                   example: "your-api-key"
                                 tts_engine:
                                   type: string
@@ -2118,12 +2135,27 @@ paths:
                                   example: "external-voice-id"
                                 voice_settings:
                                   type: object
-                                  description: "Optional voice settings to be used for the TTS engine. These vary depending on the TTS engine you are using."
+                                  description: |
+                                    Optional voice settings to customize TTS behavior. Settings vary by provider.
+
+                                    **Cartesia (Sonic-1 only):**
+                                    - `speed`: Range -1.0 to 1.0 (negative = slower, positive = faster)
+                                    - `emotion`: Array of emotion tags in format "emotion:level" (e.g., "positivity:high")
+                                      - Emotions: anger, positivity, surprise, sadness, curiosity
+                                      - Levels: low, medium, high
+                                    - [Cartesia Documentation](https://docs.cartesia.ai/2024-11-13/build-with-cartesia/capability-guides/control-speed-and-emotion)
+
+                                    **ElevenLabs:**
+                                    - `speed`: Range 0.0 to 1.0 (0.0 = slowest, 1.0 = fastest)
+                                    - `stability`: Range 0.0 to 1.0 (0.0 = variable, 1.0 = stable)
+                                    - `similarity_boost`: Range 0.0 to 1.0 (0.0 = creative, 1.0 = original)
+                                    - `style`: Range 0.0 to 1.0 (0.0 = neutral, 1.0 = exaggerated)
+                                    - `use_speaker_boost`: Boolean (enhances speaker similarity)
+                                    - [ElevenLabs Documentation](https://elevenlabs.io/docs/api-reference/voices/settings/get)
                                   example:
                                     {
-                                      "speed": "normal",
-                                      "emotion":
-                                        ["positivity:high", "curiosity"],
+                                      "speed": 0.5,
+                                      "emotion": ["positivity:high", "curiosity"]
                                     }
                                 playht_user_id:
                                   type: string
@@ -2224,7 +2256,7 @@ paths:
                                 smart_turn_detection:
                                   type: boolean
                                   description: |
-                                    Smart Turn Detection enhances the natural flow of conversation between participants and digital replicas. This intelligent system uses lexical and semantic analysis to determine the optimal moment for the digital replica to respond. The default value is set to true.
+                                   Smart Turn Detection enhances the natural flow of conversation between participants and digital replicas. This intelligent system is powered by the Sparrow model, which uses lexical and semantic analysis to determine the optimal moment for the digital replica to respond. The default value is set to true.
 
                                     **How it works:**
                                     - Continuously evaluates the participant's speech patterns and content
@@ -2365,7 +2397,7 @@ paths:
                               properties:
                                 api_key:
                                   type: string
-                                  description: "The custodial API key to be used to make requests to the chosen TTS provider."
+                                  description: "The API key for the chosen TTS provider. Only required when using private voices."
                                   example: "your-api-key"
                                 tts_engine:
                                   type: string
@@ -2380,12 +2412,27 @@ paths:
                                   example: "external-voice-id"
                                 voice_settings:
                                   type: object
-                                  description: "Optional voice settings to be used for the TTS engine. These vary depending on the TTS engine you are using."
+                                  description: |
+                                    Optional voice settings to customize TTS behavior. Settings vary by provider.
+
+                                    **Cartesia (Sonic-1 only):**
+                                    - `speed`: Range -1.0 to 1.0 (negative = slower, positive = faster)
+                                    - `emotion`: Array of emotion tags in format "emotion:level" (e.g., "positivity:high")
+                                      - Emotions: anger, positivity, surprise, sadness, curiosity
+                                      - Levels: low, medium, high
+                                    - [Cartesia Documentation](https://docs.cartesia.ai/2024-11-13/build-with-cartesia/capability-guides/control-speed-and-emotion)
+
+                                    **ElevenLabs:**
+                                    - `speed`: Range 0.0 to 1.0 (0.0 = slowest, 1.0 = fastest)
+                                    - `stability`: Range 0.0 to 1.0 (0.0 = variable, 1.0 = stable)
+                                    - `similarity_boost`: Range 0.0 to 1.0 (0.0 = creative, 1.0 = original)
+                                    - `style`: Range 0.0 to 1.0 (0.0 = neutral, 1.0 = exaggerated)
+                                    - `use_speaker_boost`: Boolean (enhances speaker similarity)
+                                    - [ElevenLabs Documentation](https://elevenlabs.io/docs/api-reference/voices/settings/get)
                                   example:
                                     {
-                                      "speed": "normal",
-                                      "emotion":
-                                        ["positivity:high", "curiosity"],
+                                      "speed": 0.5,
+                                      "emotion": ["positivity:high", "curiosity"]
                                     }
                                 playht_user_id:
                                   type: string
@@ -2486,7 +2533,7 @@ paths:
                                 smart_turn_detection:
                                   type: boolean
                                   description: |
-                                    Smart Turn Detection enhances the natural flow of conversation between participants and digital replicas. This intelligent system uses lexical and semantic analysis to determine the optimal moment for the digital replica to respond. The default value is set to true.
+                                    Smart Turn Detection enhances the natural flow of conversation between participants and digital replicas. This intelligent system is powered by the Sparrow model, which uses lexical and semantic analysis to determine the optimal moment for the digital replica to respond. The default value is set to true.
 
                                     **How it works:**
                                     - Continuously evaluates the participant's speech patterns and content

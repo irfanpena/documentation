@@ -1,0 +1,91 @@
+---
+title: Blocks
+description: High-level component compositions that combine multiple UI elements into complete interface layouts
+---
+
+### Conversation block
+
+The Conversation component provides a complete video chat interface for one-to-one conversations with AI replicas
+
+```bash
+npx @tavus/cvi-ui@latest add conversation-01
+```
+
+<Tabs>
+  <Tab title="Description">
+    The `Conversation` component provides a complete video chat interface for one-to-one conversations with AI replicas, featuring main video display, self-view preview, and integrated controls.
+
+    **Features:**
+    - **Main Video Display**: Large video area showing the AI replica or screen share
+    - **Self-View Preview**: Small preview window showing local camera feed
+    - **Screen Sharing Support**: Automatic switching between replica video and screen share
+    - **Device Controls**: Integrated microphone, camera, and screen share controls
+    - **Error Handling**: Graceful handling of camera/microphone permission errors
+    - **Responsive Layout**: Adaptive design for different screen sizes
+
+    **Props:**
+    - `conversationUrl` (string): Daily.co room URL for joining
+    - `onLeave` (function): Callback when user leaves the conversation
+
+  </Tab>
+  <Tab title="Code">
+    ```tsx
+    import { Conversation } from './components/cvi/components/conversation';
+    ```
+    ```tsx    
+    <Conversation
+      conversationUrl={conversationUrl}
+      onLeave={() => handleLeaveCall()}
+    />
+    ```
+  </Tab>
+</Tabs>
+
+Preview
+
+<Frame>
+  ![Conversation Block Preview](/images/conversation_01_preview.png)
+</Frame>
+
+### Hair Check
+
+The HairCheck component provides a pre-call interface for users to test and configure their audio/video devices before joining a video chat.
+
+```bash
+npx @tavus/cvi-ui@latest add hair-check-01
+```
+
+<Tabs>
+  <Tab title="Description">
+    The `HairCheck` component provides a pre-call interface for users to test and configure their audio/video devices before joining a video chat.
+
+    **Features:**
+    - **Device Testing**: Live preview of camera feed with mirror effect
+    - **Permission Management**: Handles camera and microphone permission requests
+    - **Device Controls**: Integrated microphone and camera controls
+    - **Join Interface**: Call-to-action button to join the video chat
+    - **Responsive Design**: Works on both desktop and mobile devices
+
+    **Props:**
+    - `isJoinBtnLoading` (boolean): Shows loading state on join button
+    - `onJoin` (function): Callback when user clicks join
+    - `onCancel` (function, optional): Callback when user cancels
+
+  </Tab>
+  <Tab title="Code">
+    ```tsx
+    import { HairCheck } from './components/cvi/components/hair-check';
+    ```
+    ```tsx
+    <HairCheck
+      isJoinBtnLoading={isLoading}
+      onJoin={handleJoinCall}
+      onCancel={handleCancel}
+    />
+    ```
+  </Tab>
+</Tabs>
+
+Preview
+
+<Frame>![Haircheck Block Preview](/images/haircheck_01_preview.png)</Frame>
