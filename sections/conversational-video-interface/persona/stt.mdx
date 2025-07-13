@@ -84,11 +84,11 @@ Enables dynamic turn-taking using the Sparrow model, which dynamically adjusts t
 
 When enabled, `smart_turn_detection`:
 
-* Monitors participant speech in real time
-* Detects when the participant has likely finished speaking
-* Works with both speculative and non-speculative inference
-* Adjusts response timing based on speech rhythm and pauses
-* Integrates with `participant_pause_sensitivity` to avoid interrupting mid-thought
+* Monitors participant speech in real time.
+* Detects when the participant has likely finished speaking.
+* Works with both speculative and non-speculative inference.
+* Continuously uses participant speech patterns and content to determine how long to wait to respond.
+* Works in conjunction with `participant_pause_sensitivity` setting, which adjusts the maximum pause for when participant is clearly not done.
 
 
 <Warning>
