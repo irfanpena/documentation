@@ -3181,18 +3181,18 @@ paths:
             examples:
                Add Persona Context:
                  value:
-                   op: "add"
-                   path: "/context"
-                   value: "Here are a few times that you have helped an individual make a breakthrough in..."
+                   - op: "add"
+                     path: "/context"
+                     value: "Here are a few times that you have helped an individual make a breakthrough in..."
                Replace Persona System Prompt:
                  value:
-                   op: "replace"
-                   path: "/system_prompt"
-                   value: "As a Life Coach, you are a dedicated professional who specializes in..."
+                   - op: "replace"
+                     path: "/system_prompt"
+                     value: "As a Life Coach, you are a dedicated professional who specializes in..."
                Remove STT Hotwords:
                  value:
-                   op: "remove"
-                   path: "/layers/stt/hotwords"
+                   - op: "remove"
+                     path: "/layers/stt/hotwords"
       responses:
         "200":
           description: "OK"
