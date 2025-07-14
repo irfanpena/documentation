@@ -3,14 +3,32 @@ openapi: post /v2/conversations
 description: |
     This endpoint starts a real-time video conversation with your AI replica, powered by a persona that allows it to see, hear, and respond like a human.
 
+
+        **Core Components:**
+        - Replica - Choice of audio/visual appearance 
+        - Persona - Define the replica's behavior and capabilities
+
+        
         The response includes a `conversation_url` that you can use to join the call or embed it on your website. <a href="/sections/integrations/embedding-cvi" target="_blank">Learn how to embed it here</a>.
         
         If you provide a `callback_url`, you’ll receive webhooks with updates about the conversation status. <a href="/sections/webhooks-and-callbacks" target="_blank">Learn more about Callback here</a>.
+        <Accordion title="Required Parameters" icon="lightbulb">
+        Required parameters vary depending on the use case:
+
+        **Full Pipeline Conversation:**
+        - `persona_id`
+        - `replica_id`
+
+        **Audio-Only Conversation:**
+        - `persona_id`
+        - `replica_id`
+        - `audio_only`
 
         <Warning>
-        - **If your persona does not have a default replica**, the `replica_id` is required.
-        - **If your persona has a default replica**, the `replica_id` is not required.
-        - **If your persona has a default replica and you define `replica_id`**, it will override the persona's default replica.
+        - `replica_id` is **required** if the persona does **not** have a default replica.  
+        - `replica_id` is **optional** if the persona **does** have a default replica.  
+        - If both a default replica and `replica_id` are provided, the supplied `replica_id` will **override** the default.
         </Warning>
+        </Accordion>
 
 ---
