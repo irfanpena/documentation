@@ -1,3 +1,27 @@
 ---
 openapi: post /v2/replicas
+description: |
+  This endpoint creates a new replica using the latest `phoenix-3` model, which can be used in real-time conversations.
+
+  <Note>
+  By default, all new replicas are trained using the `phoenix-3` model.  
+  To use the older `phoenix-2` model, set the `model_name` parameter to `phoenix-2`.
+  </Note>
+
+  <Accordion title="Required Parameters" icon="lightbulb">
+  Required parameters vary based on the replica type:
+
+  **Personal Replica:**
+  - `train_video_url`
+  - `consent_video_url`
+
+  **Non-Human Replica:**
+  - `train_video_url`
+
+  <Warning>
+  Make sure the `train_video_url` and `consent_video_url` are publicly accessible download links, such as presigned S3 URLs.
+  </Warning>
+  </Accordion>
+
+  For best results, refer to the <a href="/sections/replica/replica-training" target="_blank">Replica Training</a> guide.
 ---

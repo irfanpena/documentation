@@ -1408,7 +1408,7 @@ paths:
               required:
                 - train_video_url
             examples:
-              Human Replica:
+              Personal Replica:
                 value:
                   callback_url: "https://yourwebsite.com/webhook"
                   replica_name: "rfe12d8b9597"
@@ -1419,6 +1419,13 @@ paths:
                   callback_url: "https://yourwebsite.com/webhook"
                   replica_name: "rfe12d8b9597"
                   train_video_url: "https://my-example-bucket.s3.us-east-1.amazonaws.com/your-train-video.mp4"
+              Using Older Model:
+                value:
+                  model_name: "phoenix-2"
+                  callback_url: "https://yourwebsite.com/webhook"
+                  replica_name: "rfe12d8b9597"
+                  train_video_url: "https://my-example-bucket.s3.us-east-1.amazonaws.com/your-train-video.mp4"
+                  consent_video_url: "https://my-example-bucket.s3.us-east-1.amazonaws.com/your-consent-video.mp4"
 
       responses:
         "200":
