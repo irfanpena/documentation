@@ -3178,11 +3178,35 @@ paths:
                   - op
                   - path
                   - value
+            examples:
+               Add Persona Context:
+                 value:
+                   op: "add"
+                   path: "/context"
+                   value: "Here are a few times that you have helped an individual make a breakthrough in..."
+               Replace Persona System Prompt:
+                 value:
+                   op: "replace"
+                   path: "/system_prompt"
+                   value: "As a Life Coach, you are a dedicated professional who specializes in..."
+               Remove STT Hotwords:
+                 value:
+                   op: "remove"
+                   path: "/layers/stt/hotwords"
       responses:
         "200":
           description: "OK"
         "304":
           description: "No changes were made to the persona"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "No changes were made to the persona"
         "400":
           description: "Bad Request"
           content:
@@ -3196,6 +3220,15 @@ paths:
                     example: "Invalid persona_id"
         "422":
           description: "Invalid JSON patch format"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid JSON patch format"
       security:
         - apiKey: []
 
