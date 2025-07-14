@@ -39,7 +39,7 @@ curl --request POST \
     "callback_url": "",
     "replica_name": "<your_replica_name>",
     "train_video_url": "<prerecorded_video_s3_url>",
-    "conset_video_url": "<prerecorded_consent_video_s3_url>"
+    "consent_video_url": "<prerecorded_consent_video_s3_url>"
   }'
 ```
 <Note> By default, replicas are trained using the `phoenix-3` model. To use an older version, set `"model_name": "phoenix-2"` in your request body. However, we strongly recommend using the latest `phoenix-3` model for improved quality and performance. </Note>

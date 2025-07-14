@@ -72,7 +72,28 @@ paths:
                     type: string
                     description: "Legacy field - will be removed soon. Use lipsync_name instead."
                     example: "My Lipsync Video"
-                  
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid original_video_url"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"             
       security:
         - apiKey: []
 
@@ -136,6 +157,17 @@ paths:
                   total_count:
                     type: integer
                     description: "The total number of lipsync videos that fit the query."
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
 
@@ -188,6 +220,28 @@ paths:
                     type: string
                     description: "Legacy field - will be removed soon. Use lipsync_name instead."
                     example: "My Lipsync Video"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid lipsync_id"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
 
@@ -207,7 +261,29 @@ paths:
           description: "A unique identifier for the lipsync request."
       responses:
         "204":
-          description: ""
+          description: "OK"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid lipsync_id"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
   /v2/replacements:
@@ -436,6 +512,28 @@ paths:
                   speech_file_url:
                     type: string
                     description: "If no callback_url is provided in the request, this will contain a direct link to download the speech file."
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid replica_id"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
 
@@ -491,6 +589,17 @@ paths:
                           type: string
                           description: "The replica that was used to generate the speech."
                           example: ""
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
 
@@ -530,6 +639,28 @@ paths:
                   replica_id:
                     type: string
                     description: "The replica that was used to generate the speech."
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid speech_id"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
 
@@ -543,6 +674,28 @@ paths:
       responses:
         "204":
           description: ""
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid speech_id"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
     parameters:
@@ -578,6 +731,28 @@ paths:
       responses:
         "204":
           description: ""
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid speech_id"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
     parameters:
@@ -676,6 +851,17 @@ paths:
                   total_count:
                     type: integer
                     description: "The total number of videos given the filters provided."
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
 
@@ -830,21 +1016,24 @@ paths:
                 properties:
                   video_id:
                     type: string
-                    example: ""
+                    example: "abcd123"
                     description: "A unique identifier for the video."
                   video_name:
                     type: string
+                    example: "Sample Video"
                     description: "The name of the video."
                   status:
                     type: string
+                    example: "queued"
                     description: "The status of the video. Possible values: queued, generating, ready, deleted, error."
                   hosted_url:
                     type: string
+                    example: "https://tavus.video/abcd123"
                     description: "A direct link to view your video once generation has completed, hosted by Tavus."
                   created_at:
                     type: string
+                    example: "Mon, 14 Jul 2025 09:14:24 GMT"
                     description: "The date and time the video was created."
-
         "400":
           description: "Bad Request"
           content:
@@ -854,6 +1043,19 @@ paths:
                 properties:
                   error:
                     type: string
+                    description: "The error message."
+                    example: "Invalid replica_id"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
   /v2/videos/{video_id}:
@@ -880,7 +1082,7 @@ paths:
           description: "If set to true, the response will include additional video data such as the thumbnail image and gif links."
       responses:
         "200":
-          description: ""
+          description: "OK"
           content:
             application/json:
               schema:
@@ -927,6 +1129,28 @@ paths:
                   gif_thumbnail_url:
                     type: string
                     description: "Included if the `verbose` query parameter is set to true. A link to a gif thumbnail of the video."
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid video_id"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
     delete:
@@ -950,6 +1174,28 @@ paths:
       responses:
         "200":
           description: ""
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid video_id"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
 
@@ -978,7 +1224,29 @@ paths:
                   video_name: ""
       responses:
         "200":
-          description: ""
+          description: "OK"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid video_id"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
     parameters:
@@ -1067,6 +1335,17 @@ paths:
                     type: integer
                     description: "The total number of replicas given the filters provided."
                     example: 42
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
 
@@ -1129,11 +1408,18 @@ paths:
               required:
                 - train_video_url
             examples:
-              Create Replica:
+              Human Replica:
                 value:
-                  callback_url: ""
-                  replica_name: ""
-                  train_video_url: ""
+                  callback_url: "https://yourwebsite.com/webhook"
+                  replica_name: "rfe12d8b9597"
+                  train_video_url: "https://my-example-bucket.s3.us-east-1.amazonaws.com/your-train-video.mp4"
+                  consent_video_url: "https://my-example-bucket.s3.us-east-1.amazonaws.com/your-consent-video.mp4"
+              Non-Human Replica:
+                value:
+                  callback_url: "https://yourwebsite.com/webhook"
+                  replica_name: "rfe12d8b9597"
+                  train_video_url: "https://my-example-bucket.s3.us-east-1.amazonaws.com/your-train-video.mp4"
+
       responses:
         "200":
           description: ""
@@ -1150,6 +1436,28 @@ paths:
                     type: string
                     example: "training"
                     description: "The status of the replica. Possible values: started, completed, error."
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid train_video_url"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
   /v2/replicas/{replica_id}:
@@ -1218,6 +1526,28 @@ paths:
                     type: string
                     example: user'
                     description: "If `verbose` query paramter is set to true. The type of replica. Possible values: user, system. User replicas are replicas that have been created by users. System replicas are stock Tavus replicas that anyone may use"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid replica_id"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
     delete:
@@ -1241,7 +1571,29 @@ paths:
           description: "If set to true, the replica and associated assets (such as training footage) will be hard deleted. CAUTION: This action is irrevocable. Note that a hard delete of a replica does *not* delete the conversation created using said replica. See [Delete Video](https://docs.tavus.io/api-reference/video-request/delete-video) for more info."
       responses:
         "200":
-          description: ""
+          description: "OK"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid replica_id"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
 
@@ -1270,7 +1622,29 @@ paths:
                   replica_name: ""
       responses:
         "200":
-          description: ""
+          description: "OK"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid replica_id"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
     parameters:
@@ -1537,6 +1911,17 @@ paths:
                   total_count:
                     type: integer
                     description: "The total number of conversations given the filters provided."
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
 
@@ -1592,6 +1977,28 @@ paths:
                     type: string
                     example: ""
                     description: "The date and time of when the conversation was last updated."
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid conversation_id"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
 
@@ -1604,7 +2011,29 @@ paths:
       operationId: deleteConversation
       responses:
         "204":
-          description: ""
+          description: "NO CONTENT"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid conversation_id"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
 
@@ -1624,8 +2053,30 @@ paths:
         This endpoint ends a single conversation by its unique identifier.
       operationId: endConversation
       responses:
-        "204":
-          description: ""
+        "200":
+          description: "OK"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid conversation_id"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
 
@@ -2021,6 +2472,28 @@ paths:
                   created_at:
                     type: string
                     description: "The date and time the persona was created."
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid replica_uuid"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
 
@@ -2302,6 +2775,17 @@ paths:
                   total_count:
                     type: integer
                     description: "The total number of personas given the filters provided."
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
 
@@ -2576,6 +3060,28 @@ paths:
                         updated_at:
                           type: string
                           description: "The date and time of when the persona was last updated."
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid persona_id"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
 
@@ -2588,7 +3094,29 @@ paths:
       operationId: deletePersona
       responses:
         "204":
-          description: ""
+          description: "NO CONTENT"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid persona_id"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
       security:
         - apiKey: []
 
@@ -2649,7 +3177,16 @@ paths:
         "304":
           description: "No changes were made to the persona"
         "400":
-          description: "Persona ID not found"
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid persona_id"
         "422":
           description: "Invalid JSON patch format"
       security:
