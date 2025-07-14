@@ -18,9 +18,9 @@ Each persona includes configurable fields. Here's what you can customize:
 - **Default Replica**: Sets the digital human associated with the persona.
 - **Layers**: Each layer in the pipeline processes a different part of the conversation. Layers can be configured individually to tailor input/output behavior to your application needs.
 
-## CVI Layer
+## Layer
 
-Tavus provides the following customizable layers within the Persona as part of the CVI pipeline:
+Explore our in-depth guides to customize each layer to fit your specific use case:
 
 <CardGroup cols={2}>
   <Card title="Perception Layer" icon="eye" href="/sections/conversational-video-interface/persona/perception">
@@ -39,7 +39,7 @@ Tavus provides the following customizable layers within the Persona as part of t
 
 ## Pipeline Mode
 
-Tavus offers a number of modes that come with preconfigured layers as necessary for your use case:
+Tavus provides several pipeline modes, each with preconfigured layers tailored to specific use cases:
 
 ### Full Pipeline Mode (Default & Recommended)
 
@@ -56,9 +56,7 @@ The default and recommended end-to-end configuration optimized for real-time con
    We offer a selection of optimized LLMs including **Llama 3.3 and OpenAI models** that are fully optimized for the full pipeline mode.
 </Note>
 
-<Card title="CVI quickstart" icon="rocket" href="/sections/conversational-video-interface/quickstart/use-the-full-pipeline">
-  
-</Card>
+<Card title="CVI quickstart" icon="rocket" href="/sections/conversational-video-interface/quickstart/use-the-full-pipeline" horizontal />
 
 ### Custom LLM / Bring Your Own Logic
 
@@ -71,6 +69,4 @@ Use this mode to integrate a custom LLM or a specialized backend for interpretin
 - Adds latency due to external processing
 - Does **not** require an actual LLM—any endpoint that returns a compatible chat completion format can be used
 
-<Card title="Integrate your own custom LLM or logic" icon="binary" href="/sections/conversational-video-interface/persona/llm#custom-llms">
-  
-</Card>
+<Card title="Integrate your own custom LLM or logic" icon="binary" href="/sections/conversational-video-interface/persona/llm#custom-llms" horizontal />
