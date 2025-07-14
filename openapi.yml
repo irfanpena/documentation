@@ -3137,7 +3137,8 @@ paths:
         For example:
         
         <Note>
-        Ensure the `path` match the current persona schema.
+        - Ensure the `path` match the current persona schema.
+        - For the `remove` operation, the `value` parameter is not required.
         </Note>
 
         ```json
