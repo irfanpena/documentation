@@ -5,23 +5,24 @@ description: Guide to recording a high-quality training video for generating a h
 
 You can record the Replica training video directly in the <a href="https://platform.tavus.io/" target='_blank'>Developer Portal</a> or upload a pre-recorded one via the <a href="https://docs.tavus.io/api-reference/phoenix-replica-model/create-replica" target='_blank'>API</a>.
 
-## Prerequisites
+## Talking Head Replica
+### Prerequisites
 
-### Environment
+#### Environment
 - Record in a quiet, well-lit space with no background noise or movement.  
 - Use diffuse lighting to avoid shadows on your face.  
 - Choose a simple background and avoid any moving people or objects.
 
-### Camera
+#### Camera
 - Place the camera at eye level and ensure your face fills at least 25% of the frame. 
 - Use a desktop recording app (e.g., **QuickTime** on Mac or **Camera** on Windows) — avoid browser-based tools.
 
-### Microphone
+#### Microphone
 - Use your device’s built-in microphone.  
 - **Avoid** high-end mics or wireless earbuds like AirPods.  
 - Turn off audio effects like noise suppression or EQ adjustments.
 
-### Yourself
+#### Yourself
 <Frame>
 ![](/images/replica-training/charlie.png)
 </Frame>
@@ -33,16 +34,7 @@ You can record the Replica training video directly in the <a href="https://platf
 | Tuck back any hair covering your face | Block your chin or mouth with your microphone |
 | Sit upright in a stable, seated position | Stand or shift positions during the video |
 
-#### Full Body Replica
-
-You can also make a full body replica for Conversational Video Interface (CVI). To make a full body replica:
-
-* The recording must frame the subject from head to toe, with no extra space above or below.
-* The recording must be in a vertical format or appropriately cropped to maintain vertical orientation.
-* Avoid using hand gestures during the recording.
-* A resolution of 4K is recommended for optimal quality.
-
-### Video Format
+#### Video Format
 
 If you're uploading a pre-recorded training video via our <a href="https://docs.tavus.io/api-reference/phoenix-replica-model/create-replica" target='_blank'>API</a>, ensure it meets the following requirements:
 
@@ -53,7 +45,7 @@ If you're uploading a pre-recorded training video via our <a href="https://docs.
 - **Maximum file size**: 750MB  
 - **Minimum resolution**: 720p  
 
-### Consent Statement
+#### Consent Statement
 
 If you're creating a **personal replica**, you must include a verbal consent statement in the video. This ensures ethical use and compliance with data protection laws.
 
@@ -124,3 +116,24 @@ Replica training typically takes **4–5 hours**. You can track the training pro
 <Frame>
 <iframe src="https://drive.google.com/file/d/1kXliTbzz9t-8FIyMDeOq8h6C1ZqDKiIu/preview" width="600" height="350" allow="autoplay"></iframe>
 </Frame>
+
+## Full Body Replica
+To create a full body replica for video generation or Lip-sync video, follow these guidelines to ensure optimal quality:
+<Frame>
+![](/images/image1.png)
+</Frame>
+
+### Framing & Orientation
+
+* The subject must be captured **from head to toe**, with no extra space above or below.
+* Record in **vertical format** (portrait mode) or crop appropriately to maintain vertical framing.
+
+### Posture & Movement
+
+* Remain **standing still** throughout the recording.
+* **Avoid hand gestures** or exaggerated body movements to maintain consistency and model quality.
+
+### Resolution & Quality
+
+* A **4K resolution** is recommended for best results.
+* Ensure consistent lighting, with no shadows or sudden changes in exposure.
