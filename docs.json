@@ -163,7 +163,7 @@
                 "group": "Conversational Video Interface",
                 "pages": [
                   {
-                    "group": "Conversations",
+                    "group": "Conversation",
                     "pages": [
                       "api-reference/conversations/create-conversation",
                       "api-reference/conversations/get-conversation",
@@ -173,7 +173,7 @@
                     ]
                   },
                   {
-                    "group": "Personas",
+                    "group": "Persona",
                     "pages": [
                       "api-reference/personas/create-persona",
                       "api-reference/personas/get-persona",
@@ -185,7 +185,7 @@
                 ]
               },
               {
-                "group": "Replicas",
+                "group": "Replica",
                 "pages": [
                   "api-reference/phoenix-replica-model/create-replica",
                   "api-reference/phoenix-replica-model/get-replica",
@@ -195,7 +195,7 @@
                 ]
               },
               {
-                "group": "Videos",
+                "group": "Video Generation",
                 "pages": [
                   "api-reference/video-request/create-video",
                   "api-reference/video-request/get-video",
