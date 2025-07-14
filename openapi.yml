@@ -1450,8 +1450,19 @@ paths:
                 properties:
                   error:
                     type: string
-                    description: "The error message"
+                    description: "The error message."
                     example: "There was an error creating the conversation, please reach out to support at support@tavus.io!"
+        "401":
+          description: "UNAUTHORIZED"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "The error message."
+                    example: "Invalid access token"
     get:
       tags:
         - Conversations
