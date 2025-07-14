@@ -178,8 +178,7 @@ Refer to the <a href="https://docs.tavus.io/api-reference/personas/create-person
 </Note>
 
 ### Perception
-If you enable the  `raven-0` perception model, your LLM will receive the following system messages:
-
+When using the `raven-0` perception model with a custom LLM, your LLM will receive system messages containing visual context extracted from the user's video input.
 ```json
 {
     "role": "system",
@@ -188,7 +187,7 @@ If you enable the  `raven-0` perception model, your LLM will receive the followi
 ```
 
 #### Basic Perception model
-If you enable the Basic perception model, your LLM will receive the following user messages (instead of a system message):
+If you use the Basic perception model, your LLM will receive the following user messages (instead of a system message):
 
 ```json
 {
@@ -197,4 +196,4 @@ If you enable the Basic perception model, your LLM will receive the following us
 }
 ```
 #### Disabled Perception model
-If you disable the perception model, your LLM will not receive any special system messages.
+If you disable the perception model, your LLM will not receive any special messages.
