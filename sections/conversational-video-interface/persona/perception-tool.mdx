@@ -59,7 +59,7 @@ Here’s an example of tool calling in `perception` layers:
 - Add detailed `description` fields to improve selection accuracy.
 </Tip>
 
-```json Perception Layer
+```json Perception Layer [expandable]
 "perception": {
   "perception_model": "raven-0",
   "ambient_awareness_queries": [
@@ -113,7 +113,7 @@ This example explains the `notify_if_id_shown` function from the <a href="#examp
 </Note>
 
 <Frame>
-![](/images/tool-call-for-perception.png)
+![](/images/perception-tool-call.png)
 </Frame>
 
 <Note>  
@@ -122,7 +122,7 @@ The same process applies to other functions like `notify_if_bright_outfit_shown`
 
 ## Modify Existing Tools
 You can update the `perception_tools` definitions using the <a href="https://docs.tavus.io/api-reference/personas/patch-persona" target="_blank">Update Persona API</a>.
-```shell
+```shell [expandable]
 curl --request PATCH \
   --url https://tavusapi.com/v2/personas/{persona_id} \
   --header 'Content-Type: application/json' \

@@ -58,7 +58,7 @@ Here’s an example of tool calling in the `llm` layers:
 - Use clear, specific function names to reduce ambiguity.  
 - Add detailed `description` fields to improve selection accuracy.
 </Tip>
-```json LLM Layer
+```json LLM Layer [expandable]
 "llm": {
   "model": "tavus-llama",
   "tools": [
@@ -116,12 +116,12 @@ This example explains the `get_current_time` function from the <a href="#example
 </Note>
 
 <Frame>
-![](/images/tool-call-for-llm.png)
+![](/images/llm-tool-calling.png)
 </Frame>
 
 ## Modify Existing Tools
 You can update `tools` definitions using the <a href="https://docs.tavus.io/api-reference/personas/patch-persona" target="_blank">Update Persona API</a>.
-```shell
+```shell [expandable]
 curl --request PATCH \
   --url https://tavusapi.com/v2/personas/{persona_id} \
   --header 'Content-Type: application/json' \

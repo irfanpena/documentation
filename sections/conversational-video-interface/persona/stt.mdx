@@ -70,7 +70,7 @@ This field is only available for `tavus-advanced` engine.
 ```json
 "hotwords": "Roey is the name of the person you're speaking with."
 ```
-
+The above query helps the model transcribe "Roey" correctly instead of "Rowie."
 <Tip>
 Use hotwords for proper nouns, brand names, or domain-specific language that standard STT engines might struggle with.
 </Tip>
@@ -82,14 +82,9 @@ Enables dynamic turn-taking using the Sparrow model, which dynamically adjusts t
 ```
 #### How `smart_turn_detection` Works
 
-When enabled, `smart_turn_detection`:
-
-* Monitors participant speech in real time.
-* Detects when the participant has likely finished speaking.
-* Works with both speculative and non-speculative inference.
-* Continuously uses participant speech patterns and content to determine how long to wait to respond.
-* Works in conjunction with `participant_pause_sensitivity` setting, which adjusts the maximum pause for when participant is clearly not done.
-
+<Frame>
+![](/images/stt-works.png)
+</Frame>
 
 <Warning>
 - `smart_turn_detection` is only supported by the `tavus-advanced` engine.

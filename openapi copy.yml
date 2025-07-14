@@ -1441,17 +1441,7 @@ paths:
                   created_at:
                     type: string
                     description: "The date and time the conversation was created."
-        "400":
-          description: "Bad Request"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    description: "The error message"
-                    example: "There was an error creating the conversation, please reach out to support at support@tavus.io!"
+
     get:
       tags:
         - Conversations

@@ -1,0 +1,32 @@
+---
+title: Authentication
+description: 
+---
+To use the Tavus API, you need an API key to authenticate your requests. This key verifies that requests are coming from your Tavus account.
+
+## Get the API key
+1. Go to the <a href="https://platform.tavus.io/" target="_blank">Tavus platform</a> and select **API Key** from the sidebar menu.
+2. Click **Create New Key** to begin generating your API key.
+3. Enter a name for the key and (optional) specify allowed IP addresses, then click **Create API Key**.
+4. Copy your newly created API key and store it securely.
+
+<Warning>
+Remember that your API key is a secret! Do not share it with others or expose it in any client-side code (browsers, apps). API keys should be securely loaded from an environment variable
+</Warning>
+
+## Make Your First Call
+Authentication to the API is performed via HTTP Basic Auth. To authenticate with Tavus's API endpoints, you must provide the API Key in the header, as shown below.
+```curl Authentication Header
+'x-api-key: <api-key>'
+```
+For example, you are using the POST - Create Conversation endpoint to create a real-time video call session with a Tavus replica that has been configured with a persona. In this scenario, you can send an API request adding your API Key (`<api_key>`) as shown below:
+```shell cURL
+curl --request POST \
+  --url https://tavusapi.com/v2/conversations \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <api_key>' \
+  --data '{
+  "persona_id": "pe13ed370726",
+  "conversation_name": "Interview User"
+}'
+```

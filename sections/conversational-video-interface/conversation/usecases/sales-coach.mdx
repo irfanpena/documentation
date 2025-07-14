@@ -53,7 +53,7 @@ This predefined persona is configured to simulate real-world sales conversations
 curl --request POST \
   --url https://tavusapi.com/v2/personas \
   --header 'Content-Type: application/json' \
-  --header 'x-api-key: <your_api_key>' \
+  --header 'x-api-key: <api_key>' \
   --data '{
   "persona_name": "Sales Coach",
   "pipeline_mode": "full",
@@ -86,7 +86,7 @@ curl --request POST \
 curl --request POST \
   --url https://tavusapi.com/v2/conversations \
   --header 'Content-Type: application/json' \
-  --header 'x-api-key: <your_api_key>' \
+  --header 'x-api-key: <api_key>' \
   --data '{
   "persona_id": "<sales_coach_persona_id>"
 }'

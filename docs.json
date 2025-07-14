@@ -138,7 +138,11 @@
           {
             "group": "Resources",
             "icon": "bookmark",
-            "pages": ["sections/example-projects", "sections/changelog/changelog"]
+            "pages": [
+              "sections/webhooks-and-callbacks",
+              "sections/example-projects",
+              "sections/changelog/changelog"
+            ]
           }
         ]
       },
@@ -146,62 +150,79 @@
         "tab": "API Reference",
         "groups": [
           {
-            "group": "Conversational Video Interface",
+            "group": "Introduction",
             "pages": [
-              "api-reference/conversations/create-conversation",
-              "api-reference/conversations/get-conversation",
-              "api-reference/conversations/get-conversations",
-              "api-reference/conversations/end-conversation",
-              "api-reference/conversations/delete-conversation"
+              "api-reference/overview",
+              "api-reference/authentication"
             ]
           },
           {
-            "group": "Personas",
+            "group": "Tavus API",
             "pages": [
-              "api-reference/personas/create-persona",
-              "api-reference/personas/get-persona",
-              "api-reference/personas/get-personas",
-              "api-reference/personas/patch-persona",
-              "api-reference/personas/delete-persona"
-            ]
-          },
-          {
-            "group": "Replicas",
-            "pages": [
-              "api-reference/phoenix-replica-model/create-replica",
-              "api-reference/phoenix-replica-model/get-replica",
-              "api-reference/phoenix-replica-model/get-replicas",
-              "api-reference/phoenix-replica-model/delete-replica",
-              "api-reference/phoenix-replica-model/patch-replica-name"
-            ]
-          },
-          {
-            "group": "Videos",
-            "pages": [
-              "api-reference/video-request/create-video",
-              "api-reference/video-request/get-video",
-              "api-reference/video-request/get-videos",
-              "api-reference/video-request/delete-video",
-              "api-reference/video-request/patch-video-name"
-            ]
-          },
-          {
-            "group": "Lipsync",
-            "pages": [
-              "api-reference/lipsync/create-lipsync",
-              "api-reference/lipsync/get-lipsync",
-              "api-reference/lipsync/get-lipsync-list",
-              "api-reference/lipsync/delete-lipsync"
-            ]
-          },
-          {
-            "group": "Speech",
-            "pages": [
-              "api-reference/speech/create-speech",
-              "api-reference/speech/get-speech",
-              "api-reference/speech/get-speech-list",
-              "api-reference/speech/delete-speech",
-              "api-reference/speech/patch-speech-name"
+              {
+                "group": "Conversational Video Interface",
+                "pages": [
+                  {
+                    "group": "Conversations",
+                    "pages": [
+                      "api-reference/conversations/create-conversation",
+                      "api-reference/conversations/get-conversation",
+                      "api-reference/conversations/get-conversations",
+                      "api-reference/conversations/end-conversation",
+                      "api-reference/conversations/delete-conversation"
+                    ]
+                  },
+                  {
+                    "group": "Personas",
+                    "pages": [
+                      "api-reference/personas/create-persona",
+                      "api-reference/personas/get-persona",
+                      "api-reference/personas/get-personas",
+                      "api-reference/personas/patch-persona",
+                      "api-reference/personas/delete-persona"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Replicas",
+                "pages": [
+                  "api-reference/phoenix-replica-model/create-replica",
+                  "api-reference/phoenix-replica-model/get-replica",
+                  "api-reference/phoenix-replica-model/get-replicas",
+                  "api-reference/phoenix-replica-model/delete-replica",
+                  "api-reference/phoenix-replica-model/patch-replica-name"
+                ]
+              },
+              {
+                "group": "Videos",
+                "pages": [
+                  "api-reference/video-request/create-video",
+                  "api-reference/video-request/get-video",
+                  "api-reference/video-request/get-videos",
+                  "api-reference/video-request/delete-video",
+                  "api-reference/video-request/patch-video-name"
+                ]
+              },
+              {
+                "group": "Lipsync",
+                "pages": [
+                  "api-reference/lipsync/create-lipsync",
+                  "api-reference/lipsync/get-lipsync",
+                  "api-reference/lipsync/get-lipsync-list",
+                  "api-reference/lipsync/delete-lipsync"
+                ]
+              },
+              {
+                "group": "Speech",
+                "pages": [
+                  "api-reference/speech/create-speech",
+                  "api-reference/speech/get-speech",
+                  "api-reference/speech/get-speech-list",
+                  "api-reference/speech/delete-speech",
+                  "api-reference/speech/patch-speech-name"
+                ]
+              }
             ]
           },
           {
