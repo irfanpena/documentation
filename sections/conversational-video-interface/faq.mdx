@@ -104,7 +104,10 @@ curl --request POST \
   "replica_id": "rf4703150052",
   "callback_url": "your_webhook_url"
 }'
-``` 
+```
+<Note>
+**Note**: Replace `<api_key>` with your actual API key. 
+</Note> 
 </Accordion>
 <Accordion title="How do I get transcripts for my conversation?">
 You need to create a webhook endpoint that can receive `POST` requests from Tavus. This endpoint will receive the callback events for the transcripts after the conversation ended. Then, add `callback_url` property when creating the conversation.
@@ -120,6 +123,9 @@ curl --request POST \
   "callback_url": "your_webhook_url"
 }'
 ```
+<Note>
+**Note**: Replace `<api_key>` with your actual API key. 
+</Note>
 
 Your backend then will receive an event with properties `event_type = application.transcription_ready` when the transcript is ready.
 
@@ -172,6 +178,9 @@ curl --request POST \
   "callback_url": "your_webhook_url"
 }'
 ```
+<Note>
+**Note**: Replace `<api_key>` with your actual API key. 
+</Note>
 
 Your backend then will receive an event with properties `event_type = application.perception_analysis` when the summary is ready.
 

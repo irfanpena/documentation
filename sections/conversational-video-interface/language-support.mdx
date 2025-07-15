@@ -55,7 +55,8 @@ curl --request POST \
 ```
 
 <Note>
-Language names must match exactly with those supported by the selected TTS engine.
+- Replace `<api_key>` with your actual API key.
+- Language names must match exactly with those supported by the selected TTS engine.
 </Note>
 
 ### Smart Language Detection
@@ -75,5 +76,8 @@ curl --request POST \
    }
 }'
 ```
+<Note>
+**Note**: Replace `<api_key>` with your actual API key. 
+</Note>
 
 This enables ASR (Automatic Speech Recognition) to automatically switch languages, dynamically adjusting the pipeline to transcribe and respond in the detected language throughout the conversation.
