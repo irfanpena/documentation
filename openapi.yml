@@ -2282,10 +2282,10 @@ paths:
                             "The model name that will be used by the llm. To use Tavus' llms, you may select from the following models: `tavus-llama`, `tavus-gpt-4o`, `tavus-gpt-4o-mini`. If you would like to use your own OpenAI compatible llm, you may provide a `model`, `base_url`, and `api_key`."
                               #### Context Window Limit
 
-                              * All Tavus-hosted models have a **limit of 120,000 tokens**.
-                              * Contexts over **100,000 tokens** will experience noticeable performance degradation (slower response times).
+                              * All Tavus-hosted models have a **limit of 32,000 tokens**.
+                              * Contexts over **25,000 tokens** will experience noticeable performance degradation (slower response times).
 
-                              > **Tip**: 1 token ≈ 4 characters, therefore 120,000 tokens ≈ 480,000 characters (including spaces and punctuation).
+                              > **Tip**: 1 token ≈ 4 characters, therefore 32,000 tokens ≈ 128,000 characters (including spaces and punctuation).
                         base_url:
                           type: string
                           description: "The base url for your OpenAI compatible endpoint."

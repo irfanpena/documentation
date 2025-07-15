@@ -75,7 +75,7 @@ The above query helps the model transcribe "Roey" correctly instead of "Rowie."
 Use hotwords for proper nouns, brand names, or domain-specific language that standard STT engines might struggle with.
 </Tip>
 
-### 5. `smart_turn_detection`
+### 5. `Turn-taking model`
 Enables dynamic turn-taking using the Sparrow model, which dynamically adjusts the timeout based on what the users say. It sets a longer timeout when the user is likely not done speaking, and a shorter timeout when the user is likely done speaking.
 ```json
 "smart_turn_detection": true
