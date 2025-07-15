@@ -1,0 +1,224 @@
+{
+  "name": "Tavus",
+  "logo": {
+    "light": "/logo/light.png",
+    "dark": "/logo/dark.png"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#F230AA",
+    "light": "#FF6CC8",
+    "dark": "#F230AA"
+  },
+  "topbarCtaButton": {
+    "name": "Get Started",
+    "url": "https://platform.tavus.io"
+  },
+  "topbarLinks": [
+    {
+      "name": "Login",
+      "url": "https://platform.tavus.io"
+    },
+    {
+      "name": "Account Help",
+      "url": "https://help.tavus.io/"
+    },
+    {
+      "name": "Get Support",
+      "url": "mailto:developer-support@tavus.io"
+    }
+  ],
+  "anchors": [
+    {
+      "name": "API Reference",
+      "url": "api-reference",
+      "icon": "terminal"
+    },
+    {
+      "name": "Community",
+      "url": "https://discord.gg/5Y9Er6WNN5",
+      "icon": "discord"
+    },
+    {
+      "name": "Status",
+      "url": "https://status.tavus.io",
+      "icon": "tower-broadcast"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "",
+      "pages": ["sections/introduction", "sections/guides/api-key-guide"]
+    },
+    {
+      "group": "Replicas",
+      "pages": [
+        "sections/replicas/overview",
+        "sections/replicas/replica-training",
+        "sections/guides/replica-training-guide",
+        "sections/replicas/stock-replicas",
+        "sections/replicas/personal-replicas",
+        "sections/replicas/language-support"
+      ]
+    },
+    {
+      "group": "Conversational Video Interface",
+      "pages": [
+        "sections/conversational-video-interface/cvi-overview",
+        "sections/conversational-video-interface/quick-start",
+        "sections/conversational-video-interface/creating-a-conversation",
+        "sections/conversational-video-interface/creating-a-persona",
+        "sections/conversational-video-interface/layers-and-modes-overview",
+        "sections/conversational-video-interface/stock-personas",
+        "sections/conversational-video-interface/using-replica-in-cvi",
+        "sections/conversational-video-interface/sparrow-0-turn-taking",
+        "sections/conversational-video-interface/persona/perception",
+        {
+          "group": "Interactions Protocol",
+          "pages": [
+            "sections/conversational-video-interface/live-interactions",
+            "sections/event-schemas/conversation-echo",
+            "sections/event-schemas/conversation-respond",
+            "sections/event-schemas/conversation-sensitivity",
+            "sections/event-schemas/conversation-interrupt",
+            "sections/event-schemas/conversation-replica-interrupted",
+            "sections/event-schemas/conversation-overwrite-context",
+            "sections/event-schemas/conversation-utterance",
+            "sections/event-schemas/conversation-toolcall",
+            "sections/event-schemas/conversation-replica-started-stopped-speaking",
+            "sections/event-schemas/conversation-user-started-stopped-speaking",
+            "sections/event-schemas/conversation-perception-tool-call",
+            "sections/event-schemas/conversation-perception-analysis"
+          ]
+        },
+        {
+          "group": "Integrating with CVI",
+          "pages": [
+            "sections/conversational-video-interface/embedding-cvi",
+            {
+              "group": "Third Party Integrations",
+              "pages": ["sections/conversational-video-interface/pipecat",
+            "sections/conversational-video-interface/livekit-agent"
+            ]
+            },
+            {
+              "group": "Integrating your own AI components",
+              "pages": [
+                "sections/conversational-video-interface/custom-llm-onboarding",
+                "sections/conversational-video-interface/custom-tts-onboarding",
+                "sections/conversational-video-interface/server-to-server"
+              ]
+            },
+            "sections/conversational-video-interface/recording-rooms"
+          ]
+        },
+        {
+          "group": "Using Tool Calling",
+          "pages": [
+            "sections/conversational-video-interface/persona/llm-tool",
+            "sections/conversational-video-interface/persona/perception-tool"
+          ]
+        },
+
+        "sections/conversational-video-interface/faq"
+      ]
+    },
+    {
+      "group": "Video Generation",
+      "pages": [
+        "sections/video-generation/overview",
+        "sections/video-generation/replica-selection",
+        "sections/video-generation/scripting-prompting"
+      ]
+    },
+    {
+      "group": "Lipsync",
+      "pages": [
+        "sections/lipsync/overview"
+      ]
+    },
+    {
+      "group": "Troubleshooting",
+      "pages": [
+        "sections/troubleshooting/training-video-size",
+        "sections/troubleshooting/consent-statement",
+        "sections/troubleshooting/generated-content-length",
+        "sections/troubleshooting/api-errors",
+        "sections/troubleshooting/api-callbacks"
+      ]
+    },
+    {
+      "group": "Resources",
+      "pages": ["sections/changelog/changelog"]
+    },
+    {
+      "group": "Conversation",
+      "pages": [
+        "api-reference/conversations/create-conversation",
+        "api-reference/conversations/get-conversation",
+        "api-reference/conversations/get-conversations",
+        "api-reference/conversations/end-conversation",
+        "api-reference/conversations/delete-conversation"
+      ]
+    },
+    {
+      "group": "Persona",
+      "pages": [
+        "api-reference/personas/create-persona",
+        "api-reference/personas/get-persona",
+        "api-reference/personas/get-personas",
+        "api-reference/personas/patch-persona",
+        "api-reference/personas/delete-persona"
+      ]
+    },
+    {
+      "group": "Replica",
+      "pages": [
+        "api-reference/replica-model/create-replica",
+        "api-reference/replica-model/get-replica",
+        "api-reference/replica-model/get-replicas",
+        "api-reference/replica-model/delete-replica",
+        "api-reference/replica-model/patch-replica-name"
+      ]
+    },
+    {
+      "group": "Video Generation",
+      "pages": [
+        "api-reference/video-request/create-video",
+        "api-reference/video-request/get-video",
+        "api-reference/video-request/get-videos",
+        "api-reference/video-request/delete-video",
+        "api-reference/video-request/patch-video-name"
+      ]
+    },
+    {
+      "group": "Lipsync",
+      "pages": [
+        "api-reference/lipsync/create-lipsync",
+        "api-reference/lipsync/get-lipsync",
+        "api-reference/lipsync/get-lipsync-list",
+        "api-reference/lipsync/delete-lipsync"
+      ]
+    },
+    {
+      "group": "Speech",
+      "pages": [
+        "api-reference/speech/create-speech",
+        "api-reference/speech/get-speech",
+        "api-reference/speech/get-speech-list",
+        "api-reference/speech/delete-speech",
+        "api-reference/speech/patch-speech-name"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "linkedin": "https://www.linkedin.com/company/tavus-io/",
+    "discord": "https://discord.gg/5Y9Er6WNN5"
+  },
+  "integrations": {
+    "intercom": "xdac1bw4",
+    "ga4": {
+      "measurementId": "G-SBQHZWT4FS"
+    }
+  }
+}

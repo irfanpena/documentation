@@ -157,6 +157,7 @@
             "icon": "bookmark",
             "pages": [
               "sections/webhooks-and-callbacks",
+              "sections/errors-and-status-details",
               "sections/example-projects",
               "sections/changelog/changelog"
             ]
