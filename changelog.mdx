@@ -1,7 +1,132 @@
 ---
 title: Changelog
 ---
+
+<Update label="June 27" tags={["2025"]}>
+<Tabs>
+<Tab title="CVI">
+
+## New Features
+- **Multilingual Conversation Support:** CVI now supports dynamic multilingual conversations through automatic language detection. Set the language parameter to "multilingual" and CVI will automatically detect the user's spoken language and respond in the same language using ASR technology.
+- **Audio-Only Mode:** CVI now supports audio-only conversations with advanced perception (powered by Raven) and intelligent turn-taking (powered by Sparrow). Set `audio_only=true` in your create conversation request to enable streamlined voice-first interactions.
+
+</Tab>
+<Tab title="Video Generation">
+
+## New Features
+No features were added in this release.
+
+## Enhancements
+No enhancements were made in this release.
+
+</Tab>
+<Tab title="Lipsync">
+
+## New Features
+No features were added in this release.
+
+## Enhancements
+No enhancements were made in this release.
+
+</Tab>
+</Tabs>
+</Update>
+
+<Update label="June 20" tags={["2025"]}>
+<Tabs>
+<Tab title="CVI">
+
+## New Features
+No features were added in this release.
+
+## Enhancements
+-  **Fixed CVI responsiveness issue:** Resolved an issue where CVI would occasionally ignore very brief user utterances. All user inputs, regardless of length, now receive consistent responses.
+-  **Expanded tavus-llama context window:** Increased maximum context window to 32,000 tokens. For optimal performance and response times, we recommend staying under 25,000 tokens.
+
+</Tab>
+<Tab title="Video Generation">
+
+## New Features
+No features were added in this release.
+
+## Enhancements
+No enhancements were made in this release.
+
+</Tab>
+<Tab title="Lipsync">
+
+## New Features
+No features were added in this release.
+
+## Enhancements
+No enhancements were made in this release.
+
+</Tab>
+</Tabs>
+</Update>
+
+<Update label="June 3" tags={["2025"]}>
+<Tabs>
+<Tab title="CVI">
+
+## New Features
+No features were added in this release.
+
+## Enhancements
+- Reduced conversation boot time by 58% (p50).
+
+</Tab>
+<Tab title="Video Generation">
+
+## New Features
+No features were added in this release.
+
+## Enhancements
+No enhancements were made in this release.
+
+</Tab>
+<Tab title="Lipsync">
+
+## New Features
+No features were added in this release.
+
+## Enhancements
+No enhancements were made in this release.
+
+</Tab>
+</Tabs>
+</Update>
+
+
+<Update label="May 28" tags={["2025"]}>
+<Tabs>
+<Tab title="CVI">
+## Changes
+- Added a new recording requirement to <a href="https://docs.tavus.io/sections/replicas/replica-training" target="_blank">Replica Training</a>: Start the talking segment with a big smile.
+
+## Enhancements
+- Added <a href="https://docs.tavus.io/sections/event-schemas/conversation-echo" target="_blank">echo</a> and <a href="https://docs.tavus.io/sections/event-schemas/conversation-respond" target="_blank">respond</a> events to conversational context. 
+
+</Tab>
+<Tab title="Video Generation">
+## Changes
+- Added a new recording requirement to <a href="https://docs.tavus.io/sections/replicas/replica-training" target="_blank">Replica Training</a>: Start the talking segment with a big smile.
+
+</Tab>
+<Tab title="Lipsync">
+
+## New Features
+No features were added in this release.
+
+## Enhancements
+No enhancements were made in this release.
+
+</Tab>
+</Tabs>
+</Update>
+
 <Update label="May 17" tags={["2025"]}>
+
 <Tabs>
 <Tab title="CVI">
 ## New Features
