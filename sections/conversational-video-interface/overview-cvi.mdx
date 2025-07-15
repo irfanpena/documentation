@@ -40,7 +40,7 @@ CVI is built around three core concepts that work together to create real-time, 
     Customize the Perception, STT, LLM and TTS layers to control identity, behavior, and responses.
   </Card>
   <Card title="Lifelike AI replicas" icon="user-robot">
-    Choose from 100\+ realistic avatars or create custom digital twins with human-like voice and expression.
+    Choose from over 100\+ hyper-realistic digital twins or customize your own with human-like voice and expression.
   </Card>
   <Card title="Multilingual support" icon="globe">
     Hold natural conversations in 30\+ languages using the supported TTS engines.
@@ -64,23 +64,33 @@ Here’s how the layers work together:
   </Accordion>
 
   <Accordion title="2. Perception" icon="eye">
-    Uses <a href="/sections/conversational-video-interface/persona/perception" target="_blank">Raven</a> to analyze user expressions, gaze, background, and screen content. This visual context helps the replica understand and respond more naturally.
+    Uses **Raven** to analyze user expressions, gaze, background, and screen content. This visual context helps the replica understand and respond more naturally.
+
+    <a href="/sections/conversational-video-interface/persona/perception" target="_blank">Click here to learn how to configure the Perception layer.</a>
   </Accordion>
 
   <Accordion title="3. Speech Recognition (STT)" icon="ear-listen">
-    Powered by <a href="/sections/conversational-video-interface/persona/stt" target="_blank">Sparrow</a>, this layer transcribes user speech in real time with lexical and semantic awareness. It enables smart, natural turn-taking through fast, intelligent interruptions.
+    Powered by **Sparrow**, this layer transcribes user speech in real time with lexical and semantic awareness. It enables smart, natural turn-taking through fast, intelligent interruptions.
+    
+    <a href="/sections/conversational-video-interface/persona/stt" target="_blank">Click here to learn how to configure the Speech Recognition (STT) layer.</a>
   </Accordion>
 
-  <Accordion title="4. LLM" icon="brain">
+  <Accordion title="4. Large Language Model (LLM)" icon="brain">
     Processes the user's transcribed speech and visual input using a low-latency LLM. Tavus provides ultra-low latency optimized LLMs or lets you integrate your own.
+    
+    <a href="/sections/conversational-video-interface/persona/llm" target="_blank">Click here to learn how to configure the Large Language Model (LLM) layer.</a>
   </Accordion>
 
   <Accordion title="5. Text-to-Speech (TTS)" icon="volume-high">
     Converts the LLM response into speech using the supported TTS Engines (Cartesia **(Default)**, ElevenLabs, PlayHT).
+    
+    <a href="/sections/conversational-video-interface/persona/tts" target="_blank">Click here to learn how to configure the Text-to-Speech (TTS) layer.</a>
   </Accordion>
 
   <Accordion title="6. Realtime Replica" icon="face-smile">
     Delivers a high-quality, synchronized digital human response using Tavus's real-time avatar engine powered by **Phoenix**.
+
+    <a href="/sections/replica/overview" target="_blank">Click here to learn more about the Replica layer.</a>
   </Accordion>
 
 </AccordionGroup>
