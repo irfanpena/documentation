@@ -104,6 +104,40 @@ Most layers are configurable via the <a href="/sections/conversational-video-int
 
 You can quickly create a conversation by using the <a href="https://platform.tavus.io/" target="_blank">Tavus Platform</a> or following the steps in the <a href="/sections/conversational-video-interface/quickstart/use-the-full-pipeline" target="_blank">Quickstart</a> guide.
 
+<div style={{display: 'flex', alignItems: 'center', gap: '8px', marginTop: '4px'}}>
+  <span>If you use Cursor, use this pre-built prompt to get started faster:</span>
+  <button 
+    onClick={() => {
+      const promptText = document.querySelector('.cursor-prompt-content').textContent;
+      navigator.clipboard.writeText(promptText).then(() => {
+        const button = document.activeElement;
+        const originalText = button.textContent;
+        button.textContent = 'Copied!';
+        setTimeout(() => {
+          button.textContent = originalText;
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy text: ', err);
+      });
+    }}
+    style={{
+      backgroundColor: '#F230AA',
+      color: 'white',
+      padding: '6px 16px',
+      border: 'none',
+      borderRadius: '4px',
+      cursor: 'pointer',
+      fontWeight: '500',
+      fontSize: '14px',
+      lineHeight: '1.5',
+      width: '80px',
+      textAlign: 'center'
+    }}
+  >
+    Copy
+  </button>
+</div>
+
 <div style={{display: 'none'}} className="cursor-prompt-content">
   <CursorPrompt />
 </div>
