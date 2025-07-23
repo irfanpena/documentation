@@ -878,9 +878,9 @@ paths:
 
         If a `background_url` is provided, Tavus will record a video of the website and use it as the background for the video. If a `background_source_url` is provided, where the URL points to a download link such as a presigned S3 URL, Tavus will use the video as the background for the video. If neither are provided, the video will consist of a full screen Replica.
 
-        To learn more about generating videos with Replicas, see [here](/sections/video-generation/overview).
+        To learn more about generating videos with Replicas, see [here](/sections/video/quickstart).
 
-        To learn more about writing an effective script for your video, see [Scripting prompting](/sections/video-generation/scripting-prompting).
+        To learn more about writing an effective script for your video, see [Scripting prompting](/sections/troubleshooting#script-length).
       operationId: generateVideo
       requestBody:
         content:
@@ -1678,7 +1678,7 @@ paths:
 
         By providing a `callback_url`, you can receive webhooks with updates regarding the conversation state.
 
-        [Learn about recording conversations here](/sections/conversational-video-interface/recording-rooms).
+        <a href="/sections/conversational-video-interface/recording-rooms" target="_blank">Learn about recording conversations here</a>.
         <Warning>
         - **If your persona does not have a default replica**, the `replica_id` is required.
         - **If your persona has a default replica**, the `replica_id` is not required.
@@ -1693,7 +1693,7 @@ paths:
               properties:
                 replica_id:
                   type: string
-                  description: "The unique identifier for the replica that will join the conversation."
+                  description: "The unique identifier for the replica that will join the conversation. **Each request must have a valid `replica_id` value that's either directly passed in or as part of a persona**."
                   example: "rfe12d8b9597"
                 persona_id:
                   type: string
@@ -1749,7 +1749,7 @@ paths:
                       example: true
                     language:
                       type: string
-                      description: "The language of the conversation. Please provide the FULL language name, not the two letter code, or specify `multilingual` for automatic language detection. When set to `multilingual`, CVI will use ASR language detection to identify the user's spoken language and respond accordingly. If you are using your own TTS voice, please ensure it supports the language you provide. If you are using a stock replica or default persona, please note that only Elevenlabs and Cartesia supported languages are available. You can find a full list of supported languages for Cartesia [here](https://docs.cartesia.ai/2024-11-13/build-with-cartesia/models#language-support), for ElevenLabs [here](https://elevenlabs.io/languages) and for PlayHT [here](https://play.ht/)."
+                      description: "The language of the conversation. Please provide the FULL language name, not the two letter code, or specify `multilingual` for automatic language detection. When set to `multilingual`, CVI will use ASR language detection to identify the user's spoken language and respond accordingly. If you are using your own TTS voice, please ensure it supports the language you provide. If you are using a stock replica or default persona, please note that only Elevenlabs and Cartesia supported languages are available. You can find a full list of supported languages for Cartesia [here](https://docs.cartesia.ai/2024-11-13/build-with-cartesia/models#language-support), and for ElevenLabs [here](https://elevenlabs.io/languages)."
                       example: "multilingual"
                     recording_s3_bucket_name:
                       type: string
@@ -2111,7 +2111,7 @@ paths:
         With the `llm` layer, you can leverage your own OpenAI compatible LLM or you can use one a Tavus provided model.
         - **tavus-gpt-4o:** The smartest option for complex interactions.
         - **tavus-gpt-4o-mini:** A hybrid model that balances performance and intelligence.
-        - **tavus-llama:** The **default** choice if no LLM layer is provided. This is the fastest model, offering the best user-to-user (U2U) experience. It's on-premise, making it incredibly performant. 
+        - **tavus-llama-4:** The **default** choice if no LLM layer is provided. This is the fastest model, offering the best user-to-user (U2U) experience. It's on-premise, making it incredibly performant. 
 
         [Get Started with Your Own LLM](/sections/conversational-video-interface/custom-llm-onboarding)
 
@@ -2119,7 +2119,6 @@ paths:
         With Tavus' default TTS engine, you get the faster utterance-to-utterance speed, but you can always bring your own if you have voices already trained with:
         - **Cartesia**
         - **Elevenlabs**
-        - **Playht**
 
         [Get Started with Your Own TTS](/sections/conversational-video-interface/custom-tts-onboarding)
 
@@ -2231,7 +2230,7 @@ paths:
                           example: "tavus-advanced"
                         participant_pause_sensitivity:
                           type: string
-                          description: "Use this parameter to control how long of a pause you can take before the replica will respond to you. See more details [here](/sections/conversational-video-interface/custom-stt-onboarding). The default is `medium`, but you can adjust this to `low` or `high` depending on your needs."
+                          description: "Use this parameter to control how long of a pause you can take before the replica will respond to you. See more details [here](/sections/conversational-video-interface/persona/stt). The default is `medium`, but you can adjust this to `low` or `high` depending on your needs."
                           enum:
                             - "high"
                             - "medium"
@@ -2279,7 +2278,7 @@ paths:
                         model:
                           type: string
                           description: |
-                            "The model name that will be used by the llm. To use Tavus' llms, you may select from the following models: `tavus-llama`, `tavus-gpt-4o`, `tavus-gpt-4o-mini`. If you would like to use your own OpenAI compatible llm, you may provide a `model`, `base_url`, and `api_key`."
+                            "The model name that will be used by the llm. To use Tavus' llms, you may select from the following models: `tavus-llama-4`, `tavus-gpt-4o`, `tavus-gpt-4o-mini`. If you would like to use your own OpenAI compatible llm, you may provide a `model`, `base_url`, and `api_key`."
                               #### Context Window Limit
 
                               * All Tavus-hosted models have a **limit of 32,000 tokens**.
@@ -2358,10 +2357,9 @@ paths:
                           enum:
                             - "cartesia"
                             - "elevenlabs"
-                            - "playht"
                         external_voice_id:
                           type: string
-                          description: "The voice ID used for the TTS engine when you want to customize your replica's voice. Choose from Cartesia's stock voices by referring to their [Voice Catalog](https://docs.cartesia.ai/api-reference/voices/list), or if you want more options you can consider [ElevenLabs](https://elevenlabs.io/docs/api-reference/voices/get-all) or [PlayHT](https://docs.play.ai/api-reference/text-to-speech/voices)."
+                          description: "The voice ID used for the TTS engine when you want to customize your replica's voice. Choose from Cartesia's stock voices by referring to their [Voice Catalog](https://docs.cartesia.ai/api-reference/voices/list), or if you want more options you can consider [ElevenLabs](https://elevenlabs.io/docs/api-reference/voices/get-all)."
                           example: "external-voice-id"
                         voice_settings:
                           type: object
@@ -2387,10 +2385,6 @@ paths:
                               "speed": 0.5,
                               "emotion": ["positivity:high", "curiosity"]
                             }
-                        playht_user_id:
-                          type: string
-                          description: "The user ID, required if using Playht TTS."
-                          example: "your-playht-user-id"
                         tts_emotion_control:
                           type: boolean
                           description: "If true, the TTS engine will be able to control the emotion of the voice. Only available for Cartesia TTS."
@@ -2629,10 +2623,9 @@ paths:
                                   enum:
                                     - "cartesia"
                                     - "elevenlabs"
-                                    - "playht"
                                 external_voice_id:
                                   type: string
-                                  description: "The voice ID used for the TTS engine when you want to customize your replica's voice. Choose from Cartesia's stock voices by referring to their [Voice Catalog](https://docs.cartesia.ai/api-reference/voices/list), or if you want more options you can consider [ElevenLabs](https://elevenlabs.io/docs/api-reference/voices/get-all) or [PlayHT](https://docs.play.ai/api-reference/text-to-speech/voices)."
+                                  description: "The voice ID used for the TTS engine when you want to customize your replica's voice. Choose from Cartesia's stock voices by referring to their [Voice Catalog](https://docs.cartesia.ai/api-reference/voices/list), or if you want more options you can consider [ElevenLabs](https://elevenlabs.io/docs/api-reference/voices/get-all)."
                                   example: "external-voice-id"
                                 voice_settings:
                                   type: object
@@ -2658,10 +2651,6 @@ paths:
                                       "speed": 0.5,
                                       "emotion": ["positivity:high", "curiosity"]
                                     }
-                                playht_user_id:
-                                  type: string
-                                  description: "The user ID, required if using Playht TTS."
-                                  example: "your-playht-user-id"
                                 tts_emotion_control:
                                   type: boolean
                                   description: "If true, the TTS engine will be able to control the emotion of the voice. Only available for Cartesia TTS."
@@ -2917,10 +2906,9 @@ paths:
                                   enum:
                                     - "cartesia"
                                     - "elevenlabs"
-                                    - "playht"
                                 external_voice_id:
                                   type: string
-                                  description: "The voice ID used for the TTS engine when you want to customize your replica's voice. Choose from Cartesia's stock voices by referring to their [Voice Catalog](https://docs.cartesia.ai/api-reference/voices/list), or if you want more options you can consider [ElevenLabs](https://elevenlabs.io/docs/api-reference/voices/get-all) or [PlayHT](https://docs.play.ai/api-reference/text-to-speech/voices)."
+                                  description: "The voice ID used for the TTS engine when you want to customize your replica's voice. Choose from Cartesia's stock voices by referring to their [Voice Catalog](https://docs.cartesia.ai/api-reference/voices/list), or if you want more options you can consider [ElevenLabs](https://elevenlabs.io/docs/api-reference/voices/get-all)."
                                   example: "external-voice-id"
                                 voice_settings:
                                   type: object
@@ -2946,10 +2934,6 @@ paths:
                                       "speed": 0.5,
                                       "emotion": ["positivity:high", "curiosity"]
                                     }
-                                playht_user_id:
-                                  type: string
-                                  description: "The user ID, required if using Playht TTS."
-                                  example: "your-playht-user-id"
                                 tts_emotion_control:
                                   type: boolean
                                   description: "If true, the TTS engine will be able to control the emotion of the voice. Only available for Cartesia TTS."
@@ -3136,10 +3120,6 @@ paths:
         
         For example:
         
-        <Note>
-        - Ensure the `path` match the current persona schema.
-        - For the `remove` operation, the `value` parameter is not required.
-        </Note>
 
         ```json
         [
@@ -3174,7 +3154,7 @@ paths:
                   value:
                     type: string
                     description: "The value to be used within the operation. Required for add and replace operations"
-                    example: "tavus-llama"
+                    example: "tavus-llama-4"
                 required:
                   - op
                   - path
