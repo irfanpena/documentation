@@ -1376,24 +1376,24 @@ paths:
               properties:
                 consent_video_url:
                   type: string
-                  description: "A direct link to a video that contains the consent statement. You may optionally send the consent statement in a separate video from your training video. If you do not provide a consent video, the consent statement must be present at the beginning of the training video."
-                  example: ""
+                  description: "A direct link to a video that contains the consent statement. You may optionally send the consent statement in a separate video from your training video. If you do not provide a consent video, the consent statement must be present at the beginning of the training video. **This value is required if you want to create a personal replica**."
+                  example: "https://my-example-bucket.s3.us-east-1.amazonaws.com/your-consent-video.mp4"
                 train_video_url:
                   type: string
                   description: "A direct link to a publicly accessible storage location such as an S3 bucket. This video will be used for replica training."
-                  example: ""
+                  example: "https://my-example-bucket.s3.us-east-1.amazonaws.com/your-train-video.mp4"
                 callback_url:
                   type: string
                   description: "A url that will receive a callback on completion of replica training or on error."
-                  example: ""
+                  example: "https://yourwebsite.com/webhook"
                 replica_name:
                   type: string
                   description: "A name for the replica."
-                  example: ""
+                  example: "Rio"
                 model_name:
                   type: string
                   description: "The phoenix model version that will be used to train the replica. The current default is `phoenix-3`."
-                  example: ""
+                  example: "phoenix-3"
                 properties:
                   type: object
                   properties:
@@ -1411,13 +1411,13 @@ paths:
               Personal Replica:
                 value:
                   callback_url: "https://yourwebsite.com/webhook"
-                  replica_name: "rfe12d8b9597"
+                  replica_name: "Rio"
                   train_video_url: "https://my-example-bucket.s3.us-east-1.amazonaws.com/your-train-video.mp4"
                   consent_video_url: "https://my-example-bucket.s3.us-east-1.amazonaws.com/your-consent-video.mp4"
               Non-Human Replica:
                 value:
                   callback_url: "https://yourwebsite.com/webhook"
-                  replica_name: "rfe12d8b9597"
+                  replica_name: "AI"
                   train_video_url: "https://my-example-bucket.s3.us-east-1.amazonaws.com/your-train-video.mp4"
               Older Model Replica:
                 value:
@@ -1697,11 +1697,11 @@ paths:
                   example: "rfe12d8b9597"
                 persona_id:
                   type: string
-                  description: "The unique identifier for the persona that the replica will use in the conversation."
+                  description: "The unique identifier for the persona that the replica will use in the conversation. **If your Persona does not have a valid `replica_id`, you must define the `replica_id` field. If your Persona already has a valid `replica_id` and you provide one in the request, the `replica_id` field will overwrite the existing value**."
                   example: "p9a95912"
                 audio_only:
                   type: boolean
-                  description: "Specifies whether the interaction should be voice-only."
+                  description: "Specifies whether the interaction should be voice-only. **This field is required if you want to create an audio-only conversation**."
                   example: "false"
                 callback_url:
                   type: string
@@ -2016,6 +2016,14 @@ paths:
       description: |
         This endpoint deletes a single conversation by its unique identifier.
       operationId: deleteConversation
+      parameters:
+        - name: conversation_id
+          in: path
+          required: true
+          description: The unique identifier of the conversation.
+          schema:
+            type: string
+            example: c123456
       responses:
         "204":
           description: "NO CONTENT"
@@ -2142,7 +2150,7 @@ paths:
                   example: "Life Coach"
                 system_prompt:
                   type: string
-                  description: "This is the system prompt that will be used by the llm."
+                  description: "This is the system prompt that will be used by the llm. **Each request must have a `system_prompt` value unless you're using echo mode**."
                   example: "As a Life Coach, you are a dedicated professional who specializes in..."
                 pipeline_mode:
                   type: string
@@ -3153,7 +3161,7 @@ paths:
                     example: "/layers/llm/model"
                   value:
                     type: string
-                    description: "The value to be used within the operation. Required for add and replace operations"
+                    description: "The value to be used within the operation. **Each request must have a `value` field unless you're using `remove` operation**."
                     example: "tavus-llama-4"
                 required:
                   - op
