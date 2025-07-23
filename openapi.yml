@@ -258,6 +258,7 @@ paths:
           required: true
           schema:
             type: string
+            example: "w4ed23359d415"
           description: "A unique identifier for the lipsync request."
       responses:
         "204":
@@ -471,19 +472,19 @@ paths:
                 script:
                   type: string
                   description: "The text script that will be used to generate the audio."
-                  example: ""
+                  example: "Hi, this is my first speech."
                 replica_id:
                   type: string
                   description: "The replica that will be used to generate the audio."
-                  example: ""
+                  example: "r665388ec672"
                 speech_name:
                   type: string
                   description: "A name for the speech."
-                  example: ""
+                  example: "My First Speech"
                 callback_url:
                   type: string
                   description: "The speech file will be returned asynchoronously as a presigned S3 URL."
-                  example: ""
+                  example: "https://yourwebsite.com/webhook"
 
               required:
                 - script
@@ -492,8 +493,8 @@ paths:
             examples:
               Generate Speech:
                 value:
-                  script: ""
-                  replica_id: ""
+                  script: "Hi, this is my first speech."
+                  replica_id: "r665388ec672"
       responses:
         "200":
           description: ""
@@ -504,7 +505,7 @@ paths:
                 properties:
                   speech_id:
                     type: string
-                    example: ""
+                    example: "sda06a0f4256"
                     description: "A unique identifier for the speech."
                   speech_name:
                     type: string
@@ -702,8 +703,10 @@ paths:
       - name: speech_id
         in: path
         required: true
+        description: "The unique identifier of the speech."
         schema:
           type: string
+          example: "sda06a0f4256"
 
   /v2/speech/{speech_id}/name:
     patch:
@@ -759,8 +762,10 @@ paths:
       - name: speech_id
         in: path
         required: true
+        description: "The unique identifier of the speech."
         schema:
           type: string
+          example: "sda06a0f4256"
 
   /v2/videos:
     get:
@@ -899,15 +904,15 @@ paths:
                 background_url:
                   type: string
                   description: "A link to a website. This will be used as the background for the video. The website must be publicly accessible and properly formed."
-                  example: ""
+                  example: "https://yourwebsite.com/"
                 background_source_url:
                   type: string
                   description: "A direct link to a video that is publicly accessible via a storage location such as an S3 bucket. This will be used as the background for the video. The video must be publicly accessible."
-                  example: ""
+                  example: "https://my-example-bucket.s3.us-east-1.amazonaws.com/your-background-video.mp4"
                 callback_url:
                   type: string
                   description: "A url that will receive a callback on completion of video generation or on error."
-                  example: ""
+                  example: "https://yourwebsite.com/webhook"
                 fast:
                   type: boolean
                   description: "If set to true, the video will be generated using a barebones fast rendering process. This will result in a faster generation of the video but some features will be disabled. Features such as background generation, thumbnail images, and streaming urls are not supported when using this fast rendering process."
@@ -1002,10 +1007,10 @@ paths:
             examples:
               Generate Video:
                 value:
-                  background_url: ""
-                  replica_id: ""
-                  script: ""
-                  video_name: ""
+                  background_url: "https://yourwebsite.com/"
+                  replica_id: "r665388ec672"
+                  script: "Hi, this is my first video."
+                  video_name: "My First Video"
       responses:
         "200":
           description: ""
@@ -1164,12 +1169,15 @@ paths:
         - name: video_id
           in: path
           required: true
+          description: The unique identifier of the video generation.
           schema:
             type: string
+            example: "8a4f94e736"
         - name: hard
           in: query
           schema:
             type: boolean
+            example: false
           description: "If set to true, the video and associated assets (such as thumbnail images) will be hard deleted. CAUTION: This action is irrevocable."
       responses:
         "200":
@@ -1215,13 +1223,13 @@ paths:
               properties:
                 video_name:
                   type: string
-                  example: ""
+                  example: "Sales"
               required:
                 - video_name
             examples:
               Rename Video:
                 value:
-                  video_name: ""
+                  video_name: "Sales"
       responses:
         "200":
           description: "OK"
@@ -1253,8 +1261,10 @@ paths:
       - name: video_id
         in: path
         required: true
+        description: The unique identifier of the video generation.
         schema:
           type: string
+          example: "8a4f94e736"
 
   /v2/replicas:
     get:
@@ -1569,12 +1579,15 @@ paths:
         - name: replica_id
           in: path
           required: true
+          description: The unique identifier of the persona.
           schema:
             type: string
+            example: rf3073f2dcc1
         - name: hard
           in: query
           schema:
             type: boolean
+            example: false
           description: "If set to true, the replica and associated assets (such as training footage) will be hard deleted. CAUTION: This action is irrevocable. Note that a hard delete of a replica does *not* delete the conversation created using said replica. See [Delete Video](https://docs.tavus.io/api-reference/video-request/delete-video) for more info."
       responses:
         "200":
@@ -1626,7 +1639,7 @@ paths:
             examples:
               Rename Replica:
                 value:
-                  replica_name: ""
+                  replica_name: "Rio"
       responses:
         "200":
           description: "OK"
@@ -1658,8 +1671,10 @@ paths:
       - name: replica_id
         in: path
         required: true
+        description: The unique identifier of the persona.
         schema:
           type: string
+          example: rf3073f2dcc1
 
   /v2/conversations:
     post:
@@ -2016,14 +2031,6 @@ paths:
       description: |
         This endpoint deletes a single conversation by its unique identifier.
       operationId: deleteConversation
-      parameters:
-        - name: conversation_id
-          in: path
-          required: true
-          description: The unique identifier of the conversation.
-          schema:
-            type: string
-            example: c123456
       responses:
         "204":
           description: "NO CONTENT"
@@ -2056,8 +2063,10 @@ paths:
       - name: conversation_id
         in: path
         required: true
+        description: The unique identifier of the conversation.
         schema:
           type: string
+          example: c123456
 
   /v2/conversations/{conversation_id}/end:
     post:
@@ -2067,14 +2076,6 @@ paths:
       description: |
         This endpoint ends a single conversation by its unique identifier.
       operationId: endConversation
-      parameters:
-        - name: conversation_id
-          in: path
-          required: true
-          description: The unique identifier of the conversation.
-          schema:
-            type: string
-            example: c123456
       responses:
         "200":
           description: "OK"
@@ -2107,8 +2108,10 @@ paths:
       - name: conversation_id
         in: path
         required: true
+        description: The unique identifier of the conversation.
         schema:
           type: string
+          example: c123456
 
   /v2/personas:
     post:
@@ -3099,6 +3102,14 @@ paths:
       description: |
         This endpoint deletes a single persona by its unique identifier.
       operationId: deletePersona
+      parameters:
+        - name: persona_id
+          in: path
+          required: true
+          description: The unique identifier of the persona.
+          schema:
+            type: string
+            example: pf3073f2dcc1
       responses:
         "204":
           description: "NO CONTENT"
@@ -3150,14 +3161,6 @@ paths:
         ]
         ```
       operationId: patchPersona
-      parameters:
-        - name: persona_id
-          in: path
-          required: true
-          description: The unique identifier of the persona.
-          schema:
-            type: string
-            example: pf3073f2dcc1
       requestBody:
         content:
           application/json:
@@ -3241,8 +3244,10 @@ paths:
       - name: persona_id
         in: path
         required: true
+        description: The unique identifier of the persona.
         schema:
           type: string
+          example: pf3073f2dcc1
     
 
   /v2/transcriptions:
