@@ -724,13 +724,13 @@ paths:
               properties:
                 speech_name:
                   type: string
-                  example: ""
+                  example: "First Speech"
               required:
                 - speech_name
             examples:
               Rename Speech:
                 value:
-                  speech_name: ""
+                  speech_name: "First Speech"
       responses:
         "204":
           description: ""
@@ -1633,7 +1633,7 @@ paths:
               properties:
                 replica_name:
                   type: string
-                  example: ""
+                  example: "Rio"
               required:
                 - replica_name
             examples:
