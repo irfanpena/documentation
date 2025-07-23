@@ -2067,6 +2067,14 @@ paths:
       description: |
         This endpoint ends a single conversation by its unique identifier.
       operationId: endConversation
+      parameters:
+        - name: conversation_id
+          in: path
+          required: true
+          description: The unique identifier of the conversation.
+          schema:
+            type: string
+            example: c123456
       responses:
         "200":
           description: "OK"
@@ -3142,6 +3150,14 @@ paths:
         ]
         ```
       operationId: patchPersona
+      parameters:
+        - name: persona_id
+          in: path
+          required: true
+          description: The unique identifier of the persona.
+          schema:
+            type: string
+            example: pf3073f2dcc1
       requestBody:
         content:
           application/json:
