@@ -153,6 +153,14 @@
             ]
           },
           {
+            "group": "Speech Generation",
+            "icon": "lips",
+            "pages": [
+              "sections/speech/overview",
+              "sections/speech/quickstart"
+            ]
+          },
+          {
             "group": "Resources",
             "icon": "bookmark",
             "pages": [

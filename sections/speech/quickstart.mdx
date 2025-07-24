@@ -1,0 +1,58 @@
+---
+title: "Quickstart"
+description: Generate high-quality speech audio from text using Tavus's Speech service.
+---
+
+## Convert Text to Speech
+
+<Steps>
+  <Step title="Step 1: Generate Speech">
+     Use the following request to convert text into speech:
+    <Note>
+      
+      `script`, `replica_id`, and `callback_url` are required.
+    </Note>
+    ```sh
+    curl --request POST \
+      --url https://tavusapi.com/v2/speech \
+      --header 'Content-Type: application/json' \
+      --header 'x-api-key: <api-key>' \
+      --data '{
+      "script": "<your_text_script>",
+      "replica_id": "<replica_id>",
+      "callback_url": "<your_callback_url>"
+    }'
+    ```
+    <Note>
+      - Replace `<api_key>` with your actual API key. You can generate one in the <a href="https://platform.tavus.io/api-keys" target="_blank">Developer Portal</a>.
+      - Replace `<your_text_script>` with your actual text script.
+      - Replace `<replica_id>` with the Replica ID that you want to use.
+      - Replace `<your_callback_url>` with your callback URL.
+    </Note>
+  </Step>
+  <Step title="Step 2: Check Speech Status">
+    Monitor the status of the speech generation using the <a href="/api-reference/speech/get-speech" target="_blank">Get Speech</a> endpoint:
+
+    ```sh
+    curl --request GET \
+      --url https://tavusapi.com/v2/speech/{speech_id} \
+      --header 'x-api-key: <api_key>'
+    ```
+    <Note>
+    Replace `<api_key>` with your actual API key.
+    </Note>
+  </Step>
+  <Step title="Step 3: Download the Speech">
+    Once the speech is generated, you'll receive a response containing the `speech_file_url`. Use this URL to download your speech.
+    ```json 200
+    {
+      "status": "completed",
+      "speech_id": "<your_speech_id>",
+      "speech_file_url": "<your_speech_url>"
+    }
+    ```
+    <Warning>
+      The download link for your speech expires after **1 week**. To get a new download link, use the <a href="/api-reference/speech/get-speech" target="_blank" rel="noopener noreferrer">Get Speech</a> endpoint.
+    </Warning>
+  </Step>
+</Steps>
