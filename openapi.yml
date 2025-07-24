@@ -1451,8 +1451,8 @@ paths:
                     description: "A unique identifier for the replica."
                   status:
                     type: string
-                    example: "training"
-                    description: "The status of the replica. Possible values: started, completed, error."
+                    example: "started"
+                    description: "The status of the replica. Possible values: `started`, `completed`, `error`."
         "400":
           description: "Bad Request"
           content:
