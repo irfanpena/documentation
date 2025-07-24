@@ -1712,7 +1712,11 @@ paths:
                   example: "rfe12d8b9597"
                 persona_id:
                   type: string
-                  description: "The unique identifier for the persona that the replica will use in the conversation. **If your Persona does not have a valid `replica_id`, you must define the `replica_id` field. If your Persona already has a valid `replica_id` and you provide one in the request, the `replica_id` field will overwrite the existing value**."
+                  description: |
+                    "The unique identifier for the persona that the replica will use in the conversation.
+                    
+                    - **If your Persona does not have a valid `replica_id`, you must define the `replica_id` field.**
+                    - **If your Persona already has a valid `replica_id` and you provide one in the request, the `replica_id` field will overwrite the existing value**."
                   example: "p9a95912"
                 audio_only:
                   type: boolean
